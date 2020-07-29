@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:challengeMk2.ViewModels"
+             x:Class="challengeMk2.Views.SystemDetailPage"
+             Title="{Binding Title}">
+
+
+    <StackLayout Padding="5">
+
+        <Label Text="{Binding DetailedSystem.Name}"
+               FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
+        <!--GENERAL INFO-->
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Distance from SOL :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding CurrentDistance}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="System Permit :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.PermitName}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Number of bodies in the system :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding CurrentBodyCount}"
+                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="system coordinates :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Coords.X, StringFormat='X: {0}'}"
+                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Coords.Y, StringFormat='Y: {0}'}"
+                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Coords.Z, StringFormat='Z: {0}'}"
+                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
+        <!--SYSTEM INFORMATIONS-->
+
+        <Label Text="STATE INFOS"
+               FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
+
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Allegiance :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Allegiance}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Government :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Government}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Faction :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Faction}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Faction state :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.FactionState}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Population :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Population}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Security :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Security}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Economy :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Economy}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Second Economy :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.SecondEconomy}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Reserve :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Reserve}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
+        <!--PRIMARY STAR-->
+
+        <Label Text="PRIMARY STAR"
+               FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
+
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Type :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.PrimaryStar.Type}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Name :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.PrimaryStar.Name}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Scoopable ?"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.PrimaryStar.IsScoopable}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+        
+    </StackLayout>
+</ContentPage>

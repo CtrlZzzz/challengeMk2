@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+       xmlns:local="clr-namespace:challengeMk2.Views"
+       Title="challengeMk2"
+       x:Class="challengeMk2.AppShell">
+
+    <Shell.Resources>
+    </Shell.Resources>
+
+    <TabBar>
+        <Tab Title="System Finder" Icon="tab_solarS.png">
+            <ShellContent ContentTemplate="{DataTemplate local:StarSystemsPage}"/>
+        </Tab>
+        <Tab Title="Number Finder" Icon="tab_puzzle.png">
+            <ShellContent ContentTemplate="{DataTemplate local:PuzzlePage}"/>
+        </Tab>
+        <Tab Title="System Finder" Icon="tab_about.png">
+            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}"/>
+        </Tab>
+
+    </TabBar>
+    
+</Shell>

@@ -112,10 +112,15 @@ namespace challengeMk2.ViewModels
             }
             else  // User has no or bad connection => retreive datas from saved file
             {
+                IsBusy = true;
+
                 Title = "Offline Mode !";
 
                 try
                 {
+                    //Display ALERT
+                    await App.Current.MainPage.DisplayAlert("Connection issue", "Unable to connect to EDSM API. Switching to OFFLINE mode. If you have saved API datas, they will be loaded. If not, try to refresh later...", "OK");
+
                     //Get datas
                     var offlineData = GetOfflineData(savedSystemsFile);
 
@@ -133,7 +138,7 @@ namespace challengeMk2.ViewModels
                 }
                 finally
                 {
-
+                    IsBusy = false;
                 }
             }
         }

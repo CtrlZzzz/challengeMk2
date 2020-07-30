@@ -84,6 +84,8 @@ namespace challengeMk2.ViewModels
 
             if (CurrentConnectivity == NetworkAccess.Internet)  // User has acces to internet => retreive datas online from EDSM
             {
+                IsBusy = true;  // For "PullToRefresh" systems list
+
                 Title = "Star Systems around SOL";
 
                 try
@@ -105,7 +107,7 @@ namespace challengeMk2.ViewModels
                 }
                 finally
                 {
-
+                    IsBusy = false;
                 }
             }
             else  // User has no or bad connection => retreive datas from saved file

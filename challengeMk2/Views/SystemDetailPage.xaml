@@ -159,7 +159,8 @@
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
             <!--Label Text="{Binding DetailedSystem.PrimaryStar.IsScoopable}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/-->
-            <CheckBox IsChecked="{Binding DetailedSystem.PrimaryStar.IsScoopable}" Color="Silver"/>
+            <CheckBox IsChecked="{Binding DetailedSystem.PrimaryStar.IsScoopable}"
+                      HorizontalOptions="EndAndExpand" VerticalOptions="Center" Color="Silver"/>
         </StackLayout>
         
     </StackLayout>

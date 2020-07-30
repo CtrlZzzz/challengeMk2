@@ -12,34 +12,36 @@
         <vm:StarSystemsViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout>
-    <Button Text="Get Systems list !" Command="{Binding LoadSystemDataCommand}"/>
-    <CollectionView ItemsSource="{Binding Systems}" SelectionMode="Single" SelectedItem="{Binding SelectedSystem, Mode=OneWayToSource}">
-        <skip:CollectionView.ItemsSource>
-            <x:Array Type="{x:Type x:String}">
-                <x:String>My Star System 1</x:String>
-                <x:String>My Star System 2</x:String>
-                <x:String>My Star System 3</x:String>
-                <x:String>My Star System 4</x:String>
-                <x:String>My Star System 5</x:String>
-                <x:String>My Star System 6</x:String>
-            </x:Array>
-        </skip:CollectionView.ItemsSource>
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}">
+        <!--StackLayout-->
+            <!--Button Text="Get Systems list !" Command="{Binding LoadSystemDataCommand}"/-->
+            <CollectionView ItemsSource="{Binding Systems}" SelectionMode="Single" SelectedItem="{Binding SelectedSystem, Mode=OneWayToSource}">
+                <skip:CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>My Star System 1</x:String>
+                        <x:String>My Star System 2</x:String>
+                        <x:String>My Star System 3</x:String>
+                        <x:String>My Star System 4</x:String>
+                        <x:String>My Star System 5</x:String>
+                        <x:String>My Star System 6</x:String>
+                    </x:Array>
+                </skip:CollectionView.ItemsSource>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Padding="10" Orientation="Horizontal">
-                    <Image Source="tab_star.png"/>
-                    <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center"/>
-                    <Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
-                    <!--StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnSystemTapped">
-                        </TapGestureRecognizer>
-                    </-->
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-        </StackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" Orientation="Horizontal">
+                            <Image Source="tab_star.png"/>
+                            <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+                            <!--StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnSystemTapped">
+                                </TapGestureRecognizer>
+                            </-->
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        <!--/-->
+    </RefreshView>
 
 </ContentPage>

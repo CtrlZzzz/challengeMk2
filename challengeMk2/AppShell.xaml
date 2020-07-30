@@ -18,7 +18,7 @@
         <Tab Title="Number Finder" Icon="tab_puzzle.png">
             <ShellContent ContentTemplate="{DataTemplate local:PuzzlePage}"/>
         </Tab>
-        <Tab Title="System Finder" Icon="tab_about.png">
+        <Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}"/>
         </Tab>
 

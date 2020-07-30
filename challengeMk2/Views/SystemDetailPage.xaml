@@ -3,8 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:challengeMk2.ViewModels"
+             xmlns:cvt="clr-namespace:challengeMk2.Converters"
              x:Class="challengeMk2.Views.SystemDetailPage"
              Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cvt:NullStringConverter x:Key="nullStringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
 
     <StackLayout Padding="5">
@@ -12,6 +19,7 @@
         <Label Text="{Binding DetailedSystem.Name}"
                FontSize="20" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
 
         <!--GENERAL INFO-->
 
@@ -25,7 +33,7 @@
         <StackLayout Orientation="Horizontal">
             <Label Text="System Permit :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.PermitName}"
+            <Label Text="{Binding DetailedSystem.PermitName, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
@@ -49,6 +57,7 @@
 
         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
 
+
         <!--SYSTEM INFORMATIONS-->
 
         <Label Text="STATE INFOS"
@@ -58,69 +67,70 @@
 
 
         <StackLayout Orientation="Horizontal">
+            <Label Text="Population :"
+                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding DetailedSystem.Information.Population, Converter={StaticResource nullStringConverter}}"
+                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
             <Label Text="Allegiance :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Allegiance}"
+            <Label Text="{Binding DetailedSystem.Information.Allegiance, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Government :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Government}"
+            <Label Text="{Binding DetailedSystem.Information.Government, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Faction :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Faction}"
+            <Label Text="{Binding DetailedSystem.Information.Faction, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Faction state :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.FactionState}"
-                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Population :"
-                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Population}"
+            <Label Text="{Binding DetailedSystem.Information.FactionState, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Security :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Security}"
+            <Label Text="{Binding DetailedSystem.Information.Security, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Economy :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Economy}"
+            <Label Text="{Binding DetailedSystem.Information.Economy, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Second Economy :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.SecondEconomy}"
+            <Label Text="{Binding DetailedSystem.Information.SecondEconomy, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
             <Label Text="Reserve :"
                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding DetailedSystem.Information.Reserve}"
+            <Label Text="{Binding DetailedSystem.Information.Reserve, Converter={StaticResource nullStringConverter}}"
                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
         </StackLayout>
 
         <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" Color="Silver"/>
+
 
         <!--PRIMARY STAR-->
 

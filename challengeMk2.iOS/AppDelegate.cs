@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Xamarin.Forms;
 using Foundation;
 using UIKit;
 
@@ -22,6 +23,9 @@ namespace challengeMk2.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //Active CAROUSELVIEW Preview feature
+            Forms.SetFlags("CollectionView_Experimental");
+
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Xamarin.Forms;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -18,6 +19,9 @@ namespace challengeMk2.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            //Active CAROUSELVIEW Preview feature
+            Forms.SetFlags("CollectionView_Experimental");
 
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

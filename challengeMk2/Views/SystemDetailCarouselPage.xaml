@@ -10,7 +10,7 @@
     <StackLayout>
         <CarouselView ItemsSource="{Binding SystemInfos}"
                       EmptyView="No data to display. Check your connection and retry"
-                      >
+                      IndicatorView="dots">
 
             <skip:CarouselView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">

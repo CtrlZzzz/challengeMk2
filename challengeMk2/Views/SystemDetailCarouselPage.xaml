@@ -11,15 +11,29 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <cvt:NullStringConverter x:Key="nullStringConverter"/>
+            <DataTemplate x:Key="GeneralTemplate">
+                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            </DataTemplate>
+            <DataTemplate x:Key="SystemTemplate">
+                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            </DataTemplate>
+            <DataTemplate x:Key="PrimaryTemplate">
+                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+            </DataTemplate>
 
+            <cvt:NullStringConverter x:Key="nullStringConverter"/>
+            <slt:SystemDetailTemplateSelector x:Key="detailTemplateSelector"
+                                              GeneralInfoTemplate="{StaticResource GeneralTemplate}"
+                                              SystemInfoTemplate="{StaticResource SystemTemplate}"
+                                              PrimaryStarInfoTemplate="{StaticResource PrimaryTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <StackLayout>
         <CarouselView ItemsSource="{Binding SystemInfos}"
                       EmptyView="No data to display. Check your connection and retry"
-                      IndicatorView="dots">
+                      IndicatorView="dots"
+                      ItemTemplate="{StaticResource detailTemplateSelector}">
 
             <skip:CarouselView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -32,11 +46,11 @@
                 </x:Array>
             </skip:CarouselView.ItemsSource>
 
-            <CarouselView.ItemTemplate>
+            <!--CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 </DataTemplate>
-            </CarouselView.ItemTemplate>
+            </-->
         </CarouselView>
 
         <IndicatorView x:Name="dots"

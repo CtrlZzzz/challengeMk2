@@ -57,9 +57,65 @@
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Population :"
-                                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
                             <Label Text="{Binding Information.Population, Converter={StaticResource nullStringConverter}}"
-                                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Allegiance :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Allegiance, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Government :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Government, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Faction :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Faction, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Faction state :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.FactionState, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Security :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Security, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Economy :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Economy, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Second Economy :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.SecondEconomy, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Reserve :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Reserve, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     </StackLayout>
                 </ContentView>
@@ -70,10 +126,24 @@
                 <ContentView Padding="5">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label  Text="Type :"
-                                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-                            <Label  Text="{Binding PrimaryStar.Type}"
-                                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="Star Type :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding PrimaryStar.Type}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Star Name :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding PrimaryStar.Name}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Scoopable star?"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <CheckBox IsChecked="{Binding PrimaryStar.IsScoopable}"
+                                      HorizontalOptions="EndAndExpand" VerticalOptions="Center" Color="Silver"/>
                         </StackLayout>
                     </StackLayout>
                 </ContentView>

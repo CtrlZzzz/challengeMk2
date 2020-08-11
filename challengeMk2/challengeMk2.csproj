@@ -17,6 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="DataSelectors\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\SystemDetailCarouselPage.xaml.cs">

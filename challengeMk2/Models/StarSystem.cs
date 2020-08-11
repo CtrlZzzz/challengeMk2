@@ -29,6 +29,16 @@ namespace challengeMk2.Models
         public Coords Coords { get; set; }
 
 
+        //ID for dataSelector
+        //private int dataSelectorID = 0;
+        //public int DataSelectorID
+        //{
+        //    get => dataSelectorID;
+        //    set => dataSelectorID = value;
+        //}
+        public int DataSelectorID { get; set; }
+
+
         //Debug
         public override string ToString()
         {

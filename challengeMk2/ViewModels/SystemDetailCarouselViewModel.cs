@@ -133,9 +133,17 @@ namespace challengeMk2.ViewModels
 
         private void FillSystemInfos()
         {
-            SystemInfos.Add(detailedSystem);
-            SystemInfos.Add(detailedSystem);
-            SystemInfos.Add(detailedSystem);
+            SystemInfos.Add(GetSystemWithIdSelector(0));
+            SystemInfos.Add(GetSystemWithIdSelector(1));
+            SystemInfos.Add(GetSystemWithIdSelector(2));
+        }
+
+        private StarSystem GetSystemWithIdSelector(int id)
+        {
+            StarSystem newSystem = new StarSystem();
+            newSystem.DataSelectorID = id;
+
+            return newSystem;
         }
     }
 }

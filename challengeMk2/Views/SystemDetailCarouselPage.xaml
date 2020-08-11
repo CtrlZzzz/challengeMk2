@@ -11,21 +11,80 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+
+            <!--GENERAL INFO-->
             <DataTemplate x:Key="GeneralTemplate">
-                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-            </DataTemplate>
-            <DataTemplate x:Key="SystemTemplate">
-                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-            </DataTemplate>
-            <DataTemplate x:Key="PrimaryTemplate">
-                <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                <ContentView Padding="5">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Distance from SOL :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Distance}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="System Permit :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding PermitName, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Number of bodies in the system :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding BodyCount}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="system coordinates :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Coords.X, StringFormat='X: {0}'}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Coords.Y, StringFormat='Y: {0}'}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Coords.Z, StringFormat='Z: {0}'}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentView>
             </DataTemplate>
 
-            <cvt:NullStringConverter x:Key="nullStringConverter"/>
+            <!--SYSTEM INFORMATIONS-->
+            <DataTemplate x:Key="SystemTemplate">
+                <ContentView Padding="5">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Population :"
+                                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Information.Population, Converter={StaticResource nullStringConverter}}"
+                                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentView>
+            </DataTemplate>
+
+            <!--PRIMARY STAR-->
+            <DataTemplate x:Key="PrimaryTemplate">
+                <ContentView Padding="5">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label  Text="Type :"
+                                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+                            <Label  Text="{Binding PrimaryStar.Type}"
+                                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentView>
+            </DataTemplate>
+
             <slt:SystemDetailTemplateSelector x:Key="detailTemplateSelector"
                                               GeneralInfoTemplate="{StaticResource GeneralTemplate}"
                                               SystemInfoTemplate="{StaticResource SystemTemplate}"
                                               PrimaryStarInfoTemplate="{StaticResource PrimaryTemplate}"/>
+            <cvt:NullStringConverter x:Key="nullStringConverter"/>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -45,16 +104,11 @@
                     <x:String>My details 6</x:String>
                 </x:Array>
             </skip:CarouselView.ItemsSource>
-
-            <!--CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                </DataTemplate>
-            </-->
         </CarouselView>
 
         <IndicatorView x:Name="dots"
                        HorizontalOptions="Center"
+                       IndicatorSize="7.0"
                        IndicatorColor="LightGray"
                        SelectedIndicatorColor="Orange"/>
     </StackLayout>

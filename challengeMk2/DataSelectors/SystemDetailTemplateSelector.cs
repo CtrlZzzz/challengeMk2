@@ -11,13 +11,9 @@ namespace challengeMk2.DataSelectors
         public DataTemplate PrimaryStarInfoTemplate { get; set; }
 
 
-        public SystemDetailTemplateSelector()
-        {
-            
-        }
-
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
+            //StarSystem currentSystem = ((StarSystem)item);
             StarSystem currentSystem = item as StarSystem;
 
             //return currentSystem.DataSelectorID switch
@@ -31,7 +27,6 @@ namespace challengeMk2.DataSelectors
             switch (currentSystem.DataSelectorID)
             {
                 case 0:
-                    GeneralInfoTemplate = new DataTemplate();
                     return GeneralInfoTemplate;
                 case 1:
                     return SystemInfoTemplate;

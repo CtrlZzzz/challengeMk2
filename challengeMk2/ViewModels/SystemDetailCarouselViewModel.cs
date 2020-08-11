@@ -140,10 +140,25 @@ namespace challengeMk2.ViewModels
 
         private StarSystem GetSystemWithIdSelector(int id)
         {
-            StarSystem newSystem = new StarSystem();
-            newSystem.DataSelectorID = id;
+            //StarSystem newSystem = new StarSystem();
+            //newSystem.DataSelectorID = id;
 
-            return newSystem;
+            //return newSystem;
+
+            StarSystem systemWithId = new StarSystem();
+
+            systemWithId.DataSelectorID = id;
+
+            systemWithId.Distance = currentSystem.Distance;
+            systemWithId.BodyCount = currentSystem.BodyCount;
+            systemWithId.Name = detailedSystem.Name;
+            systemWithId.RequirePermit = detailedSystem.RequirePermit;
+            systemWithId.PermitName = detailedSystem.PermitName;
+            systemWithId.Information = detailedSystem.Information;
+            systemWithId.PrimaryStar = detailedSystem.PrimaryStar;
+            systemWithId.Coords = detailedSystem.Coords;
+
+            return systemWithId;
         }
     }
 }

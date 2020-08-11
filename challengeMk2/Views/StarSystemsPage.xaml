@@ -12,6 +12,11 @@
         <vm:StarSystemsViewModel/>
     </ContentPage.BindingContext>
 
+    <!--Toolbar Icon-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="tab_solarS.png"/>
+    </ContentPage.ToolbarItems>
+
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}">
         <!--StackLayout-->
             <!--Button Text="Get Systems list !" Command="{Binding LoadSystemDataCommand}"/-->

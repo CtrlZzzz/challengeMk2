@@ -8,6 +8,9 @@
              mc:Ignorable="skip"
              x:Class="challengeMk2.Views.SystemDetailCarouselPage"
              Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="tab_star.png"/>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
         <ResourceDictionary>

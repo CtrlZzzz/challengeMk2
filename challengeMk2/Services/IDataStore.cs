@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace challengeMk2.Services
+namespace ChallengeMk2.Services
 {
     public interface IDataStore<T>
     {

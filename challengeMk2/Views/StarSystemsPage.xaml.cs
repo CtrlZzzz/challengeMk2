@@ -1,9 +1,9 @@
 ﻿using System;
-using challengeMk2.Models;
-using challengeMk2.ViewModels;
+using ChallengeMk2.Models;
+using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 
-namespace challengeMk2.Views
+namespace ChallengeMk2.Views
 {
     public partial class StarSystemsPage : ContentPage
     {

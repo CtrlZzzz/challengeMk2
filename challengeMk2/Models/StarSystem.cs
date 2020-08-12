@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace challengeMk2.Models
+namespace ChallengeMk2.Models
 {
     public class StarSystem
     {

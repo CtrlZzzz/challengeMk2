@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challengeMk2.Android", "cha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challengeMk2.iOS", "challengeMk2.iOS\challengeMk2.iOS.csproj", "{70BA3D36-2D18-46C2-ADDA-704EF9E8058D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challengeMk2", "challengeMk2\challengeMk2.csproj", "{3166BB96-C200-4059-89E9-18123B499A59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMk2", "challengeMk2\challengeMk2.csproj", "{3166BB96-C200-4059-89E9-18123B499A59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,9 +4,9 @@
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
-       xmlns:local="clr-namespace:challengeMk2.Views"
-       Title="challengeMk2"
-       x:Class="challengeMk2.AppShell">
+       xmlns:local="clr-namespace:ChallengeMk2.Views"
+       Title="ChallengeMk2"
+       x:Class="ChallengeMk2.AppShell">
 
     <Shell.Resources>
     </Shell.Resources>

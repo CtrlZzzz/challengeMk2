@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:vm="clr-namespace:challengeMk2.ViewModels"
+             xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
              mc:Ignorable="skip"
-             x:Class="challengeMk2.Views.StarSystemsPage"
+             x:Class="ChallengeMk2.Views.StarSystemsPage"
              Title="{Binding Title}">
 
     <ContentPage.BindingContext>

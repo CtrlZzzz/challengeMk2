@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Net;
-using challengeMk2.Models;
-using challengeMk2.ViewModels;
+using ChallengeMk2.Models;
+using ChallengeMk2.ViewModels;
 using System.IO;
 using Xamarin.Essentials;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace challengeMk2.ViewModels
+namespace ChallengeMk2.ViewModels
 {
     public class SystemDetailViewModel : BaseViewModel
     {

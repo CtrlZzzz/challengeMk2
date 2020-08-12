@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using challengeMk2.ViewModels;
+using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 
-namespace challengeMk2.Views
+namespace ChallengeMk2.Views
 {
     public partial class SystemDetailCarouselPage : ContentPage
     {

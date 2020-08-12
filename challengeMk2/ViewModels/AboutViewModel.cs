@@ -2,7 +2,7 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace challengeMk2.ViewModels
+namespace ChallengeMk2.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

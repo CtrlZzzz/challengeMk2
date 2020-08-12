@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace challengeMk2.Converters
+namespace ChallengeMk2.Converters
 {
     public class NullStringConverter : IValueConverter
     {

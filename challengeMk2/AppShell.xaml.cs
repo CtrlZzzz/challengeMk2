@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace challengeMk2
+namespace ChallengeMk2
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {

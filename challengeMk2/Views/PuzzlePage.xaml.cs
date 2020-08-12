@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace challengeMk2.Views
+namespace ChallengeMk2.Views
 {
     public partial class PuzzlePage : ContentPage
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
-using challengeMk2.Models;
+using ChallengeMk2.Models;
 using System.Collections.Generic;
 
-namespace challengeMk2.DataSelectors
+namespace ChallengeMk2.DataSelectors
 {
     public class SystemDetailTemplateSelector : DataTemplateSelector
     {

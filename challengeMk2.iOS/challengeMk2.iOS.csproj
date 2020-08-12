@@ -143,7 +143,7 @@
   <ItemGroup>
     <ProjectReference Include="..\challengeMk2\challengeMk2.csproj">
       <Project>{3166BB96-C200-4059-89E9-18123B499A59}</Project>
-      <Name>challengeMk2</Name>
+      <Name>ChallengeMk2</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:cvt="clr-namespace:challengeMk2.Converters"
-             xmlns:slt="clr-namespace:challengeMk2.DataSelectors"
+             xmlns:cvt="clr-namespace:ChallengeMk2.Converters"
+             xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
              mc:Ignorable="skip"
-             x:Class="challengeMk2.Views.SystemDetailCarouselPage"
+             x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="tab_star.png"/>

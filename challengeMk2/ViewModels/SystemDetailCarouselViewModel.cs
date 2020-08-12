@@ -64,12 +64,6 @@ namespace ChallengeMk2.ViewModels
         public IList SystemInfos { get; set; }
 
 
-
-
-
-
-
-
         public SystemDetailCarouselViewModel(StarSystem selectedSystem = null)
         {
             Title = "Star System Details";
@@ -81,12 +75,6 @@ namespace ChallengeMk2.ViewModels
             //Get infos
             UpdateSystemData();
         }
-
-
-
-
-
-
 
 
         private async void UpdateSystemData()

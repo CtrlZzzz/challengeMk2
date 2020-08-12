@@ -61,7 +61,7 @@ namespace ChallengeMk2.ViewModels
 
         public NetworkAccess CurrentConnectivity { get; set; }
 
-        public IList SystemInfos { get; set; }
+        public ObservableCollection<StarSystem> SystemInfos { get; set; }
 
 
         public SystemDetailCarouselViewModel(StarSystem selectedSystem = null)

@@ -8,9 +8,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace challengeMk2.Droid
+namespace ChallengeMk2.Droid
 {
-    [Activity(Label = "challengeMk2", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "ChallengeMk2", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

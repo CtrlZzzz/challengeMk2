@@ -101,16 +101,18 @@ namespace ChallengeMk2.ViewModels
 
         private async Task<StarSystem> GetDetailsFromApi()
         {
-            HttpClient client = new HttpClient();
-
             // Check system name for special characters : "+" must be replace by "%2b" => Try WebUtility.HtmlEncode(string)
             string encodedName = WebUtility.UrlEncode(currentSystem.Name);
 
             string url = $"https://www.edsm.net/api-v1/system?systemName={encodedName}&showInformation=1&showPrimaryStar=1&showPermit=1&showCoordinates=1";
 
-            var response = await client.GetStringAsync(url);
 
-            return JsonConvert.DeserializeObject<StarSystem>(response);
+            using(HttpClient client = new HttpClient())
+            {
+                var response = await client.GetStringAsync(url);
+
+                return JsonConvert.DeserializeObject<StarSystem>(response);
+            } 
         }
 
         private void GetCompInfos()

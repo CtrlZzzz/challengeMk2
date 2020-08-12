@@ -71,13 +71,10 @@ namespace ChallengeMk2.ViewModels
             SystemInfos = new ObservableCollection<StarSystem>();
 
             currentSystem = selectedSystem;
-
-            //Get infos
-            UpdateSystemData();
         }
 
 
-        private async void UpdateSystemData()
+        internal async Task UpdateSystemData()
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
 

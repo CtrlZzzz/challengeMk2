@@ -14,5 +14,14 @@ namespace ChallengeMk2.Views
 
             BindingContext = selectedSystemViewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var vm = BindingContext as SystemDetailCarouselViewModel;
+
+            await vm.UpdateSystemData();
+        }
     }
 }

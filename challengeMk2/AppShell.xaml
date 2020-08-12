@@ -21,7 +21,6 @@
         <Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}"/>
         </Tab>
-
     </TabBar>
     
 </Shell>

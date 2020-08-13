@@ -23,15 +23,15 @@
     <key>MinimumOSVersion</key>
     <string>8.0</string>
     <key>CFBundleDisplayName</key>
-    <string>challengeMk2</string>
+    <string>ChallengeMk2</string>
     <key>CFBundleIdentifier</key>
-    <string>Mi8.challengeMk2</string>
+    <string>Mi8.ChallengeMk2</string>
     <key>CFBundleVersion</key>
     <string>1.0</string>
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>
     <key>CFBundleName</key>
-    <string>challengeMk2</string>
+    <string>ChallengeMk2</string>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>

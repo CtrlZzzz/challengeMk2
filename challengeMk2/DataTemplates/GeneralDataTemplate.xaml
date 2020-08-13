@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.GeneralDataTemplate"
+             Padding="5">
+
+    <!--GENERAL INFO-->
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Distance from SOL :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Distance}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="System Permit :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding PermitName, Converter={StaticResource nullStringConverter}}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Number of bodies in the system :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding BodyCount}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="system coordinates :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Coords.X, StringFormat='X: {0}'}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Coords.Y, StringFormat='Y: {0}'}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Coords.Z, StringFormat='Z: {0}'}"
+                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentView>

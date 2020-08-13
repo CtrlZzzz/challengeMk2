@@ -9,6 +9,7 @@
        x:Class="ChallengeMk2.AppShell">
 
     <Shell.Resources>
+        
     </Shell.Resources>
 
     <TabBar>

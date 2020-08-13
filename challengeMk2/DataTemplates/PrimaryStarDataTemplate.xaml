@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.PrimaryStarDataTemplate"
+             Padding="5">
+
+    <!--PRIMARY STAR-->
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Star Type :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding PrimaryStar.Type}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Star Name :"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding PrimaryStar.Name}"
+                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Scoopable star?"
+                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+            <CheckBox IsChecked="{Binding PrimaryStar.IsScoopable}"
+                                      HorizontalOptions="EndAndExpand" VerticalOptions="Center" Color="Silver"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentView>

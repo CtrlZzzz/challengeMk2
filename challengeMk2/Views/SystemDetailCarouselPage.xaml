@@ -15,7 +15,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
             <!--GENERAL INFO-->
             <DataTemplate x:Key="GeneralTemplate">
                 <dtp:GeneralDataTemplate/>
@@ -35,7 +34,6 @@
                                               GeneralInfoTemplate="{StaticResource GeneralTemplate}"
                                               SystemInfoTemplate="{StaticResource SystemTemplate}"
                                               PrimaryStarInfoTemplate="{StaticResource PrimaryTemplate}"/>
-
         </ResourceDictionary>
     </ContentPage.Resources>
 

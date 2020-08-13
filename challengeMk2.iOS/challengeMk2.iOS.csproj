@@ -122,7 +122,6 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <BundleResource Include="Resources\BannerDetail.png" />
     <BundleResource Include="Resources\tab_puzzle.png" />
     <BundleResource Include="Resources\tab_solarS.png" />
     <BundleResource Include="Resources\tab_star.png" />
@@ -145,5 +144,41 @@
       <Project>{3166BB96-C200-4059-89E9-18123B499A59}</Project>
       <Name>ChallengeMk2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_v01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_v02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_v03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BannerDetail_v04.png" />
   </ItemGroup>
 </Project>

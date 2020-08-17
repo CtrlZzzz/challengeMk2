@@ -33,7 +33,7 @@
         <Setter Property="Shell.ForegroundColor" Value="{StaticResource ShellForeGroundColor}"/>
         <Setter Property="Shell.TitleColor" Value="{StaticResource ShellTitleColor}"/>
         <Setter Property="Shell.DisabledColor" Value="{StaticResource ShellDisableColor}"/>
-        <Setter Property="Shell.UnselectedColor" Value="{StaticResource ShellUnselectedColor}"
+        <Setter Property="Shell.UnselectedColor" Value="{StaticResource ShellUnselectedColor}"/>
     </Style>
 
     <Style x:Key="SystemNameStyle" TargetType="Label">

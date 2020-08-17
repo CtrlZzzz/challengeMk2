@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMk2.Android", "challengeMk2.Android\ChallengeMk2.Android.csproj", "{A20AEF74-BF24-4A93-BA91-78E526E2794B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMk2.Android", "ChallengeMk2.Android\ChallengeMk2.Android.csproj", "{A20AEF74-BF24-4A93-BA91-78E526E2794B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMk2.iOS", "challengeMk2.iOS\ChallengeMk2.iOS.csproj", "{70BA3D36-2D18-46C2-ADDA-704EF9E8058D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallengeMk2.iOS", "ChallengeMk2.iOS\ChallengeMk2.iOS.csproj", "{70BA3D36-2D18-46C2-ADDA-704EF9E8058D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeMk2", "challengeMk2\ChallengeMk2.csproj", "{3166BB96-C200-4059-89E9-18123B499A59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChallengeMk2", "ChallengeMk2\ChallengeMk2.csproj", "{3166BB96-C200-4059-89E9-18123B499A59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

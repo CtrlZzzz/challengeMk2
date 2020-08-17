@@ -8,11 +8,16 @@
              x:Class="ChallengeMk2.App">
 
     <Application.Resources>
+        <!--CONVERTER-->
         <cvt:NullStringConverter x:Key="nullStringConverter"/>
         
+        <!--DEFAULT THEME-->
         <ResourceDictionary>
-            
+            <!--Here comes Merged dictionnary for DEFAULT THEME colors-->
+            <!--Warning : This Dictionary WILL BE CLEARED at runtime when changing current Theme-->
         </ResourceDictionary>
+        
+        <!--STYLES-->
         
     </Application.Resources>
 

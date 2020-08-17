@@ -8,9 +8,12 @@
              x:Class="ChallengeMk2.App">
 
     <Application.Resources>
+        <cvt:NullStringConverter x:Key="nullStringConverter"/>
+        
         <ResourceDictionary>
-            <cvt:NullStringConverter x:Key="nullStringConverter"/>
+            
         </ResourceDictionary>
+        
     </Application.Resources>
 
 </Application>

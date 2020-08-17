@@ -56,8 +56,9 @@
         </CarouselView>
 
         <IndicatorView x:Name="dots"
+                       Padding="10"
                        HorizontalOptions="Center"
-                       IndicatorSize="7.0"
+                       IndicatorSize="5.0"
                        IndicatorColor="LightGray"
                        SelectedIndicatorColor="Orange"/>
     </StackLayout>

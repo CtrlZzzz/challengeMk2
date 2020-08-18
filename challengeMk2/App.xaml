@@ -30,6 +30,10 @@
             <Setter Property="Shell.DisabledColor" Value="{DynamicResource DisableColor}"/>
 
             <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AccentLightColor}"/>
+            <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
+            <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TextForegroundColor}"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource UnselectedColor}"/>
+            <Setter Property="Shell.TabBarDisabledColor" Value="{DynamicResource DisableColor}"/>            
         </Style>
         <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
 

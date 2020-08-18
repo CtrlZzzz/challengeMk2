@@ -20,7 +20,11 @@
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}">
         <!--StackLayout-->
             <!--Button Text="Get Systems list !" Command="{Binding LoadSystemDataCommand}"/-->
-            <CollectionView ItemsSource="{Binding Systems}" SelectionMode="Single" SelectedItem="{Binding SelectedSystem, Mode=OneWayToSource}">
+            <CollectionView ItemsSource="{Binding Systems}" 
+                            SelectionMode="Single" 
+                            SelectedItem="{Binding SelectedSystem, Mode=OneWayToSource}"
+                            BackgroundColor="{DynamicResource PageBackgroundColor}">
+                
                 <skip:CollectionView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>My Star System 1</x:String>
@@ -35,6 +39,23 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" Orientation="Horizontal">
+                        
+                        <!--Set item background color if selected or not-->    
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup>
+                                <VisualState Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{DynamicResource AccentDeepColor}"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                            
                             <Image Source="tab_star.png"/>
                             <Label Text="{Binding Name}" FontSize="18" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
@@ -45,6 +66,7 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                
             </CollectionView>
         <!--/-->
     </RefreshView>

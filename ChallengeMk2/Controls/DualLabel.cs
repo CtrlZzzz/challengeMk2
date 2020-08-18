@@ -16,6 +16,7 @@ namespace ChallengeMk2.Controls
         private Color secondTextColor;
 
         private FontAttributes firstTextAttribute;
+        private FontAttributes secondTextAttribute;
 
         public static readonly BindableProperty FirstTextProperty = BindableProperty.Create(
             nameof(FirstText), 
@@ -47,7 +48,12 @@ namespace ChallengeMk2.Controls
             typeof(DualLabel), 
             FontAttributes.None, 
             propertyChanged: OnFirstTextAttributeChanged);
-
+        public static readonly BindableProperty SecondTextAttributeProperty = BindableProperty.Create(
+            nameof(SecondTextAttribute),
+            typeof(FontAttributes),
+            typeof(DualLabel),
+            FontAttributes.None,
+            propertyChanged: OnSecondTextAttributeChanged);
 
 
         public string FirstText 
@@ -74,6 +80,11 @@ namespace ChallengeMk2.Controls
         {
             get => (FontAttributes)GetValue(FirstTextAttributeProperty);
             set => SetValue(FirstTextAttributeProperty, value);
+        }
+        public FontAttributes SecondTextAttribute
+        {
+            get => (FontAttributes)GetValue(SecondTextAttributeProperty);
+            set => SetValue(SecondTextAttributeProperty, value);
         }
 
 
@@ -126,6 +137,13 @@ namespace ChallengeMk2.Controls
 
             current.ChangeFirstTextAttribute(value);
         }
+        private static void OnSecondTextAttributeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (FontAttributes)newValue;
+
+            current.ChangeSecondTextAttribute(value);
+        }
 
 
         private void ChangeFirstText(string value)
@@ -147,6 +165,10 @@ namespace ChallengeMk2.Controls
         private void ChangeFirstTextAttribute(FontAttributes value)
         {
             firstTextAttribute = value;
+        }
+        private void ChangeSecondTextAttribute(FontAttributes value)
+        {
+            secondTextAttribute = value;
         }
 
     }

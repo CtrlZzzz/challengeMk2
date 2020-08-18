@@ -24,10 +24,10 @@
         <!--STYLES-->
         <Style x:Key="BaseStyle" TargetType="Element">
             <Setter Property="Shell.BackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-            <Setter Property="Shell.ForegroundColor" Value="{DynamicResource BarForegroundColor}"/>
-            <Setter Property="Shell.TitleColor" Value="{DynamicResource BarForegroundColor}"/>
-            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF"/>
-            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF"/>
+            <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
+            <Setter Property="Shell.TitleColor" Value="{DynamicResource TextForegroundColor}"/>
+            <Setter Property="Shell.UnselectedColor" Value="{DynamicResource UnselectedColor}"/>
+            <Setter Property="Shell.DisabledColor" Value="{DynamicResource DisableColor}"/>
 
             <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AccentLightColor}"/>
         </Style>

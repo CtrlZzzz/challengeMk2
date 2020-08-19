@@ -12,12 +12,8 @@ namespace ChallengeMk2.Controls
         private Label firstText;
         private Label secondText;
 
-        private Color firstTextColor;
-        private Color secondTextColor;
 
-        private FontAttributes firstTextAttribute;
-        private FontAttributes secondTextAttribute;
-
+        //BINDABLE PROPERTIES
         public static readonly BindableProperty FirstTextProperty = BindableProperty.Create(
             nameof(FirstText), 
             typeof(string), 
@@ -42,18 +38,54 @@ namespace ChallengeMk2.Controls
             typeof(DualLabel), 
             Color.Black, 
             propertyChanged: OnSecondTextColorChanged);
-        public static readonly BindableProperty FirstTextAttributeProperty = BindableProperty.Create(
-            nameof(FirstTextAttribute), 
+        public static readonly BindableProperty FirstTextFontAttributeProperty = BindableProperty.Create(
+            nameof(FirstTextFontAttribute), 
             typeof(FontAttributes), 
             typeof(DualLabel), 
             FontAttributes.None, 
-            propertyChanged: OnFirstTextAttributeChanged);
-        public static readonly BindableProperty SecondTextAttributeProperty = BindableProperty.Create(
-            nameof(SecondTextAttribute),
+            propertyChanged: OnFirstTextFontAttributeChanged);
+        public static readonly BindableProperty SecondTextFontAttributeProperty = BindableProperty.Create(
+            nameof(SecondTextFontAttribute),
             typeof(FontAttributes),
             typeof(DualLabel),
             FontAttributes.None,
-            propertyChanged: OnSecondTextAttributeChanged);
+            propertyChanged: OnSecondTextFontAttributeChanged);
+        public static readonly BindableProperty FirstTextSizeProperty = BindableProperty.Create(
+            nameof(FirstTextSize),
+            typeof(double),
+            typeof(DualLabel),
+            12,
+            propertyChanged: OnFirstTextSizeChanged);
+        public static readonly BindableProperty SecondTextSizeProperty = BindableProperty.Create(
+            nameof(SecondTextSize),
+            typeof(double),
+            typeof(DualLabel),
+            30,
+            propertyChanged: OnSecondTextSizeChanged);
+        public static readonly BindableProperty FirstTextHorizontalOptionsProperty = BindableProperty.Create(
+            nameof(FirstTextHorizontalOptions),
+            typeof(LayoutOptions),
+            typeof(DualLabel),
+            LayoutOptions.Start,
+            propertyChanged: OnFirstTextHorizontalOptionsChanged);
+        public static readonly BindableProperty SecondTextHorizontalOptionsProperty = BindableProperty.Create(
+            nameof(SecondTextHorizontalOptions),
+            typeof(LayoutOptions),
+            typeof(DualLabel),
+            LayoutOptions.End,
+            propertyChanged: OnSecondTextHorizontalOptionsChanged);
+        public static readonly BindableProperty FirstTextVerticalAlignementProperty = BindableProperty.Create(
+            nameof(FirstTextVerticalAlignement),
+            typeof(TextAlignment),
+            typeof(DualLabel),
+            TextAlignment.End,
+            propertyChanged: OnFirstTextVerticalAlignementChanged);
+        public static readonly BindableProperty SecondTextVerticalAlignementProperty = BindableProperty.Create(
+            nameof(SecondTextVerticalAlignement),
+            typeof(TextAlignment),
+            typeof(DualLabel),
+            TextAlignment.Start,
+            propertyChanged: OnSecondTextVerticalAlignementChanged);
 
 
         public string FirstText 
@@ -76,16 +108,47 @@ namespace ChallengeMk2.Controls
             get => (Color)GetValue(SecondTextColorProperty);
             set => SetValue(SecondTextColorProperty, value);
         }
-        public FontAttributes FirstTextAttribute
+        public FontAttributes FirstTextFontAttribute
         {
-            get => (FontAttributes)GetValue(FirstTextAttributeProperty);
-            set => SetValue(FirstTextAttributeProperty, value);
+            get => (FontAttributes)GetValue(FirstTextFontAttributeProperty);
+            set => SetValue(FirstTextFontAttributeProperty, value);
         }
-        public FontAttributes SecondTextAttribute
+        public FontAttributes SecondTextFontAttribute
         {
-            get => (FontAttributes)GetValue(SecondTextAttributeProperty);
-            set => SetValue(SecondTextAttributeProperty, value);
+            get => (FontAttributes)GetValue(SecondTextFontAttributeProperty);
+            set => SetValue(SecondTextFontAttributeProperty, value);
         }
+        public double FirstTextSize
+        {
+            get => (double)GetValue(FirstTextSizeProperty);
+            set => SetValue(FirstTextSizeProperty, value);
+        }
+        public double SecondTextSize
+        {
+            get => (double)GetValue(SecondTextSizeProperty);
+            set => SetValue(SecondTextSizeProperty, value);
+        }
+        public LayoutOptions FirstTextHorizontalOptions 
+        {
+            get => (LayoutOptions)GetValue(FirstTextHorizontalOptionsProperty);
+            set => SetValue(FirstTextHorizontalOptionsProperty, value);
+        }
+        public LayoutOptions SecondTextHorizontalOptions
+        {
+            get => (LayoutOptions)GetValue(SecondTextHorizontalOptionsProperty);
+            set => SetValue(SecondTextHorizontalOptionsProperty, value);
+        }
+        public TextAlignment FirstTextVerticalAlignement 
+        {
+            get => (TextAlignment)GetValue(FirstTextVerticalAlignementProperty);
+            set => SetValue(FirstTextVerticalAlignementProperty, value);
+        }
+        public TextAlignment SecondTextVerticalAlignement
+        {
+            get => (TextAlignment)GetValue(SecondTextVerticalAlignementProperty);
+            set => SetValue(SecondTextVerticalAlignementProperty, value);
+        }
+
 
 
         //CONSTRUCTOR
@@ -130,19 +193,61 @@ namespace ChallengeMk2.Controls
 
             current.ChangeSecondTextColor(value);
         }
-        private static void OnFirstTextAttributeChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnFirstTextFontAttributeChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var current = (DualLabel)bindable;
             var value = (FontAttributes)newValue;
 
-            current.ChangeFirstTextAttribute(value);
+            current.ChangeFirstTextFontAttribute(value);
         }
-        private static void OnSecondTextAttributeChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnSecondTextFontAttributeChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var current = (DualLabel)bindable;
             var value = (FontAttributes)newValue;
 
-            current.ChangeSecondTextAttribute(value);
+            current.ChangeSecondTextFontAttribute(value);
+        }
+        private static void OnFirstTextSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (double)newValue;
+
+            current.ChangeFirstTextSize(value);
+        }
+        private static void OnSecondTextSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (double)newValue;
+
+            current.ChangeSecondTextSize(value);
+        }
+        private static void OnFirstTextHorizontalOptionsChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (LayoutOptions)newValue;
+
+            current.ChangeFirstTextHorizontalOptions(value);
+        }
+        private static void OnSecondTextHorizontalOptionsChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (LayoutOptions)newValue;
+
+            current.ChangeSecondTextHorizontalOptions(value);
+        }
+        private static void OnFirstTextVerticalAlignementChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (TextAlignment)newValue;
+
+            current.ChangeFirstTextVerticalAlignement(value);
+        }
+        private static void OnSecondTextVerticalAlignementChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var current = (DualLabel)bindable;
+            var value = (TextAlignment)newValue;
+
+            current.ChangeSecondTextVerticalAlignement(value);
         }
 
 
@@ -156,19 +261,43 @@ namespace ChallengeMk2.Controls
         }
         private void ChangeFirstTextColor(Color value)
         {
-            firstTextColor = value;
+            firstText.TextColor = value;
         }
         private void ChangeSecondTextColor(Color value)
         {
-            secondTextColor = value;
+            secondText.TextColor = value;
         }
-        private void ChangeFirstTextAttribute(FontAttributes value)
+        private void ChangeFirstTextFontAttribute(FontAttributes value)
         {
-            firstTextAttribute = value;
+            firstText.FontAttributes = value;
         }
-        private void ChangeSecondTextAttribute(FontAttributes value)
+        private void ChangeSecondTextFontAttribute(FontAttributes value)
         {
-            secondTextAttribute = value;
+            secondText.FontAttributes = value;
+        }
+        private void ChangeFirstTextSize(double value)
+        {
+            firstText.FontSize = value;
+        }
+        private void ChangeSecondTextSize(double value)
+        {
+            secondText.FontSize = value;
+        }
+        private void ChangeFirstTextHorizontalOptions(LayoutOptions value)
+        {
+            firstText.HorizontalOptions = value;
+        }
+        private void ChangeSecondTextHorizontalOptions(LayoutOptions value)
+        {
+            secondText.HorizontalOptions = value;
+        }
+        private void ChangeFirstTextVerticalAlignement(TextAlignment value)
+        {
+            firstText.VerticalTextAlignment = value;
+        }
+        private void ChangeSecondTextVerticalAlignement(TextAlignment value)
+        {
+            secondText.VerticalTextAlignment = value;
         }
 
     }

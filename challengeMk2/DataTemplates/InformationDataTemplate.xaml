@@ -4,8 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ChallengeMk2.DataTemplates.InformationDataTemplate"
-             Padding="5">
+             x:Class="ChallengeMk2.DataTemplates.InformationDataTemplate">
 
     <!--SYSTEM INFORMATIONS-->
     <StackLayout>

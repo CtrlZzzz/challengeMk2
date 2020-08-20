@@ -21,14 +21,12 @@ namespace ChallengeMk2.Controls
             nameof(TopText), 
             typeof(string), 
             typeof(DualLabel), 
-            "Top Text", 
-            propertyChanged: OnTopTextChanged);
+            "Top Text");
         public static readonly BindableProperty BottomTextProperty = BindableProperty.Create(
             nameof(BottomText), 
             typeof(string), 
             typeof(DualLabel), 
-            "Bottom Text", 
-            propertyChanged: OnBottomTextChanged);
+            "Bottom Text");
         public static readonly BindableProperty TopTextColorProperty = BindableProperty.Create(
             nameof(TopTextColor), 
             typeof(Color), 
@@ -57,13 +55,13 @@ namespace ChallengeMk2.Controls
             nameof(TopTextSize),
             typeof(int),
             typeof(DualLabel),
-            12,
+            14,
             propertyChanged: OnTopTextSizeChanged);
         public static readonly BindableProperty BottomTextSizeProperty = BindableProperty.Create(
             nameof(BottomTextSize),
             typeof(int),
             typeof(DualLabel),
-            30,
+            25,
             propertyChanged: OnBottomTextSizeChanged);
         public static readonly BindableProperty TopTextHorizontalOptionsProperty = BindableProperty.Create(
             nameof(TopTextHorizontalOptions),
@@ -194,7 +192,7 @@ namespace ChallengeMk2.Controls
             topText = new Label()
             {
                 //TODO : add Font Family bindable prop !
-                Text = this.TopText,
+                //Text = this.TopText,
                 TextColor = this.TopTextColor,
                 BackgroundColor = Color.Transparent,
                 FontAttributes = this.TopTextFontAttribute,
@@ -205,7 +203,6 @@ namespace ChallengeMk2.Controls
             bottomText = new Label()
             {
                 //TODO : add Font Family bindable prop !
-                Text = this.BottomText,
                 TextColor = this.BottomTextColor,
                 BackgroundColor = Color.Transparent,
                 FontAttributes = this.BottomTextFontAttribute,
@@ -226,6 +223,10 @@ namespace ChallengeMk2.Controls
                 HeightRequest = this.BottomSpaceHeight
             };
 
+            //Add Binding to elements
+            topText.SetBinding(Label.TextProperty, new Binding(nameof(TopText), source: this) );
+            bottomText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText), source: this));
+            //bottomText.FontAttributes.SetBinding(Label.FontAttributesProperty, new Binding(nameof(BottomTextFontAttribute), source: this));
 
             //And layout them :
             Content = new StackLayout
@@ -245,20 +246,6 @@ namespace ChallengeMk2.Controls
 
 
         //PROPERTIES CHANGED
-        private static void OnTopTextChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (string)newValue;
-
-            current.ChangeTopText(value);
-        }
-        private static void OnBottomTextChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (string)newValue;
-
-            current.ChangeBottomText(value);
-        }
         private static void OnTopTextColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var current = (DualLabel)bindable;
@@ -353,14 +340,6 @@ namespace ChallengeMk2.Controls
 
 
         //PRIVATE METHODS
-        private void ChangeTopText(string value)
-        {
-            topText.Text = value;
-        }
-        private void ChangeBottomText(string value)
-        {
-            bottomText.Text = value;
-        }
         private void ChangeTopTextColor(Color value)
         {
             topText.TextColor = value;
@@ -413,6 +392,5 @@ namespace ChallengeMk2.Controls
         {
             bottomSpace.HeightRequest = value;
         }
-
     }
 }

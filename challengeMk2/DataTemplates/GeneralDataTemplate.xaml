@@ -5,12 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
-             x:Class="ChallengeMk2.DataTemplates.GeneralDataTemplate"
-             Padding="5">
+             x:Class="ChallengeMk2.DataTemplates.GeneralDataTemplate">
 
     <!--GENERAL INFO-->
     <StackLayout>
-        <controls:DualLabel />
+        <controls:DualLabel Style="{StaticResource DualStat}"/>
         <StackLayout Orientation="Horizontal">
             <Label Text="Distance from SOL :"
                                    FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>

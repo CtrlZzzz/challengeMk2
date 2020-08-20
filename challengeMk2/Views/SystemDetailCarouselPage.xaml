@@ -5,6 +5,7 @@
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
              xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
              xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
              Title="{Binding Title}">
@@ -37,7 +38,11 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}"
+                 Padding="10">
+        
+        <controls:DualLabel Style="{StaticResource DualTitle}" TopText="System name" BottomText="{Binding DetailedSystem.Name}"/>
+        
         <CarouselView ItemsSource="{Binding SystemInfos}"
                       EmptyView="No data to display. Check your connection and retry"
                       IndicatorView="dots"
@@ -60,6 +65,6 @@
                        HorizontalOptions="Center"
                        IndicatorSize="5.0"
                        IndicatorColor="LightGray"
-                       SelectedIndicatorColor="Orange"/>
+                       SelectedIndicatorColor="{DynamicResource AccentDeepColor}"/>
     </StackLayout>
 </ContentPage>

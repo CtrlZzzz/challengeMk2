@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:cvt="clr-namespace:ChallengeMk2.Converters"
              xmlns:theme="clr-namespace:ChallengeMk2.Themes"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.App">
 
@@ -36,6 +37,23 @@
             <Setter Property="Shell.TabBarDisabledColor" Value="{DynamicResource DisableColor}"/>            
         </Style>
         <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
+
+        <Style x:Key="DualTitle" TargetType="controls:DualLabel">
+            <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
+            <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
+            <Setter Property="TopTextHorizontalOptions" Value="End"/>
+            <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
+            <Setter Property="BottomTextSize" Value="40"/>
+            <Setter Property="BottomTextFontAttribute" Value="Bold"/>
+            <Setter Property="BottomTextHorizontalOptions" Value="Start"/>
+        </Style>
+
+        <Style x:Key="DualStat" TargetType="controls:DualLabel">
+            <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
+            <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
+            <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
+            <Setter Property="BottomTextSize" Value="28"/>
+        </Style>
 
     </Application.Resources>
 

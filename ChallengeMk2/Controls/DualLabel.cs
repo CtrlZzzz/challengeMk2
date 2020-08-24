@@ -76,17 +76,17 @@ namespace ChallengeMk2.Controls
             LayoutOptions.End,
             propertyChanged: OnBottomTextHorizontalOptionsChanged);
         public static readonly BindableProperty TopTextVerticalAlignementProperty = BindableProperty.Create(
-            nameof(TopTextVerticalAlignement),
+            nameof(TopTextVerticalAlignment),
             typeof(TextAlignment),
             typeof(DualLabel),
             TextAlignment.End,
-            propertyChanged: OnTopTextVerticalAlignementChanged);
+            propertyChanged: OnTopTextVerticalAlignmentChanged);
         public static readonly BindableProperty BottomTextVerticalAlignementProperty = BindableProperty.Create(
-            nameof(BottomTextVerticalAlignement),
+            nameof(BottomTextVerticalAlignment),
             typeof(TextAlignment),
             typeof(DualLabel),
             TextAlignment.Start,
-            propertyChanged: OnBottomTextVerticalAlignementChanged);
+            propertyChanged: OnBottomTextVerticalAlignmentChanged);
         public static readonly BindableProperty MidLineColorProperty = BindableProperty.Create(
             nameof(MidLineColor),
             typeof(Color),
@@ -157,12 +157,12 @@ namespace ChallengeMk2.Controls
             get => (LayoutOptions)GetValue(BottomTextHorizontalOptionsProperty);
             set => SetValue(BottomTextHorizontalOptionsProperty, value);
         }
-        public TextAlignment TopTextVerticalAlignement 
+        public TextAlignment TopTextVerticalAlignment 
         {
             get => (TextAlignment)GetValue(TopTextVerticalAlignementProperty);
             set => SetValue(TopTextVerticalAlignementProperty, value);
         }
-        public TextAlignment BottomTextVerticalAlignement
+        public TextAlignment BottomTextVerticalAlignment
         {
             get => (TextAlignment)GetValue(BottomTextVerticalAlignementProperty);
             set => SetValue(BottomTextVerticalAlignementProperty, value);
@@ -196,7 +196,7 @@ namespace ChallengeMk2.Controls
                 BackgroundColor = Color.Transparent,
                 FontAttributes = this.TopTextFontAttribute,
                 HorizontalOptions = this.TopTextHorizontalOptions,
-                VerticalTextAlignment = this.TopTextVerticalAlignement,
+                VerticalTextAlignment = this.TopTextVerticalAlignment,
                 FontSize = this.TopTextSize
             };
             bottomText = new Label()
@@ -206,7 +206,7 @@ namespace ChallengeMk2.Controls
                 BackgroundColor = Color.Transparent,
                 FontAttributes = this.BottomTextFontAttribute,
                 HorizontalOptions = this.BottomTextHorizontalOptions,
-                VerticalTextAlignment = this.BottomTextVerticalAlignement,
+                VerticalTextAlignment = this.BottomTextVerticalAlignment,
                 FontSize = this.BottomTextSize
             };
             midLine = new BoxView()
@@ -297,6 +297,7 @@ namespace ChallengeMk2.Controls
             var value = (LayoutOptions)newValue;
 
             current.ChangeTopTextHorizontalOptions(value);
+            //current.ChangeTopTextAlignment();
         }
         private static void OnBottomTextHorizontalOptionsChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -304,20 +305,21 @@ namespace ChallengeMk2.Controls
             var value = (LayoutOptions)newValue;
 
             current.ChangeBottomTextHorizontalOptions(value);
+            //current.ChangeBottomTextAlignment();
         }
-        private static void OnTopTextVerticalAlignementChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnTopTextVerticalAlignmentChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var current = (DualLabel)bindable;
             var value = (TextAlignment)newValue;
 
-            current.ChangeTopTextVerticalAlignement(value);
+            current.ChangeTopTextVerticalAlignment(value);
         }
-        private static void OnBottomTextVerticalAlignementChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnBottomTextVerticalAlignmentChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var current = (DualLabel)bindable;
             var value = (TextAlignment)newValue;
 
-            current.ChangeBottomTextVerticalAlignement(value);
+            current.ChangeBottomTextVerticalAlignment(value);
         }
         private static void OnMidLineColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -375,11 +377,11 @@ namespace ChallengeMk2.Controls
         {
             bottomText.HorizontalOptions = value;
         }
-        private void ChangeTopTextVerticalAlignement(TextAlignment value)
+        private void ChangeTopTextVerticalAlignment(TextAlignment value)
         {
             topText.VerticalTextAlignment = value;
         }
-        private void ChangeBottomTextVerticalAlignement(TextAlignment value)
+        private void ChangeBottomTextVerticalAlignment(TextAlignment value)
         {
             bottomText.VerticalTextAlignment = value;
         }
@@ -394,6 +396,41 @@ namespace ChallengeMk2.Controls
         private void ChangeBottomSpaceHeight(double value)
         {
             bottomSpace.HeightRequest = value;
+        }
+
+        private void ChangeTopTextAlignment()
+        {
+            LayoutOptions options = topText.HorizontalOptions;
+
+            switch (options.Alignment)
+            {
+                case LayoutAlignment.Start:
+                    topText.HorizontalTextAlignment = TextAlignment.Start;
+                    break;
+                case LayoutAlignment.Center:
+                    topText.HorizontalTextAlignment = TextAlignment.Center;
+                    break;
+                case LayoutAlignment.End:
+                    topText.HorizontalTextAlignment = TextAlignment.End;
+                    break;
+            }
+        }
+        private void ChangeBottomTextAlignment()
+        {
+            LayoutOptions options = bottomText.HorizontalOptions;
+
+            switch (options.Alignment)
+            {
+                case LayoutAlignment.Start:
+                    bottomText.HorizontalTextAlignment = TextAlignment.Start;
+                    break;
+                case LayoutAlignment.Center:
+                    bottomText.HorizontalTextAlignment = TextAlignment.Center;
+                    break;
+                case LayoutAlignment.End:
+                    bottomText.HorizontalTextAlignment = TextAlignment.End;
+                    break;
+            }
         }
     }
 }

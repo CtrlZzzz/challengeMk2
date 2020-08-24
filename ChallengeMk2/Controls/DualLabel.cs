@@ -227,6 +227,10 @@ namespace ChallengeMk2.Controls
             bottomText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText), source: this));
             //bottomText.FontAttributes.SetBinding(Label.FontAttributesProperty, new Binding(nameof(BottomTextFontAttribute), source: this));
 
+
+            //bottomText.LineBreakMode = LineBreakMode.TailTruncation;
+            //bottomText.HorizontalTextAlignment = TextAlignment.End;
+
             //And layout them :
             Content = new StackLayout
             {

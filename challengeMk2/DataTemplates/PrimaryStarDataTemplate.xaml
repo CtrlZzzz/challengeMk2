@@ -14,7 +14,7 @@
                             BottomText="{Binding PrimaryStar.Type}"
                             Style="{StaticResource DualStat}"/>
 
-        <controls:DualLabel TopText="Star Name"
+        <controls:DualLabel TopText="Star name"
                             BottomText="{Binding PrimaryStar.Name}"
                             Style="{StaticResource DualStat}"/>
 

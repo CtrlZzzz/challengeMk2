@@ -55,7 +55,7 @@ namespace ChallengeMk2.Controls
             nameof(TopTextSize),
             typeof(int),
             typeof(DualLabel),
-            14,
+            12,
             propertyChanged: OnTopTextSizeChanged);
         public static readonly BindableProperty BottomTextSizeProperty = BindableProperty.Create(
             nameof(BottomTextSize),

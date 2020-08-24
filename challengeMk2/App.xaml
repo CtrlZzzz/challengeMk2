@@ -52,7 +52,6 @@
             <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
             <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
             <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-            <Setter Property="BottomTextSize" Value="28"/>
             <Setter Property="BottomSpaceHeight" Value="0"/>
         </Style>
 
@@ -60,7 +59,7 @@
             <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
             <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
             <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-            <Setter Property="BottomTextSize" Value="20"/>
+            <Setter Property="BottomTextSize" Value="18"/>
             <Setter Property="BottomSpaceHeight" Value="0"/>
         </Style>
 

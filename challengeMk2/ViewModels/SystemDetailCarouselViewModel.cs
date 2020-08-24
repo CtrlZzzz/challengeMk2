@@ -123,6 +123,7 @@ namespace ChallengeMk2.ViewModels
             SystemInfos.Add(GetSystemWithIdSelector(0));
             SystemInfos.Add(GetSystemWithIdSelector(1));
             SystemInfos.Add(GetSystemWithIdSelector(2));
+            SystemInfos.Add(GetSystemWithIdSelector(3));
         }
 
         private StarSystem GetSystemWithIdSelector(int id)

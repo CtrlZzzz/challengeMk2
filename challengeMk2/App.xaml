@@ -39,7 +39,7 @@
         <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
 
         <Style x:Key="DualTitle" TargetType="controls:DualLabel">
-            <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
+            <Setter Property="MidLineColor" Value="{DynamicResource AccentDeepColor}"/>
             <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
             <Setter Property="TopTextHorizontalOptions" Value="End"/>
             <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
@@ -53,6 +53,15 @@
             <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
             <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
             <Setter Property="BottomTextSize" Value="28"/>
+            <Setter Property="BottomSpaceHeight" Value="0"/>
+        </Style>
+
+        <Style x:Key="DualCoords" TargetType="controls:DualLabel">
+            <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
+            <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
+            <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
+            <Setter Property="BottomTextSize" Value="20"/>
+            <Setter Property="BottomSpaceHeight" Value="0"/>
         </Style>
 
     </Application.Resources>

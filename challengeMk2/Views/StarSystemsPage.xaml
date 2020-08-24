@@ -17,7 +17,7 @@
         <ToolbarItem IconImageSource="tab_solarS.png"/>
     </ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}">
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
         <!--StackLayout-->
         <CollectionView ItemsSource="{Binding Systems}" 
                             SelectionMode="Single" 

@@ -9,7 +9,7 @@
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
              Title="{Binding Title}">
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="tab_star.png"/>
     </ContentPage.ToolbarItems>
@@ -25,6 +25,9 @@
             <DataTemplate x:Key="SystemTemplate">
                 <dtp:InformationDataTemplate/>
             </DataTemplate>
+            <DataTemplate x:Key="SystemTemplate2">
+                <dtp:Information2DataTemplate/>
+            </DataTemplate>
 
             <!--PRIMARY STAR-->
             <DataTemplate x:Key="PrimaryTemplate">
@@ -34,37 +37,48 @@
             <slt:SystemDetailTemplateSelector x:Key="detailTemplateSelector"
                                               GeneralInfoTemplate="{StaticResource GeneralTemplate}"
                                               SystemInfoTemplate="{StaticResource SystemTemplate}"
+                                              SystemInfo2Template="{StaticResource SystemTemplate2}"
                                               PrimaryStarInfoTemplate="{StaticResource PrimaryTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}"
-                 Padding="10">
-        
-        <controls:DualLabel Style="{StaticResource DualTitle}" TopText="System name" BottomText="{Binding DetailedSystem.Name}"/>
-        
-        <CarouselView ItemsSource="{Binding SystemInfos}"
+    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+        <!--BANNER-->
+        <ContentView Padding="0">
+            <Image Source="BannerDetail_01.png"/>
+        </ContentView>
+
+        <StackLayout Padding="10">
+            <!--SYSTEM NAME-->
+            <controls:DualLabel Style="{StaticResource DualTitle}"
+                                TopText="System name"
+                                BottomText="{Binding DetailedSystem.Name}"/>
+
+            <!--DETAILS INFOS CAROUSEL-->
+            <CarouselView ItemsSource="{Binding SystemInfos}"
                       EmptyView="No data to display. Check your connection and retry"
                       IndicatorView="dots"
                       ItemTemplate="{StaticResource detailTemplateSelector}">
 
-            <skip:CarouselView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>My details 1</x:String>
-                    <x:String>My details 2</x:String>
-                    <x:String>My details 3</x:String>
-                    <x:String>My details 4</x:String>
-                    <x:String>My details 5</x:String>
-                    <x:String>My details 6</x:String>
-                </x:Array>
-            </skip:CarouselView.ItemsSource>
-        </CarouselView>
+                <skip:CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>My details 1</x:String>
+                        <x:String>My details 2</x:String>
+                        <x:String>My details 3</x:String>
+                        <x:String>My details 4</x:String>
+                        <x:String>My details 5</x:String>
+                        <x:String>My details 6</x:String>
+                    </x:Array>
+                </skip:CarouselView.ItemsSource>
+            </CarouselView>
 
-        <IndicatorView x:Name="dots"
-                       Padding="10"
+            <IndicatorView x:Name="dots"
                        HorizontalOptions="Center"
                        IndicatorSize="5.0"
                        IndicatorColor="LightGray"
                        SelectedIndicatorColor="{DynamicResource AccentDeepColor}"/>
+        </StackLayout>
+
     </StackLayout>
 </ContentPage>

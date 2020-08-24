@@ -3,31 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.PrimaryStarDataTemplate">
 
     <!--PRIMARY STAR-->
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Star Type :"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding PrimaryStar.Type}"
-                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
+    <StackLayout Spacing="0">
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Star Name :"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding PrimaryStar.Name}"
-                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
+        <controls:DualLabel TopText="Star type"
+                            BottomText="{Binding PrimaryStar.Type}"
+                            Style="{StaticResource DualStat}"/>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Scoopable star?"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
+        <controls:DualLabel TopText="Star Name"
+                            BottomText="{Binding PrimaryStar.Name}"
+                            Style="{StaticResource DualStat}"/>
+
+        <StackLayout Orientation="Vertical" Spacing="0">
+            <Label Text="Scoopable star ?"
+                   FontSize="14" HorizontalOptions="Start" TextColor="{DynamicResource TextColor}"/>
+            <BoxView HorizontalOptions="FillAndExpand" Color="{DynamicResource LineColor}" HeightRequest="1"/>
             <CheckBox IsChecked="{Binding PrimaryStar.IsScoopable}"
-                                      HorizontalOptions="EndAndExpand" VerticalOptions="Center" Color="Silver"/>
+                      HorizontalOptions="End" VerticalOptions="Center" Color="{DynamicResource TextColor}"/>
         </StackLayout>
+
     </StackLayout>
 
 </ContentView>

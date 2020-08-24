@@ -8,39 +8,31 @@
              x:Class="ChallengeMk2.DataTemplates.GeneralDataTemplate">
 
     <!--GENERAL INFO-->
-    <StackLayout>
-        <controls:DualLabel Style="{StaticResource DualStat}"/>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Distance from SOL :"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding Distance}"
-                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
+    <StackLayout Spacing="0">
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="System Permit :"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding PermitName, Converter={StaticResource nullStringConverter}}"
-                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
+        <controls:DualLabel TopText="Distance from SOL"
+                            BottomText="{Binding Distance}"
+                            Style="{StaticResource DualStat}"/>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Number of bodies in the system :"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding BodyCount}"
-                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
+        <controls:DualLabel TopText="System permit"
+                            BottomText="{Binding PermitName, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="system coordinates :"
-                                   FontSize="12" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding Coords.X, StringFormat='X: {0}'}"
-                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding Coords.Y, StringFormat='Y: {0}'}"
-                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-            <Label Text="{Binding Coords.Z, StringFormat='Z: {0}'}"
-                                   FontSize="14" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
-        </StackLayout>
+        <controls:DualLabel TopText="Number of bodies in the system"
+                            BottomText="{Binding BodyCount}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="System coordinates"
+                            Style="{StaticResource DualCoords}">
+            <controls:DualLabel.BottomText>
+                <MultiBinding StringFormat="[{0} ; {1} ; {2}]">
+                    <Binding Path="Coords.X"/>
+                    <Binding Path="Coords.Y"/>
+                    <Binding Path="Coords.Z"/>
+                </MultiBinding>
+            </controls:DualLabel.BottomText>
+        </controls:DualLabel>
+
     </StackLayout>
 
 </ContentView>

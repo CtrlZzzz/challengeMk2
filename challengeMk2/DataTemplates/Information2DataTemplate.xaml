@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.Information2DataTemplate">
+
+    <!--SYSTEM INFORMATIONS 2-->
+    <StackLayout Spacing="0">
+
+        <controls:DualLabel TopText="Security"
+                            BottomText="{Binding Information.Security, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Economy"
+                            BottomText="{Binding Information.Economy, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Second economy"
+                            BottomText="{Binding Information.SecondEconomy, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Reserve"
+                            BottomText="{Binding Information.Reserve, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+    </StackLayout>
+
+</ContentView>

@@ -9,6 +9,7 @@ namespace ChallengeMk2.DataSelectors
     {
         public DataTemplate GeneralInfoTemplate { get; set; }
         public DataTemplate SystemInfoTemplate { get; set; }
+        public DataTemplate SystemInfo2Template { get; set; }
         public DataTemplate PrimaryStarInfoTemplate { get; set; }
 
         private Dictionary<int, DataTemplate> InfoTemplates; 
@@ -19,7 +20,8 @@ namespace ChallengeMk2.DataSelectors
             {
                 { 0, GeneralInfoTemplate },
                 { 1, SystemInfoTemplate },
-                { 2, PrimaryStarInfoTemplate }
+                { 2, SystemInfo2Template},
+                { 3, PrimaryStarInfoTemplate }
             };
 
             StarSystem currentSystem = item as StarSystem;

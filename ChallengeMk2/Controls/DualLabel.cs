@@ -192,7 +192,6 @@ namespace ChallengeMk2.Controls
             topText = new Label()
             {
                 //TODO : add Font Family bindable prop !
-                //Text = this.TopText,
                 TextColor = this.TopTextColor,
                 BackgroundColor = Color.Transparent,
                 FontAttributes = this.TopTextFontAttribute,

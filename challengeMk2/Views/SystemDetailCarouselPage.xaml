@@ -46,7 +46,7 @@
 
         <!--BANNER-->
         <ContentView Padding="0">
-            <Image Source="BannerDetail_01.png"/>
+            <Image Source="{Binding CurrentBanner}"/>
         </ContentView>
 
         <StackLayout Padding="10">
@@ -57,20 +57,11 @@
 
             <!--DETAILS INFOS CAROUSEL-->
             <CarouselView ItemsSource="{Binding SystemInfos}"
-                      EmptyView="No data to display. Check your connection and retry"
-                      IndicatorView="dots"
-                      ItemTemplate="{StaticResource detailTemplateSelector}">
-
-                <skip:CarouselView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>My details 1</x:String>
-                        <x:String>My details 2</x:String>
-                        <x:String>My details 3</x:String>
-                        <x:String>My details 4</x:String>
-                        <x:String>My details 5</x:String>
-                        <x:String>My details 6</x:String>
-                    </x:Array>
-                </skip:CarouselView.ItemsSource>
+                          EmptyView="No data to display. Check your connection and retry"
+                          IndicatorView="dots"
+                          PositionChangedCommand="{Binding SwitchBannerCommand}"
+                          PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}"
+                          ItemTemplate="{StaticResource detailTemplateSelector}">
             </CarouselView>
 
             <IndicatorView x:Name="dots"

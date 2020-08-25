@@ -58,12 +58,28 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
+        private string currentBanner;
+        public string CurrentBanner
+        {
+            get => currentBanner;
+            set
+            {
+                SetProperty<string>(ref currentBanner, value);
+            }
+        }
+
+        public Command SwitchBannerCommand { get; set; }
 
         public NetworkAccess CurrentConnectivity { get; set; }
 
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
 
 
+        private string[] banners;
+
+
+
+        //CONSTRUCTOR
         public SystemDetailCarouselViewModel(StarSystem selectedSystem = null)
         {
             Title = "Star System Details";
@@ -71,9 +87,22 @@ namespace ChallengeMk2.ViewModels
             SystemInfos = new ObservableCollection<StarSystem>();
 
             currentSystem = selectedSystem;
+
+            banners = new string[]
+            {
+                "BannerDetail_01",
+                "BannerDetail_08",
+                "BannerDetail_04",
+                "BannerDetail_07"
+            };
+
+            SwitchBannerCommand = new Command<int>(p => SwitchBanner(p));
+            currentBanner = banners[0];
         }
 
 
+
+        //PRIVATE METHODS
         internal async Task UpdateSystemData()
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
@@ -143,6 +172,11 @@ namespace ChallengeMk2.ViewModels
             };
 
             return systemWithId;
+        }
+
+        private void SwitchBanner(int position)
+        {
+            CurrentBanner = banners[position];
         }
     }
 }

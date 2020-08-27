@@ -221,6 +221,9 @@ namespace ChallengeMk2.Controls
             midLine.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(MidLineHeight), source: this));
             bottomSpace.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(BottomSpaceHeight), source:this));
 
+            //Adapt text alignment
+            AdaptTextAlignment();
+
             //And LAYOUT them :
             Content = new StackLayout
             {
@@ -234,6 +237,39 @@ namespace ChallengeMk2.Controls
                     bottomSpace
                 }
             };
+        }
+
+
+        //PRIVATE METHODS
+        private void AdaptTextAlignment()
+        {
+            //topText
+            if (topText.HorizontalOptions.Alignment == LayoutAlignment.Start)
+            {
+                topText.HorizontalTextAlignment = TextAlignment.Start;
+            }
+            else if (topText.HorizontalOptions.Alignment == LayoutAlignment.Center)
+            {
+                topText.HorizontalTextAlignment = TextAlignment.Center;
+            }
+            else
+            {
+                topText.HorizontalTextAlignment = TextAlignment.End;
+            }
+
+            //bottomText
+            if (bottomText.HorizontalOptions.Alignment == LayoutAlignment.Start)
+            {
+                bottomText.HorizontalTextAlignment = TextAlignment.Start;
+            }
+            else if (bottomText.HorizontalOptions.Alignment == LayoutAlignment.Center)
+            {
+                bottomText.HorizontalTextAlignment = TextAlignment.Center;
+            }
+            else
+            {
+                bottomText.HorizontalTextAlignment = TextAlignment.End;
+            }
         }
     }
 }

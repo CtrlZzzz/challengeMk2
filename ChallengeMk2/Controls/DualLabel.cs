@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ChallengeMk2.Controls
 {
     public class DualLabel : ContentView
     {
-        private Label topText;    
-        private Label bottomText;   
+        private readonly Label topText;    
+        private readonly Label bottomText;   
 
-        private BoxView midLine;    // Line between labels
-        private BoxView bottomSpace;    // To make Space at the bottom of the control
+        private readonly BoxView midLine;    // Line between labels
+        private readonly BoxView bottomSpace;    // To make Space at the bottom of the control
 
 
         //BINDABLE PROPERTIES
@@ -31,80 +26,67 @@ namespace ChallengeMk2.Controls
             nameof(TopTextColor), 
             typeof(Color), 
             typeof(DualLabel), 
-            Color.Black, 
-            propertyChanged: OnTopTextColorChanged);
+            Color.Black);
         public static readonly BindableProperty BottomTextColorProperty = BindableProperty.Create(
             nameof(BottomTextColor), 
             typeof(Color), 
             typeof(DualLabel), 
-            Color.Black, 
-            propertyChanged: OnBottomTextColorChanged);
+            Color.Black);
         public static readonly BindableProperty TopTextFontAttributeProperty = BindableProperty.Create(
             nameof(TopTextFontAttribute), 
             typeof(FontAttributes), 
             typeof(DualLabel), 
-            FontAttributes.None, 
-            propertyChanged: OnTopTextFontAttributeChanged);
+            FontAttributes.None);
         public static readonly BindableProperty BottomTextFontAttributeProperty = BindableProperty.Create(
             nameof(BottomTextFontAttribute),
             typeof(FontAttributes),
             typeof(DualLabel),
-            FontAttributes.None,
-            propertyChanged: OnBottomTextFontAttributeChanged);
+            FontAttributes.None);
         public static readonly BindableProperty TopTextSizeProperty = BindableProperty.Create(
             nameof(TopTextSize),
             typeof(int),
             typeof(DualLabel),
-            12,
-            propertyChanged: OnTopTextSizeChanged);
+            12);
         public static readonly BindableProperty BottomTextSizeProperty = BindableProperty.Create(
             nameof(BottomTextSize),
             typeof(int),
             typeof(DualLabel),
-            25,
-            propertyChanged: OnBottomTextSizeChanged);
+            25);
         public static readonly BindableProperty TopTextHorizontalOptionsProperty = BindableProperty.Create(
             nameof(TopTextHorizontalOptions),
             typeof(LayoutOptions),
             typeof(DualLabel),
-            LayoutOptions.Start,
-            propertyChanged: OnTopTextHorizontalOptionsChanged);
+            LayoutOptions.Start);
         public static readonly BindableProperty BottomTextHorizontalOptionsProperty = BindableProperty.Create(
             nameof(BottomTextHorizontalOptions),
             typeof(LayoutOptions),
             typeof(DualLabel),
-            LayoutOptions.End,
-            propertyChanged: OnBottomTextHorizontalOptionsChanged);
+            LayoutOptions.End);
         public static readonly BindableProperty TopTextVerticalAlignementProperty = BindableProperty.Create(
             nameof(TopTextVerticalAlignment),
             typeof(TextAlignment),
             typeof(DualLabel),
-            TextAlignment.End,
-            propertyChanged: OnTopTextVerticalAlignmentChanged);
+            TextAlignment.End);
         public static readonly BindableProperty BottomTextVerticalAlignementProperty = BindableProperty.Create(
             nameof(BottomTextVerticalAlignment),
             typeof(TextAlignment),
             typeof(DualLabel),
-            TextAlignment.Start,
-            propertyChanged: OnBottomTextVerticalAlignmentChanged);
+            TextAlignment.Start);
         public static readonly BindableProperty MidLineColorProperty = BindableProperty.Create(
             nameof(MidLineColor),
             typeof(Color),
             typeof(DualLabel),
-            Color.Black,
-            propertyChanged: OnMidLineColorChanged);
+            Color.Black);
         public static readonly BindableProperty MidLineHeightProperty = BindableProperty.Create(
             nameof(MidLineHeight),
             typeof(int),
             typeof(DualLabel),
-            1,
-            propertyChanged: OnMidLineHeightChanged);
+            1);
         public static readonly BindableProperty BottomSpaceHeightProperty = BindableProperty.Create(
             nameof(BottomSpaceHeight),
             typeof(int),
             typeof(DualLabel),
-            20,
-            propertyChanged: OnBottomSpaceHeightChanged);
+            20);
 
 
         public string TopText 
@@ -188,7 +170,7 @@ namespace ChallengeMk2.Controls
         //CONSTRUCTOR
         public DualLabel()
         {
-            //Create elements :
+            //CREATE elements :
             topText = new Label()
             {
                 //TODO : add Font Family bindable prop !
@@ -222,16 +204,24 @@ namespace ChallengeMk2.Controls
                 HeightRequest = this.BottomSpaceHeight
             };
 
-            //Add Binding to elements
+            //Add BINDING to elements
             topText.SetBinding(Label.TextProperty, new Binding(nameof(TopText), source: this) );
             bottomText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText), source: this));
-            //bottomText.FontAttributes.SetBinding(Label.FontAttributesProperty, new Binding(nameof(BottomTextFontAttribute), source: this));
+            topText.SetBinding(Label.TextColorProperty, new Binding(nameof(TopTextColor), source: this));
+            bottomText.SetBinding(Label.TextColorProperty, new Binding(nameof(BottomTextColor), source: this));
+            topText.SetBinding(Label.FontAttributesProperty, new Binding(nameof(TopTextFontAttribute), source: this));
+            bottomText.SetBinding(Label.FontAttributesProperty, new Binding(nameof(BottomTextFontAttribute), source: this));
+            topText.SetBinding(Label.FontSizeProperty, new Binding(nameof(TopTextSize), source: this));
+            bottomText.SetBinding(Label.FontSizeProperty, new Binding(nameof(BottomTextSize), source: this));
+            topText.SetBinding(Label.HorizontalOptionsProperty, new Binding(nameof(TopTextHorizontalOptions), source: this));
+            bottomText.SetBinding(Label.HorizontalOptionsProperty, new Binding(nameof(BottomTextHorizontalOptions), source: this));
+            topText.SetBinding(Label.VerticalTextAlignmentProperty, new Binding(nameof(TopTextVerticalAlignment), source: this));
+            bottomText.SetBinding(Label.VerticalTextAlignmentProperty, new Binding(nameof(BottomTextVerticalAlignment), source: this));
+            midLine.SetBinding(BoxView.ColorProperty, new Binding(nameof(MidLineColor), source: this));
+            midLine.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(MidLineHeight), source: this));
+            bottomSpace.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(BottomSpaceHeight), source:this));
 
-
-            //bottomText.LineBreakMode = LineBreakMode.TailTruncation;
-            //bottomText.HorizontalTextAlignment = TextAlignment.End;
-
-            //And layout them :
+            //And LAYOUT them :
             Content = new StackLayout
             {
                 Spacing = 0,
@@ -244,193 +234,6 @@ namespace ChallengeMk2.Controls
                     bottomSpace
                 }
             };
-        }
-
-
-
-        //PROPERTIES CHANGED
-        private static void OnTopTextColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (Color)newValue;
-
-            current.ChangeTopTextColor(value);
-        }
-        private static void OnBottomTextColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (Color)newValue;
-
-            current.ChangeBottomTextColor(value);
-        }
-        private static void OnTopTextFontAttributeChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (FontAttributes)newValue;
-
-            current.ChangeTopTextFontAttribute(value);
-        }
-        private static void OnBottomTextFontAttributeChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (FontAttributes)newValue;
-
-            current.ChangeBottomTextFontAttribute(value);
-        }
-        private static void OnTopTextSizeChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (int)newValue;
-
-            current.ChangeTopTextSize(value);
-        }
-        private static void OnBottomTextSizeChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (int)newValue;
-
-            current.ChangeBottomTextSize(value);
-        }
-        private static void OnTopTextHorizontalOptionsChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (LayoutOptions)newValue;
-
-            current.ChangeTopTextHorizontalOptions(value);
-            //current.ChangeTopTextAlignment();
-        }
-        private static void OnBottomTextHorizontalOptionsChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (LayoutOptions)newValue;
-
-            current.ChangeBottomTextHorizontalOptions(value);
-            //current.ChangeBottomTextAlignment();
-        }
-        private static void OnTopTextVerticalAlignmentChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (TextAlignment)newValue;
-
-            current.ChangeTopTextVerticalAlignment(value);
-        }
-        private static void OnBottomTextVerticalAlignmentChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (TextAlignment)newValue;
-
-            current.ChangeBottomTextVerticalAlignment(value);
-        }
-        private static void OnMidLineColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (Color)newValue;
-
-            current.ChangeMidLineColor(value);
-        }
-        private static void OnMidLineHeightChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (int)newValue;
-
-            current.ChangeMidLineHeight(value);
-        }
-        private static void OnBottomSpaceHeightChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var current = (DualLabel)bindable;
-            var value = (int)newValue;
-
-            current.ChangeBottomSpaceHeight(value);
-        }
-
-
-        //PRIVATE METHODS
-        private void ChangeTopTextColor(Color value)
-        {
-            topText.TextColor = value;
-        }
-        private void ChangeBottomTextColor(Color value)
-        {
-            bottomText.TextColor = value;
-        }
-        private void ChangeTopTextFontAttribute(FontAttributes value)
-        {
-            topText.FontAttributes = value;
-        }
-        private void ChangeBottomTextFontAttribute(FontAttributes value)
-        {
-            bottomText.FontAttributes = value;
-        }
-        private void ChangeTopTextSize(double value)
-        {
-            topText.FontSize = value;
-        }
-        private void ChangeBottomTextSize(double value)
-        {
-            bottomText.FontSize = value;
-        }
-        private void ChangeTopTextHorizontalOptions(LayoutOptions value)
-        {
-            topText.HorizontalOptions = value;
-        }
-        private void ChangeBottomTextHorizontalOptions(LayoutOptions value)
-        {
-            bottomText.HorizontalOptions = value;
-        }
-        private void ChangeTopTextVerticalAlignment(TextAlignment value)
-        {
-            topText.VerticalTextAlignment = value;
-        }
-        private void ChangeBottomTextVerticalAlignment(TextAlignment value)
-        {
-            bottomText.VerticalTextAlignment = value;
-        }
-        private void ChangeMidLineColor(Color value)
-        {
-            midLine.Color = value;
-        }
-        private void ChangeMidLineHeight(double value)
-        {
-            midLine.HeightRequest = value;
-        }
-        private void ChangeBottomSpaceHeight(double value)
-        {
-            bottomSpace.HeightRequest = value;
-        }
-
-        private void ChangeTopTextAlignment()
-        {
-            LayoutOptions options = topText.HorizontalOptions;
-
-            switch (options.Alignment)
-            {
-                case LayoutAlignment.Start:
-                    topText.HorizontalTextAlignment = TextAlignment.Start;
-                    break;
-                case LayoutAlignment.Center:
-                    topText.HorizontalTextAlignment = TextAlignment.Center;
-                    break;
-                case LayoutAlignment.End:
-                    topText.HorizontalTextAlignment = TextAlignment.End;
-                    break;
-            }
-        }
-        private void ChangeBottomTextAlignment()
-        {
-            LayoutOptions options = bottomText.HorizontalOptions;
-
-            switch (options.Alignment)
-            {
-                case LayoutAlignment.Start:
-                    bottomText.HorizontalTextAlignment = TextAlignment.Start;
-                    break;
-                case LayoutAlignment.Center:
-                    bottomText.HorizontalTextAlignment = TextAlignment.Center;
-                    break;
-                case LayoutAlignment.End:
-                    bottomText.HorizontalTextAlignment = TextAlignment.End;
-                    break;
-            }
         }
     }
 }

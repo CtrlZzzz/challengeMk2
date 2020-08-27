@@ -20,7 +20,7 @@
 
         <StackLayout Orientation="Vertical" Spacing="0">
             <Label Text="Scoopable star ?"
-                   FontSize="14" HorizontalOptions="Start" TextColor="{DynamicResource TextColor}"/>
+                   FontSize="12" HorizontalOptions="Start" TextColor="{DynamicResource TextColor}"/>
             <BoxView HorizontalOptions="FillAndExpand" Color="{DynamicResource LineColor}" HeightRequest="1"/>
             <CheckBox IsChecked="{Binding PrimaryStar.IsScoopable}"
                       HorizontalOptions="End" VerticalOptions="Center" Color="{DynamicResource TextColor}"/>

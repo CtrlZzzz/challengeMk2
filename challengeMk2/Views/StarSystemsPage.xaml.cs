@@ -1,6 +1,4 @@
-﻿using System;
-using ChallengeMk2.Models;
-using ChallengeMk2.ViewModels;
+﻿using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.Views
@@ -38,16 +36,5 @@ namespace ChallengeMk2.Views
                 vm.IsBusy = true;
             }
         }
-
-        //private async void OnSystemTapped(object sender, EventArgs args)
-        //{
-        //    var layout = (BindableObject)sender;
-        //    var system = (StarSystem)layout.BindingContext;
-
-
-
-        //    await Navigation.PushAsync(new SystemDetailPage(new SystemDetailViewModel(system)));
-        //}
-
     }
 }

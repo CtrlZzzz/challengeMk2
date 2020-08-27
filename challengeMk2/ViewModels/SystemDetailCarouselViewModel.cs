@@ -133,12 +133,10 @@ namespace ChallengeMk2.ViewModels
             string url = $"https://www.edsm.net/api-v1/system?systemName={encodedName}&showInformation=1&showPrimaryStar=1&showPermit=1&showCoordinates=1";
 
 
-            using(HttpClient client = new HttpClient())
-            {
-                var response = await client.GetStringAsync(url);
+            using HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(url);
 
-                return JsonConvert.DeserializeObject<StarSystem>(response);
-            } 
+            return JsonConvert.DeserializeObject<StarSystem>(response);
         }
 
         private void GetCompInfos()

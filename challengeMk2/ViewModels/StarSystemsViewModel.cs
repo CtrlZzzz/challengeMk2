@@ -145,7 +145,7 @@ namespace ChallengeMk2.ViewModels
 
         private async Task<List<StarSystem>> GetDataFromApi(string fileToSaveDatas)
         {
-            HttpClient client = new HttpClient();
+            using HttpClient client = new HttpClient();
 
             string url = "https://www.edsm.net/api-v1/sphere-systems?systemName=Sol&radius=30";
 

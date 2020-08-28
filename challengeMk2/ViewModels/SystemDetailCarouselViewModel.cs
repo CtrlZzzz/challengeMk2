@@ -17,7 +17,30 @@ namespace ChallengeMk2.ViewModels
 {
     public class SystemDetailCarouselViewModel : BaseViewModel
     {
-        private StarSystem currentSystem;
+        readonly string[] banners;
+
+
+        public SystemDetailCarouselViewModel()
+        {
+            Title = "Star System Details";
+
+            SystemInfos = new ObservableCollection<StarSystem>();
+
+            banners = new string[]
+            {
+                "BannerDetail_01",
+                "BannerDetail_08",
+                "BannerDetail_04",
+                "BannerDetail_07"
+            };
+
+            SwitchBannerCommand = new Command<int>(p => SwitchBanner(p));
+            currentBanner = banners[0];
+        }
+
+
+
+        StarSystem currentSystem;
         public StarSystem CurrentSystem
         {
             get => currentSystem;
@@ -27,7 +50,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        private StarSystem detailedSystem;
+        StarSystem detailedSystem;
         public StarSystem DetailedSystem
         {
             get => detailedSystem;
@@ -37,8 +60,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-
-        private int currentBodyCount;
+        int currentBodyCount;
         public int CurrentBodyCount
         {
             get => currentBodyCount;
@@ -48,7 +70,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        private double currentDistance;
+        double currentDistance;
         public double CurrentDistance
         {
             get => currentDistance;
@@ -58,7 +80,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        private string currentBanner;
+        string currentBanner;
         public string CurrentBanner
         {
             get => currentBanner;
@@ -75,39 +97,21 @@ namespace ChallengeMk2.ViewModels
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
 
 
-        private string[] banners;
 
 
 
-        //CONSTRUCTOR
-        public SystemDetailCarouselViewModel(StarSystem selectedSystem = null)
+
+        
+        void SetCurrentSystem(StarSystem selectedSystem)
         {
-            Title = "Star System Details";
-
-            SystemInfos = new ObservableCollection<StarSystem>();
-
             currentSystem = selectedSystem;
-
-            banners = new string[]
-            {
-                "BannerDetail_01",
-                "BannerDetail_08",
-                "BannerDetail_04",
-                "BannerDetail_07"
-            };
-
-            SwitchBannerCommand = new Command<int>(p => SwitchBanner(p));
-            currentBanner = banners[0];
         }
 
 
-
-        //PRIVATE METHODS
-        internal async Task UpdateSystemData()
+        async Task UpdateSystemData()
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
 
-            //1° Get details from online API
             if (CurrentConnectivity == NetworkAccess.Internet)
             {
                 DetailedSystem = await GetDetailsFromApi();
@@ -118,16 +122,15 @@ namespace ChallengeMk2.ViewModels
                 return;
             }
 
-            //2° Get distance and number of bodies from currentSystem and put them in detailedSystem
             GetCompInfos();
 
-            //3° Fill collection for Carousel : Copy 3 times detailed system in SystemInfos (one for each tab)
             FillSystemInfos();
         }
 
-        private async Task<StarSystem> GetDetailsFromApi()
+
+        
+        async Task<StarSystem> GetDetailsFromApi()
         {
-            // Check system name for special characters : "+" must be replace by "%2b" => Try WebUtility.HtmlEncode(string)
             string encodedName = WebUtility.UrlEncode(currentSystem.Name);
 
             string url = $"https://www.edsm.net/api-v1/system?systemName={encodedName}&showInformation=1&showPrimaryStar=1&showPermit=1&showCoordinates=1";
@@ -139,13 +142,13 @@ namespace ChallengeMk2.ViewModels
             return JsonConvert.DeserializeObject<StarSystem>(response);
         }
 
-        private void GetCompInfos()
+        void GetCompInfos()
         {
             CurrentBodyCount = currentSystem.BodyCount;
             CurrentDistance = currentSystem.Distance;
         }
-
-        private void FillSystemInfos()
+        
+        void FillSystemInfos()
         {
             SystemInfos.Add(GetSystemWithIdSelector(0));
             SystemInfos.Add(GetSystemWithIdSelector(1));
@@ -153,7 +156,7 @@ namespace ChallengeMk2.ViewModels
             SystemInfos.Add(GetSystemWithIdSelector(3));
         }
 
-        private StarSystem GetSystemWithIdSelector(int id)
+        StarSystem GetSystemWithIdSelector(int id)
         {
             StarSystem systemWithId = new StarSystem
             {
@@ -172,9 +175,16 @@ namespace ChallengeMk2.ViewModels
             return systemWithId;
         }
 
-        private void SwitchBanner(int position)
+        void SwitchBanner(int position)
         {
             CurrentBanner = banners[position];
+        }
+
+        public async Task InitializeAsync(StarSystem selectedSystem)
+        {
+            SetCurrentSystem(selectedSystem);
+
+            await UpdateSystemData();
         }
     }
 }

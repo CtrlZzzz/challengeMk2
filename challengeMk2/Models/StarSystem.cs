@@ -34,7 +34,6 @@ namespace ChallengeMk2.Models
         //Debug
         public override string ToString()
         {
-            //return base.ToString();
             return Name;
         }
     }

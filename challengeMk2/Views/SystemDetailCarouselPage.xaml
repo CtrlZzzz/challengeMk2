@@ -6,9 +6,14 @@
              xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
              xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
              xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+             xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
              Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:SystemDetailCarouselViewModel/>
+    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="tab_star.png"/>

@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 
 using ChallengeMk2.ViewModels;
+using ChallengeMk2.Models;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.Views
 {
     public partial class SystemDetailCarouselPage : ContentPage
     {
-        public SystemDetailCarouselPage(SystemDetailCarouselViewModel selectedSystemViewModel)
+        readonly StarSystem currentSystem;
+
+
+        public SystemDetailCarouselPage(StarSystem selectedSystem)
         {
             InitializeComponent();
 
-            BindingContext = selectedSystemViewModel;
+            currentSystem = selectedSystem; 
         }
+
 
         protected override async void OnAppearing()
         {
@@ -21,7 +26,7 @@ namespace ChallengeMk2.Views
 
             var vm = BindingContext as SystemDetailCarouselViewModel;
 
-            await vm.UpdateSystemData();
+            await vm.InitializeAsync(currentSystem);
         }
     }
 }

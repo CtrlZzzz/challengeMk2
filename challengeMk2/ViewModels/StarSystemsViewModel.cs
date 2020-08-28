@@ -14,23 +14,7 @@ namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
-        private StarSystem selectedSystem;
-        public StarSystem SelectedSystem
-        {
-            set
-            {
-                SetProperty<StarSystem>(ref selectedSystem,value, onChanged: () => NavigateTodetailPage(selectedSystem));
-            }
-        }
-
         internal Action<StarSystem> NavigateTodetailPage { get; set; }  // Delelgate to call navigation when selecting an item in the list.
-
-        public IList<StarSystem> Systems { get; set; }
-
-        public Command LoadSystemDataCommand { get; set; }
-
-        public NetworkAccess CurrentConnectivity { get; set; }
-
 
 
         public StarSystemsViewModel()
@@ -40,51 +24,36 @@ namespace ChallengeMk2.ViewModels
             Systems = new ObservableCollection<StarSystem>();
 
             LoadSystemDataCommand = new Command(async () => await ExecuteLoadSystemDataCommand());                  
-  
-            ////Debug
-            //Systems.Add(new StarSystem
-            //{
-            //    Name = "Sys 1",
-            //    Distance = 45.78
-            //});
-            //Systems.Add(new StarSystem
-            //{
-            //    Name = "PoP 456",
-            //    Distance = 23.7
-            //});
-            //Systems.Add(new StarSystem
-            //{
-            //    Name = "My Favorite System",
-            //    Distance = 4.4
-            //});
-            //Systems.Add(new StarSystem
-            //{
-            //    Name = "LHS 333",
-            //    Distance = 99.34
-            //});
-            //Systems.Add(new StarSystem
-            //{
-            //    Name = "HIP 434-563",
-            //    Distance = 56.3
-            //});
-            //Systems.Add(new StarSystem
-            //{
-            //    Name = "Raxxla",
-            //    Distance = 66.6
-            //});
         }
 
 
-        private async Task ExecuteLoadSystemDataCommand()   // Retreive Systems DATA from external API (EDSM)
+        StarSystem selectedSystem;
+        public StarSystem SelectedSystem
+        {
+            set
+            {
+                SetProperty<StarSystem>(ref selectedSystem,value, onChanged: () => NavigateTodetailPage(selectedSystem));
+            }
+        }
+
+        public IList<StarSystem> Systems { get; set; }
+
+        public Command LoadSystemDataCommand { get; set; }
+
+        public NetworkAccess CurrentConnectivity { get; set; }
+
+
+
+        async Task ExecuteLoadSystemDataCommand()   // Retreive Systems DATA from external API (EDSM)
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
 
             string savedSystemsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdsmOfflineData.json");
 
 
-            if (CurrentConnectivity == NetworkAccess.Internet)  // User has acces to internet => retreive datas online from EDSM
+            if (CurrentConnectivity == NetworkAccess.Internet) 
             {
-                IsBusy = true;  // For "PullToRefresh" systems list
+                IsBusy = true;
 
                 Title = "Star Systems around SOL";
 
@@ -110,7 +79,7 @@ namespace ChallengeMk2.ViewModels
                     IsBusy = false;
                 }
             }
-            else  // User has no or bad connection => retreive datas from saved file
+            else  
             {
                 IsBusy = true;
 
@@ -118,13 +87,10 @@ namespace ChallengeMk2.ViewModels
 
                 try
                 {
-                    //Display ALERT
                     await App.Current.MainPage.DisplayAlert("Connection issue", "Unable to connect to EDSM API. Switching to OFFLINE mode. If you have saved API datas, they will be loaded. If not, try to refresh later...", "OK");
 
-                    //Get datas
                     var offlineData = GetOfflineData(savedSystemsFile);
 
-                    //Store them
                     Systems.Clear();
 
                     foreach (var system in offlineData)
@@ -143,7 +109,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        private async Task<List<StarSystem>> GetDataFromApi(string fileToSaveDatas)
+        async Task<List<StarSystem>> GetDataFromApi(string fileToSaveDatas)
         {
             using HttpClient client = new HttpClient();
 
@@ -151,15 +117,14 @@ namespace ChallengeMk2.ViewModels
 
             var response = await client.GetStringAsync(url);
 
-            //Save datas for offline mode
-            File.WriteAllText(fileToSaveDatas, response);
+            File.WriteAllText(fileToSaveDatas, response);   //Save datas for offline mode
 
             var datas = JsonConvert.DeserializeObject<List<StarSystem>>(response);
 
             return datas;
         }
 
-        private List<StarSystem> GetOfflineData(string savedFile)
+        List<StarSystem> GetOfflineData(string savedFile)
         {
             var offlineData = new List<StarSystem>();
 

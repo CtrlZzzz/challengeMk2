@@ -4,14 +4,85 @@ namespace ChallengeMk2.Controls
 {
     public class DualLabel : ContentView
     {
-        private readonly Label topText;    
-        private readonly Label bottomText;   
+        readonly Label topText;    
+        readonly Label bottomText;   
 
-        private readonly BoxView midLine;    // Line between labels
-        private readonly BoxView bottomSpace;    // To make Space at the bottom of the control
+        readonly BoxView midLine;    // Line between labels
+        readonly BoxView bottomSpace;    // To make Space at the bottom of the control
 
 
-        //BINDABLE PROPERTIES
+        public DualLabel()
+        {
+            //CREATE elements :
+            topText = new Label()
+            {
+                //TODO : add Font Family bindable prop !
+                TextColor = this.TopTextColor,
+                BackgroundColor = Color.Transparent,
+                FontAttributes = this.TopTextFontAttribute,
+                HorizontalOptions = this.TopTextHorizontalOptions,
+                VerticalTextAlignment = this.TopTextVerticalAlignment,
+                FontSize = this.TopTextSize
+            };
+            bottomText = new Label()
+            {
+                //TODO : add Font Family bindable prop !
+                TextColor = this.BottomTextColor,
+                BackgroundColor = Color.Transparent,
+                FontAttributes = this.BottomTextFontAttribute,
+                HorizontalOptions = this.BottomTextHorizontalOptions,
+                VerticalTextAlignment = this.BottomTextVerticalAlignment,
+                FontSize = this.BottomTextSize
+            };
+            midLine = new BoxView()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Color = this.MidLineColor,
+                HeightRequest = this.MidLineHeight
+            };
+            bottomSpace = new BoxView()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Color = Color.Transparent,
+                HeightRequest = this.BottomSpaceHeight
+            };
+
+            //Add BINDING to elements
+            topText.SetBinding(Label.TextProperty, new Binding(nameof(TopText), source: this));
+            bottomText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText), source: this));
+            topText.SetBinding(Label.TextColorProperty, new Binding(nameof(TopTextColor), source: this));
+            bottomText.SetBinding(Label.TextColorProperty, new Binding(nameof(BottomTextColor), source: this));
+            topText.SetBinding(Label.FontAttributesProperty, new Binding(nameof(TopTextFontAttribute), source: this));
+            bottomText.SetBinding(Label.FontAttributesProperty, new Binding(nameof(BottomTextFontAttribute), source: this));
+            topText.SetBinding(Label.FontSizeProperty, new Binding(nameof(TopTextSize), source: this));
+            bottomText.SetBinding(Label.FontSizeProperty, new Binding(nameof(BottomTextSize), source: this));
+            topText.SetBinding(Label.HorizontalOptionsProperty, new Binding(nameof(TopTextHorizontalOptions), source: this));
+            bottomText.SetBinding(Label.HorizontalOptionsProperty, new Binding(nameof(BottomTextHorizontalOptions), source: this));
+            topText.SetBinding(Label.VerticalTextAlignmentProperty, new Binding(nameof(TopTextVerticalAlignment), source: this));
+            bottomText.SetBinding(Label.VerticalTextAlignmentProperty, new Binding(nameof(BottomTextVerticalAlignment), source: this));
+            midLine.SetBinding(BoxView.ColorProperty, new Binding(nameof(MidLineColor), source: this));
+            midLine.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(MidLineHeight), source: this));
+            bottomSpace.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(BottomSpaceHeight), source: this));
+
+            //Adapt text alignment
+            AdaptTextAlignment();
+
+            //And LAYOUT them :
+            Content = new StackLayout
+            {
+                Spacing = 0,
+
+                Children =
+                {
+                    topText,
+                    midLine,
+                    bottomText,
+                    bottomSpace
+                }
+            };
+        }
+
+
         public static readonly BindableProperty TopTextProperty = BindableProperty.Create(
             nameof(TopText), 
             typeof(string), 
@@ -167,81 +238,10 @@ namespace ChallengeMk2.Controls
 
 
 
-        //CONSTRUCTOR
-        public DualLabel()
-        {
-            //CREATE elements :
-            topText = new Label()
-            {
-                //TODO : add Font Family bindable prop !
-                TextColor = this.TopTextColor,
-                BackgroundColor = Color.Transparent,
-                FontAttributes = this.TopTextFontAttribute,
-                HorizontalOptions = this.TopTextHorizontalOptions,
-                VerticalTextAlignment = this.TopTextVerticalAlignment,
-                FontSize = this.TopTextSize
-            };
-            bottomText = new Label()
-            {
-                //TODO : add Font Family bindable prop !
-                TextColor = this.BottomTextColor,
-                BackgroundColor = Color.Transparent,
-                FontAttributes = this.BottomTextFontAttribute,
-                HorizontalOptions = this.BottomTextHorizontalOptions,
-                VerticalTextAlignment = this.BottomTextVerticalAlignment,
-                FontSize = this.BottomTextSize
-            };
-            midLine = new BoxView()
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Color = this.MidLineColor,
-                HeightRequest = this.MidLineHeight
-            };
-            bottomSpace = new BoxView()
-            {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Color = Color.Transparent,
-                HeightRequest = this.BottomSpaceHeight
-            };
-
-            //Add BINDING to elements
-            topText.SetBinding(Label.TextProperty, new Binding(nameof(TopText), source: this) );
-            bottomText.SetBinding(Label.TextProperty, new Binding(nameof(BottomText), source: this));
-            topText.SetBinding(Label.TextColorProperty, new Binding(nameof(TopTextColor), source: this));
-            bottomText.SetBinding(Label.TextColorProperty, new Binding(nameof(BottomTextColor), source: this));
-            topText.SetBinding(Label.FontAttributesProperty, new Binding(nameof(TopTextFontAttribute), source: this));
-            bottomText.SetBinding(Label.FontAttributesProperty, new Binding(nameof(BottomTextFontAttribute), source: this));
-            topText.SetBinding(Label.FontSizeProperty, new Binding(nameof(TopTextSize), source: this));
-            bottomText.SetBinding(Label.FontSizeProperty, new Binding(nameof(BottomTextSize), source: this));
-            topText.SetBinding(Label.HorizontalOptionsProperty, new Binding(nameof(TopTextHorizontalOptions), source: this));
-            bottomText.SetBinding(Label.HorizontalOptionsProperty, new Binding(nameof(BottomTextHorizontalOptions), source: this));
-            topText.SetBinding(Label.VerticalTextAlignmentProperty, new Binding(nameof(TopTextVerticalAlignment), source: this));
-            bottomText.SetBinding(Label.VerticalTextAlignmentProperty, new Binding(nameof(BottomTextVerticalAlignment), source: this));
-            midLine.SetBinding(BoxView.ColorProperty, new Binding(nameof(MidLineColor), source: this));
-            midLine.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(MidLineHeight), source: this));
-            bottomSpace.SetBinding(BoxView.HeightRequestProperty, new Binding(nameof(BottomSpaceHeight), source:this));
-
-            //Adapt text alignment
-            AdaptTextAlignment();
-
-            //And LAYOUT them :
-            Content = new StackLayout
-            {
-                Spacing = 0,
-
-                Children = 
-                {
-                    topText,
-                    midLine,
-                    bottomText,
-                    bottomSpace
-                }
-            };
-        }
 
 
         //PRIVATE METHODS
-        private void AdaptTextAlignment()
+         void AdaptTextAlignment()
         {
             //topText
             if (topText.HorizontalOptions.Alignment == LayoutAlignment.Start)

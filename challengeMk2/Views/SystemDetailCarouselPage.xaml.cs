@@ -9,15 +9,8 @@ namespace ChallengeMk2.Views
 {
     public partial class SystemDetailCarouselPage : ContentPage
     {
-        private readonly StarSystem currentSystem;
+        readonly StarSystem currentSystem;
 
-
-        //public SystemDetailCarouselPage(SystemDetailCarouselViewModel selectedSystemViewModel)
-        //{
-        //    InitializeComponent();
-
-        //    BindingContext = selectedSystemViewModel;
-        //}
 
         public SystemDetailCarouselPage(StarSystem selectedSystem)
         {
@@ -33,8 +26,7 @@ namespace ChallengeMk2.Views
 
             var vm = BindingContext as SystemDetailCarouselViewModel;
 
-            vm.GetCurrentSystem(currentSystem);
-            await vm.UpdateSystemData();
+            await vm.InitializeAsync(currentSystem);
         }
     }
 }

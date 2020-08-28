@@ -12,7 +12,7 @@ namespace ChallengeMk2.ViewModels
 {
     public class SystemDetailViewModel : BaseViewModel
     {
-        private StarSystem currentSystem;
+         StarSystem currentSystem;
         public StarSystem CurrentSystem
         {
             get => currentSystem;
@@ -22,7 +22,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        private StarSystem detailedSystem;
+         StarSystem detailedSystem;
         public StarSystem DetailedSystem
         {
             get => detailedSystem;
@@ -33,7 +33,7 @@ namespace ChallengeMk2.ViewModels
         }
 
 
-        private int currentBodyCount;
+         int currentBodyCount;
         public int CurrentBodyCount
         {
             get => currentBodyCount;
@@ -43,7 +43,7 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        private double currentDistance;
+         double currentDistance;
         public double CurrentDistance
         {
             get => currentDistance;
@@ -73,7 +73,7 @@ namespace ChallengeMk2.ViewModels
 
 
 
-        private async void UpdateSystemData()
+         async void UpdateSystemData()
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
 
@@ -93,7 +93,7 @@ namespace ChallengeMk2.ViewModels
 
         }
 
-        private async Task<StarSystem> GetDetailsFromApi()
+         async Task<StarSystem> GetDetailsFromApi()
         {
             HttpClient client = new HttpClient();
 
@@ -107,7 +107,7 @@ namespace ChallengeMk2.ViewModels
             return JsonConvert.DeserializeObject<StarSystem>(response);
         }
 
-        private void GetCompInfos()
+         void GetCompInfos()
         {
             CurrentBodyCount = currentSystem.BodyCount;
             CurrentDistance = currentSystem.Distance;

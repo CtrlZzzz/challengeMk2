@@ -7,12 +7,14 @@ namespace ChallengeMk2.DataSelectors
 {
     public class SystemDetailTemplateSelector : DataTemplateSelector
     {
+        Dictionary<int, DataTemplate> InfoTemplates;
+
+
         public DataTemplate GeneralInfoTemplate { get; set; }
         public DataTemplate SystemInfoTemplate { get; set; }
         public DataTemplate SystemInfo2Template { get; set; }
         public DataTemplate PrimaryStarInfoTemplate { get; set; }
 
-        private Dictionary<int, DataTemplate> InfoTemplates; 
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {

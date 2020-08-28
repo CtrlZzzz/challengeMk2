@@ -14,25 +14,23 @@ namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
-        internal Action<StarSystem> NavigateTodetailPage { get; set; }  // Delelgate to call navigation when selecting an item in the list.
-
-
         public StarSystemsViewModel()
         {
             Title = "Star Systems around SOL";
 
             Systems = new ObservableCollection<StarSystem>();
 
-            LoadSystemDataCommand = new Command(async () => await ExecuteLoadSystemDataCommand());                  
+            LoadSystemDataCommand = new Command(async () => await ExecuteLoadSystemDataCommand());
         }
 
+        internal Action<StarSystem> NavigateTodetailPage { get; set; }  // Delelgate to call navigation when selecting an item in the list.
 
         StarSystem selectedSystem;
         public StarSystem SelectedSystem
         {
             set
             {
-                SetProperty<StarSystem>(ref selectedSystem,value, onChanged: () => NavigateTodetailPage(selectedSystem));
+                SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () => NavigateTodetailPage(selectedSystem));
             }
         }
 
@@ -42,8 +40,6 @@ namespace ChallengeMk2.ViewModels
 
         public NetworkAccess CurrentConnectivity { get; set; }
 
-
-
         async Task ExecuteLoadSystemDataCommand()   // Retreive Systems DATA from external API (EDSM)
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
@@ -51,7 +47,7 @@ namespace ChallengeMk2.ViewModels
             string savedSystemsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdsmOfflineData.json");
 
 
-            if (CurrentConnectivity == NetworkAccess.Internet) 
+            if (CurrentConnectivity == NetworkAccess.Internet)
             {
                 IsBusy = true;
 
@@ -79,7 +75,7 @@ namespace ChallengeMk2.ViewModels
                     IsBusy = false;
                 }
             }
-            else  
+            else
             {
                 IsBusy = true;
 

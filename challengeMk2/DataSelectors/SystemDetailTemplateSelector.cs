@@ -9,12 +9,10 @@ namespace ChallengeMk2.DataSelectors
     {
         Dictionary<int, DataTemplate> InfoTemplates;
 
-
         public DataTemplate GeneralInfoTemplate { get; set; }
         public DataTemplate SystemInfoTemplate { get; set; }
         public DataTemplate SystemInfo2Template { get; set; }
         public DataTemplate PrimaryStarInfoTemplate { get; set; }
-
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {

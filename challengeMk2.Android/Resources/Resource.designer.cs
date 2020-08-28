@@ -5417,7 +5417,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Animation()
+			private Animation()
 			{
 			}
 		}
@@ -5460,7 +5460,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Animator()
+			private Animator()
 			{
 			}
 		}
@@ -6907,7 +6907,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Attribute()
+			private Attribute()
 			{
 			}
 		}
@@ -6932,7 +6932,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Boolean()
+			private Boolean()
 			{
 			}
 		}
@@ -7356,7 +7356,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Color()
+			private Color()
 			{
 			}
 		}
@@ -8032,7 +8032,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Dimension()
+			private Dimension()
 			{
 			}
 		}
@@ -8435,7 +8435,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Drawable()
+			private Drawable()
 			{
 			}
 		}
@@ -9069,7 +9069,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Id()
+			private Id()
 			{
 			}
 		}
@@ -9127,7 +9127,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Integer()
+			private Integer()
 			{
 			}
 		}
@@ -9152,7 +9152,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Interpolator()
+			private Interpolator()
 			{
 			}
 		}
@@ -9378,7 +9378,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Layout()
+			private Layout()
 			{
 			}
 		}
@@ -9400,7 +9400,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Mipmap()
+			private Mipmap()
 			{
 			}
 		}
@@ -9578,7 +9578,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 String()
+			private String()
 			{
 			}
 		}
@@ -11106,7 +11106,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Style()
+			private Style()
 			{
 			}
 		}
@@ -14058,7 +14058,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Styleable()
+			private Styleable()
 			{
 			}
 		}
@@ -14074,7 +14074,7 @@ namespace ChallengeMk2.Droid
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
 			}
 			
-			 Xml()
+			private Xml()
 			{
 			}
 		}

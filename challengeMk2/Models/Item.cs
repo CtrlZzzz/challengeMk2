@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace challengeMk2.Models
+namespace ChallengeMk2.Models
 {
     public class Item
     {

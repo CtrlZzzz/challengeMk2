@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using challengeMk2.Models;
+using ChallengeMk2.Models;
 
-namespace challengeMk2.Services
+namespace ChallengeMk2.Services
 {
     public class MockDataStore : IDataStore<Item>
     {

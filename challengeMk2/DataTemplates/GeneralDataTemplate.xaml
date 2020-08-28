@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.GeneralDataTemplate">
+
+    <!--GENERAL INFO-->
+    <StackLayout Spacing="0">
+
+        <controls:DualLabel TopText="Distance from SOL"
+                            BottomText="{Binding Distance}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="System permit"
+                            BottomText="{Binding PermitName, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Number of bodies in the system"
+                            BottomText="{Binding BodyCount}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="System coordinates"
+                            Style="{StaticResource DualCoords}">
+            <controls:DualLabel.BottomText>
+                <MultiBinding StringFormat="[{0} ; {1} ; {2}]">
+                    <Binding Path="Coords.X"/>
+                    <Binding Path="Coords.Y"/>
+                    <Binding Path="Coords.Z"/>
+                </MultiBinding>
+            </controls:DualLabel.BottomText>
+        </controls:DualLabel>
+
+    </StackLayout>
+
+</ContentView>

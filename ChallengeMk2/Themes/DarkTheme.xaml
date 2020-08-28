@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.Themes.DarkTheme">
+
+    <!--COLORS REFS-->
+    <Color x:Key="GreyUltraDeep">#2B2A2B</Color>
+    <Color x:Key="GreyMidLight">#C7BECC</Color>
+    <Color x:Key="GreyUltraLight">#E0D5E6</Color>
+    
+    <Color x:Key="OrangeLight">#E18644</Color>
+    <Color x:Key="OrangeDeep">#D45B2B</Color>
+
+    <!--THEME COLORS-->
+    <Color x:Key="AccentLightColor">#E18644</Color>
+    <Color x:Key="AccentDeepColor">#D45B2B</Color>
+
+    <Color x:Key="PageBackgroundColor">#2B2A2B</Color>
+
+    <Color x:Key="TextColor">#C7BECC</Color>
+    <Color x:Key="TextTitleColor">#E0D5E6</Color>
+    <Color x:Key="TextForegroundColor">#FFFFFF</Color>
+
+    <Color x:Key="UnselectedColor">#E3E3E3</Color>
+    <Color x:Key="DisableColor">#F5F5F5</Color>
+
+    <Color x:Key="LineColor">#C7BECC</Color>
+
+</ResourceDictionary>

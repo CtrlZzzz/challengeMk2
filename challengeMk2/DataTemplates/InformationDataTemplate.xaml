@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.InformationDataTemplate">
+
+    <!--SYSTEM INFORMATIONS-->
+    <StackLayout Spacing="0">
+
+        <controls:DualLabel TopText="Population"
+                            BottomText="{Binding Information.Population, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Allegiance"
+                            BottomText="{Binding Information.Allegiance, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Government"
+                            BottomText="{Binding Information.Government, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Faction"
+                            BottomText="{Binding Information.Faction, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+        <controls:DualLabel TopText="Faction state"
+                            BottomText="{Binding Information.FactionState, Converter={StaticResource nullStringConverter}}"
+                            Style="{StaticResource DualStat}"/>
+
+    </StackLayout>
+    
+</ContentView>

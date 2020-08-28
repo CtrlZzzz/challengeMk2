@@ -5,12 +5,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using challengeMk2.Models;
+using ChallengeMk2.Models;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace challengeMk2.ViewModels
+namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
@@ -145,7 +145,7 @@ namespace challengeMk2.ViewModels
 
         private async Task<List<StarSystem>> GetDataFromApi(string fileToSaveDatas)
         {
-            HttpClient client = new HttpClient();
+            using HttpClient client = new HttpClient();
 
             string url = "https://www.edsm.net/api-v1/sphere-systems?systemName=Sol&radius=30";
 

@@ -5,10 +5,10 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-using challengeMk2.Models;
-using challengeMk2.Services;
+using ChallengeMk2.Models;
+using ChallengeMk2.Services;
 
-namespace challengeMk2.ViewModels
+namespace ChallengeMk2.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

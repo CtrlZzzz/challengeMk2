@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
+             xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
+             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+             mc:Ignorable="skip"
+             x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="tab_star.png"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--GENERAL INFO-->
+            <DataTemplate x:Key="GeneralTemplate">
+                <dtp:GeneralDataTemplate/>
+            </DataTemplate>
+
+            <!--SYSTEM INFORMATIONS-->
+            <DataTemplate x:Key="SystemTemplate">
+                <dtp:InformationDataTemplate/>
+            </DataTemplate>
+            <DataTemplate x:Key="SystemTemplate2">
+                <dtp:Information2DataTemplate/>
+            </DataTemplate>
+
+            <!--PRIMARY STAR-->
+            <DataTemplate x:Key="PrimaryTemplate">
+                <dtp:PrimaryStarDataTemplate/>
+            </DataTemplate>
+
+            <slt:SystemDetailTemplateSelector x:Key="detailTemplateSelector"
+                                              GeneralInfoTemplate="{StaticResource GeneralTemplate}"
+                                              SystemInfoTemplate="{StaticResource SystemTemplate}"
+                                              SystemInfo2Template="{StaticResource SystemTemplate2}"
+                                              PrimaryStarInfoTemplate="{StaticResource PrimaryTemplate}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+        <!--BANNER-->
+        <ContentView Padding="0">
+            <Image Source="{Binding CurrentBanner}"/>
+        </ContentView>
+
+        <StackLayout Padding="10">
+            <!--SYSTEM NAME-->
+            <controls:DualLabel Style="{StaticResource DualTitle}"
+                                TopText="System name"
+                                BottomText="{Binding DetailedSystem.Name}"/>
+
+            <!--DETAILS INFOS CAROUSEL-->
+            <CarouselView ItemsSource="{Binding SystemInfos}"
+                          EmptyView="No data to display. Check your connection and retry"
+                          IndicatorView="dots"
+                          PositionChangedCommand="{Binding SwitchBannerCommand}"
+                          PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}"
+                          ItemTemplate="{StaticResource detailTemplateSelector}">
+            </CarouselView>
+
+            <IndicatorView x:Name="dots"
+                       HorizontalOptions="Center"
+                       IndicatorSize="5.0"
+                       IndicatorColor="LightGray"
+                       SelectedIndicatorColor="{DynamicResource AccentDeepColor}"/>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

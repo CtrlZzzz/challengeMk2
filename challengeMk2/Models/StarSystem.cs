@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace challengeMk2.Models
+namespace ChallengeMk2.Models
 {
     public class StarSystem
     {
@@ -27,6 +27,8 @@ namespace challengeMk2.Models
 
         [JsonProperty("coords")]
         public Coords Coords { get; set; }
+
+        public int DataSelectorID { get; set; }
 
 
         //Debug

@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace challengeMk2.iOS
+namespace ChallengeMk2.iOS
 {
     public class Application
     {

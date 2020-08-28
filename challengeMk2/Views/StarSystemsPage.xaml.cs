@@ -1,9 +1,7 @@
-﻿using System;
-using challengeMk2.Models;
-using challengeMk2.ViewModels;
+﻿using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 
-namespace challengeMk2.Views
+namespace ChallengeMk2.Views
 {
     public partial class StarSystemsPage : ContentPage
     {
@@ -21,7 +19,7 @@ namespace challengeMk2.Views
 
             if (vm!= null)
             {
-                vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailPage(new SystemDetailViewModel(starSystem)));
+                vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(new SystemDetailCarouselViewModel(starSystem)));
             }
         }
 
@@ -38,16 +36,5 @@ namespace challengeMk2.Views
                 vm.IsBusy = true;
             }
         }
-
-        //private async void OnSystemTapped(object sender, EventArgs args)
-        //{
-        //    var layout = (BindableObject)sender;
-        //    var system = (StarSystem)layout.BindingContext;
-
-
-
-        //    await Navigation.PushAsync(new SystemDetailPage(new SystemDetailViewModel(system)));
-        //}
-
     }
 }

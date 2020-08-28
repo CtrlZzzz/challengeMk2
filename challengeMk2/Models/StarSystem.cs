@@ -4,28 +4,28 @@ namespace ChallengeMk2.Models
 {
     public class StarSystem
     {
-        [JsonProperty("distance")]
+        //[JsonProperty("distance")]
         public double Distance { get; set; }
 
-        [JsonProperty("bodyCount")]
+        //[JsonProperty("bodyCount")]
         public int BodyCount { get; set; }
 
-        [JsonProperty("name")]
+        //[JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("requirePermit")]
+        //[JsonProperty("requirePermit")]
         public bool RequirePermit { get; set; }
 
-        [JsonProperty("permitName")]
+        //[JsonProperty("permitName")]
         public string PermitName { get; set; }
 
-        [JsonProperty("information")]
+        //[JsonProperty("information")]
         public Information Information { get; set; }
 
-        [JsonProperty("primaryStar")]
+        //[JsonProperty("primaryStar")]
         public PrimaryStar PrimaryStar { get; set; }
 
-        [JsonProperty("coords")]
+        //[JsonProperty("coords")]
         public Coords Coords { get; set; }
 
         public int DataSelectorID { get; set; }

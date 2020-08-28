@@ -75,18 +75,35 @@ namespace ChallengeMk2.ViewModels
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
 
 
-        private string[] banners;
+        private readonly string[] banners;
 
 
 
         //CONSTRUCTOR
-        public SystemDetailCarouselViewModel(StarSystem selectedSystem = null)
+        //public SystemDetailCarouselViewModel(StarSystem selectedSystem = null)
+        //{
+        //    Title = "Star System Details";
+
+        //    SystemInfos = new ObservableCollection<StarSystem>();
+
+        //    currentSystem = selectedSystem;
+
+        //    banners = new string[]
+        //    {
+        //        "BannerDetail_01",
+        //        "BannerDetail_08",
+        //        "BannerDetail_04",
+        //        "BannerDetail_07"
+        //    };
+
+        //    SwitchBannerCommand = new Command<int>(p => SwitchBanner(p));
+        //    currentBanner = banners[0];
+        //}
+        public SystemDetailCarouselViewModel()
         {
             Title = "Star System Details";
 
             SystemInfos = new ObservableCollection<StarSystem>();
-
-            currentSystem = selectedSystem;
 
             banners = new string[]
             {
@@ -101,8 +118,12 @@ namespace ChallengeMk2.ViewModels
         }
 
 
-
         //PRIVATE METHODS
+        internal void GetCurrentSystem(StarSystem selectedSystem)
+        {
+            currentSystem = selectedSystem;
+        }
+
         internal async Task UpdateSystemData()
         {
             CurrentConnectivity = Connectivity.NetworkAccess;

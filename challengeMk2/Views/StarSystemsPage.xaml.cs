@@ -19,7 +19,8 @@ namespace ChallengeMk2.Views
 
             if (vm!= null)
             {
-                vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(new SystemDetailCarouselViewModel(starSystem)));
+                //vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(new SystemDetailCarouselViewModel(starSystem)));
+                vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
             }
         }
 

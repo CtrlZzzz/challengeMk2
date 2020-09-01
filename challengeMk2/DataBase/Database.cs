@@ -10,21 +10,32 @@ namespace ChallengeMk2.DataBase
     public class Database
     {
         readonly SQLiteAsyncConnection db;
+        readonly SQLiteAsyncConnection debugDb;
 
         public Database()
         {
-            db = new SQLiteAsyncConnection(DatabaseParameters.dbPath, DatabaseParameters.dbFlags);
+            db = new SQLiteAsyncConnection(DatabaseParameters.DbPath, DatabaseParameters.DbFlags);
             db.CreateTableAsync<StarSystem>();
+
+            //DEBUG
+            debugDb = new SQLiteAsyncConnection(DatabaseParameters.DbDebugPath, DatabaseParameters.DbFlags);
+            debugDb.CreateTableAsync<StarSystem>();
         }
 
-        public Task<List<StarSystem>> GetStarSystemsAsync()
+        public Task<List<StarSystem>> GetDbFullAsync()
         {
             return db.Table<StarSystem>().ToListAsync();
         }
 
-        public Task<int> SaveStarSystemAsync(StarSystem starSystem)
+        public Task<int> SaveDbItemAsync(StarSystem starSystem)
         {
             return db.InsertAsync(starSystem);
+        }
+
+        //DEBUG
+        public Task<int> SaveDbDebugAsync(StarSystem starSystem)
+        {
+            return debugDb.InsertAsync(starSystem);
         }
     }
 }

@@ -6,24 +6,34 @@ namespace ChallengeMk2.DataBase
 {
     public class DatabaseParameters
     {
-        public const SQLiteOpenFlags dbFlags =
+        public const SQLiteOpenFlags DbFlags =
             SQLiteOpenFlags.ReadWrite |
             SQLiteOpenFlags.Create |
             SQLiteOpenFlags.SharedCache;
 
-        public const string dbFileName = "ChallengeMk2DataBase.db3";
-        public static string dbPath
+        public const string DbFileName = "ChallengeMk2DataBase.db3";
+
+        public static string DbPath
         {
             get
             {
-#if DEBUG
-                //Desktop or Download folder path from PC or MacBook
+                //Application folder path from PC or MacBook
                 var folderPath = Xamarin.Essentials.FileSystem.AppDataDirectory;
-#else
-                //App path
-                var folderPath = Xamarin.Essentials.FileSystem.AppDataDirectory;
-#endif
-                var totalPath = Path.Combine(folderPath, dbFileName);
+
+                var totalPath = Path.Combine(folderPath, DbFileName);
+
+                return totalPath;
+            }
+        }
+
+        public static string DbDebugPath
+        {
+            get
+            {
+                var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                var totalPath = Path.Combine(folderPath, DbFileName);
+
                 return totalPath;
             }
         }

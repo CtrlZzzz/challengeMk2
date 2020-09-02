@@ -4,24 +4,14 @@ using Xamarin.Forms.Xaml;
 using ChallengeMk2.Services;
 using ChallengeMk2.Views;
 using ChallengeMk2.DataBase;
+using System.Threading.Tasks;
+using ChallengeMk2.Models;
 
 namespace ChallengeMk2
 {
     public partial class App : Application
     {
-        static Database database;
-        public static Database Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new Database();
-                }
-
-                return database;
-            }
-        }
+        public static ILocalDataService Database { get; set; }
 
         public App()
         {
@@ -35,6 +25,8 @@ namespace ChallengeMk2
 
         protected override void OnStart()
         {
+            Database = new SQLiteDataService();
+            Database.Initialize();
         }
 
         protected override void OnSleep()

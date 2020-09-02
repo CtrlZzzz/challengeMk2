@@ -17,7 +17,7 @@ namespace ChallengeMk2.DataBase
         {
             get
             {
-                //Application folder path from PC or MacBook
+                //Application folder path 
                 var folderPath = Xamarin.Essentials.FileSystem.AppDataDirectory;
 
                 var totalPath = Path.Combine(folderPath, DbFileName);
@@ -30,7 +30,7 @@ namespace ChallengeMk2.DataBase
         {
             get
             {
-                var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
                 var totalPath = Path.Combine(folderPath, DbFileName);
 

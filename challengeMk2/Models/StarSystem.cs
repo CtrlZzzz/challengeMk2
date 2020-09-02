@@ -15,15 +15,12 @@ namespace ChallengeMk2.Models
 
         public string PermitName { get; set; }
 
+        public Coords Coords { get; set; }
+
         public Information Information { get; set; }
 
         public PrimaryStar PrimaryStar { get; set; }
 
-        public Coords Coords { get; set; }
-
-
-        [PrimaryKey, AutoIncrement]
-        public int DbID { get; set; }
 
         public int DataSelectorID { get; set; }     //For carousel dataTemplate selection
 

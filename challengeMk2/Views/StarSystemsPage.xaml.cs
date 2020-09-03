@@ -17,7 +17,7 @@ namespace ChallengeMk2.Views
 
             var vm = BindingContext as StarSystemsViewModel;
 
-            if (vm!= null)
+            if (vm != null)
             {
                 vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
             }
@@ -30,6 +30,8 @@ namespace ChallengeMk2.Views
             base.OnAppearing();
 
             var vm = BindingContext as StarSystemsViewModel;
+
+            SystemCollection.SelectedItem = null;
 
             if (vm.Systems.Count == 0)
             {

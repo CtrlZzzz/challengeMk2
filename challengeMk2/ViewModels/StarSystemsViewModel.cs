@@ -30,7 +30,10 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () => NavigateTodetailPage(selectedSystem));
+                if (value != null)
+                {
+                    SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () => NavigateTodetailPage(selectedSystem));
+                }
             }
         }
 
@@ -44,7 +47,7 @@ namespace ChallengeMk2.ViewModels
         {
             CurrentConnectivity = Connectivity.NetworkAccess;
 
-            string savedSystemsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdsmOfflineData.json");
+            var savedSystemsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdsmOfflineData.json");
 
 
             if (CurrentConnectivity == NetworkAccess.Internet)
@@ -107,9 +110,9 @@ namespace ChallengeMk2.ViewModels
 
         async Task<List<StarSystem>> GetDataFromApi(string fileToSaveDatas)
         {
-            using HttpClient client = new HttpClient();
+            using var client = new HttpClient();
 
-            string url = "https://www.edsm.net/api-v1/sphere-systems?systemName=Sol&radius=30";
+            var url = "https://www.edsm.net/api-v1/sphere-systems?systemName=Sol&radius=30";
 
             var response = await client.GetStringAsync(url);
 
@@ -126,13 +129,15 @@ namespace ChallengeMk2.ViewModels
 
             if (File.Exists(savedFile))  // User has already saved datas when he has internet connection
             {
-                string offlineDatas = File.ReadAllText(savedFile);
+                var offlineDatas = File.ReadAllText(savedFile);
                 offlineData = JsonConvert.DeserializeObject<List<StarSystem>>(offlineDatas);
             }
             else  // User has no saved data :[
             {
-                StarSystem noData = new StarSystem();
-                noData.Name = "Sorry, no saved data found ! Try to refresh later.";
+                var noData = new StarSystem
+                {
+                    Name = "Sorry, no saved data found ! Try to refresh later."
+                };
                 offlineData.Add(noData);
             }
 

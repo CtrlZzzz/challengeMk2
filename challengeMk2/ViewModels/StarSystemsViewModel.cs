@@ -119,7 +119,7 @@ namespace ChallengeMk2.ViewModels
                 App.Database.SaveItem(dbItem);
             }
 
-            Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(30).ToString());
+            Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
 
             return datas;
         }

@@ -6,6 +6,7 @@ using ChallengeMk2.Views;
 using ChallengeMk2.DataBase;
 using System.Threading.Tasks;
 using ChallengeMk2.Models;
+using System.Diagnostics;
 
 namespace ChallengeMk2
 {
@@ -20,13 +21,11 @@ namespace ChallengeMk2
             //Debug
             DependencyService.Register<MockDataStore>();
 
-            MainPage = new AppShell();
+            MainPage = new LoadingPage();
         }
 
         protected override void OnStart()
         {
-            Database = new SQLiteDataService();
-            Database.Initialize();
         }
 
         protected override void OnSleep()

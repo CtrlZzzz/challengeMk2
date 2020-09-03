@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
+using ChallengeMk2.Views;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -17,7 +18,7 @@ namespace ChallengeMk2.ViewModels
     {
         public StarSystemsViewModel()
         {
-            Title = "Star Systems around SOL";
+            Title = "Systems around SOL (Api)";
 
             Systems = new ObservableCollection<StarSystem>();
 
@@ -64,6 +65,8 @@ namespace ChallengeMk2.ViewModels
 
                     Systems.Add(convertedSystem);
                 }
+
+                IsBusy = false;
             }
             else if (CurrentConnectivity == NetworkAccess.Internet)     // Datas are missing or expired => retreive them from api, save them in db and update expirationDate
             {
@@ -108,9 +111,12 @@ namespace ChallengeMk2.ViewModels
 
             var datas = JsonConvert.DeserializeObject<List<StarSystem>>(response);
 
+            App.Database.ClearDb();
+
             foreach (var system in datas)
             {
-                App.Database.SaveItem(DatabaseConvertor.ConvertToDbItem(system));
+                var dbItem = DatabaseConvertor.ConvertToDbItem(system);
+                App.Database.SaveItem(dbItem);
             }
 
             Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(30).ToString());

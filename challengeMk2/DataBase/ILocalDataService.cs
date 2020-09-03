@@ -14,5 +14,7 @@ namespace ChallengeMk2.DataBase
         StarSystemDbItem GetItem(int id);
 
         void SaveItem(StarSystemDbItem starSystem);
+
+        void ClearDb();
     }
 }

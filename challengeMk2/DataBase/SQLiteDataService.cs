@@ -41,7 +41,8 @@ namespace ChallengeMk2.DataBase
 
         public void ClearDb()
         {
-            database.DeleteAll<StarSystemDbItem>();
+            database.DropTable<StarSystemDbItem>();
+            database.CreateTable<StarSystemDbItem>();
         }
     }
 }

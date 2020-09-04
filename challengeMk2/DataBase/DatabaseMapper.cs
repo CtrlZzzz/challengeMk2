@@ -3,7 +3,7 @@ using ChallengeMk2.Models;
 
 namespace ChallengeMk2.DataBase
 {
-    public class DatabaseConvertor
+    public class DatabaseMapper
     {
         public static StarSystem ConvertFromDb(StarSystemDbItem dbItem)
         {

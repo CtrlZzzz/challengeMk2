@@ -61,7 +61,7 @@ namespace ChallengeMk2.ViewModels
 
                 foreach (var system in localData)
                 {
-                    var convertedSystem = DatabaseConvertor.ConvertFromDb(system);
+                    var convertedSystem = DatabaseMapper.ConvertFromDb(system);
 
                     Systems.Add(convertedSystem);
                 }
@@ -115,7 +115,7 @@ namespace ChallengeMk2.ViewModels
 
             foreach (var system in datas)
             {
-                var dbItem = DatabaseConvertor.ConvertToDbItem(system);
+                var dbItem = DatabaseMapper.ConvertToDbItem(system);
                 App.Database.SaveItem(dbItem);
             }
 

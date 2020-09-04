@@ -21,7 +21,7 @@
 		<!--StackLayout-->
 		<CollectionView ItemsSource="{Binding Systems}" 
                         SelectionMode="Single" 
-                        SelectedItem="{Binding SelectedSystem, Mode=OneWayToSource}"
+                        SelectedItem="{Binding SelectedSystem, Mode=TwoWay}"
                         BackgroundColor="{DynamicResource PageBackgroundColor}"
                         x:Name="SystemCollection">
 

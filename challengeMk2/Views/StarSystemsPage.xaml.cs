@@ -31,7 +31,8 @@ namespace ChallengeMk2.Views
 
             var vm = BindingContext as StarSystemsViewModel;
 
-            SystemCollection.SelectedItem = null;
+            //SystemCollection.SelectedItem = null;
+            vm.SelectedSystem = null;
 
             if (vm.Systems.Count == 0)
             {

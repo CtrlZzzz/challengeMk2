@@ -30,7 +30,11 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                if (value != null)
+                if (value == null)
+                {
+                    SetProperty<StarSystem>(ref selectedSystem, value);
+                }
+                else
                 {
                     SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () => NavigateTodetailPage(selectedSystem));
                 }

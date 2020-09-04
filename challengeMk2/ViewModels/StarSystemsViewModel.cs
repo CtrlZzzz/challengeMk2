@@ -30,14 +30,12 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                if (value == null)
+                SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () =>
                 {
-                    SetProperty<StarSystem>(ref selectedSystem, value);
-                }
-                else
-                {
-                    SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () => NavigateTodetailPage(selectedSystem));
-                }
+                    NavigateTodetailPage(selectedSystem);
+                    if (value != null)
+                        selectedSystem = null;
+                });
             }
         }
 
@@ -127,16 +125,16 @@ namespace ChallengeMk2.ViewModels
             return datas;
         }
 
-        List<StarSystem> GetOfflineData(string savedFile)
+        List<StarSystem> GetOfflineData(string dbDataFile)
         {
             var offlineData = new List<StarSystem>();
 
-            if (File.Exists(savedFile))  // User has already saved datas when he has internet connection
+            if (File.Exists(dbDataFile))
             {
-                var offlineDatas = File.ReadAllText(savedFile);
+                var offlineDatas = File.ReadAllText(dbDataFile);
                 offlineData = JsonConvert.DeserializeObject<List<StarSystem>>(offlineDatas);
             }
-            else  // User has no saved data :[
+            else
             {
                 var noData = new StarSystem
                 {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -30,7 +30,12 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () => NavigateTodetailPage(selectedSystem));
+                SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () =>
+                {
+                    NavigateTodetailPage(selectedSystem);
+                    if (value != null)
+                        selectedSystem = null;
+                });
             }
         }
 

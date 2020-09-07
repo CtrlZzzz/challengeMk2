@@ -8,52 +8,53 @@
              x:Class="ChallengeMk2.Views.StarSystemsPage"
              Title="{Binding Title}">
 
-    <ContentPage.BindingContext>
-        <vm:StarSystemsViewModel/>
-    </ContentPage.BindingContext>
+	<ContentPage.BindingContext>
+		<vm:StarSystemsViewModel/>
+	</ContentPage.BindingContext>
 
-    <!--Toolbar Icon-->
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="tab_solarS.png"/>
-    </ContentPage.ToolbarItems>
+	<!--Toolbar Icon-->
+	<ContentPage.ToolbarItems>
+		<ToolbarItem IconImageSource="tab_solarS.png"/>
+	</ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
-        <!--StackLayout-->
-        <CollectionView ItemsSource="{Binding Systems}" 
+	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
+		<!--StackLayout-->
+		<CollectionView ItemsSource="{Binding Systems}" 
                         SelectionMode="Single" 
-                        SelectedItem="{Binding SelectedSystem, Mode=OneWayToSource}"
-                        BackgroundColor="{DynamicResource PageBackgroundColor}">
+                        SelectedItem="{Binding SelectedSystem, Mode=TwoWay}"
+                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+                        x:Name="SystemCollection">
 
-            <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10" Orientation="Horizontal">
-                        
-                            <!--Set selected item background color-->    
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup>
-                                    <VisualState Name="Normal">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="Transparent"/>
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{DynamicResource AccentDeepColor}"/>
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            
-                            <Image Source="tab_star.png"/>
-                            <Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource TextColor}" VerticalTextAlignment="Center"/>
-                            <Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" TextColor="{DynamicResource AccentDeepColor}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+			<CollectionView.ItemTemplate>
+				<DataTemplate>
+					<StackLayout Padding="10" Orientation="Horizontal">
 
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                
-            </CollectionView>
-        <!--/-->
-    </RefreshView>
+						<!--Set selected item background color-->
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup>
+								<VisualState Name="Normal">
+									<VisualState.Setters>
+										<Setter Property="BackgroundColor" Value="Transparent"/>
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState Name="Selected">
+									<VisualState.Setters>
+										<Setter Property="BackgroundColor" Value="{DynamicResource AccentDeepColor}"/>
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Image Source="tab_star.png"/>
+						<Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource TextColor}" VerticalTextAlignment="Center"/>
+						<Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" TextColor="{DynamicResource AccentDeepColor}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+
+					</StackLayout>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+
+		</CollectionView>
+		<!--/-->
+	</RefreshView>
 
 </ContentPage>

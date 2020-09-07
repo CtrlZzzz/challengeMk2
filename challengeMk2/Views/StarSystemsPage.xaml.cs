@@ -1,4 +1,4 @@
-﻿using ChallengeMk2.ViewModels;
+using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 using ChallengeMk2.DataBase;
 
@@ -21,7 +21,6 @@ namespace ChallengeMk2.Views
                 vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
             }
         }
-
 
         protected override void OnAppearing()
         {

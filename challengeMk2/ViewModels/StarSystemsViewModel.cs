@@ -34,7 +34,9 @@ namespace ChallengeMk2.ViewModels
                 {
                     NavigateTodetailPage(selectedSystem);
                     if (value != null)
+                    {
                         selectedSystem = null;
+                    }
                 });
             }
         }
@@ -50,7 +52,7 @@ namespace ChallengeMk2.ViewModels
 
         async Task LoadSystemData()
         {
-            InitializeDatabase();
+            await InitializeDatabase();
 
             CurrentConnectivity = Connectivity.NetworkAccess;
 
@@ -58,7 +60,7 @@ namespace ChallengeMk2.ViewModels
 
             if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))
             {
-                DisplaySavedDatas();
+                await DisplaySavedDatas();
             }
             else
             {
@@ -66,12 +68,12 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        void InitializeDatabase()
+        async Task InitializeDatabase()
         {
             if (App.Database == null)
             {
                 App.Database = new SQLiteDataService();
-                App.Database.Initialize();
+                await App.Database.Initialize();
             }
 
             ////DEBUG
@@ -80,20 +82,22 @@ namespace ChallengeMk2.ViewModels
 
         async Task<List<StarSystem>> GetAndSaveDataFromApi()
         {
+            var searchRadius = 99;
+
             using var client = new HttpClient();
 
-            var url = "https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius=30&showPermit=1&showInformation=1&showPrimaryStar=1";
+            var url = $"https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius={searchRadius}&showPermit=1&showInformation=1&showPrimaryStar=1";
 
             var response = await client.GetStringAsync(url);
 
             var datas = JsonConvert.DeserializeObject<List<StarSystem>>(response);
 
-            App.Database.ClearDb();
+            await App.Database.ClearDb();
 
             foreach (var system in datas)
             {
                 var dbItem = DatabaseMapper.ConvertToDbItem(system);
-                App.Database.SaveItem(dbItem);
+                await App.Database.SaveItem(dbItem);
             }
 
             Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
@@ -104,11 +108,11 @@ namespace ChallengeMk2.ViewModels
             return datas;
         }
 
-        void DisplaySavedDatas()
+        async Task DisplaySavedDatas()
         {
             Title = "Systems around SOL (Local)";
 
-            var localData = App.Database.GetFullDb();
+            var localData = await App.Database.GetFullDb();
 
             Systems.Clear();
 

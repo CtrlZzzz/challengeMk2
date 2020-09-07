@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChallengeMk2.Models;
@@ -8,41 +7,41 @@ namespace ChallengeMk2.DataBase
 {
     public class SQLiteDataService : ILocalDataService
     {
-        SQLiteConnection database;
+        SQLiteAsyncConnection database;
 
-        public void Initialize()
+        public async Task Initialize()
         {
             if (database == null)
             {
-                database = new SQLiteConnection(DatabaseParameters.DbPath, DatabaseParameters.DbFlags);
-                database.CreateTable<StarSystemDbItem>();
+                database = new SQLiteAsyncConnection(DatabaseParameters.DbPath, DatabaseParameters.DbFlags);
+                await database.CreateTableAsync<StarSystemDbItem>();
             }
         }
 
-        public List<StarSystemDbItem> GetFullDb()
+        public async Task<List<StarSystemDbItem>> GetFullDb()
         {
-            return database.Table<StarSystemDbItem>().ToList();
+            return await database.Table<StarSystemDbItem>().ToListAsync();
         }
 
-        public StarSystemDbItem GetItem(string name)
+        public async Task<StarSystemDbItem> GetItem(string name)
         {
-            return database.Table<StarSystemDbItem>().Where(i => i.Name == name).FirstOrDefault();
+            return await database.Table<StarSystemDbItem>().Where(i => i.Name == name).FirstOrDefaultAsync();
         }
 
-        public StarSystemDbItem GetItem(int id)
+        public async Task<StarSystemDbItem> GetItem(int id)
         {
-            return database.Table<StarSystemDbItem>().Where(i => i.DbID == id).FirstOrDefault();
+            return await database.Table<StarSystemDbItem>().Where(i => i.DbID == id).FirstOrDefaultAsync();
         }
 
-        public void SaveItem(StarSystemDbItem starSystem)
+        public async Task SaveItem(StarSystemDbItem starSystem)
         {
-            database.Insert(starSystem);
+            await database.InsertAsync(starSystem);
         }
 
-        public void ClearDb()
+        public async Task ClearDb()
         {
-            database.DropTable<StarSystemDbItem>();
-            database.CreateTable<StarSystemDbItem>();
+            await database.DropTableAsync<StarSystemDbItem>();
+            await database.CreateTableAsync<StarSystemDbItem>();
         }
     }
 }

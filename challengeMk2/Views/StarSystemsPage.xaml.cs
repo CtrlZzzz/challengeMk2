@@ -1,5 +1,6 @@
 ﻿using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
+using ChallengeMk2.DataBase;
 
 namespace ChallengeMk2.Views
 {
@@ -15,16 +16,13 @@ namespace ChallengeMk2.Views
         {
             base.OnBindingContextChanged();
 
-            var vm = BindingContext as StarSystemsViewModel;
-
-            if (vm!= null)
+            if (BindingContext is StarSystemsViewModel vm)
             {
                 vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
             }
         }
 
 
-        //To trigger Auto PullToRefresh collection
         protected override void OnAppearing()
         {
             base.OnAppearing();

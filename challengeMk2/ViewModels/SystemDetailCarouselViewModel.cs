@@ -101,7 +101,7 @@ namespace ChallengeMk2.ViewModels
 
 
 
-        
+
         void SetCurrentSystem(StarSystem selectedSystem)
         {
             currentSystem = selectedSystem;
@@ -127,16 +127,14 @@ namespace ChallengeMk2.ViewModels
             FillSystemInfos();
         }
 
-
-        
         async Task<StarSystem> GetDetailsFromApi()
         {
-            string encodedName = WebUtility.UrlEncode(currentSystem.Name);
+            var encodedName = WebUtility.UrlEncode(currentSystem.Name);
 
-            string url = $"https://www.edsm.net/api-v1/system?systemName={encodedName}&showInformation=1&showPrimaryStar=1&showPermit=1&showCoordinates=1";
+            var url = $"https://www.edsm.net/api-v1/system?systemName={encodedName}&showInformation=1&showPrimaryStar=1&showPermit=1&showCoordinates=1";
 
 
-            using HttpClient client = new HttpClient();
+            using var client = new HttpClient();
             var response = await client.GetStringAsync(url);
 
             return JsonConvert.DeserializeObject<StarSystem>(response);
@@ -147,7 +145,7 @@ namespace ChallengeMk2.ViewModels
             CurrentBodyCount = currentSystem.BodyCount;
             CurrentDistance = currentSystem.Distance;
         }
-        
+
         void FillSystemInfos()
         {
             SystemInfos.Add(GetSystemWithIdSelector(0));
@@ -158,7 +156,7 @@ namespace ChallengeMk2.ViewModels
 
         StarSystem GetSystemWithIdSelector(int id)
         {
-            StarSystem systemWithId = new StarSystem
+            var systemWithId = new StarSystem
             {
                 DataSelectorID = id,
 

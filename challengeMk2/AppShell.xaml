@@ -8,20 +8,20 @@
        Title="ChallengeMk2"
        x:Class="ChallengeMk2.AppShell">
 
-    <Shell.Resources>
-        
-    </Shell.Resources>
+	<Shell.Resources>
 
-    <TabBar>
-        <Tab Title="System Finder" Icon="tab_solarS.png">
-            <ShellContent ContentTemplate="{DataTemplate local:StarSystemsPage}"/>
-        </Tab>
-        <Tab Title="Number Finder" Icon="tab_puzzle.png">
-            <ShellContent ContentTemplate="{DataTemplate local:PuzzlePage}"/>
-        </Tab>
-        <Tab Title="About" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}"/>
-        </Tab>
-    </TabBar>
-    
+	</Shell.Resources>
+
+	<TabBar>
+		<Tab Title="System Finder" Icon="tab_solarS.png">
+			<ShellContent ContentTemplate="{DataTemplate local:StarSystemsPage}"/>
+		</Tab>
+		<Tab Title="Number Finder" Icon="tab_puzzle.png">
+			<ShellContent ContentTemplate="{DataTemplate local:PuzzlePage}"/>
+		</Tab>
+		<Tab Title="About" Icon="tab_about.png">
+			<ShellContent ContentTemplate="{DataTemplate local:AboutPage}"/>
+		</Tab>
+	</TabBar>
+
 </Shell>

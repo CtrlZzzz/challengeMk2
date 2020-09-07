@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
+using ChallengeMk2.Views;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -16,14 +18,12 @@ namespace ChallengeMk2.ViewModels
     {
         public StarSystemsViewModel()
         {
-            Title = "Star Systems around SOL";
+            Title = "Systems around SOL (Api)";
 
             Systems = new ObservableCollection<StarSystem>();
 
-            LoadSystemDataCommand = new Command(async () => await ExecuteLoadSystemDataCommand());
+            LoadSystemDataCommand = new Command(async () => await LoadSystemData());
         }
-
-        internal Action<StarSystem> NavigateTodetailPage { get; set; }  // Delelgate to call navigation when selecting an item in the list.
 
         StarSystem selectedSystem;
         public StarSystem SelectedSystem
@@ -45,105 +45,109 @@ namespace ChallengeMk2.ViewModels
 
         public NetworkAccess CurrentConnectivity { get; set; }
 
-        async Task ExecuteLoadSystemDataCommand()   // Retreive Systems DATA from external API (EDSM)
+        internal Action<StarSystem> NavigateTodetailPage { get; set; }
+
+
+        async Task LoadSystemData()
         {
+            InitializeDatabase();
+
             CurrentConnectivity = Connectivity.NetworkAccess;
 
-            var savedSystemsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "EdsmOfflineData.json");
+            var expirationDate = Preferences.Get("dbExpirationDate", null);
 
-
-            if (CurrentConnectivity == NetworkAccess.Internet)
+            if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))
             {
-                IsBusy = true;
-
-                Title = "Star Systems around SOL";
-
-                try
-                {
-                    //Get datas
-                    var systemData = await GetDataFromApi(savedSystemsFile);
-
-                    //Store them
-                    Systems.Clear();
-
-                    foreach (var system in systemData)
-                    {
-                        Systems.Add(system);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-                finally
-                {
-                    IsBusy = false;
-                }
+                DisplaySavedDatas();
             }
             else
             {
-                IsBusy = true;
-
-                Title = "Offline Mode !";
-
-                try
-                {
-                    await App.Current.MainPage.DisplayAlert("Connection issue", "Unable to connect to EDSM API. Switching to OFFLINE mode. If you have saved API datas, they will be loaded. If not, try to refresh later...", "OK");
-
-                    var offlineData = GetOfflineData(savedSystemsFile);
-
-                    Systems.Clear();
-
-                    foreach (var system in offlineData)
-                    {
-                        Systems.Add(system);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-                finally
-                {
-                    IsBusy = false;
-                }
+                await RetreiveAndDisplayApiDatas();
             }
         }
 
-        async Task<List<StarSystem>> GetDataFromApi(string fileToSaveDatas)
+        void InitializeDatabase()
+        {
+            if (App.Database == null)
+            {
+                App.Database = new SQLiteDataService();
+                App.Database.Initialize();
+            }
+
+            ////DEBUG
+            //Preferences.Remove("dbExpirationDate");
+        }
+
+        async Task<List<StarSystem>> GetAndSaveDataFromApi()
         {
             using var client = new HttpClient();
 
-            var url = "https://www.edsm.net/api-v1/sphere-systems?systemName=Sol&radius=30";
+            var url = "https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius=30&showPermit=1&showInformation=1&showPrimaryStar=1";
 
             var response = await client.GetStringAsync(url);
 
-            File.WriteAllText(fileToSaveDatas, response);   //Save datas for offline mode
-
             var datas = JsonConvert.DeserializeObject<List<StarSystem>>(response);
+
+            App.Database.ClearDb();
+
+            foreach (var system in datas)
+            {
+                var dbItem = DatabaseMapper.ConvertToDbItem(system);
+                App.Database.SaveItem(dbItem);
+            }
+
+            Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
+
+            ////DEBUG
+            //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
 
             return datas;
         }
 
-        List<StarSystem> GetOfflineData(string dbDataFile)
+        void DisplaySavedDatas()
         {
-            var offlineData = new List<StarSystem>();
+            Title = "Systems around SOL (Local)";
 
-            if (File.Exists(dbDataFile))
+            var localData = App.Database.GetFullDb();
+
+            Systems.Clear();
+
+            foreach (var system in localData)
             {
-                var offlineDatas = File.ReadAllText(dbDataFile);
-                offlineData = JsonConvert.DeserializeObject<List<StarSystem>>(offlineDatas);
+                var convertedSystem = DatabaseMapper.ConvertFromDb(system);
+
+                Systems.Add(convertedSystem);
             }
-            else
+
+            IsBusy = false;
+        }
+
+        async Task RetreiveAndDisplayApiDatas()
+        {
+            Title = "Systems around SOL (Api)";
+
+            IsBusy = true;
+
+            try
             {
-                var noData = new StarSystem
+                var apiData = await GetAndSaveDataFromApi();
+
+                Systems.Clear();
+
+                foreach (var system in apiData)
                 {
-                    Name = "Sorry, no saved data found ! Try to refresh later."
-                };
-                offlineData.Add(noData);
+                    Systems.Add(system);
+                }
             }
-
-            return offlineData;
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

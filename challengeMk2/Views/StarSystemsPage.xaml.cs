@@ -16,9 +16,7 @@ namespace ChallengeMk2.Views
         {
             base.OnBindingContextChanged();
 
-            var vm = BindingContext as StarSystemsViewModel;
-
-            if (vm != null)
+            if (BindingContext is StarSystemsViewModel vm)
             {
                 vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
             }
@@ -31,7 +29,6 @@ namespace ChallengeMk2.Views
 
             var vm = BindingContext as StarSystemsViewModel;
 
-            //To trigger Auto PullToRefresh collection
             if (vm.Systems.Count == 0)
             {
                 vm.IsBusy = true;

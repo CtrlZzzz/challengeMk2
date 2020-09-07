@@ -21,7 +21,7 @@ namespace ChallengeMk2
             //Debug
             DependencyService.Register<MockDataStore>();
 
-            MainPage = new LoadingPage();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

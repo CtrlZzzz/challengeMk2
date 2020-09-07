@@ -1,5 +1,5 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 
 namespace ChallengeMk2

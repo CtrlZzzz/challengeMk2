@@ -25,7 +25,6 @@ namespace ChallengeMk2.ViewModels
             LoadSystemDataCommand = new Command(async () => await LoadSystemData());
         }
 
-
         StarSystem selectedSystem;
         public StarSystem SelectedSystem
         {
@@ -41,67 +40,40 @@ namespace ChallengeMk2.ViewModels
 
         public NetworkAccess CurrentConnectivity { get; set; }
 
-        internal Action<StarSystem> NavigateTodetailPage { get; set; }  // Delelgate to call navigation when selecting an item in the list.
+        internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
         async Task LoadSystemData()
         {
+            InitializeDatabase();
+
             CurrentConnectivity = Connectivity.NetworkAccess;
 
             var expirationDate = Preferences.Get("dbExpirationDate", null);
 
-
-            if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))   // Datas are there, stills freshes and can be displayed without connect to api
+            if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))
             {
-                Title = "Systems around SOL (Local)";
-
-                var localData = App.Database.GetFullDb();
-
-                Systems.Clear();
-
-                foreach (var system in localData)
-                {
-                    var convertedSystem = DatabaseMapper.ConvertFromDb(system);
-
-                    Systems.Add(convertedSystem);
-                }
-
-                IsBusy = false;
+                DisplaySavedDatas();
             }
-            else if (CurrentConnectivity == NetworkAccess.Internet)     // Datas are missing or expired => retreive them from api, save them in db and update expirationDate
+            else
             {
-                IsBusy = true;
-
-                Title = "Systems around SOL (Api)";
-
-                try
-                {
-                    var apiData = await GetDataFromApi();
-
-                    Systems.Clear();
-
-                    foreach (var system in apiData)
-                    {
-                        Systems.Add(system);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                    throw;
-                }
-                finally
-                {
-                    IsBusy = false;
-                }
-            }
-            else    // Nothing saved and no connection to retreive datas => Alert
-            {
-
+                await RetreiveAndDisplayApiDatas();
             }
         }
 
-        async Task<List<StarSystem>> GetDataFromApi()
+        void InitializeDatabase()
+        {
+            if (App.Database == null)
+            {
+                App.Database = new SQLiteDataService();
+                App.Database.Initialize();
+            }
+
+            ////DEBUG
+            //Preferences.Remove("dbExpirationDate");
+        }
+
+        async Task<List<StarSystem>> GetAndSaveDataFromApi()
         {
             using var client = new HttpClient();
 
@@ -121,7 +93,56 @@ namespace ChallengeMk2.ViewModels
 
             Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
 
+            ////DEBUG
+            //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
+
             return datas;
+        }
+
+        void DisplaySavedDatas()
+        {
+            Title = "Systems around SOL (Local)";
+
+            var localData = App.Database.GetFullDb();
+
+            Systems.Clear();
+
+            foreach (var system in localData)
+            {
+                var convertedSystem = DatabaseMapper.ConvertFromDb(system);
+
+                Systems.Add(convertedSystem);
+            }
+
+            IsBusy = false;
+        }
+
+        async Task RetreiveAndDisplayApiDatas()
+        {
+            Title = "Systems around SOL (Api)";
+
+            IsBusy = true;
+
+            try
+            {
+                var apiData = await GetAndSaveDataFromApi();
+
+                Systems.Clear();
+
+                foreach (var system in apiData)
+                {
+                    Systems.Add(system);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

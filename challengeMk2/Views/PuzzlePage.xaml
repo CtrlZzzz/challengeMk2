@@ -20,9 +20,9 @@
 				<DataTemplate>
 					<StackLayout Orientation="Vertical"
 								 Spacing="5">
-						
-						<Label Text="{Binding TryNumber}" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center"/>
-						<BoxView HeightRequest="1" BackgroundColor="Black"/>
+
+						<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+						<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
 						
 						<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 
@@ -31,7 +31,7 @@
 
 						</StackLayout>
 
-						<BoxView HeightRequest="3" BackgroundColor="Black"/>
+						<BoxView HeightRequest="2" BackgroundColor="{DynamicResource LineColor}"/>
 						
 					</StackLayout>
 				</DataTemplate>
@@ -44,9 +44,10 @@
 				Command="{Binding DisplayResultsCommand}"
 				HeightRequest="50"
 				CornerRadius="25"
-				FontSize="20"
-				FontAttributes="None"
+				FontSize="15"
+				FontAttributes="Bold"
 				HorizontalOptions="Fill"
+				BackgroundColor="{DynamicResource AccentDeepColor}"
 				IsEnabled="{Binding CanRunPuzzle}"/>
 		
 	</StackLayout>

@@ -33,6 +33,25 @@ client = new HttpClient();
             DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
         }
 
+        bool canRunPuzzle = true;
+        public bool CanRunPuzzle
+        {
+            get => canRunPuzzle;
+            set
+            {
+                SetProperty<bool>(ref canRunPuzzle, value);
+            }
+        }
+
+        string buttonText = "Run the Algorithm";
+        public string ButtonText
+        {
+            get => buttonText; 
+            set
+            {
+                SetProperty<string>(ref buttonText, value);
+            }
+        }
 
 
         public Command DisplayResultsCommand { get; set; }
@@ -43,6 +62,8 @@ client = new HttpClient();
 
         public async Task DisplayResultsAsync()
         {
+            CanRunPuzzle = false;
+            ButtonText = "Running...";
             Tries.Clear();
 
             var userTry = 25_000;
@@ -77,11 +98,15 @@ client = new HttpClient();
                     case HttpStatusCode.Accepted:
                         currentResult = GetResult(responseContent, userTry);
                         isPuzzleRunning = false;
+                        CanRunPuzzle = true;
+                        ButtonText = "Retry";
                         break;
 
                     case HttpStatusCode.ResetContent:
                         currentResult = CreateResult(20, apiResponse.ReasonPhrase, userTry);
                         isPuzzleRunning = false;
+                        CanRunPuzzle = true;
+                        ButtonText = "You should modify the Algorithm...";
                         break;
 
                     case HttpStatusCode.InternalServerError:

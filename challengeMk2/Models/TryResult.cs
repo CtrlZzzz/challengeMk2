@@ -5,5 +5,7 @@ namespace ChallengeMk2.Models
     {
         public int TryNumber { get; set; }
         public string Result { get; set; }
+
+        public int UserTry { get; set; }
     }
 }

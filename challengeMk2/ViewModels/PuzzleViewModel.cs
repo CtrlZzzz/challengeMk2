@@ -106,7 +106,7 @@ client = new HttpClient();
                         currentResult = CreateResult(20, apiResponse.ReasonPhrase, userTry);
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
-                        ButtonText = "You should modify the Algorithm...";
+                        ButtonText = "You should modify something...";
                         break;
 
                     case HttpStatusCode.InternalServerError:

@@ -10,10 +10,11 @@
 	</ContentPage.BindingContext>
 
 	<StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}"
-				 Padding="20">
+				 Padding="50">
 
 		<CollectionView ItemsSource="{Binding Tries}"
-						SelectionMode="None">
+						SelectionMode="None"
+						ItemsUpdatingScrollMode="KeepLastItemInView">
 			
 			<CollectionView.ItemTemplate>
 				<DataTemplate>
@@ -37,7 +38,8 @@
 			</CollectionView.ItemTemplate>
 			
 		</CollectionView>
-		
+
+		<BoxView HeightRequest="50" BackgroundColor="Transparent"/>
 		<Button Text="{Binding ButtonText}"
 				Command="{Binding DisplayResultsCommand}"
 				HeightRequest="50"

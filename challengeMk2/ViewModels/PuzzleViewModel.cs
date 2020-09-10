@@ -19,6 +19,7 @@ namespace ChallengeMk2.ViewModels
         {
             Title = "Mi8 Puzzle challenge";
 
+
 #if DEBUG
             var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
             client = new HttpClient(insecureHandler);
@@ -29,9 +30,12 @@ client = new HttpClient();
 #endif
 
             Tries = new ObservableCollection<TryResult>();
+            CreateStartupText();
 
             DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
         }
+
+
 
         bool canRunPuzzle = true;
         public bool CanRunPuzzle
@@ -158,6 +162,21 @@ client = new HttpClient();
                 currentMin = currentTry;
                 currentTry = GetMiddle(currentMin, currentMax);
             }
+        }
+
+        void CreateStartupText()
+        {
+            var container = new TryResult
+            {
+                //TryNumber = 0,
+                Result = "find a number between 1 and 50 000 in 20 tries.\n" +
+                "Run the local API, call the api/TheNumber route \n" +
+                "then display the results of all tries until win !"
+                //UserTry = 0
+            };
+
+            Tries.Clear();
+            Tries.Add(container);
         }
     }
 }

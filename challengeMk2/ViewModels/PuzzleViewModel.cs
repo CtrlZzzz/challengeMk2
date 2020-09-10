@@ -95,26 +95,26 @@ client = new HttpClient();
                 switch (apiResponse.StatusCode)
                 {
                     case HttpStatusCode.OK:
-                        currentResult = GetResult(responseContent, userTry);
+                        currentResult = GetResult(HttpStatusCode.OK, responseContent, userTry);
                         CompareTry(currentResult, ref min, ref max, ref userTry);
                         break;
 
                     case HttpStatusCode.Accepted:
-                        currentResult = GetResult(responseContent, userTry);
+                        currentResult = GetResult(HttpStatusCode.Accepted, responseContent, userTry);
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
                         ButtonText = "Retry";
                         break;
 
                     case HttpStatusCode.ResetContent:
-                        currentResult = CreateResult(20, apiResponse.ReasonPhrase, userTry);
+                        currentResult = CreateResult(HttpStatusCode.ResetContent, 20, apiResponse.ReasonPhrase, userTry);
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
                         ButtonText = "You should modify something...";
                         break;
 
                     case HttpStatusCode.InternalServerError:
-                        currentResult = CreateResult(0, apiResponse.ReasonPhrase, userTry);
+                        currentResult = CreateResult(HttpStatusCode.InternalServerError, 0, apiResponse.ReasonPhrase, userTry);
                         isPuzzleRunning = false;
                         break;
                 }
@@ -130,21 +130,23 @@ client = new HttpClient();
             return min + ((max - min) / 2);
         }
 
-        TryResult GetResult(string apiResponseContent, int userTry)
+        TryResult GetResult(HttpStatusCode status, string apiResponseContent, int userTry)
         {
             var apiResult = JsonConvert.DeserializeObject<TryResult>(apiResponseContent);
             apiResult.UserTry = userTry;
+            apiResult.Status = status;
 
             return apiResult;
         }
 
-        TryResult CreateResult(int tryNumber, string result, int userTry)
+        TryResult CreateResult(HttpStatusCode status, int tryNumber, string result, int userTry)
         {
             var apiResult = new TryResult
             {
                 TryNumber = tryNumber,
                 Result = result,
-                UserTry = userTry
+                UserTry = userTry,
+                Status = status
             };
 
             return apiResult;
@@ -168,11 +170,10 @@ client = new HttpClient();
         {
             var container = new TryResult
             {
-                //TryNumber = 0,
                 Result = "find a number between 1 and 50 000 in 20 tries.\n" +
-                "Run the local API, call the api/TheNumber route \n" +
-                "then display the results of all tries until win !"
-                //UserTry = 0
+                "Run the local API, call the api/TheNumber/ route \n" +
+                "then display the results of all tries until win !",
+                Status = HttpStatusCode.ResetContent
             };
 
             Tries.Clear();

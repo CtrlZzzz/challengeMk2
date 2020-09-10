@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
+			 xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
+			 xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
              x:Class="ChallengeMk2.Views.PuzzlePage"
 			 Title="{Binding Title}">
 
@@ -9,34 +11,39 @@
 		<vm:PuzzleViewModel/>
 	</ContentPage.BindingContext>
 
+	<ContentPage.ToolbarItems>
+		<ToolbarItem IconImageSource="tab_puzzle.png"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<DataTemplate x:Key="OkTemplate">
+				<dtp:OkTryResultTemplate/>
+			</DataTemplate>
+			<DataTemplate x:Key="AcceptedTemplate">
+				<dtp:AcceptedTryResultTemplate/>
+			</DataTemplate>
+			<DataTemplate x:Key="ResetTemplate">
+				<dtp:ResetTryResultTemplate/>
+			</DataTemplate>
+			<DataTemplate x:Key="MessageTemplate">
+				<dtp:MessageTryResultTemplate/>
+			</DataTemplate>
+			<slt:PuzzleResultTemplateSelector x:Key="resultSelector"
+											  OkResultTemplate="{StaticResource OkTemplate}"
+											  AcceptedResultTemplate="{StaticResource AcceptedTemplate}"
+											  ResetResultTemplate="{StaticResource ResetTemplate}"
+											  MessageResultTemplate="{StaticResource MessageTemplate}"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
 	<StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}"
 				 Padding="50">
 
 		<CollectionView ItemsSource="{Binding Tries}"
 						SelectionMode="None"
-						ItemsUpdatingScrollMode="KeepLastItemInView">
-			
-			<CollectionView.ItemTemplate>
-				<DataTemplate>
-					<StackLayout Orientation="Vertical"
-								 Spacing="5">
-
-						<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-						<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
-						
-						<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-
-							<Label Text="{Binding Result, StringFormat=' {0} than '}" TextColor="{DynamicResource TextColor}"/>
-							<Label Text="{Binding UserTry}" TextColor="{DynamicResource TextColor}"/>
-
-						</StackLayout>
-
-						<BoxView HeightRequest="2" BackgroundColor="{DynamicResource LineColor}"/>
-						
-					</StackLayout>
-				</DataTemplate>
-			</CollectionView.ItemTemplate>
-			
+						ItemsUpdatingScrollMode="KeepLastItemInView"
+						ItemTemplate="{StaticResource resultSelector}">
 		</CollectionView>
 
 		<BoxView HeightRequest="50" BackgroundColor="Transparent"/>
@@ -47,7 +54,8 @@
 				FontSize="15"
 				FontAttributes="Bold"
 				HorizontalOptions="Fill"
-				BackgroundColor="{DynamicResource AccentDeepColor}"
+				BackgroundColor="{DynamicResource TextColor}"
+				TextColor="{DynamicResource PageBackgroundColor}"
 				IsEnabled="{Binding CanRunPuzzle}"/>
 		
 	</StackLayout>

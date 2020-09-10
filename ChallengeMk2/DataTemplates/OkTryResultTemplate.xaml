@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.OkTryResultTemplate">
+	
+  <ContentView.Content>
+		<StackLayout Orientation="Vertical"
+					 Spacing="5">
+
+			<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+
+			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+
+				<Label Text="{Binding Result, StringFormat=' {0} than '}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
+				<Label Text="{Binding UserTry}" TextColor="{DynamicResource TextColor}"/>
+
+			</StackLayout>
+
+			<BoxView HeightRequest="2" BackgroundColor="{DynamicResource LineColor}"/>
+			<BoxView HeightRequest="10" BackgroundColor="Transparent"/>
+
+
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

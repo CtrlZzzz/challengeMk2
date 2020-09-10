@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.MessageTryResultTemplate">
+	
+  <ContentView.Content>
+		<StackLayout Orientation="Vertical"
+					 Spacing="5">
+			
+			<BoxView HeightRequest="5" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+
+			<Label Text="{Binding Result}" TextColor="{DynamicResource AccentDeepColor}" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+
+			<BoxView HeightRequest="5" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

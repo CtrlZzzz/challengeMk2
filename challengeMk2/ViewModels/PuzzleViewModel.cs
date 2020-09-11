@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using ChallengeMk2.Models;
 using ChallengeMk2.DebugTools;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ChallengeMk2.ViewModels
 {
@@ -37,6 +38,8 @@ client = new HttpClient();
 
 
 
+
+
         bool canRunPuzzle = true;
         public bool CanRunPuzzle
         {
@@ -50,13 +53,48 @@ client = new HttpClient();
         string buttonText = "Run the Algorithm";
         public string ButtonText
         {
-            get => buttonText; 
+            get => buttonText;
             set
             {
                 SetProperty<string>(ref buttonText, value);
             }
         }
 
+        int globalTry = 0;
+        public int GlobalTry
+        {
+            get => globalTry;
+            set
+            {
+                SetProperty<int>(ref globalTry, value);
+            }
+        }
+
+        int best;
+        public int Best
+        {
+            get
+            {
+                return best;
+            }
+            set
+            {
+                SetProperty<int>(ref best, value);
+            }
+        }
+
+        List<int> userAttempts;
+        public List<int> UserAttempts
+        {
+            get
+            {
+                return userAttempts;
+            }
+            set
+            {
+                SetProperty<List<int>>(ref userAttempts, value);
+            }
+        }
 
         public Command DisplayResultsCommand { get; set; }
 
@@ -101,6 +139,7 @@ client = new HttpClient();
 
                     case HttpStatusCode.Accepted:
                         currentResult = GetResult(HttpStatusCode.Accepted, responseContent, userTry);
+                        GlobalTry++;
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
                         ButtonText = "Retry";

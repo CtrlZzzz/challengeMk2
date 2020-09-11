@@ -7,7 +7,7 @@ namespace ChallengeMk2.Models
     {
         public double Distance { get; set; }
 
-        public int BodyCount { get; set; }
+        public int? BodyCount { get; set; }
 
         public string Name { get; set; }
 

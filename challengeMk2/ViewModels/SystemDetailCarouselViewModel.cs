@@ -142,7 +142,7 @@ namespace ChallengeMk2.ViewModels
 
         void GetCompInfos()
         {
-            CurrentBodyCount = currentSystem.BodyCount;
+            CurrentBodyCount = currentSystem.BodyCount ?? 0;
             CurrentDistance = currentSystem.Distance;
         }
 

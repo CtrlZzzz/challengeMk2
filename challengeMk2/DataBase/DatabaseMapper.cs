@@ -51,7 +51,7 @@ namespace ChallengeMk2.DataBase
             var converted = new StarSystemDbItem
             {
                 Distance = starSystem.Distance,
-                BodyCount = starSystem.BodyCount,
+                BodyCount = starSystem.BodyCount ?? 0,
                 Name = starSystem.Name,
                 RequirePermit = starSystem.RequirePermit,
                 PermitName = starSystem.PermitName,

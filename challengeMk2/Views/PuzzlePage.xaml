@@ -20,15 +20,19 @@
 			<DataTemplate x:Key="OkTemplate">
 				<dtp:OkTryResultTemplate/>
 			</DataTemplate>
+
 			<DataTemplate x:Key="AcceptedTemplate">
 				<dtp:AcceptedTryResultTemplate/>
 			</DataTemplate>
+
 			<DataTemplate x:Key="ResetTemplate">
 				<dtp:ResetTryResultTemplate/>
 			</DataTemplate>
+
 			<DataTemplate x:Key="MessageTemplate">
 				<dtp:MessageTryResultTemplate/>
 			</DataTemplate>
+
 			<slt:PuzzleResultTemplateSelector x:Key="resultSelector"
 											  OkResultTemplate="{StaticResource OkTemplate}"
 											  AcceptedResultTemplate="{StaticResource AcceptedTemplate}"
@@ -57,7 +61,7 @@
 				BackgroundColor="{DynamicResource TextColor}"
 				TextColor="{DynamicResource PageBackgroundColor}"
 				IsEnabled="{Binding CanRunPuzzle}"/>
-		
+
 	</StackLayout>
 
 </ContentPage>

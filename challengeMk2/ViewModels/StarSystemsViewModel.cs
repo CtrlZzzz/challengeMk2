@@ -16,7 +16,7 @@ namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
-        const int SearchRadius = 99;
+        const int SearchRadius = 30;
 
         public StarSystemsViewModel()
         {
@@ -78,7 +78,7 @@ namespace ChallengeMk2.ViewModels
                 await App.Database.InitializeAsync();
             }
 
-            ////DEBUG
+            //DEBUG
             //Preferences.Remove("dbExpirationDate");
         }
 

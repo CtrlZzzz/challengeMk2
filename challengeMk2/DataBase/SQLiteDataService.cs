@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using ChallengeMk2.Models;
 using SQLite;
@@ -7,13 +8,20 @@ namespace ChallengeMk2.DataBase
 {
     public class SQLiteDataService : ILocalDataService
     {
+        SQLiteOpenFlags dbFlags =
+            SQLiteOpenFlags.ReadWrite |
+            SQLiteOpenFlags.Create |
+            SQLiteOpenFlags.SharedCache;
+
+        string dbFileName = "ChallengeMk2DataBase.db3";
+
         SQLiteAsyncConnection database;
 
         public async Task InitializeAsync()
         {
             if (database == null)
             {
-                database = new SQLiteAsyncConnection(DatabaseParameters.DbPath, DatabaseParameters.DbFlags);
+                database = new SQLiteAsyncConnection(GetDbPath(), dbFlags);
                 await database.CreateTableAsync<StarSystemDbItem>();
             }
         }
@@ -42,6 +50,15 @@ namespace ChallengeMk2.DataBase
         {
             await database?.DropTableAsync<StarSystemDbItem>();
             await database?.CreateTableAsync<StarSystemDbItem>();
+        }
+
+        string GetDbPath()
+        {
+            var folderPath = Xamarin.Essentials.FileSystem.AppDataDirectory;
+
+            var totalPath = Path.Combine(folderPath, dbFileName);
+
+            return totalPath;
         }
     }
 }

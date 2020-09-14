@@ -102,6 +102,24 @@ client = new HttpClient();
 
 
 
+
+        public void InitializeViewModel()
+        {
+#if DEBUG
+            var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
+            client = new HttpClient(insecureHandler);
+#else
+
+client = new HttpClient();
+
+#endif
+
+            Tries = new ObservableCollection<TryResult>();
+            CreateStartupText();
+
+            DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
+        }
+
         public async Task DisplayResultsAsync()
         {
             CanRunPuzzle = false;
@@ -163,6 +181,8 @@ client = new HttpClient();
                 await Task.Delay(1000);
             }
         }
+
+
 
         int GetMiddle(int min, int max)
         {

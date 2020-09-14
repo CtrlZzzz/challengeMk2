@@ -7,15 +7,15 @@ namespace ChallengeMk2.DataBase
 {
     public interface ILocalDataService
     {
-        Task Initialize();
+        Task InitializeAsync();
 
-        Task<List<StarSystemDbItem>> GetFullDb();
+        Task<List<StarSystemDbItem>> GetAllAsync();
 
-        Task<StarSystemDbItem> GetItem(string name);
-        Task<StarSystemDbItem> GetItem(int id);
+        Task<StarSystemDbItem> GetItemAsync(string name);
+        Task<StarSystemDbItem> GetItemAsync(int id);
 
-        Task SaveItem(StarSystemDbItem starSystem);
+        Task SaveItemAsync(StarSystemDbItem starSystem);
 
-        Task ClearDb();
+        Task ClearDbAsync();
     }
 }

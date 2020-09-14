@@ -9,7 +9,7 @@ namespace ChallengeMk2.DataBase
     {
         SQLiteAsyncConnection database;
 
-        public async Task Initialize()
+        public async Task InitializeAsync()
         {
             if (database == null)
             {
@@ -18,30 +18,30 @@ namespace ChallengeMk2.DataBase
             }
         }
 
-        public async Task<List<StarSystemDbItem>> GetFullDb()
+        public async Task<List<StarSystemDbItem>> GetAllAsync()
         {
-            return await database.Table<StarSystemDbItem>().ToListAsync();
+            return await database?.Table<StarSystemDbItem>().ToListAsync();
         }
 
-        public async Task<StarSystemDbItem> GetItem(string name)
+        public async Task<StarSystemDbItem> GetItemAsync(string name)
         {
-            return await database.Table<StarSystemDbItem>().Where(i => i.Name == name).FirstOrDefaultAsync();
+            return await database?.Table<StarSystemDbItem>().Where(i => i.Name == name).FirstOrDefaultAsync();
         }
 
-        public async Task<StarSystemDbItem> GetItem(int id)
+        public async Task<StarSystemDbItem> GetItemAsync(int id)
         {
-            return await database.Table<StarSystemDbItem>().Where(i => i.DbID == id).FirstOrDefaultAsync();
+            return await database?.Table<StarSystemDbItem>().Where(i => i.DbID == id).FirstOrDefaultAsync();
         }
 
-        public async Task SaveItem(StarSystemDbItem starSystem)
+        public async Task SaveItemAsync(StarSystemDbItem starSystem)
         {
-            await database.InsertAsync(starSystem);
+            await database?.InsertAsync(starSystem);
         }
 
-        public async Task ClearDb()
+        public async Task ClearDbAsync()
         {
-            await database.DropTableAsync<StarSystemDbItem>();
-            await database.CreateTableAsync<StarSystemDbItem>();
+            await database?.DropTableAsync<StarSystemDbItem>();
+            await database?.CreateTableAsync<StarSystemDbItem>();
         }
     }
 }

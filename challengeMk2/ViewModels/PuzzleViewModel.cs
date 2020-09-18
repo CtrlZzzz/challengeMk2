@@ -19,21 +19,6 @@ namespace ChallengeMk2.ViewModels
         public PuzzleViewModel()
         {
             Title = "Mi8 Puzzle challenge";
-
-
-#if DEBUG
-            var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
-            client = new HttpClient(insecureHandler);
-#else
-
-client = new HttpClient();
-
-#endif
-
-            Tries = new ObservableCollection<TryResult>();
-            CreateStartupText();
-
-            DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
         }
 
 
@@ -103,22 +88,22 @@ client = new HttpClient();
 
 
 
-//        public void InitializeViewModel()
-//        {
-//#if DEBUG
-//            var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
-//            client = new HttpClient(insecureHandler);
-//#else
+        public void InitializeViewModel()
+        {
+#if DEBUG
+            var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
+            client = new HttpClient(insecureHandler);
+#else
 
-//client = new HttpClient();
+client = new HttpClient();
 
-//#endif
+#endif
 
-//            Tries = new ObservableCollection<TryResult>();
-//            CreateStartupText();
+            Tries = new ObservableCollection<TryResult>();
+            CreateStartupText();
 
-//            DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
-//        }
+            DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
+        }
 
         public async Task DisplayResultsAsync()
         {

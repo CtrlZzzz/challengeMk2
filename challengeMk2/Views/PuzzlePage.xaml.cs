@@ -13,13 +13,13 @@ namespace ChallengeMk2.Views
             InitializeComponent();
         }
 
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
 
-        //    var vm = BindingContext as PuzzleViewModel;
+            var vm = BindingContext as PuzzleViewModel;
 
-        //    vm.InitializeViewModel();
-        //}
+            vm.InitializeViewModel();
+        }
     }
 }

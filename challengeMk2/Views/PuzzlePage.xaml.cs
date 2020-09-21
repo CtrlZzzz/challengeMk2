@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using ChallengeMk2.ViewModels;
 
 using Xamarin.Forms;

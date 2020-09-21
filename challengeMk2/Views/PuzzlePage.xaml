@@ -46,7 +46,7 @@
 
 		<CollectionView ItemsSource="{Binding Tries}"
 						SelectionMode="None"
-						ItemsUpdatingScrollMode="KeepLastItemInView"
+						ItemsUpdatingScrollMode="KeepScrollOffset"
 						ItemTemplate="{StaticResource resultSelector}">
 		</CollectionView>
 

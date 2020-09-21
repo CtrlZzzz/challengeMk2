@@ -161,7 +161,7 @@ client = new HttpClient();
                         break;
                 }
 
-                Tries.Add(currentResult);
+                Tries.Insert(0, currentResult);
 
                 await Task.Delay(1000);
             }

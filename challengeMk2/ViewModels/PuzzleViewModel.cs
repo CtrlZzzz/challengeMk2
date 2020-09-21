@@ -7,6 +7,8 @@ using ChallengeMk2.Models;
 using ChallengeMk2.DebugTools;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace ChallengeMk2.ViewModels
 {
@@ -45,39 +47,52 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        int globalTry = 0;
-        public int GlobalTry
+        int? globalTry = null;
+        public int? GlobalTry
         {
             get => globalTry;
             set
             {
-                SetProperty<int>(ref globalTry, value);
+                SetProperty<int?>(ref globalTry, value);
             }
         }
 
-        int best;
-        public int Best
+        int? bestTry = null;
+        public int? BestTry
         {
             get
             {
-                return best;
+                return bestTry;
             }
             set
             {
-                SetProperty<int>(ref best, value);
+                SetProperty<int?>(ref bestTry, value);
             }
         }
 
-        List<int> userAttempts;
-        public List<int> UserAttempts
+        double? tryAverage = null;
+        public double? TryAverage
         {
             get
             {
-                return userAttempts;
+                return tryAverage;
             }
             set
             {
-                SetProperty<List<int>>(ref userAttempts, value);
+                SetProperty<double?>(ref tryAverage, value);
+            }
+        }
+
+        List<int> winResultTries;
+        public List<int> WinResultTries
+        {
+            get
+            {
+                return winResultTries;
+            }
+            set
+            {
+                SetProperty<List<int>>(ref winResultTries, value);
             }
         }
 
@@ -100,6 +115,7 @@ client = new HttpClient();
 #endif
 
             Tries = new ObservableCollection<TryResult>();
+            winResultTries = new List<int>();
             CreateStartupText();
 
             DisplayResultsCommand = new Command(async () => await DisplayResultsAsync());
@@ -142,10 +158,10 @@ client = new HttpClient();
 
                     case HttpStatusCode.Accepted:
                         currentResult = GetResult(HttpStatusCode.Accepted, responseContent, userTry);
-                        GlobalTry++;
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
                         ButtonText = "Retry";
+                        UpdateStatistics(currentResult.TryNumber);
                         break;
 
                     case HttpStatusCode.ResetContent:
@@ -222,6 +238,28 @@ client = new HttpClient();
 
             Tries.Clear();
             Tries.Add(container);
+        }
+
+        void UpdateStatistics(int tryNumber)
+        {
+            if (globalTry == null)
+            {
+                globalTry = 0;
+            }
+            GlobalTry++;
+
+            WinResultTries.Add(tryNumber);
+
+            TryAverage = Math.Round(winResultTries.Average(), 2);
+
+            if (bestTry == null)
+            {
+                bestTry = 20;
+            }
+            if (tryNumber < bestTry)
+            {
+                BestTry = tryNumber;
+            }
         }
     }
 }

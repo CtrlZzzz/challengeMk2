@@ -99,9 +99,6 @@ namespace ChallengeMk2.ViewModels
 
 
 
-
-
-
         void SetCurrentSystem(StarSystem selectedSystem)
         {
             currentSystem = selectedSystem;

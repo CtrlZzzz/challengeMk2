@@ -1,20 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ChallengeMk2.Models;
 
 namespace ChallengeMk2.DataBase
 {
     public interface ILocalDataService
     {
-        void Initialize();
+        Task InitializeAsync();
 
-        List<StarSystemDbItem> GetFullDb();
+        Task<List<StarSystemDbItem>> GetAllAsync();
 
-        StarSystemDbItem GetItem(string name);
-        StarSystemDbItem GetItem(int id);
+        Task<StarSystemDbItem> GetItemAsync(string name);
+        Task<StarSystemDbItem> GetItemAsync(int id);
 
-        void SaveItem(StarSystemDbItem starSystem);
+        Task SaveItemAsync(StarSystemDbItem starSystem);
 
-        void ClearDb();
+        Task ClearDbAsync();
     }
 }

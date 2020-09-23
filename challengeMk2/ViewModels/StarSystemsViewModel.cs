@@ -16,13 +16,15 @@ namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
+        const int SearchRadius = 30;
+
         public StarSystemsViewModel()
         {
             Title = "Systems around SOL (Api)";
 
             Systems = new ObservableCollection<StarSystem>();
 
-            LoadSystemDataCommand = new Command(async () => await LoadSystemData());
+            LoadSystemDataCommand = new Command(async () => await LoadSystemDataAsync());
         }
 
         StarSystem selectedSystem;
@@ -34,7 +36,9 @@ namespace ChallengeMk2.ViewModels
                 {
                     NavigateTodetailPage(selectedSystem);
                     if (value != null)
+                    {
                         selectedSystem = null;
+                    }
                 });
             }
         }
@@ -48,9 +52,9 @@ namespace ChallengeMk2.ViewModels
         internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
-        async Task LoadSystemData()
+        async Task LoadSystemDataAsync()
         {
-            InitializeDatabase();
+            await InitializeDatabaseAsync();
 
             CurrentConnectivity = Connectivity.NetworkAccess;
 
@@ -58,57 +62,61 @@ namespace ChallengeMk2.ViewModels
 
             if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))
             {
-                DisplaySavedDatas();
+                await DisplaySavedDataAsync();
             }
             else
             {
-                await RetreiveAndDisplayApiDatas();
+                await DisplayApiDataAsync();
             }
         }
 
-        void InitializeDatabase()
+        async Task InitializeDatabaseAsync()
         {
             if (App.Database == null)
             {
                 App.Database = new SQLiteDataService();
-                App.Database.Initialize();
+                await App.Database.InitializeAsync();
             }
 
-            ////DEBUG
+            //DEBUG
             //Preferences.Remove("dbExpirationDate");
         }
 
-        async Task<List<StarSystem>> GetAndSaveDataFromApi()
+        async Task<List<StarSystem>> GetDataFromApiAsync()
         {
             using var client = new HttpClient();
 
-            var url = "https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius=30&showPermit=1&showInformation=1&showPrimaryStar=1";
+            var url = $"https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius={SearchRadius}&showPermit=1&showInformation=1&showPrimaryStar=1";
 
             var response = await client.GetStringAsync(url);
 
-            var datas = JsonConvert.DeserializeObject<List<StarSystem>>(response);
+            var data = JsonConvert.DeserializeObject<List<StarSystem>>(response);
 
-            App.Database.ClearDb();
+            await SaveDataAsync(data);
 
-            foreach (var system in datas)
+            return data;
+        }
+
+        async Task SaveDataAsync(List<StarSystem> data)
+        {
+            await App.Database.ClearDbAsync();
+
+            foreach (var system in data)
             {
                 var dbItem = DatabaseMapper.ConvertToDbItem(system);
-                App.Database.SaveItem(dbItem);
+                await App.Database.SaveItemAsync(dbItem);
             }
 
             Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
-
             ////DEBUG
             //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
-
-            return datas;
         }
 
-        void DisplaySavedDatas()
+        async Task DisplaySavedDataAsync()
         {
             Title = "Systems around SOL (Local)";
 
-            var localData = App.Database.GetFullDb();
+            var localData = await App.Database.GetAllAsync();
 
             Systems.Clear();
 
@@ -122,7 +130,7 @@ namespace ChallengeMk2.ViewModels
             IsBusy = false;
         }
 
-        async Task RetreiveAndDisplayApiDatas()
+        async Task DisplayApiDataAsync()
         {
             Title = "Systems around SOL (Api)";
 
@@ -130,7 +138,7 @@ namespace ChallengeMk2.ViewModels
 
             try
             {
-                var apiData = await GetAndSaveDataFromApi();
+                var apiData = await GetDataFromApiAsync();
 
                 Systems.Clear();
 

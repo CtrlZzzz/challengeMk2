@@ -22,6 +22,7 @@ namespace ChallengeMk2
             DependencyService.Register<ILocalDataService, SQLiteDataService>();
             DependencyService.Register<IWebDataService, ApiDataService>();
             DependencyService.Register<IMapperService, SystemDbMapperService>();
+            DependencyService.Register<IStarSystemService, StarSystemService>();
 
             //Debug
             DependencyService.Register<MockDataStore>();

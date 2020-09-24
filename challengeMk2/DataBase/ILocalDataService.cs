@@ -9,6 +9,8 @@ namespace ChallengeMk2.DataBase
     {
         Task InitializeAsync();
 
+        bool GetNullState();
+
         Task<List<StarSystem>> GetAllAsync();
 
         Task<StarSystem> GetItemAsync(string name);

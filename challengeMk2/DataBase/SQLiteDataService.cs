@@ -27,7 +27,7 @@ namespace ChallengeMk2.DataBase
 
 
 
-        //could this method be synchronous instead ? do local db creation take too much time ? 
+        //could this method be synchronous instead ? Will local db take too much time to be create? 
         public async Task InitializeAsync()
         {
             if (database == null)
@@ -36,6 +36,12 @@ namespace ChallengeMk2.DataBase
                 await database.CreateTableAsync<StarSystemDbItem>();
             }
         }
+
+        public bool GetNullState()
+        {
+            return database == null;
+        }
+
         public async Task<List<StarSystem>> GetAllAsync()
         {
             var dbData = await GetAllDbItemAsync();
@@ -48,22 +54,26 @@ namespace ChallengeMk2.DataBase
 
             return convertedData;
         }
+
         public async Task<StarSystem> GetItemAsync(string name)
         {
             var data = await GetDbItemAsync(name);
 
             return mapper.ConvertFromDb(data);
         }
+
         public async Task<StarSystem> GetItemAsync(int id)
         {
             var data = await GetDbItemAsync(id);
 
             return mapper.ConvertFromDb(data);
         }
+
         public async Task SaveItemAsync(StarSystem starSystem)
         {
             await SaveDbItemAsync(mapper.ConvertToDbItem(starSystem));
         }
+
         public async Task ClearDbAsync()
         {
             await database?.DropTableAsync<StarSystemDbItem>();
@@ -71,18 +81,22 @@ namespace ChallengeMk2.DataBase
         }
 
 
+
         async Task<List<StarSystemDbItem>> GetAllDbItemAsync()
         {
             return await database?.Table<StarSystemDbItem>().ToListAsync();
         }
+
         async Task<StarSystemDbItem> GetDbItemAsync(string name)
         {
             return await database?.Table<StarSystemDbItem>().Where(i => i.Name == name).FirstOrDefaultAsync();
         }
+
         public async Task<StarSystemDbItem> GetDbItemAsync(int id)
         {
             return await database?.Table<StarSystemDbItem>().Where(i => i.DbID == id).FirstOrDefaultAsync();
         }
+
         public async Task SaveDbItemAsync(StarSystemDbItem starSystem)
         {
             await database?.InsertAsync(starSystem);

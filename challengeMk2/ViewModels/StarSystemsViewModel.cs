@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
-using ChallengeMk2.Views;
+using ChallengeMk2.Services;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -18,13 +17,12 @@ namespace ChallengeMk2.ViewModels
     {
         const int SearchRadius = 30;
 
+        ILocalDataService localService;
+        IWebDataService webService;
+
         public StarSystemsViewModel()
         {
-            Title = "Systems around SOL (Api)";
-
-            Systems = new ObservableCollection<StarSystem>();
-
-            LoadSystemDataCommand = new Command(async () => await LoadSystemDataAsync());
+            InitializeViewModel();
         }
 
         StarSystem selectedSystem;
@@ -47,8 +45,6 @@ namespace ChallengeMk2.ViewModels
 
         public Command LoadSystemDataCommand { get; set; }
 
-        public NetworkAccess CurrentConnectivity { get; set; }
-
         internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
@@ -56,11 +52,10 @@ namespace ChallengeMk2.ViewModels
         {
             await InitializeDatabaseAsync();
 
-            CurrentConnectivity = Connectivity.NetworkAccess;
+            var expirationString = Preferences.Get("dbExpirationDate", null);
+            DateTime.TryParse(expirationString, out var expirationDate);
 
-            var expirationDate = Preferences.Get("dbExpirationDate", null);
-
-            if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet || (expirationString != null && DateTime.Now <= expirationDate))
             {
                 await DisplaySavedDataAsync();
             }
@@ -70,62 +65,53 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
+
+        void InitializeViewModel()
+        {
+            GetServices();
+
+            Title = "Systems around SOL (Api)";
+
+            Systems = new ObservableCollection<StarSystem>();
+
+            LoadSystemDataCommand = new Command(async () => await LoadSystemDataAsync());
+        }
+
+        void GetServices()
+        {
+            localService = DependencyService.Get<ILocalDataService>();
+            webService = DependencyService.Get<IWebDataService>();
+        }
+
         async Task InitializeDatabaseAsync()
         {
-            if (App.Database == null)
-            {
-                App.Database = new SQLiteDataService();
-                await App.Database.InitializeAsync();
-            }
+            //if (App.Database == null)
+            //{
+            //    App.Database = new SQLiteDataService();
+            //    await App.Database.InitializeAsync();
+            //}
+
+            await localService.InitializeAsync();
 
             //DEBUG
-            //Preferences.Remove("dbExpirationDate");
-        }
-
-        async Task<List<StarSystem>> GetDataFromApiAsync()
-        {
-            using var client = new HttpClient();
-
-            var url = $"https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius={SearchRadius}&showPermit=1&showInformation=1&showPrimaryStar=1";
-
-            var response = await client.GetStringAsync(url);
-
-            var data = JsonConvert.DeserializeObject<List<StarSystem>>(response);
-
-            await SaveDataAsync(data);
-
-            return data;
-        }
-
-        async Task SaveDataAsync(List<StarSystem> data)
-        {
-            await App.Database.ClearDbAsync();
-
-            foreach (var system in data)
-            {
-                var dbItem = DatabaseMapper.ConvertToDbItem(system);
-                await App.Database.SaveItemAsync(dbItem);
-            }
-
-            Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
-            ////DEBUG
-            //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
+            Preferences.Remove("dbExpirationDate");
         }
 
         async Task DisplaySavedDataAsync()
         {
             Title = "Systems around SOL (Local)";
 
-            var localData = await App.Database.GetAllAsync();
+            //var localData = await App.Database.GetAllAsync();
+            //var localData = await localService.GetAllAsync();
 
             Systems.Clear();
 
-            foreach (var system in localData)
-            {
-                var convertedSystem = DatabaseMapper.ConvertFromDb(system);
+            //foreach (var system in localData)
+            //{
+            //    Systems.Add(system);
+            //}
 
-                Systems.Add(convertedSystem);
-            }
+            Systems = await localService.GetAllAsync();
 
             IsBusy = false;
         }
@@ -156,6 +142,37 @@ namespace ChallengeMk2.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        async Task<List<StarSystem>> GetDataFromApiAsync()
+        {
+            //using var client = new HttpClient();
+
+            //var url = $"https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius={SearchRadius}&showPermit=1&showInformation=1&showPrimaryStar=1";
+
+            //var response = await client.GetStringAsync(url);
+
+            var data = await webService.GetAllAsync();
+
+            await SaveDataAsync(data);
+
+            return data;
+        }
+
+        async Task SaveDataAsync(List<StarSystem> data)
+        {
+            await localService.ClearDbAsync();
+            //await App.Database.ClearDbAsync();
+
+            foreach (var system in data)
+            {
+                await localService.SaveItemAsync(system);
+                //await App.Database.SaveItemAsync(dbItem);
+            }
+
+            Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
+            ////DEBUG
+            //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
         }
     }
 }

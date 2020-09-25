@@ -27,7 +27,8 @@ namespace ChallengeMk2.DataBase
 
 
 
-        //could this method be synchronous instead ? Will local db take too much time to be create? 
+        //could this method be synchronous instead ? Will local db take too much time to be create?
+        //Therefore it could be create in the constructor instead of outside this class
         public async Task InitializeAsync()
         {
             if (database == null)

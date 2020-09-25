@@ -16,6 +16,7 @@ namespace ChallengeMk2.DataBase
         Task<StarSystem> GetItemAsync(string name);
         Task<StarSystem> GetItemAsync(int id);
 
+        void SaveAll(List<StarSystem> systems);
         Task SaveItemAsync(StarSystem starSystem);
 
         Task ClearDbAsync();

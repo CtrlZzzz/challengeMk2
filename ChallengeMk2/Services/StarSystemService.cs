@@ -25,7 +25,7 @@ namespace ChallengeMk2.Services
         public async Task<List<StarSystem>> GetStarSystemDataAsync()
         {
             //DEBUG
-            //Preferences.Remove("dbExpirationDate");
+            Preferences.Remove("dbExpirationDate");
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet && localService.GetNullState())
             {
@@ -71,11 +71,7 @@ namespace ChallengeMk2.Services
         {
             await localService.ClearDbAsync();
 
-            foreach (var item in data)
-            {
-                //TODO : Bulk instead
-                await localService.SaveItemAsync(item);
-            }
+            localService.SaveAll(data);
 
             Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
         }

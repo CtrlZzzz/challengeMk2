@@ -17,7 +17,7 @@ namespace ChallengeMk2.Services
                 "&showPermit=1" +
                 "&showCoordinates=1";
 
-        public  async Task<List<StarSystem>> GetAllAsync()
+        public async Task<List<StarSystem>> GetAllAsync()
         {
             var url = BaseUrl_All + Details + $"&radius={SearchRadius}";
 

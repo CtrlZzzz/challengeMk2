@@ -69,6 +69,31 @@ namespace ChallengeMk2.DataBase
             return mapper.ConvertFromDb(data);
         }
 
+        public void SaveAll(List<StarSystem> systems)
+        {
+            var systemsDbItem = new List<StarSystemDbItem>();
+            foreach (var item in systems)
+            {
+                systemsDbItem.Add(mapper.ConvertToDbItem(item));
+            }
+
+            using (var syncConnection = new SQLiteConnection(GetDbPath(), DbFlags))
+            {
+                syncConnection.BeginTransaction();
+
+                try
+                {
+                    syncConnection.InsertAll(systemsDbItem);
+
+                    syncConnection.Commit();
+                }
+                catch (System.Exception ex)
+                {
+                    syncConnection.Rollback();
+                }
+            }
+        }
+
         public async Task SaveItemAsync(StarSystem starSystem)
         {
             await SaveDbItemAsync(mapper.ConvertToDbItem(starSystem));
@@ -92,12 +117,12 @@ namespace ChallengeMk2.DataBase
             return await database?.Table<StarSystemDbItem>().Where(i => i.Name == name).FirstOrDefaultAsync();
         }
 
-        public async Task<StarSystemDbItem> GetDbItemAsync(int id)
+        async Task<StarSystemDbItem> GetDbItemAsync(int id)
         {
             return await database?.Table<StarSystemDbItem>().Where(i => i.DbID == id).FirstOrDefaultAsync();
         }
 
-        public async Task SaveDbItemAsync(StarSystemDbItem starSystem)
+        async Task SaveDbItemAsync(StarSystemDbItem starSystem)
         {
             await database?.InsertAsync(starSystem);
         }

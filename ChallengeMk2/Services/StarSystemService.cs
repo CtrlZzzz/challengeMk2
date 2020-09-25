@@ -13,6 +13,7 @@ namespace ChallengeMk2.Services
         ILocalDataService localService;
         IWebDataService webService;
 
+        bool isOnLocalData;
 
         public StarSystemService()
         {
@@ -21,14 +22,14 @@ namespace ChallengeMk2.Services
 
 
 
-        public async Task<List<StarSystem>> GetStarSystemData()
+        public async Task<List<StarSystem>> GetStarSystemDataAsync()
         {
             //DEBUG
-            Preferences.Remove("dbExpirationDate");
+            //Preferences.Remove("dbExpirationDate");
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet && localService.GetNullState())
             {
-                //TODO : alert no connection and no local data saved
+                //TODO : alert no connection nor local data saved
             }
 
             await localService.InitializeAsync();
@@ -38,20 +39,26 @@ namespace ChallengeMk2.Services
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet || (expirationString != null && DateTime.Now <= expirationDate))
             {
-                //LOCAL
+                isOnLocalData = true;
+
                 return await localService.GetAllAsync();
             }
             else
             {
-                //API
+                isOnLocalData = false;
+
                 var data = await webService.GetAllAsync();
 
-                await SaveDataInDb(data);
+                await SaveDataInDbAsync(data);
 
                 return data;
             }
         }
 
+        public bool GetLocalState()
+        {
+            return isOnLocalData;
+        }
 
 
         void InitialeServices()
@@ -60,7 +67,7 @@ namespace ChallengeMk2.Services
             webService = DependencyService.Get<IWebDataService>();
         }
 
-        async Task SaveDataInDb(List<StarSystem> data)
+        async Task SaveDataInDbAsync(List<StarSystem> data)
         {
             await localService.ClearDbAsync();
 

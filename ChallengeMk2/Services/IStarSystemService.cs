@@ -7,6 +7,8 @@ namespace ChallengeMk2.Services
 {
     interface IStarSystemService
     {
-        Task<List<StarSystem>> GetStarSystemData();
+        Task<List<StarSystem>> GetStarSystemDataAsync();
+
+        bool GetLocalState();
     }
 }

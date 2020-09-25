@@ -15,8 +15,6 @@ namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
-        const int SearchRadius = 30;
-
         ILocalDataService localService;
         IWebDataService webService;
         IStarSystemService systemService;
@@ -53,7 +51,7 @@ namespace ChallengeMk2.ViewModels
         {
             GetServices();
 
-            Title = "Systems around SOL (Api)";
+            Title = "Systems around SOL";
 
             Systems = new ObservableCollection<StarSystem>();
 
@@ -70,10 +68,19 @@ namespace ChallengeMk2.ViewModels
         async Task DisplaySystemDataAsync()
         {
             IsBusy = true;
-;
+
             try
             {
-                Systems = await systemService.GetStarSystemData();
+                Title = GetCurrentTitle(true);
+
+                var data = await systemService.GetStarSystemDataAsync();
+
+                Systems.Clear();
+                foreach (var system in data)
+                {
+                    Systems.Add(system);
+                }
+
             }
             catch (Exception ex)
             {
@@ -82,101 +89,40 @@ namespace ChallengeMk2.ViewModels
             }
             finally
             {
+                Title = GetCurrentTitle();
+
                 IsBusy = false;
             }
-            
         }
 
-        //async Task InitializeDatabaseAsync()
-        //{
-        //    //if (App.Database == null)
-        //    //{
-        //    //    App.Database = new SQLiteDataService();
-        //    //    await App.Database.InitializeAsync();
-        //    //}
+        string GetCurrentTitle(bool isRetreiving = false)
+        {
+            string title;
 
-        //    await localService.InitializeAsync();
+            if (isRetreiving)
+            {
+                if (systemService.GetLocalState())
+                {
+                    title = "Retreiving local data...";
+                }
+                else
+                {
+                    title = "Retreiving data from web API...";
+                }
+            }
+            else
+            {
+                if (systemService.GetLocalState())
+                {
+                    title = "Systems around SOL (local)";
+                }
+                else
+                {
+                    title = "Systems around SOL (API)";
+                }
+            }
 
-        //    //DEBUG
-        //    Preferences.Remove("dbExpirationDate");
-        //}
-
-        //async Task DisplaySavedDataAsync()
-        //{
-        //    Title = "Systems around SOL (Local)";
-
-        //    //var localData = await App.Database.GetAllAsync();
-        //    //var localData = await localService.GetAllAsync();
-
-        //    Systems.Clear();
-
-        //    //foreach (var system in localData)
-        //    //{
-        //    //    Systems.Add(system);
-        //    //}
-
-        //    Systems = await localService.GetAllAsync();
-
-        //    IsBusy = false;
-        //}
-
-        //async Task DisplayApiDataAsync()
-        //{
-        //    Title = "Systems around SOL (Api)";
-
-        //    IsBusy = true;
-
-        //    try
-        //    {
-        //        var apiData = await GetDataFromApiAsync();
-
-        //        Systems.Clear();
-
-        //        foreach (var system in apiData)
-        //        {
-        //            Systems.Add(system);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex);
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //    }
-        //}
-
-        //async Task<List<StarSystem>> GetDataFromApiAsync()
-        //{
-        //    //using var client = new HttpClient();
-
-        //    //var url = $"https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius={SearchRadius}&showPermit=1&showInformation=1&showPrimaryStar=1";
-
-        //    //var response = await client.GetStringAsync(url);
-
-        //    var data = await webService.GetAllAsync();
-
-        //    await SaveDataAsync(data);
-
-        //    return data;
-        //}
-
-        //async Task SaveDataAsync(List<StarSystem> data)
-        //{
-        //    await localService.ClearDbAsync();
-        //    //await App.Database.ClearDbAsync();
-
-        //    foreach (var system in data)
-        //    {
-        //        await localService.SaveItemAsync(system);
-        //        //await App.Database.SaveItemAsync(dbItem);
-        //    }
-
-        //    Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
-        //    ////DEBUG
-        //    //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
-        //}
+            return title;
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace ChallengeMk2.Services
         public async Task<List<StarSystem>> GetStarSystemDataAsync()
         {
             //DEBUG
-            Preferences.Remove("dbExpirationDate");
+            //Preferences.Remove("dbExpirationDate");
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet && localService.GetNullState())
             {

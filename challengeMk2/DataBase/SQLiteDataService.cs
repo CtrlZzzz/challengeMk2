@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using ChallengeMk2.Models;
@@ -91,6 +92,9 @@ namespace ChallengeMk2.DataBase
                 catch (System.Exception ex)
                 {
                     syncConnection.Rollback();
+
+                    Debug.WriteLine(ex);
+                    throw;
                 }
             }
         }

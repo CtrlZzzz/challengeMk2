@@ -2,21 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
 using ChallengeMk2.Services;
-using Newtonsoft.Json;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
-        ILocalDataService localService;
-        IWebDataService webService;
         IStarSystemService systemService;
 
         public StarSystemsViewModel()
@@ -60,8 +55,6 @@ namespace ChallengeMk2.ViewModels
 
         void GetServices()
         {
-            localService = DependencyService.Get<ILocalDataService>();
-            webService = DependencyService.Get<IWebDataService>();
             systemService = DependencyService.Get<IStarSystemService>();
         }
 
@@ -101,25 +94,11 @@ namespace ChallengeMk2.ViewModels
 
             if (isRetreiving)
             {
-                if (systemService.GetLocalState())
-                {
-                    title = "Retreiving local data...";
-                }
-                else
-                {
-                    title = "Retreiving data from web API...";
-                }
+                title = systemService.GetLocalState() ? "Retreiving local data..." : "Retreiving data from web API...";
             }
             else
             {
-                if (systemService.GetLocalState())
-                {
-                    title = "Systems around SOL (local)";
-                }
-                else
-                {
-                    title = "Systems around SOL (API)";
-                }
+                title = systemService.GetLocalState() ? "Systems around SOL (local)" : "Systems around SOL (API)";
             }
 
             return title;

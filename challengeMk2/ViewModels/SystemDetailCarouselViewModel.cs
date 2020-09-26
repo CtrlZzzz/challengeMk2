@@ -1,15 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using ChallengeMk2.Models;
-using Newtonsoft.Json;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 
@@ -91,8 +81,6 @@ namespace ChallengeMk2.ViewModels
         }
 
         public Command SwitchBannerCommand { get; set; }
-
-        public NetworkAccess CurrentConnectivity { get; set; }
 
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
 

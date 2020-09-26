@@ -17,14 +17,10 @@ namespace ChallengeMk2.ViewModels
         static HttpClient client;
 
 
-
         public PuzzleViewModel()
         {
             Title = "Mi8 Puzzle challenge";
         }
-
-
-
 
 
         bool canRunPuzzle = true;
@@ -99,8 +95,6 @@ namespace ChallengeMk2.ViewModels
         public Command DisplayResultsCommand { get; set; }
 
         public ObservableCollection<TryResult> Tries { get; set; }
-
-
 
 
         public void InitializeViewModel()

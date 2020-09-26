@@ -69,7 +69,7 @@ namespace ChallengeMk2.Services
 
         async Task SaveDataInDbAsync(List<StarSystem> data)
         {
-            await localService.ClearDbAsync();
+            await localService.ClearDbAsync();  //Maybe is it better to update items instead of delete them ?
 
             localService.SaveAll(data);
 

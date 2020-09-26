@@ -1,21 +1,18 @@
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using ChallengeMk2.Models;
-using ChallengeMk2.DebugTools;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using ChallengeMk2.Models;
+using ChallengeMk2.Services;
+using Xamarin.Forms;
 
 namespace ChallengeMk2.ViewModels
 {
     public class PuzzleViewModel : BaseViewModel
     {
-        static HttpClient client;
-
+        IPuzzleService puzzle;
 
         public PuzzleViewModel()
         {
@@ -99,15 +96,7 @@ namespace ChallengeMk2.ViewModels
 
         public void InitializeViewModel()
         {
-#if DEBUG
-            var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
-            client = new HttpClient(insecureHandler);
-#else
-
-client = new HttpClient();
-
-#endif
-
+            puzzle = DependencyService.Get<IPuzzleService>();
             Tries = new ObservableCollection<TryResult>();
             winResultTries = new List<int>();
             CreateStartupText();
@@ -124,34 +113,22 @@ client = new HttpClient();
             var userTry = 25_000;
             var min = 0;
             var max = 50_000;
-            var currentResult = new TryResult();
-
-            //var apiBaseAddress = "!!!Paste API Server address here!!!";
-
-            //Debug
-            //var apiBaseAddress = Device.RuntimePlatform == Device.Android ? "https://localhost:5001" : "https://localhost:5001";  //ATM, impossible to connect android device to this address...
-            var apiBaseAddress = Device.RuntimePlatform == Device.Android ? "https://10.0.2.2:5001" : "https://localhost:5001";    // Android Emulator on Windows 10
-
-            string apiRoute;
-            HttpResponseMessage apiResponse;
-            string responseContent;
+            TryResult currentResult;
 
             var isPuzzleRunning = true;
             while (isPuzzleRunning)
             {
-                apiRoute = $"{apiBaseAddress}/api/TheNumber/{userTry}";
-                apiResponse = await client.GetAsync(apiRoute);
-                responseContent = await apiResponse.Content.ReadAsStringAsync();
+                currentResult = await puzzle.GetTryResult(userTry);
 
-                switch (apiResponse.StatusCode)
+                var status = currentResult.Status;
+
+                switch (status)
                 {
                     case HttpStatusCode.OK:
-                        currentResult = GetResult(HttpStatusCode.OK, responseContent, userTry);
                         CompareTry(currentResult, ref min, ref max, ref userTry);
                         break;
 
                     case HttpStatusCode.Accepted:
-                        currentResult = GetResult(HttpStatusCode.Accepted, responseContent, userTry);
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
                         ButtonText = "Retry";
@@ -159,21 +136,19 @@ client = new HttpClient();
                         break;
 
                     case HttpStatusCode.ResetContent:
-                        currentResult = CreateResult(HttpStatusCode.ResetContent, 20, apiResponse.ReasonPhrase, userTry);
                         isPuzzleRunning = false;
                         CanRunPuzzle = true;
                         ButtonText = "You should modify something...";
                         break;
 
                     case HttpStatusCode.InternalServerError:
-                        currentResult = CreateResult(HttpStatusCode.InternalServerError, 0, apiResponse.ReasonPhrase, userTry);
                         isPuzzleRunning = false;
                         break;
                 }
 
                 Tries.Insert(0, currentResult);
 
-                await Task.Delay(1000);
+                await Task.Delay(250);
             }
         }
 
@@ -182,28 +157,6 @@ client = new HttpClient();
         int GetMiddle(int min, int max)
         {
             return min + ((max - min) / 2);
-        }
-
-        TryResult GetResult(HttpStatusCode status, string apiResponseContent, int userTry)
-        {
-            var apiResult = JsonConvert.DeserializeObject<TryResult>(apiResponseContent);
-            apiResult.UserTry = userTry;
-            apiResult.Status = status;
-
-            return apiResult;
-        }
-
-        TryResult CreateResult(HttpStatusCode status, int tryNumber, string result, int userTry)
-        {
-            var apiResult = new TryResult
-            {
-                TryNumber = tryNumber,
-                Result = result,
-                UserTry = userTry,
-                Status = status
-            };
-
-            return apiResult;
         }
 
         void CompareTry(TryResult result, ref int currentMin, ref int currentMax, ref int currentTry)

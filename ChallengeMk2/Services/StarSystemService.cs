@@ -29,7 +29,7 @@ namespace ChallengeMk2.Services
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet && localService.GetNullState())
             {
-                //TODO : alert no connection nor local data saved
+                //TODO : alert : no connection nor local data saved
             }
 
             await localService.InitializeAsync();
@@ -69,7 +69,7 @@ namespace ChallengeMk2.Services
 
         async Task SaveDataInDbAsync(List<StarSystem> data)
         {
-            await localService.ClearDbAsync();  //Maybe is it better to update items instead of delete them ?
+            await localService.ClearDbAsync();  //Maybe is it better to update items instead of delete and re-save them ?
 
             localService.SaveAll(data);
 

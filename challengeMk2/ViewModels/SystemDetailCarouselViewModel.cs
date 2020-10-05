@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -95,9 +95,6 @@ namespace ChallengeMk2.ViewModels
         public NetworkAccess CurrentConnectivity { get; set; }
 
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
-
-
-
 
 
 

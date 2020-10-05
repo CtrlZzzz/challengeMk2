@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.Views
@@ -10,6 +8,15 @@ namespace ChallengeMk2.Views
         public PuzzlePage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            var vm = BindingContext as PuzzleViewModel;
+
+            vm.InitializeViewModel();
         }
     }
 }

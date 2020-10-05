@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.DataTemplates.AcceptedTryResultTemplate">
+	
+  <ContentView.Content>
+		<StackLayout Orientation="Vertical"
+					 Spacing="5">
+
+			<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+
+			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+
+			<Label Text="{Binding Result}" TextColor="{DynamicResource AccentLightColor}" FontSize="Medium"/>
+
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+
+				<Label Text="{Binding UserTry, StringFormat='The Number is {0},'}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
+				<Label Text="{Binding TryNumber, StringFormat='found in {0} tries.'}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
+
+			</StackLayout>
+
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

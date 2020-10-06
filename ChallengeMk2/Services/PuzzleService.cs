@@ -50,11 +50,11 @@ using var client = new HttpClient();
                     break;
 
                 case HttpStatusCode.ResetContent:
-                    currentResult = CreateResult(HttpStatusCode.ResetContent, apiResponse.ReasonPhrase, userTry);
+                    currentResult = new TryResult(20, apiResponse.ReasonPhrase, HttpStatusCode.ResetContent, userTry);
                     break;
 
                 case HttpStatusCode.InternalServerError:
-                    currentResult = CreateResult(HttpStatusCode.InternalServerError, apiResponse.ReasonPhrase, userTry);
+                    currentResult = new TryResult(20, apiResponse.ReasonPhrase, HttpStatusCode.InternalServerError, userTry);
                     break;
                 default:
                     break;
@@ -66,23 +66,25 @@ using var client = new HttpClient();
         TryResult GetResult(HttpStatusCode status, string apiResponseContent, int userTry)
         {
             var apiResult = JsonConvert.DeserializeObject<TryResult>(apiResponseContent);
-            apiResult.UserTry = userTry;
-            apiResult.Status = status;
+            //apiResult.UserTry = userTry;
+            //apiResult.Status = status;
 
-            return apiResult;
+            //return apiResult;
+            return new TryResult(apiResult, status, userTry);
         }
 
-        TryResult CreateResult(HttpStatusCode status, string result, int userTry)
-        {
-            var apiResult = new TryResult
-            {
-                TryNumber = 20,
-                Result = result,
-                UserTry = userTry,
-                Status = status
-            };
+        //TryResult CreateResult(string result, HttpStatusCode status, int userTry)
+        //{
+        //    //var apiResult = new TryResult(20, result, status, userTry);
+        //    //{
+        //    //    TryNumber = 20,
+        //    //    Result = result,
+        //    //    UserTry = userTry,
+        //    //    Status = status
+        //    //};
 
-            return apiResult;
-        }
+        //    //return apiResult;
+        //    return new TryResult(20, result, status, userTry);
+        //}
     }
 }

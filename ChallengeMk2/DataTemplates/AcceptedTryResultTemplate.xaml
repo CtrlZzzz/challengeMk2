@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.AcceptedTryResultTemplate">
 	
@@ -10,11 +11,19 @@
 		<StackLayout Orientation="Vertical"
 					 Spacing="5">
 
-			<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+			<BoxView HeightRequest="10" BackgroundColor="Transparent"/>
+			<controls:PopupLabel PopupLabelText="{Binding TryNumber}"
+								 PopupLabelFontAttributes="Bold"
+								 PopupLabelFontSize="18"
+								 PopupLabelTextColor="ForestGreen"
+								 PopupBackgroundColor="GreenYellow"
+								 PopupBackgroundCornerRadius="15"
+								 PopupBackgroundWidth="30"
+								 PopupBackgroundheight="30"/>
+			
+			<BoxView HeightRequest="1" BackgroundColor="GreenYellow"/>
 
-			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
-
-			<Label Text="{Binding Result}" TextColor="{DynamicResource AccentLightColor}" FontSize="Medium"/>
+			<Label Text="{Binding Result}" TextColor="ForestGreen" FontSize="Medium"/>
 
 			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 

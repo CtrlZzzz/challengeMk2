@@ -6,8 +6,8 @@
 			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.AcceptedTryResultTemplate">
-	
-  <ContentView.Content>
+
+	<ContentView.Content>
 		<StackLayout Orientation="Vertical"
 					 Spacing="5">
 
@@ -20,10 +20,10 @@
 								 PopupBackgroundCornerRadius="15"
 								 PopupBackgroundWidth="30"
 								 PopupBackgroundheight="30"/>
-			
+
 			<BoxView HeightRequest="1" BackgroundColor="GreenYellow"/>
 
-			<Label Text="{Binding Result}" TextColor="ForestGreen" FontSize="Medium"/>
+			<Label Text="{Binding Result}" TextColor="ForestGreen" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
 
 			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 

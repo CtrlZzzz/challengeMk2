@@ -10,7 +10,7 @@ namespace ChallengeMk2.Services
 {
     class PuzzleService : IPuzzleService
     {
-       
+
         public async Task<TryResult> GetTryResult(int userTry)
         {
             var currentResult = new TryResult();
@@ -65,10 +65,11 @@ using var client = new HttpClient();
             string apiRoute;
 
 #if DEBUG
-            apiBaseAddress = Device.RuntimePlatform == Device.Android ? "https://10.0.2.2:5001" : "https://localhost:5001";    // Android Emulator on Windows 10
+            //apiBaseAddress = Device.RuntimePlatform == Device.Android ? "https://10.0.2.2:5001" : "https://localhost:5001";    // Android Emulator on Windows 10
+            apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
 #else
 
-//var apiBaseAddress = "!!!Paste API Server address here!!!";
+var apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
 
 #endif
 

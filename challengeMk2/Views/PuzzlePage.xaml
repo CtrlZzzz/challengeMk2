@@ -64,9 +64,9 @@
 
 		<BoxView HeightRequest="5" BackgroundColor="Transparent"/>
 		<StackLayout Orientation="Horizontal">
-			<Label Text="{Binding GlobalTry, StringFormat='Successful : {0}', Converter={StaticResource nullStringConverter}}" TextColor="{DynamicResource TextColor}" HorizontalOptions="StartAndExpand"/>
-			<Label Text="{Binding BestTry, StringFormat='Best : {0}', Converter={StaticResource nullStringConverter}}" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-			<Label Text="{Binding TryAverage, StringFormat='Average : {0}', Converter={StaticResource nullStringConverter}}" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+			<Label Text="{Binding GlobalTry, StringFormat='Successful : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="StartAndExpand"/>
+			<Label Text="{Binding BestTry, StringFormat='Best : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+			<Label Text="{Binding TryAverage, StringFormat='Average : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
 		</StackLayout>
 
 

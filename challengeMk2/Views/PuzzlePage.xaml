@@ -48,6 +48,11 @@
 						SelectionMode="None"
 						ItemsUpdatingScrollMode="KeepScrollOffset"
 						ItemTemplate="{StaticResource resultSelector}">
+
+			<CollectionView.Header>
+				<BoxView HeightRequest="30" Color="Transparent"/>
+			</CollectionView.Header>
+
 		</CollectionView>
 
 		<BoxView HeightRequest="50" BackgroundColor="Transparent"/>

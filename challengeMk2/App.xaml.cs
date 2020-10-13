@@ -1,20 +1,38 @@
+using Prism;
+using Prism.Ioc;
 using Xamarin.Forms;
 using ChallengeMk2.Services;
 using ChallengeMk2.DataBase;
 
 namespace ChallengeMk2
 {
-    public partial class App : Application
+    public partial class App
     {
-        //public static ILocalDataService Database { get; set; }
+        public App(IPlatformInitializer initializer)
+            : base(initializer)
+        {
+        }
 
-        public App()
+        //public App()
+        //{
+        //    InitializeComponent();
+
+        //    ConfigureServices();
+
+        //    MainPage = new AppShell();
+        //}
+
+        protected override void OnInitialized()
         {
             InitializeComponent();
 
             ConfigureServices();
 
             MainPage = new AppShell();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
         }
 
         void ConfigureServices()

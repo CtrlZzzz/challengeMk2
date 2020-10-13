@@ -1,68 +1,69 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:cvt="clr-namespace:ChallengeMk2.Converters"
-             xmlns:theme="clr-namespace:ChallengeMk2.Themes"
-             xmlns:controls="clr-namespace:ChallengeMk2.Controls"
-             mc:Ignorable="d"
-             x:Class="ChallengeMk2.App">
+<?xml version="1.0" encoding="utf-8"?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+						xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+						xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+						xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+						xmlns:cvt="clr-namespace:ChallengeMk2.Converters"
+						xmlns:theme="clr-namespace:ChallengeMk2.Themes"
+						xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+						xmlns:prism="http://prismlibrary.com"
+						mc:Ignorable="d"
+						x:Class="ChallengeMk2.App">
 
-    <Application.Resources>
-        <!--CONVERTER-->
-        <cvt:NullStringConverter x:Key="nullStringConverter"/>
-        
-        <!--DEFAULT THEME-->
-        <ResourceDictionary>
-            <!--Here comes Merged dictionnary for DEFAULT THEME colors-->
-            <!--Warning : this Dictionary WILL BE CLEARED at runtime when changing current Theme-->
-            <ResourceDictionary.MergedDictionaries>
-                <theme:DarkTheme/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-        
-        <!--STYLES-->
-        <Style x:Key="BaseStyle" TargetType="Element">
-            <Setter Property="Shell.BackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-            <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
-            <Setter Property="Shell.TitleColor" Value="{DynamicResource TextForegroundColor}"/>
-            <Setter Property="Shell.UnselectedColor" Value="{DynamicResource UnselectedColor}"/>
-            <Setter Property="Shell.DisabledColor" Value="{DynamicResource DisableColor}"/>
+	<Application.Resources>
+		<!--CONVERTER-->
+		<cvt:NullStringConverter x:Key="nullStringConverter"/>
 
-            <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-            <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
-            <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TextForegroundColor}"/>
-            <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource UnselectedColor}"/>
-            <Setter Property="Shell.TabBarDisabledColor" Value="{DynamicResource DisableColor}"/>            
-        </Style>
-        <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
+		<!--DEFAULT THEME-->
+		<ResourceDictionary>
+			<!--Here comes Merged dictionnary for DEFAULT THEME colors-->
+			<!--Warning : this Dictionary WILL BE CLEARED at runtime when changing current Theme-->
+			<ResourceDictionary.MergedDictionaries>
+				<theme:DarkTheme/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 
-        <Style x:Key="DualTitle" TargetType="controls:DualLabel">
-            <Setter Property="MidLineColor" Value="{DynamicResource AccentDeepColor}"/>
-            <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-            <Setter Property="TopTextHorizontalOptions" Value="End"/>
-            <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-            <Setter Property="BottomTextSize" Value="40"/>
-            <Setter Property="BottomTextFontAttribute" Value="Bold"/>
-            <Setter Property="BottomTextHorizontalOptions" Value="Start"/>
-        </Style>
+		<!--STYLES-->
+		<Style x:Key="BaseStyle" TargetType="Element">
+			<Setter Property="Shell.BackgroundColor" Value="{DynamicResource AccentLightColor}"/>
+			<Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
+			<Setter Property="Shell.TitleColor" Value="{DynamicResource TextForegroundColor}"/>
+			<Setter Property="Shell.UnselectedColor" Value="{DynamicResource UnselectedColor}"/>
+			<Setter Property="Shell.DisabledColor" Value="{DynamicResource DisableColor}"/>
 
-        <Style x:Key="DualStat" TargetType="controls:DualLabel">
-            <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
-            <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-            <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-            <Setter Property="BottomSpaceHeight" Value="0"/>
-        </Style>
+			<Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AccentLightColor}"/>
+			<Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
+			<Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TextForegroundColor}"/>
+			<Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource UnselectedColor}"/>
+			<Setter Property="Shell.TabBarDisabledColor" Value="{DynamicResource DisableColor}"/>
+		</Style>
+		<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
 
-        <Style x:Key="DualCoords" TargetType="controls:DualLabel">
-            <Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
-            <Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-            <Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-            <Setter Property="BottomTextSize" Value="18"/>
-            <Setter Property="BottomSpaceHeight" Value="0"/>
-        </Style>
+		<Style x:Key="DualTitle" TargetType="controls:DualLabel">
+			<Setter Property="MidLineColor" Value="{DynamicResource AccentDeepColor}"/>
+			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
+			<Setter Property="TopTextHorizontalOptions" Value="End"/>
+			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
+			<Setter Property="BottomTextSize" Value="40"/>
+			<Setter Property="BottomTextFontAttribute" Value="Bold"/>
+			<Setter Property="BottomTextHorizontalOptions" Value="Start"/>
+		</Style>
 
-    </Application.Resources>
+		<Style x:Key="DualStat" TargetType="controls:DualLabel">
+			<Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
+			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
+			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
+			<Setter Property="BottomSpaceHeight" Value="0"/>
+		</Style>
 
-</Application>
+		<Style x:Key="DualCoords" TargetType="controls:DualLabel">
+			<Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
+			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
+			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
+			<Setter Property="BottomTextSize" Value="18"/>
+			<Setter Property="BottomSpaceHeight" Value="0"/>
+		</Style>
+
+	</Application.Resources>
+
+</prism:PrismApplication>

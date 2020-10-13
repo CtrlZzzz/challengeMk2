@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,7 +17,7 @@
 		<ToolbarItem IconImageSource="tab_solarS.png"/>
 	</ContentPage.ToolbarItems>
 
-	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadSystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
+	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
 		<!--StackLayout-->
 		<CollectionView ItemsSource="{Binding Systems}" 
                         SelectionMode="Single" 

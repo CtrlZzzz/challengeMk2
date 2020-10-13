@@ -1,15 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using ChallengeMk2.Models;
-using Newtonsoft.Json;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 
@@ -92,10 +82,7 @@ namespace ChallengeMk2.ViewModels
 
         public Command SwitchBannerCommand { get; set; }
 
-        public NetworkAccess CurrentConnectivity { get; set; }
-
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
-
 
 
 
@@ -105,36 +92,11 @@ namespace ChallengeMk2.ViewModels
         }
 
 
-        async Task UpdateSystemData()
+        void UpdateSystemData()
         {
-            CurrentConnectivity = Connectivity.NetworkAccess;
-
-            if (CurrentConnectivity == NetworkAccess.Internet)
-            {
-                DetailedSystem = await GetDetailsFromApi();
-            }
-            else
-            {
-                DetailedSystem.Name = "No internet connection ! Try again later...";
-                return;
-            }
-
             GetCompInfos();
 
             FillSystemInfos();
-        }
-
-        async Task<StarSystem> GetDetailsFromApi()
-        {
-            var encodedName = WebUtility.UrlEncode(currentSystem.Name);
-
-            var url = $"https://www.edsm.net/api-v1/system?systemName={encodedName}&showInformation=1&showPrimaryStar=1&showPermit=1&showCoordinates=1";
-
-
-            using var client = new HttpClient();
-            var response = await client.GetStringAsync(url);
-
-            return JsonConvert.DeserializeObject<StarSystem>(response);
         }
 
         void GetCompInfos()
@@ -159,12 +121,12 @@ namespace ChallengeMk2.ViewModels
 
                 Distance = currentSystem.Distance,
                 BodyCount = currentSystem.BodyCount,
-                Name = detailedSystem.Name,
-                RequirePermit = detailedSystem.RequirePermit,
-                PermitName = detailedSystem.PermitName,
-                Information = detailedSystem.Information,
-                PrimaryStar = detailedSystem.PrimaryStar,
-                Coords = detailedSystem.Coords
+                Name = currentSystem.Name,
+                RequirePermit = currentSystem.RequirePermit,
+                PermitName = currentSystem.PermitName,
+                Information = currentSystem.Information,
+                PrimaryStar = currentSystem.PrimaryStar,
+                Coords = currentSystem.Coords
             };
 
             return systemWithId;
@@ -175,11 +137,11 @@ namespace ChallengeMk2.ViewModels
             CurrentBanner = banners[position];
         }
 
-        public async Task InitializeAsync(StarSystem selectedSystem)
+        public void InitializeViewModel(StarSystem selectedSystem)
         {
             SetCurrentSystem(selectedSystem);
 
-            await UpdateSystemData();
+            UpdateSystemData();
         }
     }
 }

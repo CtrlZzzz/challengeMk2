@@ -6,30 +6,27 @@ namespace ChallengeMk2
 {
     public partial class App : Application
     {
-        public static ILocalDataService Database { get; set; }
+        //public static ILocalDataService Database { get; set; }
 
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<IPuzzleService, PuzzleService>();
-
-            //Debug
-            DependencyService.Register<MockDataStore>();
+            ConfigureServices();
 
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        void ConfigureServices()
         {
-        }
+            DependencyService.Register<ILocalDataService, SQLiteDataService>();
+            DependencyService.Register<IWebDataService, ApiDataService>();
+            DependencyService.Register<IMapperService, SystemDbMapperService>();
+            DependencyService.Register<IStarSystemService, StarSystemService>();
+            DependencyService.Register<IPuzzleService, PuzzleService>();
 
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
+            //Debug
+            DependencyService.Register<MockDataStore>();
         }
     }
 }

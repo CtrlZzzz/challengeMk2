@@ -2,29 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
-using ChallengeMk2.Views;
-using Newtonsoft.Json;
-using Xamarin.Essentials;
+using ChallengeMk2.Services;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.ViewModels
 {
     public class StarSystemsViewModel : BaseViewModel
     {
-        const int SearchRadius = 30;
+        IStarSystemService systemService;
 
         public StarSystemsViewModel()
         {
-            Title = "Systems around SOL (Api)";
-
-            Systems = new ObservableCollection<StarSystem>();
-
-            LoadSystemDataCommand = new Command(async () => await LoadSystemDataAsync());
+            InitializeViewModel();
         }
 
         StarSystem selectedSystem;
@@ -45,107 +37,43 @@ namespace ChallengeMk2.ViewModels
 
         public IList<StarSystem> Systems { get; set; }
 
-        public Command LoadSystemDataCommand { get; set; }
-
-        public NetworkAccess CurrentConnectivity { get; set; }
+        public Command DisplaySystemDataCommand { get; set; }
 
         internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
-        async Task LoadSystemDataAsync()
+        void InitializeViewModel()
         {
-            await InitializeDatabaseAsync();
+            GetServices();
 
-            CurrentConnectivity = Connectivity.NetworkAccess;
+            Title = "Systems around SOL";
 
-            var expirationDate = Preferences.Get("dbExpirationDate", null);
+            Systems = new ObservableCollection<StarSystem>();
 
-            if (expirationDate != null && DateTime.Now <= DateTime.Parse(expirationDate))
-            {
-                await DisplaySavedDataAsync();
-            }
-            else
-            {
-                await DisplayApiDataAsync();
-            }
+            DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
         }
 
-        async Task InitializeDatabaseAsync()
+        void GetServices()
         {
-            if (App.Database == null)
-            {
-                App.Database = new SQLiteDataService();
-                await App.Database.InitializeAsync();
-            }
-
-            //DEBUG
-            //Preferences.Remove("dbExpirationDate");
+            systemService = DependencyService.Get<IStarSystemService>();
         }
 
-        async Task<List<StarSystem>> GetDataFromApiAsync()
+        async Task DisplaySystemDataAsync()
         {
-            using var client = new HttpClient();
-
-            var url = $"https://www.edsm.net/api-v1/sphere-systems?showCoordinates=1&radius={SearchRadius}&showPermit=1&showInformation=1&showPrimaryStar=1";
-
-            var response = await client.GetStringAsync(url);
-
-            var data = JsonConvert.DeserializeObject<List<StarSystem>>(response);
-
-            await SaveDataAsync(data);
-
-            return data;
-        }
-
-        async Task SaveDataAsync(List<StarSystem> data)
-        {
-            await App.Database.ClearDbAsync();
-
-            foreach (var system in data)
-            {
-                var dbItem = DatabaseMapper.ConvertToDbItem(system);
-                await App.Database.SaveItemAsync(dbItem);
-            }
-
-            Preferences.Set("dbExpirationDate", DateTime.Now.AddDays(7).ToString());
-            ////DEBUG
-            //Preferences.Set("dbExpirationDate", DateTime.Now.AddSeconds(7).ToString());
-        }
-
-        async Task DisplaySavedDataAsync()
-        {
-            Title = "Systems around SOL (Local)";
-
-            var localData = await App.Database.GetAllAsync();
-
-            Systems.Clear();
-
-            foreach (var system in localData)
-            {
-                var convertedSystem = DatabaseMapper.ConvertFromDb(system);
-
-                Systems.Add(convertedSystem);
-            }
-
-            IsBusy = false;
-        }
-
-        async Task DisplayApiDataAsync()
-        {
-            Title = "Systems around SOL (Api)";
-
             IsBusy = true;
 
             try
             {
-                var apiData = await GetDataFromApiAsync();
+                Title = GetCurrentTitle(true);
+
+                var data = await systemService.GetStarSystemDataAsync();
 
                 Systems.Clear();
-
-                foreach (var system in apiData)
+                foreach (var system in data)
                 {
                     Systems.Add(system);
                 }
+
             }
             catch (Exception ex)
             {
@@ -154,8 +82,26 @@ namespace ChallengeMk2.ViewModels
             }
             finally
             {
+                Title = GetCurrentTitle();
+
                 IsBusy = false;
             }
+        }
+
+        string GetCurrentTitle(bool isRetreiving = false)
+        {
+            string title;
+
+            if (isRetreiving)
+            {
+                title = systemService.GetLocalState() ? "Retreiving local data..." : "Retreiving data from web API...";
+            }
+            else
+            {
+                title = systemService.GetLocalState() ? "Systems around SOL (local)" : "Systems around SOL (API)";
+            }
+
+            return title;
         }
     }
 }

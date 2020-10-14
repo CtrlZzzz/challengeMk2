@@ -3,6 +3,9 @@ using Prism.Ioc;
 using Xamarin.Forms;
 using ChallengeMk2.Services;
 using ChallengeMk2.DataBase;
+using ChallengeMk2.Views;
+using ChallengeMk2.ViewModels;
+using Prism.Navigation;
 
 namespace ChallengeMk2
 {
@@ -13,17 +16,22 @@ namespace ChallengeMk2
         {
         }
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
             ConfigureServices();
 
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
+            //await NavigationService.NavigateAsync("MainTabbedPage/StarSystemsPage");
+            await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=StarSystemsPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<MainTabbedPage>();
+            containerRegistry.RegisterForNavigation<StarSystemsPage, StarSystemsViewModel>();
+            containerRegistry.RegisterForNavigation<PuzzlePage, PuzzleViewModel>();
         }
 
         void ConfigureServices()

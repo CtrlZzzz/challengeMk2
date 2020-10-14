@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
              xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
+			 xmlns:prism="http://prismlibrary.com"
+			 prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.StarSystemsPage"
              Title="{Binding Title}">

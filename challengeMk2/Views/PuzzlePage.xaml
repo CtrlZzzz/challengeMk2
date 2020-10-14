@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
+			 xmlns:prism="http://prismlibrary.com"
+			 prism:ViewModelLocator.AutowireViewModel="True"
 			 xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
 			 xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
              x:Class="ChallengeMk2.Views.PuzzlePage"

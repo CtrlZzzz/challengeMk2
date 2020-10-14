@@ -13,15 +13,6 @@ namespace ChallengeMk2
         {
         }
 
-        //public App()
-        //{
-        //    InitializeComponent();
-
-        //    ConfigureServices();
-
-        //    MainPage = new AppShell();
-        //}
-
         protected override void OnInitialized()
         {
             InitializeComponent();

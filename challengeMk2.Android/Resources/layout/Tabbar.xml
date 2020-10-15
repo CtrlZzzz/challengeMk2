@@ -9,5 +9,5 @@
 	app:tabIndicatorColor="@android:color/white"
 	app:tabGravity="fill"
 	app:tabMode="fixed"
-	app:tabSelectedTextColor="#D45B2B"
+	app:tabSelectedTextColor="#E18644"
 	app:tabTextColor="@android:color/white"/>

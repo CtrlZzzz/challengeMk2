@@ -7,6 +7,9 @@ using ChallengeMk2.Views;
 using ChallengeMk2.ViewModels;
 using Prism.Navigation;
 
+[assembly: ExportFont("fa-brands-400.ttf", Alias = "fab")]
+[assembly: ExportFont("fa-solid-900.ttf", Alias = "fas")]
+[assembly: ExportFont("fa-regular-400.ttf", Alias = "far")]
 namespace ChallengeMk2
 {
     public partial class App
@@ -24,14 +27,17 @@ namespace ChallengeMk2
 
             //MainPage = new AppShell();
             //await NavigationService.NavigateAsync("MainTabbedPage/StarSystemsPage");
-            await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=StarSystemsPage");
+            await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
+            //await NavigationService.NavigateAsync("/NavigationPage/MainTabbedPage?selectedTab=StarSystemsPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<MainTabbedPage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage, MainTabbedViewModel>();
             containerRegistry.RegisterForNavigation<StarSystemsPage, StarSystemsViewModel>();
             containerRegistry.RegisterForNavigation<PuzzlePage, PuzzleViewModel>();
+            containerRegistry.RegisterForNavigation<AboutPage, AboutViewModel>();
         }
 
         void ConfigureServices()

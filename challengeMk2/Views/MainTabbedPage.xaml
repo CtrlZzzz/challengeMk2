@@ -3,14 +3,44 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:ChallengeMk2.Views"
 			xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            x:Class="ChallengeMk2.Views.MainTabbedPage"
 			android:TabbedPage.ToolbarPlacement="Bottom"
-			BackgroundColor="Yellow"
-			BarTextColor="Fuchsia"
-            x:Class="ChallengeMk2.Views.MainTabbedPage">
-
+			NavigationPage.HasNavigationBar="True"
+			BarBackgroundColor="{DynamicResource AccentLightColor}"
+			UnselectedTabColor="{DynamicResource TextForegroundColor}"
+			SelectedTabColor="{DynamicResource AccentDeepColor}"
+			Title="{Binding Title}">
+	
 	<TabbedPage.Children>
-		<views:StarSystemsPage/>
-		<views:PuzzlePage/>
+		<NavigationPage Title="System finder">
+			<x:Arguments>
+				<views:StarSystemsPage/>
+			</x:Arguments>
+
+			<NavigationPage.IconImageSource>
+				<FontImageSource Glyph="{StaticResource Planet}" FontFamily="fas"/>
+			</NavigationPage.IconImageSource>
+		</NavigationPage>
+
+		<NavigationPage Title="Number finder">
+			<x:Arguments>
+				<views:PuzzlePage/>
+			</x:Arguments>
+
+			<NavigationPage.IconImageSource>
+				<FontImageSource Glyph="{StaticResource Dice}" FontFamily="fas"/>
+			</NavigationPage.IconImageSource>
+		</NavigationPage>
+
+		<NavigationPage Title="About">
+			<x:Arguments>
+				<views:AboutPage/>
+			</x:Arguments>
+
+			<NavigationPage.IconImageSource>
+				<FontImageSource Glyph="{StaticResource Info}" FontFamily="fas"/>
+			</NavigationPage.IconImageSource>
+		</NavigationPage>
 	</TabbedPage.Children>
 
 </TabbedPage>

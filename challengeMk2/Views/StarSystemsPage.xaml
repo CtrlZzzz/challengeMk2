@@ -10,14 +10,14 @@
              x:Class="ChallengeMk2.Views.StarSystemsPage"
              Title="{Binding Title}">
 
-	<ContentPage.BindingContext>
+	<!--ContentPage.BindingContext>
 		<vm:StarSystemsViewModel/>
-	</ContentPage.BindingContext>
+	</-->
 
 	<!--Toolbar Icon-->
-	<ContentPage.ToolbarItems>
+	<!--ContentPage.ToolbarItems>
 		<ToolbarItem IconImageSource="tab_solarS.png"/>
-	</ContentPage.ToolbarItems>
+	</-->
 
 	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
 		<!--StackLayout-->
@@ -47,7 +47,11 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<Image Source="tab_star.png"/>
+						<Image>
+							<Image.Source>
+								<FontImageSource Glyph="{StaticResource Sun}" FontFamily="fas" Size="20"/>
+							</Image.Source>
+						</Image>
 						<Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource TextColor}" VerticalTextAlignment="Center"/>
 						<Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" TextColor="{DynamicResource AccentDeepColor}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
 

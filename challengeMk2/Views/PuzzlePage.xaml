@@ -9,9 +9,9 @@
              x:Class="ChallengeMk2.Views.PuzzlePage"
 			 Title="{Binding Title}">
 
-	<ContentPage.BindingContext>
+	<!--ContentPage.BindingContext>
 		<vm:PuzzleViewModel/>
-	</ContentPage.BindingContext>
+	</-->
 
 	<ContentPage.ToolbarItems>
 		<ToolbarItem IconImageSource="tab_puzzle.png"/>

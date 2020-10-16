@@ -6,17 +6,20 @@ using System.Net;
 using System.Threading.Tasks;
 using ChallengeMk2.Models;
 using ChallengeMk2.Services;
+using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.ViewModels
 {
-    public class PuzzleViewModel : BaseViewModel
+    public class PuzzleViewModel : PrismBaseViewModel
     {
-        IPuzzleService puzzle;
+        readonly IPuzzleService puzzle;
 
-        public PuzzleViewModel()
+        public PuzzleViewModel(INavigationService navigationService, IPuzzleService puzzleService) : base(navigationService)
         {
             Title = "Mi8 Puzzle challenge";
+
+            puzzle = puzzleService;
         }
 
 
@@ -96,7 +99,7 @@ namespace ChallengeMk2.ViewModels
 
         public void InitializeViewModel()
         {
-            puzzle = DependencyService.Get<IPuzzleService>();
+            //puzzle = DependencyService.Get<IPuzzleService>();
             Tries = new ObservableCollection<TryResult>();
             winResultTries = new List<int>();
             CreateStartupText();

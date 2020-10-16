@@ -1,10 +1,12 @@
-using Prism;
-using Prism.Ioc;
 using Xamarin.Forms;
 using ChallengeMk2.Services;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Views;
 using ChallengeMk2.ViewModels;
+using DryIoc;
+using Prism;
+using Prism.Ioc;
+using Prism.DryIoc;
 using Prism.Navigation;
 
 [assembly: ExportFont("fa-brands-400.ttf", Alias = "fab")]
@@ -25,7 +27,6 @@ namespace ChallengeMk2
 
             ConfigureServices();
 
-            //MainPage = new AppShell();
             //await NavigationService.NavigateAsync("MainTabbedPage/StarSystemsPage");
             await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
             //await NavigationService.NavigateAsync("/NavigationPage/MainTabbedPage?selectedTab=StarSystemsPage");
@@ -36,8 +37,18 @@ namespace ChallengeMk2
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainTabbedPage, MainTabbedViewModel>();
             containerRegistry.RegisterForNavigation<StarSystemsPage, StarSystemsViewModel>();
+            containerRegistry.RegisterForNavigation<SystemDetailCarouselPage, SystemDetailCarouselViewModel>();
             containerRegistry.RegisterForNavigation<PuzzlePage, PuzzleViewModel>();
             containerRegistry.RegisterForNavigation<AboutPage, AboutViewModel>();
+
+            containerRegistry.RegisterSingleton<ILocalDataService, SQLiteDataService>();
+            containerRegistry.RegisterSingleton<IWebDataService, ApiDataService>();
+            containerRegistry.RegisterSingleton<IMapperService, SystemDbMapperService>();
+            containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();
+            containerRegistry.RegisterSingleton<IPuzzleService, PuzzleService>();
+
+            //debug
+            containerRegistry.RegisterSingleton<MockDataStore>();
         }
 
         void ConfigureServices()

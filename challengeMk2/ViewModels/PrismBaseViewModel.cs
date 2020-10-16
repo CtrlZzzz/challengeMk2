@@ -14,6 +14,13 @@ namespace ChallengeMk2.ViewModels
             set => SetProperty(ref title, value);
         }
 
+        bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetProperty(ref isBusy, value); }
+        }
+
         public PrismBaseViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;

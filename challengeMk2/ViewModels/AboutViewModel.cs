@@ -8,7 +8,7 @@ namespace ChallengeMk2.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "About this app";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
         }
 

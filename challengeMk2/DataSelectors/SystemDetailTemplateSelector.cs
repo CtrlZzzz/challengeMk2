@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xamarin.Forms;
 using ChallengeMk2.Models;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace ChallengeMk2.DataSelectors
                 { 3, PrimaryStarInfoTemplate }
             };
 
-            StarSystem currentSystem = item as StarSystem;
+            var currentSystem = item as StarSystem;
 
             return InfoTemplates[currentSystem.DataSelectorID];
         }

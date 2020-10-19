@@ -1,6 +1,5 @@
 using ChallengeMk2.ViewModels;
 using Xamarin.Forms;
-using ChallengeMk2.DataBase;
 
 namespace ChallengeMk2.Views
 {

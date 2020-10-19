@@ -29,7 +29,6 @@ namespace ChallengeMk2.ViewModels
         }
 
 
-
         StarSystem currentSystem;
         public StarSystem CurrentSystem
         {
@@ -83,7 +82,6 @@ namespace ChallengeMk2.ViewModels
         public Command SwitchBannerCommand { get; set; }
 
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
-
 
 
         void SetCurrentSystem(StarSystem selectedSystem)

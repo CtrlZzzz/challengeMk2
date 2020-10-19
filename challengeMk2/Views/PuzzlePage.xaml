@@ -1,6 +1,75 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChallengeMk2.Views.PuzzlePage">
+			 xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
+			 xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
+			 xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
+             x:Class="ChallengeMk2.Views.PuzzlePage"
+			 Title="{Binding Title}">
+
+	<ContentPage.BindingContext>
+		<vm:PuzzleViewModel/>
+	</ContentPage.BindingContext>
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem IconImageSource="tab_puzzle.png"/>
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<DataTemplate x:Key="OkTemplate">
+				<dtp:OkTryResultTemplate/>
+			</DataTemplate>
+
+			<DataTemplate x:Key="AcceptedTemplate">
+				<dtp:AcceptedTryResultTemplate/>
+			</DataTemplate>
+
+			<DataTemplate x:Key="ResetTemplate">
+				<dtp:ResetTryResultTemplate/>
+			</DataTemplate>
+
+			<DataTemplate x:Key="MessageTemplate">
+				<dtp:MessageTryResultTemplate/>
+			</DataTemplate>
+
+			<slt:PuzzleResultTemplateSelector x:Key="resultSelector"
+											  OkResultTemplate="{StaticResource OkTemplate}"
+											  AcceptedResultTemplate="{StaticResource AcceptedTemplate}"
+											  ResetResultTemplate="{StaticResource ResetTemplate}"
+											  MessageResultTemplate="{StaticResource MessageTemplate}"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}"
+				 Padding="50">
+
+		<CollectionView ItemsSource="{Binding Tries}"
+						SelectionMode="None"
+						ItemsUpdatingScrollMode="KeepScrollOffset"
+						ItemTemplate="{StaticResource resultSelector}">
+		</CollectionView>
+
+		<BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+		<Button Text="{Binding ButtonText}"
+				Command="{Binding DisplayResultsCommand}"
+				HeightRequest="50"
+				CornerRadius="25"
+				FontSize="15"
+				FontAttributes="Bold"
+				HorizontalOptions="Fill"
+				BackgroundColor="{DynamicResource TextColor}"
+				TextColor="{DynamicResource PageBackgroundColor}"
+				IsEnabled="{Binding CanRunPuzzle}"/>
+
+		<BoxView HeightRequest="5" BackgroundColor="Transparent"/>
+		<StackLayout Orientation="Horizontal">
+			<Label Text="{Binding GlobalTry, StringFormat='Successful : {0}', Converter={StaticResource nullStringConverter}}" TextColor="{DynamicResource TextColor}" HorizontalOptions="StartAndExpand"/>
+			<Label Text="{Binding BestTry, StringFormat='Best : {0}', Converter={StaticResource nullStringConverter}}" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+			<Label Text="{Binding TryAverage, StringFormat='Average : {0}', Converter={StaticResource nullStringConverter}}" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+		</StackLayout>
+
+
+	</StackLayout>
 
 </ContentPage>

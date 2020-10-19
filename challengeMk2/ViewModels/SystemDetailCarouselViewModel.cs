@@ -108,6 +108,11 @@ namespace ChallengeMk2.ViewModels
 
         void FillSystemInfos()
         {
+            if (SystemInfos.Count != 0)
+            {
+                return;
+            }
+
             SystemInfos.Add(GetSystemWithIdSelector(0));
             SystemInfos.Add(GetSystemWithIdSelector(1));
             SystemInfos.Add(GetSystemWithIdSelector(2));

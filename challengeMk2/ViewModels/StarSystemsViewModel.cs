@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
 using ChallengeMk2.Services;
 using Xamarin.Forms;
-using Prism;
-using Prism.Ioc;
-using System.Transactions;
 using Prism.Navigation;
 
 namespace ChallengeMk2.ViewModels
@@ -20,7 +16,7 @@ namespace ChallengeMk2.ViewModels
 
         public StarSystemsViewModel(INavigationService navigationService, IStarSystemService starSystemService) : base(navigationService)
         {
-
+            
             InitializeViewModel(starSystemService);
         }
 
@@ -50,14 +46,13 @@ namespace ChallengeMk2.ViewModels
         void InitializeViewModel(IStarSystemService starSystemService)
         {
             //GetServices();
+            systemService = starSystemService;
 
             Title = "Systems around SOL";
 
             Systems = new ObservableCollection<StarSystem>();
 
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
-
-            systemService = starSystemService;
         }
 
         //void GetServices()

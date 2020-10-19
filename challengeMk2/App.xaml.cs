@@ -3,11 +3,8 @@ using ChallengeMk2.Services;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Views;
 using ChallengeMk2.ViewModels;
-using DryIoc;
 using Prism;
 using Prism.Ioc;
-using Prism.DryIoc;
-using Prism.Navigation;
 
 [assembly: ExportFont("fa-brands-400.ttf", Alias = "fab")]
 [assembly: ExportFont("fa-solid-900.ttf", Alias = "fas")]
@@ -25,7 +22,7 @@ namespace ChallengeMk2
         {
             InitializeComponent();
 
-            ConfigureServices();
+            //ConfigureServices();
 
             //await NavigationService.NavigateAsync("MainTabbedPage/StarSystemsPage");
             await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
@@ -41,26 +38,26 @@ namespace ChallengeMk2
             containerRegistry.RegisterForNavigation<PuzzlePage, PuzzleViewModel>();
             containerRegistry.RegisterForNavigation<AboutPage, AboutViewModel>();
 
-            containerRegistry.RegisterSingleton<ILocalDataService, SQLiteDataService>();
-            containerRegistry.RegisterSingleton<IWebDataService, ApiDataService>();
-            containerRegistry.RegisterSingleton<IMapperService, SystemDbMapperService>();
-            containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();
+            containerRegistry.RegisterSingleton<ILocalDataService, SQLiteDataService>();    //2 => ok
+            containerRegistry.RegisterSingleton<IWebDataService, ApiDataService>(); //3 => ok
+            containerRegistry.RegisterSingleton<IMapperService, SystemDbMapperService>();   //4 => ok
+            containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();   //1 => ok
             containerRegistry.RegisterSingleton<IPuzzleService, PuzzleService>();
 
-            //debug
-            containerRegistry.RegisterSingleton<MockDataStore>();
+            ////debug
+            //containerRegistry.RegisterSingleton<MockDataStore>();
         }
 
         void ConfigureServices()
         {
-            DependencyService.Register<ILocalDataService, SQLiteDataService>();
-            DependencyService.Register<IWebDataService, ApiDataService>();
-            DependencyService.Register<IMapperService, SystemDbMapperService>();
-            DependencyService.Register<IStarSystemService, StarSystemService>();
-            DependencyService.Register<IPuzzleService, PuzzleService>();
+            //DependencyService.Register<ILocalDataService, SQLiteDataService>();
+            //DependencyService.Register<IWebDataService, ApiDataService>();
+            //DependencyService.Register<IMapperService, SystemDbMapperService>();
+            //DependencyService.Register<IStarSystemService, StarSystemService>();
+            //DependencyService.Register<IPuzzleService, PuzzleService>();
 
-            //Debug
-            DependencyService.Register<MockDataStore>();
+            ////Debug
+            //DependencyService.Register<MockDataStore>();
         }
     }
 }

@@ -1,4 +1,5 @@
 
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ChallengeMk2.Controls
@@ -129,16 +130,18 @@ namespace ChallengeMk2.Controls
         }
 
 
-
-        protected override void OnBindingContextChanged()
+        //TODO => ASYNC VOID !!!! Try to delay a little bit the animation to give it time to appear...but i should find a way to do it without async void
+        protected override async void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
 
-            AnimatePopup();
+            await AnimatePopup();
         }
 
-        void AnimatePopup()
+        async Task AnimatePopup()
         {
+            await Task.Delay(200);
+
             var anim = new Animation
             {
                 { 0, 0.9, new Animation(v => Content.Scale = v, 0.1, 1.5) },

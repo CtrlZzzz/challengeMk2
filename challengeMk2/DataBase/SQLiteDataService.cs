@@ -21,9 +21,10 @@ namespace ChallengeMk2.DataBase
 
         IMapperService mapper;
 
-        public SQLiteDataService()
+        public SQLiteDataService(IMapperService mapperService)
         {
-            mapper = DependencyService.Get<IMapperService>();
+            //mapper = DependencyService.Get<IMapperService>();
+            mapper = mapperService;
         }
 
 

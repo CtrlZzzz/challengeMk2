@@ -99,7 +99,6 @@ namespace ChallengeMk2.ViewModels
 
         public void InitializeViewModel()
         {
-            //puzzle = DependencyService.Get<IPuzzleService>();
             Tries = new ObservableCollection<TryResult>();
             winResultTries = new List<int>();
             CreateStartupText();

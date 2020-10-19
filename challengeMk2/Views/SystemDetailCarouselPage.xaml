@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,9 +17,9 @@
         <vm:SystemDetailCarouselViewModel/>
     </-->
 
-	<ContentPage.ToolbarItems>
+	<!--ContentPage.ToolbarItems>
 		<ToolbarItem IconImageSource="tab_star.png"/>
-	</ContentPage.ToolbarItems>
+	</-->
 
 	<ContentPage.Resources>
 		<ResourceDictionary>

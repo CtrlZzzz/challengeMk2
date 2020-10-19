@@ -13,9 +13,9 @@
 		<vm:PuzzleViewModel/>
 	</-->
 
-	<ContentPage.ToolbarItems>
+	<!--ContentPage.ToolbarItems>
 		<ToolbarItem IconImageSource="tab_puzzle.png"/>
-	</ContentPage.ToolbarItems>
+	</-->
 
 	<ContentPage.Resources>
 		<ResourceDictionary>

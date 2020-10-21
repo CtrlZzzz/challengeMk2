@@ -179,8 +179,8 @@ namespace ChallengeMk2.ViewModels
         {
             var container = new TryResult
             {
-                Result = "find a number between 1 and 50 000 in 20 tries.\n" +
-                "Run the local API, call the api/TheNumber/ route \n" +
+                Result = "Find a number between 1 and 50 000 in 20 tries.\n" +
+                "Call the https://thenumberfinderapi.azurewebsites.net/api/TheNumber/ route \n" +
                 "then display the results of all tries until win !",
                 Status = HttpStatusCode.ResetContent
             };

@@ -45,7 +45,6 @@ namespace ChallengeMk2.ViewModels
 
         void InitializeViewModel(IStarSystemService starSystemService)
         {
-            //GetServices();
             systemService = starSystemService;
 
             Title = "Systems around SOL";
@@ -55,10 +54,6 @@ namespace ChallengeMk2.ViewModels
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
         }
 
-        //void GetServices()
-        //{
-        //    systemService = DependencyService.Get<IStarSystemService>();
-        //}
 
         async Task DisplaySystemDataAsync()
         {

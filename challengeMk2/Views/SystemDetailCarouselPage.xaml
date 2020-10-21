@@ -13,13 +13,6 @@
              x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
              Title="{Binding Title}">
 
-	<!--ContentPage.BindingContext>
-        <vm:SystemDetailCarouselViewModel/>
-    </-->
-
-	<!--ContentPage.ToolbarItems>
-		<ToolbarItem IconImageSource="tab_star.png"/>
-	</-->
 
 	<ContentPage.Resources>
 		<ResourceDictionary>

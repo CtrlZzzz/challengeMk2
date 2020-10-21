@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
 			 xmlns:prism="http://prismlibrary.com"
 			 prism:ViewModelLocator.AutowireViewModel="True"
 			 xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
@@ -9,13 +8,6 @@
              x:Class="ChallengeMk2.Views.PuzzlePage"
 			 Title="{Binding Title}">
 
-	<!--ContentPage.BindingContext>
-		<vm:PuzzleViewModel/>
-	</-->
-
-	<!--ContentPage.ToolbarItems>
-		<ToolbarItem IconImageSource="tab_puzzle.png"/>
-	</-->
 
 	<ContentPage.Resources>
 		<ResourceDictionary>
@@ -75,7 +67,6 @@
 			<Label Text="{Binding BestTry, StringFormat='Best : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
 			<Label Text="{Binding TryAverage, StringFormat='Average : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
 		</StackLayout>
-
 
 	</StackLayout>
 

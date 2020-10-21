@@ -1,4 +1,3 @@
-
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -146,7 +145,6 @@ namespace ChallengeMk2.Controls
             {
                 { 0, 0.9, new Animation(v => Content.Scale = v, 0.1, 1.5) },
                 { 0.9, 1, new Animation(v => Content.Scale = v, 1.5, 1) },
-                //{ 0, 1, new Animation(v => Content.Rotation = v, 0, 360) }
             };
 
             anim.Commit(Content, "PopupAnim", length: 500, easing: Easing.CubicInOut, repeat: () => false);

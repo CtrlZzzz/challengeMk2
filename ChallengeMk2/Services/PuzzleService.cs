@@ -10,7 +10,6 @@ namespace ChallengeMk2.Services
 {
     class PuzzleService : IPuzzleService
     {
-
         public async Task<TryResult> GetTryResult(int userTry)
         {
             var currentResult = new TryResult();

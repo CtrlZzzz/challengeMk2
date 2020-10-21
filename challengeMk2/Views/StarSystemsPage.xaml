@@ -3,21 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
 			 xmlns:prism="http://prismlibrary.com"
 			 prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.StarSystemsPage"
              Title="{Binding Title}">
 
-	<!--ContentPage.BindingContext>
-		<vm:StarSystemsViewModel/>
-	</-->
-
-	<!--Toolbar Icon-->
-	<!--ContentPage.ToolbarItems>
-		<ToolbarItem IconImageSource="tab_solarS.png"/>
-	</-->
 
 	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
 		<!--StackLayout-->

@@ -9,6 +9,14 @@
 			 prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding Title}">
 
+	<NavigationPage.TitleView>
+		<Label Text="{Binding Title}"
+			   HorizontalOptions="CenterAndExpand"
+			   VerticalTextAlignment="End"
+			   FontSize="Large"
+			   FontAttributes="None"
+			   TextColor="White"/>
+	</NavigationPage.TitleView>
 
 	<ContentPage.Resources>
 		<ResourceDictionary>

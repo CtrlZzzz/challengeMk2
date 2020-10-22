@@ -12,7 +12,7 @@
 			Title="{Binding Title}">
 	
 	<TabbedPage.Children>
-		<NavigationPage Title="System finder">
+		<NavigationPage Title="">
 			<x:Arguments>
 				<views:StarSystemsPage/>
 			</x:Arguments>
@@ -22,7 +22,7 @@
 			</NavigationPage.IconImageSource>
 		</NavigationPage>
 
-		<NavigationPage Title="Number finder">
+		<NavigationPage Title="">
 			<x:Arguments>
 				<views:PuzzlePage/>
 			</x:Arguments>
@@ -32,7 +32,7 @@
 			</NavigationPage.IconImageSource>
 		</NavigationPage>
 
-		<NavigationPage Title="About">
+		<NavigationPage Title="">
 			<x:Arguments>
 				<views:AboutPage/>
 			</x:Arguments>

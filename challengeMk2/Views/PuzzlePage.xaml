@@ -8,6 +8,14 @@
              x:Class="ChallengeMk2.Views.PuzzlePage"
 			 Title="{Binding Title}">
 
+	<NavigationPage.TitleView>
+		<Label Text="{Binding Title}"
+			   HorizontalOptions="CenterAndExpand"
+			   VerticalTextAlignment="End"
+			   FontSize="Large"
+			   FontAttributes="None"
+			   TextColor="White"/>
+	</NavigationPage.TitleView>
 
 	<ContentPage.Resources>
 		<ResourceDictionary>

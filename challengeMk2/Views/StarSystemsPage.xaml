@@ -9,6 +9,14 @@
              x:Class="ChallengeMk2.Views.StarSystemsPage"
              Title="{Binding Title}">
 
+	<NavigationPage.TitleView>
+		<Label Text="{Binding Title}"
+			   HorizontalOptions="CenterAndExpand"
+			   VerticalTextAlignment="End"
+			   FontSize="Large"
+			   FontAttributes="None"
+			   TextColor="White"/>
+	</NavigationPage.TitleView>
 
 	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
 		<!--StackLayout-->

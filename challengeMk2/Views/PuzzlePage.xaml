@@ -9,12 +9,17 @@
 			 Title="{Binding Title}">
 
 	<NavigationPage.TitleView>
-		<Label Text="{Binding Title}"
-			   HorizontalOptions="CenterAndExpand"
-			   VerticalTextAlignment="End"
-			   FontSize="Large"
-			   FontAttributes="None"
-			   TextColor="White"/>
+		<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
+			<Label Text="{Binding Title}"
+			       FontSize="Large"
+			       FontAttributes="None"
+			       TextColor="White"/>
+			<Image>
+				<Image.Source>
+					<FontImageSource Glyph="{StaticResource Dice}" FontFamily="fas"/>
+				</Image.Source>
+			</Image>
+		</StackLayout>
 	</NavigationPage.TitleView>
 
 	<ContentPage.Resources>

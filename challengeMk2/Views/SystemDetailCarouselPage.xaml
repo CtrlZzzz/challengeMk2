@@ -53,7 +53,7 @@
 			<!--SYSTEM NAME-->
 			<controls:DualLabel Style="{StaticResource DualTitle}"
                                 TopText="System name"
-                                BottomText="{Binding DetailedSystem.Name}"/>
+                                BottomText="{Binding CurrentSystem.Name}"/>
 
 			<!--DETAILS INFOS CAROUSEL-->
 			<CarouselView ItemsSource="{Binding SystemInfos}"

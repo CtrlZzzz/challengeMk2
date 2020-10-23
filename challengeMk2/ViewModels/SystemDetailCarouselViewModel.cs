@@ -41,36 +41,6 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        StarSystem detailedSystem;
-        public StarSystem DetailedSystem
-        {
-            get => detailedSystem;
-            set
-            {
-                SetProperty<StarSystem>(ref detailedSystem, value);
-            }
-        }
-
-        int currentBodyCount;
-        public int CurrentBodyCount
-        {
-            get => currentBodyCount;
-            set
-            {
-                SetProperty<int>(ref currentBodyCount, value);
-            }
-        }
-
-        double currentDistance;
-        public double CurrentDistance
-        {
-            get => currentDistance;
-            set
-            {
-                SetProperty<double>(ref currentDistance, value);
-            }
-        }
-
         string currentBanner;
         public string CurrentBanner
         {
@@ -89,21 +59,13 @@ namespace ChallengeMk2.ViewModels
 
         void SetCurrentSystem(StarSystem selectedSystem)
         {
-            currentSystem = selectedSystem;
+            CurrentSystem = selectedSystem;
         }
 
 
         void UpdateSystemData()
         {
-            GetCompInfos();
-
             FillSystemInfos();
-        }
-
-        void GetCompInfos()
-        {
-            CurrentBodyCount = currentSystem.BodyCount ?? 0;
-            CurrentDistance = currentSystem.Distance;
         }
 
         void FillSystemInfos()

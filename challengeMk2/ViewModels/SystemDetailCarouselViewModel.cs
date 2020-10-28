@@ -33,50 +33,14 @@ namespace ChallengeMk2.ViewModels
         public StarSystem CurrentSystem
         {
             get => currentSystem;
-            set
-            {
-                SetProperty<StarSystem>(ref currentSystem, value);
-            }
-        }
-
-        StarSystem detailedSystem;
-        public StarSystem DetailedSystem
-        {
-            get => detailedSystem;
-            set
-            {
-                SetProperty<StarSystem>(ref detailedSystem, value);
-            }
-        }
-
-        int currentBodyCount;
-        public int CurrentBodyCount
-        {
-            get => currentBodyCount;
-            set
-            {
-                SetProperty<int>(ref currentBodyCount, value);
-            }
-        }
-
-        double currentDistance;
-        public double CurrentDistance
-        {
-            get => currentDistance;
-            set
-            {
-                SetProperty<double>(ref currentDistance, value);
-            }
+            set => SetProperty(ref currentSystem, value);
         }
 
         string currentBanner;
         public string CurrentBanner
         {
             get => currentBanner;
-            set
-            {
-                SetProperty<string>(ref currentBanner, value);
-            }
+            set => SetProperty(ref currentBanner, value);
         }
 
         public Command SwitchBannerCommand { get; set; }
@@ -86,21 +50,7 @@ namespace ChallengeMk2.ViewModels
 
         void SetCurrentSystem(StarSystem selectedSystem)
         {
-            currentSystem = selectedSystem;
-        }
-
-
-        void UpdateSystemData()
-        {
-            GetCompInfos();
-
-            FillSystemInfos();
-        }
-
-        void GetCompInfos()
-        {
-            CurrentBodyCount = currentSystem.BodyCount ?? 0;
-            CurrentDistance = currentSystem.Distance;
+            CurrentSystem = selectedSystem;
         }
 
         void FillSystemInfos()
@@ -139,7 +89,7 @@ namespace ChallengeMk2.ViewModels
         {
             SetCurrentSystem(selectedSystem);
 
-            UpdateSystemData();
+            FillSystemInfos();
         }
     }
 }

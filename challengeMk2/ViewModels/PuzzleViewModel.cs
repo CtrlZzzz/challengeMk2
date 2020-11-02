@@ -148,7 +148,7 @@ namespace ChallengeMk2.ViewModels
 
                 Tries.Insert(0, currentResult);
 
-                await Task.Delay(250);
+                await Task.Delay(600);
             }
         }
 

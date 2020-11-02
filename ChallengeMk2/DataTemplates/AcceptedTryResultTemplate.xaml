@@ -3,18 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.AcceptedTryResultTemplate">
-	
-  <ContentView.Content>
+
+	<ContentView.Content>
 		<StackLayout Orientation="Vertical"
 					 Spacing="5">
 
-			<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+			<BoxView HeightRequest="10" BackgroundColor="Transparent"/>
+			
+			<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
+									AnimLabelFontAttributes="Bold"
+									AnimLabelFontSize="18"
+									AnimLabelTextColor="ForestGreen"
+									AnimBackgroundColor="GreenYellow"
+									AnimBackgroundCornerRadius="15"
+									AnimBackgroundWidth="30"
+									AnimBackgroundheight="30"/>
 
-			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+			<BoxView HeightRequest="1" BackgroundColor="GreenYellow"/>
 
-			<Label Text="{Binding Result}" TextColor="{DynamicResource AccentLightColor}" FontSize="Medium"/>
+			<Label Text="{Binding Result}" TextColor="ForestGreen" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
 
 			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 

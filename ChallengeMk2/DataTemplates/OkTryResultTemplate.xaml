@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.OkTryResultTemplate">
 	
@@ -10,7 +11,16 @@
 		<StackLayout Orientation="Vertical"
 					 Spacing="5">
 
-			<Label Text="{Binding TryNumber}" TextColor="{DynamicResource AccentDeepColor}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+			<BoxView HeightRequest="5" BackgroundColor="Transparent"/>
+			
+			<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
+									AnimLabelFontAttributes="Bold"
+									AnimLabelFontSize="15"
+									AnimLabelTextColor="{DynamicResource TextColor}"
+									AnimBackgroundColor="{DynamicResource AccentDeepColor}"
+									AnimBackgroundCornerRadius="15"
+									AnimBackgroundWidth="30"
+									AnimBackgroundheight="30"/>
 
 			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
 

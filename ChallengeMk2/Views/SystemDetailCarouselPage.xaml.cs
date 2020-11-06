@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using ChallengeMk2.ViewModels;
@@ -20,13 +20,13 @@ namespace ChallengeMk2.Views
         }
 
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
             var vm = BindingContext as SystemDetailCarouselViewModel;
 
-            await vm.InitializeAsync(currentSystem);
+            vm.InitializeViewModel(currentSystem);
         }
     }
 }

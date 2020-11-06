@@ -9,12 +9,15 @@ namespace ChallengeMk2.DataBase
     {
         Task InitializeAsync();
 
-        Task<List<StarSystemDbItem>> GetAllAsync();
+        bool GetNullState();
 
-        Task<StarSystemDbItem> GetItemAsync(string name);
-        Task<StarSystemDbItem> GetItemAsync(int id);
+        Task<List<StarSystem>> GetAllAsync();
 
-        Task SaveItemAsync(StarSystemDbItem starSystem);
+        Task<StarSystem> GetItemAsync(string name);
+        Task<StarSystem> GetItemAsync(int id);
+
+        void SaveAll(List<StarSystem> systems);
+        Task SaveItemAsync(StarSystem starSystem);
 
         Task ClearDbAsync();
     }

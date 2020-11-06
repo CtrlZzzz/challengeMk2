@@ -3,9 +3,9 @@ using ChallengeMk2.Models;
 
 namespace ChallengeMk2.DataBase
 {
-    public class DatabaseMapper
+    class SystemDbMapperService : IMapperService
     {
-        public static StarSystem ConvertFromDb(StarSystemDbItem dbItem)
+        public StarSystem ConvertFromDb(StarSystemDbItem dbItem)
         {
             var converted = new StarSystem
             {
@@ -46,7 +46,7 @@ namespace ChallengeMk2.DataBase
             return converted;
         }
 
-        public static StarSystemDbItem ConvertToDbItem(StarSystem starSystem)
+        public StarSystemDbItem ConvertToDbItem(StarSystem starSystem)
         {
             var converted = new StarSystemDbItem
             {

@@ -25,6 +25,7 @@ namespace ChallengeMk2
             DependencyService.Register<IStarSystemService, StarSystemService>();
             DependencyService.Register<IPuzzleService, PuzzleService>();
 
+
             //Debug
             DependencyService.Register<MockDataStore>();
         }

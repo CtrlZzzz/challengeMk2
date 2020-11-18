@@ -35,7 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="DataBase\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\SystemDetailCarouselPage.xaml.cs">
@@ -43,6 +42,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Controls\AnimatedLabel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="DataTemplates\AcceptedTryResultTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

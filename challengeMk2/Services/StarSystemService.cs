@@ -15,10 +15,9 @@ namespace ChallengeMk2.Services
 
         bool isOnLocalData;
 
-        public StarSystemService(ILocalDataService localDataService, IWebDataService webDataService)
+        public StarSystemService()
         {
-            localService = localDataService;
-            webService = webDataService;
+            InitialeServices();
         }
 
 
@@ -59,6 +58,13 @@ namespace ChallengeMk2.Services
         public bool GetLocalState()
         {
             return isOnLocalData;
+        }
+
+
+        void InitialeServices()
+        {
+            localService = DependencyService.Get<ILocalDataService>();
+            webService = DependencyService.Get<IWebDataService>();
         }
 
         async Task SaveDataInDbAsync(List<StarSystem> data)

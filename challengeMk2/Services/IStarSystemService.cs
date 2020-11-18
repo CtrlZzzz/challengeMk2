@@ -5,7 +5,7 @@ using ChallengeMk2.Models;
 
 namespace ChallengeMk2.Services
 {
-    public interface IStarSystemService
+    interface IStarSystemService
     {
         Task<List<StarSystem>> GetStarSystemDataAsync();
 

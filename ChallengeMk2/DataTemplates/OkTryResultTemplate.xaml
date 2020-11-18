@@ -12,14 +12,15 @@
 					 Spacing="5">
 
 			<BoxView HeightRequest="5" BackgroundColor="Transparent"/>
-			<controls:PopupLabel PopupLabelText="{Binding TryNumber}"
-								 PopupLabelFontAttributes="Bold"
-								 PopupLabelFontSize="15"
-								 PopupLabelTextColor="{DynamicResource TextColor}"
-								 PopupBackgroundColor="{DynamicResource AccentDeepColor}"
-								 PopupBackgroundCornerRadius="15"
-								 PopupBackgroundWidth="30"
-								 PopupBackgroundheight="30"/>
+			
+			<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
+									AnimLabelFontAttributes="Bold"
+									AnimLabelFontSize="15"
+									AnimLabelTextColor="{DynamicResource TextColor}"
+									AnimBackgroundColor="{DynamicResource AccentDeepColor}"
+									AnimBackgroundCornerRadius="15"
+									AnimBackgroundWidth="30"
+									AnimBackgroundheight="30"/>
 
 			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
 

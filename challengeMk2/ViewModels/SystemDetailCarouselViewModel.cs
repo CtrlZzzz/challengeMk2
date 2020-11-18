@@ -30,25 +30,18 @@ namespace ChallengeMk2.ViewModels
         }
 
 
-
         StarSystem currentSystem;
         public StarSystem CurrentSystem
         {
             get => currentSystem;
-            set
-            {
-                SetProperty<StarSystem>(ref currentSystem, value);
-            }
+            set => SetProperty(ref currentSystem, value);
         }
 
         string currentBanner;
         public string CurrentBanner
         {
             get => currentBanner;
-            set
-            {
-                SetProperty<string>(ref currentBanner, value);
-            }
+            set => SetProperty(ref currentBanner, value);
         }
 
         public Command SwitchBannerCommand { get; set; }
@@ -60,12 +53,6 @@ namespace ChallengeMk2.ViewModels
         void SetCurrentSystem(StarSystem selectedSystem)
         {
             CurrentSystem = selectedSystem;
-        }
-
-
-        void UpdateSystemData()
-        {
-            FillSystemInfos();
         }
 
         void FillSystemInfos()
@@ -109,7 +96,7 @@ namespace ChallengeMk2.ViewModels
         {
             SetCurrentSystem(selectedSystem);
 
-            UpdateSystemData();
+            await UpdateSystemData();
         }
     }
 }

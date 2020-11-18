@@ -12,14 +12,15 @@
 					 Spacing="5">
 
 			<BoxView HeightRequest="10" BackgroundColor="Transparent"/>
-			<controls:PopupLabel PopupLabelText="{Binding TryNumber}"
-								 PopupLabelFontAttributes="Bold"
-								 PopupLabelFontSize="18"
-								 PopupLabelTextColor="ForestGreen"
-								 PopupBackgroundColor="GreenYellow"
-								 PopupBackgroundCornerRadius="15"
-								 PopupBackgroundWidth="30"
-								 PopupBackgroundheight="30"/>
+			
+			<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
+									AnimLabelFontAttributes="Bold"
+									AnimLabelFontSize="18"
+									AnimLabelTextColor="ForestGreen"
+									AnimBackgroundColor="GreenYellow"
+									AnimBackgroundCornerRadius="15"
+									AnimBackgroundWidth="30"
+									AnimBackgroundheight="30"/>
 
 			<BoxView HeightRequest="1" BackgroundColor="GreenYellow"/>
 

@@ -25,7 +25,7 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                SetProperty<StarSystem>(ref selectedSystem, value, onChanged: () =>
+                SetProperty(ref selectedSystem, value, onChanged: () =>
                 {
                     NavigateTodetailPage(selectedSystem);
                     if (value != null)
@@ -36,7 +36,12 @@ namespace ChallengeMk2.ViewModels
             }
         }
 
-        public IList<StarSystem> Systems { get; set; }
+        IList<StarSystem> systems;
+        public IList<StarSystem> Systems
+        {
+            get => systems;
+            set => SetProperty(ref systems, value);
+        }
 
         public Command DisplaySystemDataCommand { get; set; }
 
@@ -65,17 +70,11 @@ namespace ChallengeMk2.ViewModels
 
                 var data = await systemService.GetStarSystemDataAsync();
 
-                Systems.Clear();
-                foreach (var system in data)
-                {
-                    Systems.Add(system);
-                }
-
+                Systems = new ObservableCollection<StarSystem>(data);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                throw;
             }
             finally
             {
@@ -91,7 +90,7 @@ namespace ChallengeMk2.ViewModels
 
             if (isRetreiving)
             {
-                title = systemService.GetLocalState() ? "Retreiving local data..." : "Retreiving data from web API...";
+                title = systemService.GetLocalState() ? "Retreiving local data..." : "Retrieving data from web API...";
             }
             else
             {

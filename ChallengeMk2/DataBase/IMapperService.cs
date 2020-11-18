@@ -5,7 +5,7 @@ using ChallengeMk2.Models;
 
 namespace ChallengeMk2.DataBase
 {
-    interface IMapperService
+    public interface IMapperService
     {
         StarSystem ConvertFromDb(StarSystemDbItem dbItem);
 

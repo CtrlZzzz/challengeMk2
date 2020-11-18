@@ -96,7 +96,7 @@ namespace ChallengeMk2.ViewModels
         {
             SetCurrentSystem(selectedSystem);
 
-            await UpdateSystemData();
+            FillSystemInfos();
         }
     }
 }

@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 
 namespace ChallengeMk2.Droid
 {
@@ -21,9 +23,13 @@ namespace ChallengeMk2.Droid
             //Active CAROUSELVIEW Preview feature
             Forms.SetFlags("CollectionView_Experimental");
 
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //FFImageLoading.Svg.Forms
+            CachedImageRenderer.Init(true);
+            var ignore = typeof(SvgCachedImage);
+
             LoadApplication(new App(new AndroidInitializer()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

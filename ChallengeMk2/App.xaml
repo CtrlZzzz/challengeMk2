@@ -17,7 +17,6 @@
 		<!--DEFAULT THEME-->
 		<ResourceDictionary>
 			<!--Here comes Merged dictionnary for DEFAULT THEME colors-->
-			<!--Warning : this Dictionary WILL BE CLEARED at runtime when changing current Theme-->
 			<ResourceDictionary.MergedDictionaries>
 				<theme:DarkTheme/>
 			</ResourceDictionary.MergedDictionaries>
@@ -26,8 +25,24 @@
 		<!--FONT ICONS-->
 		<x:String x:Key="Planet">&#xf0ac;</x:String>
 		<x:String x:Key="Dice">&#xf522;</x:String>
+		<x:String x:Key="Chat">&#xf086;</x:String>
 		<x:String x:Key="Info">&#xf05a;</x:String>
 		<x:String x:Key="Sun">&#xf185;</x:String>
+		<x:String x:Key="Star">&#xf666;</x:String>
+		<x:String x:Key="Scoop">&#xf5e7;</x:String>
+		<x:String x:Key="Rocket">&#xf135;</x:String>
+		<x:String x:Key="People">&#xf0c0;</x:String>
+		<x:String x:Key="Lock">&#xf023;</x:String>
+		<x:String x:Key="Bodies">&#xf110;</x:String>
+		<x:String x:Key="Hands">&#xf4c4;</x:String>
+		<x:String x:Key="Government">&#xf70e;</x:String>
+		<x:String x:Key="Faction">&#xf425;</x:String>
+		<x:String x:Key="State">&#xf3fd;</x:String>
+		<x:String x:Key="Economy">&#xf201;</x:String>
+		<x:String x:Key="Economy2">&#xf080;</x:String>
+		<x:String x:Key="Security">&#xf3ed;</x:String>
+		<x:String x:Key="Parts">&#xf200;</x:String>
+		<x:String x:Key="Cubes">&#xf1b3;</x:String>
 
 		<!--STYLES-->
 		<Style x:Key="BaseStyle" TargetType="Element">

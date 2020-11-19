@@ -15,11 +15,45 @@
     <None Remove="Fonts\fa-brands-400.ttf" />
     <None Remove="Fonts\fa-regular-400.ttf" />
     <None Remove="Fonts\fa-solid-900.ttf" />
+    <None Remove="Resources\StarType_A.svg" />
+    <None Remove="Resources\StarType_B.svg" />
+    <None Remove="Resources\StarType_BlackHole.svg" />
+    <None Remove="Resources\StarType_F.svg" />
+    <None Remove="Resources\StarType_G.svg" />
+    <None Remove="Resources\StarType_Herbig.svg" />
+    <None Remove="Resources\StarType_K.svg" />
+    <None Remove="Resources\StarType_L.svg" />
+    <None Remove="Resources\StarType_M.svg" />
+    <None Remove="Resources\StarType_Neutron.svg" />
+    <None Remove="Resources\StarType_O.svg" />
+    <None Remove="Resources\StarType_Other.svg" />
+    <None Remove="Resources\StarType_T.svg" />
+    <None Remove="Resources\StarType_TTauri.svg" />
+    <None Remove="Resources\StarType_WhiteDwarf.svg" />
+    <None Remove="Resources\StarType_WolfRayet.svg" />
+    <None Remove="Resources\StarType_Y.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\fa-brands-400.ttf" />
     <EmbeddedResource Include="Fonts\fa-regular-400.ttf" />
     <EmbeddedResource Include="Fonts\fa-solid-900.ttf" />
+    <EmbeddedResource Include="Resources\StarType_A.svg" />
+    <EmbeddedResource Include="Resources\StarType_B.svg" />
+    <EmbeddedResource Include="Resources\StarType_BlackHole.svg" />
+    <EmbeddedResource Include="Resources\StarType_F.svg" />
+    <EmbeddedResource Include="Resources\StarType_G.svg" />
+    <EmbeddedResource Include="Resources\StarType_Herbig.svg" />
+    <EmbeddedResource Include="Resources\StarType_K.svg" />
+    <EmbeddedResource Include="Resources\StarType_L.svg" />
+    <EmbeddedResource Include="Resources\StarType_M.svg" />
+    <EmbeddedResource Include="Resources\StarType_Neutron.svg" />
+    <EmbeddedResource Include="Resources\StarType_O.svg" />
+    <EmbeddedResource Include="Resources\StarType_Other.svg" />
+    <EmbeddedResource Include="Resources\StarType_T.svg" />
+    <EmbeddedResource Include="Resources\StarType_TTauri.svg" />
+    <EmbeddedResource Include="Resources\StarType_WhiteDwarf.svg" />
+    <EmbeddedResource Include="Resources\StarType_WolfRayet.svg" />
+    <EmbeddedResource Include="Resources\StarType_Y.svg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />  

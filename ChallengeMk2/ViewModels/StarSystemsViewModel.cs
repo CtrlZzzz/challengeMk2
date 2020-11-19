@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using ChallengeMk2.Models;
 using ChallengeMk2.Services;
 using Xamarin.Forms;
+using Prism.Navigation;
 
 namespace ChallengeMk2.ViewModels
 {
-    public class StarSystemsViewModel : BaseViewModel
+    public class StarSystemsViewModel : PrismBaseViewModel
     {
         IStarSystemService systemService;
 
-        public StarSystemsViewModel()
+        public StarSystemsViewModel(INavigationService navigationService, IStarSystemService starSystemService) : base(navigationService)
         {
-            InitializeViewModel();
+            
+            InitializeViewModel(starSystemService);
         }
 
         StarSystem selectedSystem;
@@ -46,9 +48,9 @@ namespace ChallengeMk2.ViewModels
         internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
-        void InitializeViewModel()
+        void InitializeViewModel(IStarSystemService starSystemService)
         {
-            GetServices();
+            systemService = starSystemService;
 
             Title = "Systems around SOL";
 
@@ -57,10 +59,6 @@ namespace ChallengeMk2.ViewModels
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
         }
 
-        void GetServices()
-        {
-            systemService = DependencyService.Get<IStarSystemService>();
-        }
 
         async Task DisplaySystemDataAsync()
         {

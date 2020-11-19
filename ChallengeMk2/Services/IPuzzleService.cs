@@ -3,7 +3,7 @@ using ChallengeMk2.Models;
 
 namespace ChallengeMk2.Services
 {
-    interface IPuzzleService
+    public interface IPuzzleService
     {
         Task<TryResult> GetTryResult(int userTry);
     }

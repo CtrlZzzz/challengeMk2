@@ -1,16 +1,17 @@
 using System.Collections.ObjectModel;
 using ChallengeMk2.Models;
+using Prism.Navigation;
 using Xamarin.Forms;
 
 
 namespace ChallengeMk2.ViewModels
 {
-    public class SystemDetailCarouselViewModel : BaseViewModel
+    public class SystemDetailCarouselViewModel : PrismBaseViewModel
     {
         readonly string[] banners;
 
 
-        public SystemDetailCarouselViewModel()
+        public SystemDetailCarouselViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Star System Details";
 
@@ -48,6 +49,7 @@ namespace ChallengeMk2.ViewModels
         public ObservableCollection<StarSystem> SystemInfos { get; set; }
 
 
+
         void SetCurrentSystem(StarSystem selectedSystem)
         {
             CurrentSystem = selectedSystem;
@@ -55,6 +57,11 @@ namespace ChallengeMk2.ViewModels
 
         void FillSystemInfos()
         {
+            if (SystemInfos.Count != 0)
+            {
+                return;
+            }
+
             SystemInfos.Add(GetSystemWithIdSelector(0));
             SystemInfos.Add(GetSystemWithIdSelector(1));
             SystemInfos.Add(GetSystemWithIdSelector(2));

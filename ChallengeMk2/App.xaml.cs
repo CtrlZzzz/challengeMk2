@@ -1,33 +1,47 @@
 using Xamarin.Forms;
 using ChallengeMk2.Services;
 using ChallengeMk2.DataBase;
+using ChallengeMk2.Views;
+using ChallengeMk2.ViewModels;
+using Prism;
+using Prism.Ioc;
 
+[assembly: ExportFont("fa-brands-400.ttf", Alias = "fab")]
+[assembly: ExportFont("fa-solid-900.ttf", Alias = "fas")]
+[assembly: ExportFont("fa-regular-400.ttf", Alias = "far")]
 namespace ChallengeMk2
 {
-    public partial class App : Application
+    public partial class App
     {
-        //public static ILocalDataService Database { get; set; }
+        public App(IPlatformInitializer initializer)
+            : base(initializer)
+        {
+        }
 
-        public App()
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
-            ConfigureServices();
-
-            MainPage = new AppShell();
+            await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
         }
 
-        void ConfigureServices()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            DependencyService.Register<ILocalDataService, SQLiteDataService>();
-            DependencyService.Register<IWebDataService, ApiDataService>();
-            DependencyService.Register<IMapperService, SystemDbMapperService>();
-            DependencyService.Register<IStarSystemService, StarSystemService>();
-            DependencyService.Register<IPuzzleService, PuzzleService>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage, MainTabbedViewModel>();
+            containerRegistry.RegisterForNavigation<StarSystemsPage, StarSystemsViewModel>();
+            containerRegistry.RegisterForNavigation<SystemDetailCarouselPage, SystemDetailCarouselViewModel>();
+            containerRegistry.RegisterForNavigation<PuzzlePage, PuzzleViewModel>();
+            containerRegistry.RegisterForNavigation<AboutPage, AboutViewModel>();
 
+            containerRegistry.RegisterSingleton<ILocalDataService, SQLiteDataService>();    
+            containerRegistry.RegisterSingleton<IWebDataService, ApiDataService>();
+            containerRegistry.RegisterSingleton<IMapperService, SystemDbMapperService>();
+            containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();
+            containerRegistry.RegisterSingleton<IPuzzleService, PuzzleService>();
 
-            //Debug
-            DependencyService.Register<MockDataStore>();
+            ////debug
+            //containerRegistry.RegisterSingleton<MockDataStore>();
         }
     }
 }

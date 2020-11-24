@@ -12,6 +12,7 @@
     <Color x:Key="AccentDeepColor">#D45A2B</Color>
 
 	<Color x:Key="MainTextColor">#FFFFFF</Color>
+	<Color x:Key="DetailTextColor">#1A1A1A</Color>
 	<Color x:Key="TextColor">#C7BECC</Color>
     <Color x:Key="TextTitleColor">#E0D5E6</Color>
     <Color x:Key="TextForegroundColor">#FFFFFF</Color>

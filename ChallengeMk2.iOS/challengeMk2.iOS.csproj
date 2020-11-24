@@ -113,19 +113,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <BundleResource Include="Resources\tab_about.png" />
-    <BundleResource Include="Resources\tab_about%402x.png" />
-    <BundleResource Include="Resources\tab_about%403x.png" />
-    <BundleResource Include="Resources\tab_feed.png" />
-    <BundleResource Include="Resources\tab_feed%402x.png" />
-    <BundleResource Include="Resources\tab_feed%403x.png" />
     <BundleResource Include="Resources\xamarin_logo.png" />
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <BundleResource Include="Resources\tab_puzzle.png" />
-    <BundleResource Include="Resources\tab_solarS.png" />
-    <BundleResource Include="Resources\tab_star.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -162,39 +153,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_03.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_04.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_05.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_06.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_07.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_08.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_v01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_v02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_v03.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\BannerDetail_v04.png" />
+    <BundleResource Include="Resources\bgtest.png" />
   </ItemGroup>
 </Project>

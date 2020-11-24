@@ -22,6 +22,8 @@ namespace ChallengeMk2
         {
             InitializeComponent();
 
+            Device.SetFlags(new string[] { "CarouselView_Experimental", "Brush_Experimental" });
+
             await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
         }
 

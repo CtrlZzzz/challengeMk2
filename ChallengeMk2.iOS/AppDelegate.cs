@@ -23,9 +23,6 @@ namespace ChallengeMk2.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            //Active CAROUSELVIEW Preview feature
-            Forms.SetFlags("CollectionView_Experimental");
-
             global::Xamarin.Forms.Forms.Init();
 
             //FFImageLoading.Svg.Forms

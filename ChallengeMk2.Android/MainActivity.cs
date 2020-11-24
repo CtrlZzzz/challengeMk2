@@ -7,6 +7,7 @@ using Prism;
 using Prism.Ioc;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
+using Android.Views;
 
 namespace ChallengeMk2.Droid
 {
@@ -20,11 +21,11 @@ namespace ChallengeMk2.Droid
 
             base.OnCreate(savedInstanceState);
 
-            //Active CAROUSELVIEW Preview feature
-            Forms.SetFlags("CollectionView_Experimental");
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //Show content behind status bar
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LayoutFullscreen | (StatusBarVisibility) SystemUiFlags.LayoutStable;
 
             //FFImageLoading.Svg.Forms
             CachedImageRenderer.Init(true);

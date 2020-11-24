@@ -11,15 +11,15 @@ namespace ChallengeMk2.Views
         }
 
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+        //protected override void OnBindingContextChanged()
+        //{
+        //    base.OnBindingContextChanged();
 
-            if (BindingContext is StarSystemsViewModel vm)
-            {
-                vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
-            }
-        }
+        //    if (BindingContext is StarSystemsViewModel vm)
+        //    {
+        //        vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
+        //    }
+        //}
 
         protected override void OnAppearing()
         {

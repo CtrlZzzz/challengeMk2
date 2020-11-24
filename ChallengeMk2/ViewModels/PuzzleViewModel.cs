@@ -17,7 +17,7 @@ namespace ChallengeMk2.ViewModels
 
         public PuzzleViewModel(INavigationService navigationService, IPuzzleService puzzleService) : base(navigationService)
         {
-            Title = "Mi8 Puzzle challenge";
+            Title = "Number finder";
 
             puzzle = puzzleService;
         }
@@ -180,8 +180,10 @@ namespace ChallengeMk2.ViewModels
             var container = new TryResult
             {
                 Result = "Find a number between 1 and 50 000 in 20 tries.\n" +
-                "Call the https://thenumberfinderapi.azurewebsites.net/api/TheNumber/ route \n" +
-                "then display the results of all tries until win !",
+                "\n" +
+                "Call the https://thenumberfinderapi.azurewebsites.net/api/TheNumber/. \n" +
+                "\n" +
+                "Display the results of all your tries until win !",
                 Status = HttpStatusCode.ResetContent
             };
 

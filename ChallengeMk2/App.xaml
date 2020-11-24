@@ -13,6 +13,7 @@
 	<Application.Resources>
 		<!--CONVERTER-->
 		<cvt:NullStringConverter x:Key="nullStringConverter"/>
+		<cvt:StarTypeIconConverter x:Key="starIconConverter"/>
 
 		<!--DEFAULT THEME-->
 		<ResourceDictionary>
@@ -23,6 +24,7 @@
 		</ResourceDictionary>
 
 		<!--FONT ICONS-->
+		<x:String x:Key="Back">&#xf053;</x:String>
 		<x:String x:Key="Planet">&#xf0ac;</x:String>
 		<x:String x:Key="Dice">&#xf522;</x:String>
 		<x:String x:Key="Chat">&#xf086;</x:String>
@@ -43,6 +45,9 @@
 		<x:String x:Key="Security">&#xf3ed;</x:String>
 		<x:String x:Key="Parts">&#xf200;</x:String>
 		<x:String x:Key="Cubes">&#xf1b3;</x:String>
+		<x:String x:Key="Balance">&#xf24e;</x:String>
+		<x:String x:Key="Best">&#xf559;</x:String>
+		<x:String x:Key="Success">&#xf46c;</x:String>
 
 		<!--STYLES-->
 		<Style x:Key="BaseStyle" TargetType="Element">

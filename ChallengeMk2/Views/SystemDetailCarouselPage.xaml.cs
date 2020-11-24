@@ -17,13 +17,13 @@ namespace ChallengeMk2.Views
         }
 
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
 
-            var vm = BindingContext as SystemDetailCarouselViewModel;
+        //    var vm = BindingContext as SystemDetailCarouselViewModel;
 
-            vm.InitializeViewModel(currentSystem);
-        }
+        //    vm.InitializeViewModel(currentSystem);
+        //}
     }
 }

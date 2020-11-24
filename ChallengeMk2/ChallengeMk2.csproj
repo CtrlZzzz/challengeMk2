@@ -70,9 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Update="Views\SystemDetailCarouselPage.xaml.cs">
       <DependentUpon>SystemDetailCarouselPage.xaml</DependentUpon>
     </Compile>

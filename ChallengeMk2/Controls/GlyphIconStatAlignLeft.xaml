@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChallengeMk2.Controls.GlyphIconStatAlignLeft">
+  <ContentView.Content>
+		<StackLayout Orientation="Horizontal">
+			
+			<Image HorizontalOptions="Start">
+				<Image.Source>
+					<FontImageSource x:Name="GlyphIcon"/>
+				</Image.Source>
+			</Image>
+			
+			<StackLayout Orientation="Vertical">
+				
+				<Label x:Name="TitleLabel"/>
+				
+				<Label x:Name="ValueLabel"/>
+				
+			</StackLayout>
+			
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -9,7 +9,7 @@ namespace ChallengeMk2.ViewModels
 {
     public class SystemDetailCarouselViewModel : PrismBaseViewModel, IPageLifecycleAware, IAutoInitialize
     {
-        readonly string[] banners;
+        //readonly string[] banners;
 
 
         public SystemDetailCarouselViewModel(INavigationService navigationService) : base(navigationService)

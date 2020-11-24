@@ -87,22 +87,15 @@
 
 				<ScrollView VerticalScrollBarVisibility="Never">
 					<StackLayout Orientation="Vertical" Spacing="0" Padding="0">
-						
+
 						<!--STARTYPE-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Star}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource StarTypeColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Star type"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.PrimaryStar.Type}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource StarTypeColor}"/>
-							</StackLayout>
-						</StackLayout>
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Star type"
+														 ValueLabelText="{Binding CurrentSystem.PrimaryStar.Type}"
+														 GlyphIconGlyph="{StaticResource Star}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource StarTypeColor}"
+														 GlyphIconColor="{DynamicResource StarTypeColor}"/>
+						
 						<!--SCOOPABLE STAR-->
 						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 							<StackLayout Orientation="Vertical">
@@ -120,243 +113,127 @@
 								</Image.Source>
 							</Image>
 						</StackLayout>
-						<!--DISTANCE-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Rocket}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource DistanceColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Distance from Sol"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Distance, StringFormat='{0} ly'}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource DistanceColor}"/>
-							</StackLayout>
-						</StackLayout>
-						<!--POPULATION-->
-						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-							<StackLayout Orientation="Vertical">
-								<Label Text="Population"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
-									   HorizontalTextAlignment="End"/>
-								<Label Text="{Binding CurrentSystem.Information.Population}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource PopulationColor}"
-									   HorizontalTextAlignment="End"/>
-							</StackLayout>
-							<Image>
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource People}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource PopulationColor}"/>
-								</Image.Source>
-							</Image>
-						</StackLayout>
-						<!--PERMIT-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Lock}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource PermitColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="System permit"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.PermitName, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource PermitColor}"/>
-							</StackLayout>
-						</StackLayout>
-						<!--BODIES-->
-						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-							<StackLayout Orientation="Vertical">
-								<Label Text="System bodies"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
-									   HorizontalTextAlignment="End"/>
-								<Label Text="{Binding CurrentSystem.BodyCount}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource BodiesColor}"
-									   HorizontalTextAlignment="End"/>
-							</StackLayout>
-							<Image>
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Bodies}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource BodiesColor}"/>
-								</Image.Source>
-							</Image>
-						</StackLayout>
-						<!--ALLEGIANCE-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Hands}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource AllegianceColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Allegiance"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Information.Allegiance, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource AllegianceColor}"/>
-							</StackLayout>
-						</StackLayout>
-						<!--GOVERNMENT-->
-						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-							<StackLayout Orientation="Vertical">
-								<Label Text="Government"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
-									   HorizontalTextAlignment="End"/>
-								<Label Text="{Binding CurrentSystem.Information.Government, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource GovernmentColor}"
-									   HorizontalTextAlignment="End"/>
-							</StackLayout>
-							<Image>
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Government}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource GovernmentColor}"/>
-								</Image.Source>
-							</Image>
-						</StackLayout>
-						<!--FACTION-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Faction}" FontFamily="fab" Size="30"
-													 Color="{DynamicResource FactionColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Faction"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Information.Faction, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource FactionColor}"/>
-							</StackLayout>
-						</StackLayout>
-						<!--FACTION STATE-->
-						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-							<StackLayout Orientation="Vertical">
-								<Label Text="Faction state"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
-									   HorizontalTextAlignment="End"/>
-								<Label Text="{Binding CurrentSystem.Information.FactionState, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource FactionStateColor}"
-									   HorizontalTextAlignment="End"/>
-							</StackLayout>
-							<Image>
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource State}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource FactionStateColor}"/>
-								</Image.Source>
-							</Image>
-						</StackLayout>
-						<!--ECONOMY-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Economy}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource EconomyColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Economy"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Information.Economy, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource EconomyColor}"/>
-							</StackLayout>
-						</StackLayout>
-						<!--SECOND ECONOMY-->
-						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-							<StackLayout Orientation="Vertical">
-								<Label Text="Second economy"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
-									   HorizontalTextAlignment="End"/>
-								<Label Text="{Binding CurrentSystem.Information.SecondEconomy, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource SecondEconomyColor}"
-									   HorizontalTextAlignment="End"/>
-							</StackLayout>
-							<Image>
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Economy2}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource SecondEconomyColor}"/>
-								</Image.Source>
-							</Image>
-						</StackLayout>
-						<!--SECURITY-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Security}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource SecurityColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Security"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Information.Security, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource SecurityColor}"/>
-							</StackLayout>
-						</StackLayout>
-						<!--RESERVE-->
-						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-							<StackLayout Orientation="Vertical">
-								<Label Text="Reserve"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
-									   HorizontalTextAlignment="End"/>
-								<Label Text="{Binding CurrentSystem.Information.Reserve, Converter={StaticResource nullStringConverter}}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource ReserveColor}"
-									   HorizontalTextAlignment="End"/>
-							</StackLayout>
-							<Image>
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Parts}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource ReserveColor}"/>
-								</Image.Source>
-							</Image>
-						</StackLayout>
-						<!--COORDS-->
-						<StackLayout Orientation="Horizontal">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Cubes}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource CoordsColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Coords X"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Coords.X}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource CoordsColor}"/>
-							</StackLayout>
-						</StackLayout>
 						
-						<StackLayout Orientation="Horizontal" Margin="0,20,0,0">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Cubes}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource CoordsColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Coords Y"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Coords.Y}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource CoordsColor}"/>
-							</StackLayout>
-						</StackLayout>
+						<!--DISTANCE-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Distance from Sol"
+														 ValueLabelText="{Binding CurrentSystem.Distance, StringFormat='{0} ly'}"
+														 GlyphIconGlyph="{StaticResource Rocket}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource DistanceColor}"
+														 GlyphIconColor="{DynamicResource DistanceColor}"/>
 
-						<StackLayout Orientation="Horizontal" Margin="0,20,0,0">
-							<Image HorizontalOptions="Start">
-								<Image.Source>
-									<FontImageSource Glyph="{StaticResource Cubes}" FontFamily="fas" Size="30"
-													 Color="{DynamicResource CoordsColor}"/>
-								</Image.Source>
-							</Image>
-							<StackLayout Orientation="Vertical">
-								<Label Text="Coords Z"
-									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
-								<Label Text="{Binding CurrentSystem.Coords.Z}"
-									   FontSize="15" FontAttributes="Bold" TextColor="{DynamicResource CoordsColor}"/>
-							</StackLayout>
-						</StackLayout>
+						<!--POPULATION-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Population"
+														  ValueLabelText="{Binding CurrentSystem.Information.Population}"
+														  GlyphIconGlyph="{StaticResource People}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource PopulationColor}"
+														  GlyphIconColor="{DynamicResource PopulationColor}"/>
+
+						<!--PERMIT-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="System permit"
+														 ValueLabelText="{Binding CurrentSystem.PermitName, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Lock}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource PermitColor}"
+														 GlyphIconColor="{DynamicResource PermitColor}"/>
+
+						<!--BODIES-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="System bodies"
+														  ValueLabelText="{Binding CurrentSystem.BodyCount}"
+														  GlyphIconGlyph="{StaticResource Bodies}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource BodiesColor}"
+														  GlyphIconColor="{DynamicResource BodiesColor}"/>
+
+						<!--ALLEGIANCE-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Allegiance"
+														 ValueLabelText="{Binding CurrentSystem.Information.Allegiance, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Hands}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource AllegianceColor}"
+														 GlyphIconColor="{DynamicResource AllegianceColor}"/>
+
+						<!--GOVERNMENT-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Government"
+														  ValueLabelText="{Binding CurrentSystem.Information.Government, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource Government}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource GovernmentColor}"
+														  GlyphIconColor="{DynamicResource GovernmentColor}"/>
+
+						<!--FACTION-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Faction"
+														 ValueLabelText="{Binding CurrentSystem.Information.Faction, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Faction}"
+														 GlyphIconFontFamily="fab"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource FactionColor}"
+														 GlyphIconColor="{DynamicResource FactionColor}"/>
+
+						<!--FACTION STATE-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Faction state"
+														  ValueLabelText="{Binding CurrentSystem.Information.FactionState, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource State}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource FactionStateColor}"
+														  GlyphIconColor="{DynamicResource FactionStateColor}"/>
+
+						<!--ECONOMY-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Economy"
+														 ValueLabelText="{Binding CurrentSystem.Information.Economy, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Economy}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource EconomyColor}"
+														 GlyphIconColor="{DynamicResource EconomyColor}"/>
+
+						<!--SECOND ECONOMY-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Second economy"
+														  ValueLabelText="{Binding CurrentSystem.Information.SecondEconomy, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource Economy2}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource SecondEconomyColor}"
+														  GlyphIconColor="{DynamicResource SecondEconomyColor}"/>
+
+						<!--SECURITY-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Security"
+														 ValueLabelText="{Binding CurrentSystem.Information.Security, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Security}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource SecurityColor}"
+														 GlyphIconColor="{DynamicResource SecurityColor}"/>
+
+						<!--RESERVE-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Reserve"
+														  ValueLabelText="{Binding CurrentSystem.Information.Reserve, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource Parts}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource ReserveColor}"
+														  GlyphIconColor="{DynamicResource ReserveColor}"/>
+
+						<!--COORDS-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Coords X"
+														 ValueLabelText="{Binding CurrentSystem.Coords.X}"
+														 GlyphIconGlyph="{StaticResource Cubes}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource CoordsColor}"
+														 GlyphIconColor="{DynamicResource CoordsColor}"/>
+
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Coords Y"
+														 ValueLabelText="{Binding CurrentSystem.Coords.Y}"
+														 GlyphIconGlyph="{StaticResource Cubes}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource CoordsColor}"
+														 GlyphIconColor="{DynamicResource CoordsColor}"
+														 Margin="0,20,0,0"/>
+
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Coords Z"
+														 ValueLabelText="{Binding CurrentSystem.Coords.Z}"
+														 GlyphIconGlyph="{StaticResource Cubes}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource CoordsColor}"
+														 GlyphIconColor="{DynamicResource CoordsColor}"
+														 Margin="0,20,0,0"/>
 
 					</StackLayout>
 				</ScrollView>

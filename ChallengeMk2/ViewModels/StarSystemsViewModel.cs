@@ -45,7 +45,9 @@ namespace ChallengeMk2.ViewModels
 
         public Command DisplaySystemDataCommand { get; set; }
 
-        internal Action<StarSystem> NavigateTodetailPage { get; set; }
+        public Command<StarSystem> NavigateToDetailCommand { get; set; }
+
+        //internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
         void InitializeViewModel(IStarSystemService starSystemService)
@@ -57,6 +59,8 @@ namespace ChallengeMk2.ViewModels
             Systems = new ObservableCollection<StarSystem>();
 
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
+
+            NavigateToDetailCommand = new Command<StarSystem>(async (selectedSystem) => await NavigationService.NavigateAsync("SystemDetailCarouselPage", ("CurrentSystem", selectedSystem)));
         }
 
 

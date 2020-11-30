@@ -20,7 +20,6 @@
 		</LinearGradientBrush>
 	</TabbedPage.Background>
 	
-	
 	<!--TEST BG-->
 	<!--<TabbedPage.Background>
 		<LinearGradientBrush StartPoint="0,0"

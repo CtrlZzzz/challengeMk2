@@ -5,7 +5,6 @@
 						xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 						xmlns:cvt="clr-namespace:ChallengeMk2.Converters"
 						xmlns:theme="clr-namespace:ChallengeMk2.Themes"
-						xmlns:controls="clr-namespace:ChallengeMk2.Controls"
 						xmlns:prism="http://prismlibrary.com"
 						mc:Ignorable="d"
 						x:Class="ChallengeMk2.App">
@@ -48,48 +47,7 @@
 		<x:String x:Key="Balance">&#xf24e;</x:String>
 		<x:String x:Key="Best">&#xf559;</x:String>
 		<x:String x:Key="Success">&#xf46c;</x:String>
-
-		<!--STYLES-->
-		<Style x:Key="BaseStyle" TargetType="Element">
-			<Setter Property="Shell.BackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-			<Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.TitleColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.UnselectedColor" Value="{DynamicResource UnselectedColor}"/>
-			<Setter Property="Shell.DisabledColor" Value="{DynamicResource DisableColor}"/>
-
-			<Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-			<Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource UnselectedColor}"/>
-			<Setter Property="Shell.TabBarDisabledColor" Value="{DynamicResource DisableColor}"/>
-		</Style>
-		<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
-
-		<Style x:Key="DualTitle" TargetType="controls:DualLabel">
-			<Setter Property="MidLineColor" Value="{DynamicResource AccentDeepColor}"/>
-			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-			<Setter Property="TopTextHorizontalOptions" Value="End"/>
-			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-			<Setter Property="BottomTextSize" Value="40"/>
-			<Setter Property="BottomTextFontAttribute" Value="Bold"/>
-			<Setter Property="BottomTextHorizontalOptions" Value="Start"/>
-		</Style>
-
-		<Style x:Key="DualStat" TargetType="controls:DualLabel">
-			<Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
-			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-			<Setter Property="BottomSpaceHeight" Value="0"/>
-		</Style>
-
-		<Style x:Key="DualCoords" TargetType="controls:DualLabel">
-			<Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
-			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-			<Setter Property="BottomTextSize" Value="18"/>
-			<Setter Property="BottomSpaceHeight" Value="0"/>
-		</Style>
-
+		
 	</Application.Resources>
 
 </prism:PrismApplication>

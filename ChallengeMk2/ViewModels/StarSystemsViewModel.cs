@@ -25,14 +25,7 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                SetProperty(ref selectedSystem, value);/*, onChanged: () =>
-                {
-                    NavigateTodetailPage(selectedSystem);
-                    if (value != null)
-                    {
-                        selectedSystem = null;
-                    }
-                });*/
+                SetProperty(ref selectedSystem, value);
             }
         }
 
@@ -46,8 +39,6 @@ namespace ChallengeMk2.ViewModels
         public Command DisplaySystemDataCommand { get; set; }
 
         public Command<StarSystem> NavigateToDetailCommand { get; set; }
-
-        //internal Action<StarSystem> NavigateTodetailPage { get; set; }
 
 
         void InitializeViewModel(IStarSystemService starSystemService)
@@ -98,7 +89,6 @@ namespace ChallengeMk2.ViewModels
             }
             else
             {
-                //title = systemService.GetLocalState() ? "Systems around SOL (local)" : "Systems around SOL (API)";
                 title = "System finder";
             }
 

@@ -49,15 +49,7 @@
 								<yummy:PancakeView.Shadow>
 									<yummy:DropShadow Color="#000000" Offset="20,20" BlurRadius="4" Opacity="0.6"/>
 								</yummy:PancakeView.Shadow>
-
-								<!--<yummy:PancakeView.GestureRecognizers>
-									<TapGestureRecognizer Command="{prism:NavigateTo SystemDetailCarouselPage}">
-										<TapGestureRecognizer.CommandParameter>
-											<prism:NavigationParameter Key="CurrentSystem" Value="{Binding .}"/>
-										</TapGestureRecognizer.CommandParameter>
-									</TapGestureRecognizer>
-								</yummy:PancakeView.GestureRecognizers>-->
-								<!--WITH TRANSITIONS => TO KEEP-->
+								
 								<yummy:PancakeView.GestureRecognizers>
 									<TapGestureRecognizer Command="{Binding BindingContext.NavigateToDetailCommand, Source={x:Reference SystemCollection}}"
                                                   CommandParameter="{Binding .}"/>

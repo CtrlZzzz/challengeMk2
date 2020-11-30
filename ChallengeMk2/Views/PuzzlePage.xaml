@@ -7,20 +7,6 @@
 			 xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
              x:Class="ChallengeMk2.Views.PuzzlePage">
 
-	<!--<NavigationPage.TitleView>
-		<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
-			<Label Text="{Binding Title}"
-			       FontSize="Large"
-			       FontAttributes="None"
-			       TextColor="White"/>
-			<Image>
-				<Image.Source>
-					<FontImageSource Glyph="{StaticResource Dice}" FontFamily="fas"/>
-				</Image.Source>
-			</Image>
-		</StackLayout>
-	</NavigationPage.TitleView>-->
-
 	<ContentPage.Resources>
 		<ResourceDictionary>
 			<DataTemplate x:Key="OkTemplate">
@@ -78,60 +64,67 @@
 
 				<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="Start">
 					<StackLayout Orientation="Horizontal">
+						
 						<Image HorizontalOptions="Start">
 							<Image.Source>
 								<FontImageSource Glyph="{StaticResource Success}" FontFamily="fas" Size="20"
 												 Color="{DynamicResource PermitColor}"/>
 							</Image.Source>
 						</Image>
+						
 						<Label Text="{Binding GlobalTry, Converter={StaticResource nullStringConverter}}"
 						   FontSize="20" TextColor="{DynamicResource PermitColor}" HorizontalOptions="End"/>
+						
 					</StackLayout>
+					
 					<Label Text="Successful"
 						   FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="Start"/>
+					
 				</StackLayout>
 
 				<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="CenterAndExpand">
 					<StackLayout Orientation="Horizontal">
+						
 						<Image HorizontalOptions="CenterAndExpand">
 							<Image.Source>
 								<FontImageSource Glyph="{StaticResource Best}" FontFamily="fas" Size="20"
 												 Color="{DynamicResource StarTypeColor}"/>
 							</Image.Source>
 						</Image>
+						
 						<Label Text="{Binding BestTry, Converter={StaticResource nullStringConverter}}"
 						   FontSize="20" TextColor="{DynamicResource StarTypeColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+						
 					</StackLayout>
+					
 					<Label Text="Best"
 						   FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+					
 				</StackLayout>
 
 				<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="End">
 					<StackLayout Orientation="Horizontal">
+						
 						<Image HorizontalOptions="EndAndExpand">
 							<Image.Source>
 								<FontImageSource Glyph="{StaticResource Balance}" FontFamily="fas" Size="20"
 												 Color="{DynamicResource ScoopableColor}"/>
 							</Image.Source>
 						</Image>
+						
 						<Label Text="{Binding TryAverage, Converter={StaticResource nullStringConverter}}"
 						   FontSize="20" TextColor="{DynamicResource ScoopableColor}" HorizontalOptions="End" HorizontalTextAlignment="End"/>
+						
 					</StackLayout>
+					
 					<Label Text="Average"
 						   FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+					
 				</StackLayout>
-
-				<!--<Label Text="{Binding BestTry, StringFormat='Best : {0}', Converter={StaticResource nullStringConverter}}"
-					   FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-				<Label Text="{Binding TryAverage, StringFormat='Average : {0}', Converter={StaticResource nullStringConverter}}"
-					   FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>-->
 			</StackLayout>
-			<!--<StackLayout Orientation="Horizontal">
-				<Label Text="{Binding GlobalTry, StringFormat='Successful : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="StartAndExpand"/>
-				<Label Text="{Binding BestTry, StringFormat='Best : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-				<Label Text="{Binding TryAverage, StringFormat='Average : {0}', Converter={StaticResource nullStringConverter}}" FontSize="10" TextColor="{DynamicResource TextColor}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
-			</StackLayout>-->
+			
 			<BoxView HeightRequest="20" BackgroundColor="Transparent"/>
+			
 			<Button Text="{Binding ButtonText}"
 					Command="{Binding DisplayResultsCommand}"
 					HeightRequest="50"
@@ -142,7 +135,6 @@
 					BackgroundColor="{DynamicResource TextColor}"
 					TextColor="{DynamicResource PageBackgroundColor}"
 					IsEnabled="{Binding CanRunPuzzle}"/>
-
 
 		</StackLayout>
 		

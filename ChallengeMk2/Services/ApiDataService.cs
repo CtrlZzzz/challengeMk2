@@ -13,6 +13,7 @@ namespace ChallengeMk2.Services
         const string BaseUrl_All = "https://www.edsm.net/api-v1/sphere-systems";
         const string BaseUrl_Details = "https://www.edsm.net/api-v1/system";
         const string Details = "?&showInformation=1" +
+                "&showId=1" +
                 "&showPrimaryStar=1" +
                 "&showPermit=1" +
                 "&showCoordinates=1";

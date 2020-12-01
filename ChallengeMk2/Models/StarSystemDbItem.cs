@@ -1,4 +1,3 @@
-using System;
 using SQLite;
 
 namespace ChallengeMk2.Models
@@ -7,6 +6,8 @@ namespace ChallengeMk2.Models
     {
         [PrimaryKey, AutoIncrement]
         public int DbID { get; set; }
+
+        public int Id { get; set; }
 
         public double Distance { get; set; }
 

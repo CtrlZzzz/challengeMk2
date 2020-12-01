@@ -3,6 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:ChallengeMk2.Views"
 			xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
             x:Class="ChallengeMk2.Views.MainTabbedPage"
 			android:TabbedPage.ToolbarPlacement="Bottom"
 			NavigationPage.HasNavigationBar="True"
@@ -19,28 +20,20 @@
                           Offset="1.0"/>
 		</LinearGradientBrush>
 	</TabbedPage.Background>
-	
-	<!--TEST BG-->
-	<!--<TabbedPage.Background>
-		<LinearGradientBrush StartPoint="0,0"
-                             EndPoint="0,1">
-			<GradientStop Color="{StaticResource AccentDeepColor}"
-                          Offset="0.0"/>
-			<GradientStop Color="{StaticResource PageBackgroundColor3}"
-                          Offset="0.1"/>
-		</LinearGradientBrush>
-	</TabbedPage.Background>-->
 
 	<TabbedPage.Children>
-		<NavigationPage Title="">
+		<sharedTransitions:SharedTransitionNavigationPage Title=""
+														  TransitionStarted="SharedTransitionNavigationPage_OnTransitionStarted"
+                                                          TransitionEnded="SharedTransitionNavigationPage_OnTransitionEnded"
+                                                          TransitionCancelled="SharedTransitionNavigationPage_OnTransitionCancelled">
 			<x:Arguments>
 				<views:StarSystemsPage/>
 			</x:Arguments>
 
-			<NavigationPage.IconImageSource>
+			<sharedTransitions:SharedTransitionNavigationPage.IconImageSource>
 				<FontImageSource Glyph="{StaticResource Planet}" FontFamily="fas"/>
-			</NavigationPage.IconImageSource>
-		</NavigationPage>
+			</sharedTransitions:SharedTransitionNavigationPage.IconImageSource>
+		</sharedTransitions:SharedTransitionNavigationPage>
 
 		<NavigationPage Title="">
 			<x:Arguments>

@@ -1,4 +1,3 @@
-using System;
 using ChallengeMk2.Models;
 
 namespace ChallengeMk2.DataBase
@@ -9,6 +8,7 @@ namespace ChallengeMk2.DataBase
         {
             var converted = new StarSystem
             {
+                Id = dbItem.Id,
                 Distance = dbItem.Distance,
                 BodyCount = dbItem.BodyCount,
                 Name = dbItem.Name,
@@ -50,6 +50,7 @@ namespace ChallengeMk2.DataBase
         {
             var converted = new StarSystemDbItem
             {
+                Id = starSystem.Id,
                 Distance = starSystem.Distance,
                 BodyCount = starSystem.BodyCount ?? 0,
                 Name = starSystem.Name,

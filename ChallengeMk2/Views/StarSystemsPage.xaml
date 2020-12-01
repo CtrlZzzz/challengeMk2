@@ -6,9 +6,13 @@
 			 xmlns:prism="http://prismlibrary.com"
 			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
 			 prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="skip"
-             x:Class="ChallengeMk2.Views.StarSystemsPage">
+             x:Class="ChallengeMk2.Views.StarSystemsPage"
+			 sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding SelectionId}"
+             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="300">
 
 	<StackLayout Orientation="Vertical" Spacing="0">
 
@@ -37,6 +41,8 @@
 						<ContentView Padding="4">
 							<yummy:PancakeView CornerRadius="22" 
 											   Padding="10"
+											   sharedTransitions:Transition.Name="ItemPanel"
+											   sharedTransitions:Transition.Group="{Binding Id}"
 											   BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
 
 								<yummy:PancakeView.BackgroundGradientStops>
@@ -57,26 +63,37 @@
 
 								<StackLayout Orientation="Horizontal" Padding="0">
 									<ffimageloadingsvg:SvgCachedImage HeightRequest="30"
-                                                              WidthRequest="30"
-                                                              Source="{Binding PrimaryStar.Type, Converter={StaticResource starIconConverter}}"/>
+																	  WidthRequest="30"
+																	  Source="{Binding PrimaryStar.Type, Converter={StaticResource starIconConverter}}"
+																	  sharedTransitions:Transition.Name="StarTypeIcon"
+																	  sharedTransitions:Transition.Group="{Binding Id}"/>
 
 									<StackLayout Orientation="Vertical" 
                                          HorizontalOptions="FillAndExpand" 
                                          Padding="5,0,20,0">
 
-										<Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource MainTextColor}"/>
+										<Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource MainTextColor}"
+											   sharedTransitions:Transition.Name="ItemName"
+											   sharedTransitions:Transition.Group="{Binding Id}"/>
 
 										<StackLayout Orientation="Horizontal">
 
-											<Image>
+											<Image sharedTransitions:Transition.Name="DistanceIcon"
+												   sharedTransitions:Transition.Group="{Binding Id}">
 												<Image.Source>
 													<FontImageSource Glyph="{StaticResource Rocket}" FontFamily="fas" Size="20" Color="{DynamicResource DistanceColor}"/>
 												</Image.Source>
 											</Image>
-											<Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="12" VerticalTextAlignment="Center" TextColor="{DynamicResource DistanceColor}" FontAttributes="Bold"/>
+											<Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="12" VerticalTextAlignment="Center" TextColor="{DynamicResource DistanceColor}" FontAttributes="Bold"
+												   sharedTransitions:Transition.Name="DistanceText"
+												   sharedTransitions:Transition.Group="{Binding Id}"/>
 
-											<Label Text="{Binding Information.Population}" FontSize="12" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center" TextColor="{DynamicResource PopulationColor}" FontAttributes="Bold"/>
-											<Image HorizontalOptions="Start">
+											<Label Text="{Binding Information.Population}" FontSize="12" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center" TextColor="{DynamicResource PopulationColor}" FontAttributes="Bold"
+												   sharedTransitions:Transition.Name="PopulationText"
+												   sharedTransitions:Transition.Group="{Binding Id}"/>
+											<Image HorizontalOptions="Start"
+												   sharedTransitions:Transition.Name="PopulationIcon"
+												   sharedTransitions:Transition.Group="{Binding Id}">
 												<Image.Source>
 													<FontImageSource Glyph="{StaticResource People}" FontFamily="fas" Size="20" Color="{DynamicResource PopulationColor}"/>
 												</Image.Source>

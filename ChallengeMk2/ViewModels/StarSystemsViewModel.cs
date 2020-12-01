@@ -16,17 +16,23 @@ namespace ChallengeMk2.ViewModels
 
         public StarSystemsViewModel(INavigationService navigationService, IStarSystemService starSystemService) : base(navigationService)
         {
-            
             InitializeViewModel(starSystemService);
         }
 
-        StarSystem selectedSystem;
-        public StarSystem SelectedSystem
+        //StarSystem selectedSystem;
+        //public StarSystem SelectedSystem
+        //{
+        //    set
+        //    {
+        //        SetProperty(ref selectedSystem, value);
+        //    }
+        //}
+
+        int selectionId;
+        public int SelectionId
         {
-            set
-            {
-                SetProperty(ref selectedSystem, value);
-            }
+            get => selectionId;
+            set => SetProperty(ref selectionId, value);
         }
 
         IList<StarSystem> systems;
@@ -51,7 +57,11 @@ namespace ChallengeMk2.ViewModels
 
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
 
-            NavigateToDetailCommand = new Command<StarSystem>(async (selectedSystem) => await NavigationService.NavigateAsync("SystemDetailCarouselPage", ("CurrentSystem", selectedSystem)));
+            NavigateToDetailCommand = new Command<StarSystem>(async (selectedSystem) =>
+            {
+                SelectionId = selectedSystem.Id;
+                await NavigationService.NavigateAsync("SystemDetailCarouselPage", ("CurrentSystem", selectedSystem));
+            });
         }
 
 

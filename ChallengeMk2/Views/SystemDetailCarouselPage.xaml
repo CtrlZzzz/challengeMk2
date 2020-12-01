@@ -7,6 +7,7 @@
 			 xmlns:prism="http://prismlibrary.com"
 			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
 			 prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
@@ -30,17 +31,20 @@
 
 			<ffimageloadingsvg:SvgCachedImage HeightRequest="50"
 											  WidthRequest="50"
-											  Source="{Binding CurrentSystem.PrimaryStar.Type, Converter={StaticResource starIconConverter}}"/>
+											  Source="{Binding CurrentSystem.PrimaryStar.Type, Converter={StaticResource starIconConverter}}"
+											  sharedTransitions:Transition.Name="StarTypeIcon"/>
 
 			<Label Text="{Binding CurrentSystem.Name}" TextColor="{DynamicResource MainTextColor}"
 				   FontSize="Large"
-				   HorizontalTextAlignment="Center"/>
+				   HorizontalTextAlignment="Center"
+				   sharedTransitions:Transition.Name="ItemName"/>
 
 			<yummy:PancakeView CornerRadius="22"
 							   Padding="20"
 							   Margin="0,10,0,40"
 							   HorizontalOptions="Center"
 							   WidthRequest="300"
+							   sharedTransitions:Transition.Name="ItemPanel"
 							   BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
 
 				<yummy:PancakeView.BackgroundGradientStops>
@@ -82,22 +86,42 @@
 								</Image.Source>
 							</Image>
 						</StackLayout>
-						
+
 						<!--DISTANCE-->
-						<controls:GlyphIconStatAlignLeft TitleLabelText="Distance from Sol"
-														 ValueLabelText="{Binding CurrentSystem.Distance, StringFormat='{0} ly'}"
-														 GlyphIconGlyph="{StaticResource Rocket}"
-														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
-														 ValueLabelTextColor="{DynamicResource DistanceColor}"
-														 GlyphIconColor="{DynamicResource DistanceColor}"/>
+						<StackLayout Orientation="Horizontal">
+							<Image HorizontalOptions="Start" sharedTransitions:Transition.Name="DistanceIcon">
+								<Image.Source>
+									<FontImageSource Glyph="{StaticResource Rocket}" FontFamily="fas" Size="30"
+													 Color="{DynamicResource DistanceColor}"/>
+								</Image.Source>
+							</Image>
+							<StackLayout Orientation="Vertical">
+								<Label Text="Distance"
+									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"/>
+								<Label Text="{Binding CurrentSystem.Distance, StringFormat='{0} ly'}"
+									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DistanceColor}"
+									   sharedTransitions:Transition.Name="DistanceText"/>
+							</StackLayout>
+						</StackLayout>
 
 						<!--POPULATION-->
-						<controls:GlyphIconStatAlignRight TitleLabelText="Population"
-														  ValueLabelText="{Binding CurrentSystem.Information.Population}"
-														  GlyphIconGlyph="{StaticResource People}"
-														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
-														  ValueLabelTextColor="{DynamicResource PopulationColor}"
-														  GlyphIconColor="{DynamicResource PopulationColor}"/>
+						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+							<StackLayout Orientation="Vertical">
+								<Label Text="Population"
+									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
+									   HorizontalTextAlignment="End"/>
+								<Label Text="{Binding CurrentSystem.Information.Population}"
+									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource PopulationColor}"
+									   HorizontalTextAlignment="End"
+									   sharedTransitions:Transition.Name="PopulationText"/>
+							</StackLayout>
+							<Image sharedTransitions:Transition.Name="PopulationIcon">
+								<Image.Source>
+									<FontImageSource Glyph="{StaticResource People}" FontFamily="fas" Size="30"
+													 Color="{DynamicResource PopulationColor}"/>
+								</Image.Source>
+							</Image>
+						</StackLayout>
 
 						<!--PERMIT-->
 						<controls:GlyphIconStatAlignLeft TitleLabelText="System permit"

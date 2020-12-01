@@ -22,6 +22,8 @@ namespace ChallengeMk2
         {
             InitializeComponent();
 
+            Device.SetFlags(new string[] { "CarouselView_Experimental", "Brush_Experimental" });
+
             await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
         }
 
@@ -39,9 +41,6 @@ namespace ChallengeMk2
             containerRegistry.RegisterSingleton<IMapperService, SystemDbMapperService>();
             containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();
             containerRegistry.RegisterSingleton<IPuzzleService, PuzzleService>();
-
-            ////debug
-            //containerRegistry.RegisterSingleton<MockDataStore>();
         }
     }
 }

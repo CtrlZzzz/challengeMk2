@@ -5,7 +5,6 @@
 						xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 						xmlns:cvt="clr-namespace:ChallengeMk2.Converters"
 						xmlns:theme="clr-namespace:ChallengeMk2.Themes"
-						xmlns:controls="clr-namespace:ChallengeMk2.Controls"
 						xmlns:prism="http://prismlibrary.com"
 						mc:Ignorable="d"
 						x:Class="ChallengeMk2.App">
@@ -13,63 +12,42 @@
 	<Application.Resources>
 		<!--CONVERTER-->
 		<cvt:NullStringConverter x:Key="nullStringConverter"/>
+		<cvt:StarTypeIconConverter x:Key="starIconConverter"/>
 
 		<!--DEFAULT THEME-->
 		<ResourceDictionary>
 			<!--Here comes Merged dictionnary for DEFAULT THEME colors-->
-			<!--Warning : this Dictionary WILL BE CLEARED at runtime when changing current Theme-->
 			<ResourceDictionary.MergedDictionaries>
 				<theme:DarkTheme/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 
 		<!--FONT ICONS-->
+		<x:String x:Key="Back">&#xf053;</x:String>
 		<x:String x:Key="Planet">&#xf0ac;</x:String>
 		<x:String x:Key="Dice">&#xf522;</x:String>
+		<x:String x:Key="Chat">&#xf086;</x:String>
 		<x:String x:Key="Info">&#xf05a;</x:String>
 		<x:String x:Key="Sun">&#xf185;</x:String>
-
-		<!--STYLES-->
-		<Style x:Key="BaseStyle" TargetType="Element">
-			<Setter Property="Shell.BackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-			<Setter Property="Shell.ForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.TitleColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.UnselectedColor" Value="{DynamicResource UnselectedColor}"/>
-			<Setter Property="Shell.DisabledColor" Value="{DynamicResource DisableColor}"/>
-
-			<Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource AccentLightColor}"/>
-			<Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TextForegroundColor}"/>
-			<Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource UnselectedColor}"/>
-			<Setter Property="Shell.TabBarDisabledColor" Value="{DynamicResource DisableColor}"/>
-		</Style>
-		<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}"/>
-
-		<Style x:Key="DualTitle" TargetType="controls:DualLabel">
-			<Setter Property="MidLineColor" Value="{DynamicResource AccentDeepColor}"/>
-			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-			<Setter Property="TopTextHorizontalOptions" Value="End"/>
-			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-			<Setter Property="BottomTextSize" Value="40"/>
-			<Setter Property="BottomTextFontAttribute" Value="Bold"/>
-			<Setter Property="BottomTextHorizontalOptions" Value="Start"/>
-		</Style>
-
-		<Style x:Key="DualStat" TargetType="controls:DualLabel">
-			<Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
-			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-			<Setter Property="BottomSpaceHeight" Value="0"/>
-		</Style>
-
-		<Style x:Key="DualCoords" TargetType="controls:DualLabel">
-			<Setter Property="MidLineColor" Value="{DynamicResource LineColor}"/>
-			<Setter Property="TopTextColor" Value="{DynamicResource TextColor}"/>
-			<Setter Property="BottomTextColor" Value="{DynamicResource TextTitleColor}"/>
-			<Setter Property="BottomTextSize" Value="18"/>
-			<Setter Property="BottomSpaceHeight" Value="0"/>
-		</Style>
-
+		<x:String x:Key="Star">&#xf666;</x:String>
+		<x:String x:Key="Scoop">&#xf5e7;</x:String>
+		<x:String x:Key="Rocket">&#xf135;</x:String>
+		<x:String x:Key="People">&#xf0c0;</x:String>
+		<x:String x:Key="Lock">&#xf023;</x:String>
+		<x:String x:Key="Bodies">&#xf110;</x:String>
+		<x:String x:Key="Hands">&#xf4c4;</x:String>
+		<x:String x:Key="Government">&#xf70e;</x:String>
+		<x:String x:Key="Faction">&#xf425;</x:String>
+		<x:String x:Key="State">&#xf3fd;</x:String>
+		<x:String x:Key="Economy">&#xf201;</x:String>
+		<x:String x:Key="Economy2">&#xf080;</x:String>
+		<x:String x:Key="Security">&#xf3ed;</x:String>
+		<x:String x:Key="Parts">&#xf200;</x:String>
+		<x:String x:Key="Cubes">&#xf1b3;</x:String>
+		<x:String x:Key="Balance">&#xf24e;</x:String>
+		<x:String x:Key="Best">&#xf559;</x:String>
+		<x:String x:Key="Success">&#xf46c;</x:String>
+		
 	</Application.Resources>
 
 </prism:PrismApplication>

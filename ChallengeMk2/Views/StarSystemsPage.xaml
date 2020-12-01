@@ -4,67 +4,99 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
 			 xmlns:prism="http://prismlibrary.com"
+			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
 			 prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="skip"
-             x:Class="ChallengeMk2.Views.StarSystemsPage"
-             Title="{Binding Title}">
+             x:Class="ChallengeMk2.Views.StarSystemsPage">
 
-	<NavigationPage.TitleView>
-		<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="End">
-			<Label Text="{Binding Title}"
-			       FontSize="Large"
-			       FontAttributes="None"
-			       TextColor="White"/>
+	<StackLayout Orientation="Vertical" Spacing="0">
+
+		<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
 			<Image>
 				<Image.Source>
 					<FontImageSource Glyph="{StaticResource Planet}" FontFamily="fas"/>
 				</Image.Source>
 			</Image>
+			<Label Text="{Binding Title}"
+			       FontSize="Large"
+			       FontAttributes="None"
+			       TextColor="{DynamicResource MainTextColor}"/>
 		</StackLayout>
-	</NavigationPage.TitleView>
 
-	<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}">
-		<!--StackLayout-->
-		<CollectionView ItemsSource="{Binding Systems}" 
-                        SelectionMode="Single" 
-                        SelectedItem="{Binding SelectedSystem, Mode=TwoWay}"
-                        BackgroundColor="{DynamicResource PageBackgroundColor}"
+		<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}"
+					 Margin="0,40,0,40"
+					 Padding="20,0,20,0">
+
+			<CollectionView ItemsSource="{Binding Systems}" 
+                        SelectionMode="None"
                         x:Name="SystemCollection">
 
-			<CollectionView.ItemTemplate>
-				<DataTemplate>
-					<StackLayout Padding="10" Orientation="Horizontal">
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<ContentView Padding="4">
+							<yummy:PancakeView CornerRadius="22" 
+											   Padding="10"
+											   BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
 
-						<!--Set selected item background color-->
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup>
-								<VisualState Name="Normal">
-									<VisualState.Setters>
-										<Setter Property="BackgroundColor" Value="Transparent"/>
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState Name="Selected">
-									<VisualState.Setters>
-										<Setter Property="BackgroundColor" Value="{DynamicResource AccentDeepColor}"/>
-									</VisualState.Setters>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
+								<yummy:PancakeView.BackgroundGradientStops>
+									<yummy:GradientStopCollection>
+										<yummy:GradientStop Color="{StaticResource CardColor1}" Offset="0" />
+										<yummy:GradientStop Color="{StaticResource CardColor2}" Offset="1" />
+									</yummy:GradientStopCollection>
+								</yummy:PancakeView.BackgroundGradientStops>
 
-						<Image>
-							<Image.Source>
-								<FontImageSource Glyph="{StaticResource Sun}" FontFamily="fas" Size="20"/>
-							</Image.Source>
-						</Image>
-						<Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource TextColor}" VerticalTextAlignment="Center"/>
-						<Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="14" TextColor="{DynamicResource AccentDeepColor}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+								<yummy:PancakeView.Shadow>
+									<yummy:DropShadow Color="#000000" Offset="20,20" BlurRadius="4" Opacity="0.6"/>
+								</yummy:PancakeView.Shadow>
+								
+								<yummy:PancakeView.GestureRecognizers>
+									<TapGestureRecognizer Command="{Binding BindingContext.NavigateToDetailCommand, Source={x:Reference SystemCollection}}"
+                                                  CommandParameter="{Binding .}"/>
+								</yummy:PancakeView.GestureRecognizers>
 
-					</StackLayout>
-				</DataTemplate>
-			</CollectionView.ItemTemplate>
+								<StackLayout Orientation="Horizontal" Padding="0">
+									<ffimageloadingsvg:SvgCachedImage HeightRequest="30"
+                                                              WidthRequest="30"
+                                                              Source="{Binding PrimaryStar.Type, Converter={StaticResource starIconConverter}}"/>
 
-		</CollectionView>
-		<!--/-->
-	</RefreshView>
+									<StackLayout Orientation="Vertical" 
+                                         HorizontalOptions="FillAndExpand" 
+                                         Padding="5,0,20,0">
+
+										<Label Text="{Binding Name}" FontSize="18" TextColor="{DynamicResource MainTextColor}"/>
+
+										<StackLayout Orientation="Horizontal">
+
+											<Image>
+												<Image.Source>
+													<FontImageSource Glyph="{StaticResource Rocket}" FontFamily="fas" Size="20" Color="{DynamicResource DistanceColor}"/>
+												</Image.Source>
+											</Image>
+											<Label Text="{Binding Distance, StringFormat='{0} ly'}" FontSize="12" VerticalTextAlignment="Center" TextColor="{DynamicResource DistanceColor}" FontAttributes="Bold"/>
+
+											<Label Text="{Binding Information.Population}" FontSize="12" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center" TextColor="{DynamicResource PopulationColor}" FontAttributes="Bold"/>
+											<Image HorizontalOptions="Start">
+												<Image.Source>
+													<FontImageSource Glyph="{StaticResource People}" FontFamily="fas" Size="20" Color="{DynamicResource PopulationColor}"/>
+												</Image.Source>
+											</Image>
+
+										</StackLayout>
+
+									</StackLayout>
+
+								</StackLayout>
+
+							</yummy:PancakeView>
+						</ContentView>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+
+			</CollectionView>
+
+		</RefreshView>
+
+	</StackLayout>
 
 </ContentPage>

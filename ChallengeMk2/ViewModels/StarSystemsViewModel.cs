@@ -25,14 +25,7 @@ namespace ChallengeMk2.ViewModels
         {
             set
             {
-                SetProperty(ref selectedSystem, value, onChanged: () =>
-                {
-                    NavigateTodetailPage(selectedSystem);
-                    if (value != null)
-                    {
-                        selectedSystem = null;
-                    }
-                });
+                SetProperty(ref selectedSystem, value);
             }
         }
 
@@ -45,18 +38,20 @@ namespace ChallengeMk2.ViewModels
 
         public Command DisplaySystemDataCommand { get; set; }
 
-        internal Action<StarSystem> NavigateTodetailPage { get; set; }
+        public Command<StarSystem> NavigateToDetailCommand { get; set; }
 
 
         void InitializeViewModel(IStarSystemService starSystemService)
         {
             systemService = starSystemService;
 
-            Title = "Systems around SOL";
+            Title = "System finder";
 
             Systems = new ObservableCollection<StarSystem>();
 
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
+
+            NavigateToDetailCommand = new Command<StarSystem>(async (selectedSystem) => await NavigationService.NavigateAsync("SystemDetailCarouselPage", ("CurrentSystem", selectedSystem)));
         }
 
 
@@ -94,7 +89,7 @@ namespace ChallengeMk2.ViewModels
             }
             else
             {
-                title = systemService.GetLocalState() ? "Systems around SOL (local)" : "Systems around SOL (API)";
+                title = "System finder";
             }
 
             return title;

@@ -15,26 +15,59 @@
     <None Remove="Fonts\fa-brands-400.ttf" />
     <None Remove="Fonts\fa-regular-400.ttf" />
     <None Remove="Fonts\fa-solid-900.ttf" />
+    <None Remove="Resources\StarType_A.svg" />
+    <None Remove="Resources\StarType_B.svg" />
+    <None Remove="Resources\StarType_BlackHole.svg" />
+    <None Remove="Resources\StarType_F.svg" />
+    <None Remove="Resources\StarType_G.svg" />
+    <None Remove="Resources\StarType_Herbig.svg" />
+    <None Remove="Resources\StarType_K.svg" />
+    <None Remove="Resources\StarType_L.svg" />
+    <None Remove="Resources\StarType_M.svg" />
+    <None Remove="Resources\StarType_Neutron.svg" />
+    <None Remove="Resources\StarType_O.svg" />
+    <None Remove="Resources\StarType_Other.svg" />
+    <None Remove="Resources\StarType_T.svg" />
+    <None Remove="Resources\StarType_TTauri.svg" />
+    <None Remove="Resources\StarType_WhiteDwarf.svg" />
+    <None Remove="Resources\StarType_WolfRayet.svg" />
+    <None Remove="Resources\StarType_Y.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\fa-brands-400.ttf" />
     <EmbeddedResource Include="Fonts\fa-regular-400.ttf" />
     <EmbeddedResource Include="Fonts\fa-solid-900.ttf" />
+    <EmbeddedResource Include="Resources\StarType_A.svg" />
+    <EmbeddedResource Include="Resources\StarType_B.svg" />
+    <EmbeddedResource Include="Resources\StarType_BlackHole.svg" />
+    <EmbeddedResource Include="Resources\StarType_F.svg" />
+    <EmbeddedResource Include="Resources\StarType_G.svg" />
+    <EmbeddedResource Include="Resources\StarType_Herbig.svg" />
+    <EmbeddedResource Include="Resources\StarType_K.svg" />
+    <EmbeddedResource Include="Resources\StarType_L.svg" />
+    <EmbeddedResource Include="Resources\StarType_M.svg" />
+    <EmbeddedResource Include="Resources\StarType_Neutron.svg" />
+    <EmbeddedResource Include="Resources\StarType_O.svg" />
+    <EmbeddedResource Include="Resources\StarType_Other.svg" />
+    <EmbeddedResource Include="Resources\StarType_T.svg" />
+    <EmbeddedResource Include="Resources\StarType_TTauri.svg" />
+    <EmbeddedResource Include="Resources\StarType_WhiteDwarf.svg" />
+    <EmbeddedResource Include="Resources\StarType_WolfRayet.svg" />
+    <EmbeddedResource Include="Resources\StarType_Y.svg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />  
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.3.1.4\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\SystemDetailCarouselPage.xaml.cs">
@@ -43,6 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\AnimatedLabel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\GlyphIconStatAlignLeft.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\GlyphIconStatAlignRight.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="DataTemplates\AcceptedTryResultTemplate.xaml">

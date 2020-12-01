@@ -10,17 +10,6 @@ namespace ChallengeMk2.Views
             InitializeComponent();
         }
 
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            if (BindingContext is StarSystemsViewModel vm)
-            {
-                vm.NavigateTodetailPage = async (starSystem) => await Navigation.PushAsync(new SystemDetailCarouselPage(starSystem));
-            }
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

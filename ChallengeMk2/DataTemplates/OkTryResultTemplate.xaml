@@ -4,6 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.OkTryResultTemplate">
 	
@@ -12,11 +14,68 @@
 					 Spacing="5">
 
 			<BoxView HeightRequest="5" BackgroundColor="Transparent"/>
+
+			<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
+									AnimLabelFontAttributes="Bold"
+									AnimLabelFontSize="15"
+									AnimLabelTextColor="{DynamicResource MainTextColor}"
+									AnimBackgroundColor="{DynamicResource AccentDeepColor}"
+									AnimBackgroundCornerRadius="15"
+									AnimBackgroundWidth="30"
+									AnimBackgroundheight="30"/>
+
+			<!--<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>-->
+
+			<yummy:PancakeView CornerRadius="12" 
+							   Padding="10"
+							   BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
+
+				<yummy:PancakeView.BackgroundGradientStops>
+					<yummy:GradientStopCollection>
+						<yummy:GradientStop Color="{StaticResource CardColor1}" Offset="0" />
+						<yummy:GradientStop Color="{StaticResource CardColor2}" Offset="1" />
+					</yummy:GradientStopCollection>
+				</yummy:PancakeView.BackgroundGradientStops>
+
+				<yummy:PancakeView.Shadow>
+					<yummy:DropShadow Color="#000000" Offset="20,20" BlurRadius="4" Opacity="0.6"/>
+				</yummy:PancakeView.Shadow>
+
+				<StackLayout Orientation="Vertical" Spacing="0">
+					<!--<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
+									AnimLabelFontAttributes="Bold"
+									AnimLabelFontSize="15"
+									AnimLabelTextColor="{DynamicResource MainTextColor}"
+									AnimBackgroundColor="{DynamicResource AccentDeepColor}"
+									AnimBackgroundCornerRadius="15"
+									AnimBackgroundWidth="30"
+									AnimBackgroundheight="30"/>-->
+					
+					<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+
+						<Label Text="{Binding Result, StringFormat=' {0} than '}" TextColor="{DynamicResource MainTextColor}" HorizontalTextAlignment="Center"/>
+						<Label Text="{Binding UserTry}" TextColor="{DynamicResource MainTextColor}"/>
+
+					</StackLayout>
+				</StackLayout>
+			</yummy:PancakeView>
+
+			<!--<BoxView HeightRequest="2" BackgroundColor="{DynamicResource LineColor}"/>-->
+			<!--<BoxView HeightRequest="10" BackgroundColor="Transparent"/>-->
+
+
+		</StackLayout>
+	  
+		<!--OLD TO REMOVE-->
+		<!--<StackLayout Orientation="Vertical"
+					 Spacing="5">
+
+			<BoxView HeightRequest="5" BackgroundColor="Transparent"/>
 			
 			<controls:AnimatedLabel AnimLabelText="{Binding TryNumber}"
 									AnimLabelFontAttributes="Bold"
 									AnimLabelFontSize="15"
-									AnimLabelTextColor="{DynamicResource TextColor}"
+									AnimLabelTextColor="{DynamicResource MainTextColor}"
 									AnimBackgroundColor="{DynamicResource AccentDeepColor}"
 									AnimBackgroundCornerRadius="15"
 									AnimBackgroundWidth="30"
@@ -26,8 +85,8 @@
 
 			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 
-				<Label Text="{Binding Result, StringFormat=' {0} than '}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center"/>
-				<Label Text="{Binding UserTry}" TextColor="{DynamicResource TextColor}"/>
+				<Label Text="{Binding Result, StringFormat=' {0} than '}" TextColor="{DynamicResource MainTextColor}" HorizontalTextAlignment="Center"/>
+				<Label Text="{Binding UserTry}" TextColor="{DynamicResource MainTextColor}"/>
 
 			</StackLayout>
 
@@ -35,6 +94,6 @@
 			<BoxView HeightRequest="10" BackgroundColor="Transparent"/>
 
 
-		</StackLayout>
+		</StackLayout>-->
 	</ContentView.Content>
 </ContentView>

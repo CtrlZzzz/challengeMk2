@@ -6,11 +6,31 @@
             x:Class="ChallengeMk2.Views.MainTabbedPage"
 			android:TabbedPage.ToolbarPlacement="Bottom"
 			NavigationPage.HasNavigationBar="True"
-			BarBackgroundColor="{DynamicResource AccentLightColor}"
+			BarBackgroundColor="Transparent"
 			UnselectedTabColor="{DynamicResource TextForegroundColor}"
-			SelectedTabColor="{DynamicResource AccentDeepColor}"
-			Title="{Binding Title}">
+			SelectedTabColor="{DynamicResource AccentDeepColor}">
+
+	<TabbedPage.Background>
+		<LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+			<GradientStop Color="{StaticResource PageBackgroundColor1}"
+                          Offset="0.0"/>
+			<GradientStop Color="{StaticResource PageBackgroundColor3}"
+                          Offset="1.0"/>
+		</LinearGradientBrush>
+	</TabbedPage.Background>
 	
+	<!--TEST BG-->
+	<!--<TabbedPage.Background>
+		<LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+			<GradientStop Color="{StaticResource AccentDeepColor}"
+                          Offset="0.0"/>
+			<GradientStop Color="{StaticResource PageBackgroundColor3}"
+                          Offset="0.1"/>
+		</LinearGradientBrush>
+	</TabbedPage.Background>-->
+
 	<TabbedPage.Children>
 		<NavigationPage Title="">
 			<x:Arguments>

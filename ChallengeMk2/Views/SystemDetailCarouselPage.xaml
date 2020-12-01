@@ -3,73 +3,213 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:skip="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:slt="clr-namespace:ChallengeMk2.DataSelectors"
-             xmlns:dtp="clr-namespace:ChallengeMk2.DataTemplates"
              xmlns:controls="clr-namespace:ChallengeMk2.Controls"
-             xmlns:vm="clr-namespace:ChallengeMk2.ViewModels"
 			 xmlns:prism="http://prismlibrary.com"
+			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
 			 prism:ViewModelLocator.AutowireViewModel="True"
              mc:Ignorable="skip"
              x:Class="ChallengeMk2.Views.SystemDetailCarouselPage"
-             Title="{Binding Title}">
+			 NavigationPage.HasBackButton="False">
 
+	<StackLayout Orientation="Vertical" Padding="20,0,20,0">
+		<!--BACKBUTTON-->
+		<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
+					 HorizontalOptions="Start" VerticalOptions="Start"
+					 HeightRequest="20"
+					 WidthRequest="20"
+					 Command="{prism:GoBack}">
+			<ImageButton.Source>
+				<FontImageSource Glyph="{StaticResource Back}" FontFamily="fas" Size="20" Color="{DynamicResource MainTextColor}"/>
+			</ImageButton.Source>
+		</ImageButton>
+		<!--CONTENT-->
+		<StackLayout Orientation="Vertical" 
+					 HorizontalOptions="CenterAndExpand"
+					 Spacing="10">
 
-	<ContentPage.Resources>
-		<ResourceDictionary>
-			<!--GENERAL INFO-->
-			<DataTemplate x:Key="GeneralTemplate">
-				<dtp:GeneralDataTemplate/>
-			</DataTemplate>
+			<ffimageloadingsvg:SvgCachedImage HeightRequest="50"
+											  WidthRequest="50"
+											  Source="{Binding CurrentSystem.PrimaryStar.Type, Converter={StaticResource starIconConverter}}"/>
 
-			<!--SYSTEM INFORMATIONS-->
-			<DataTemplate x:Key="SystemTemplate">
-				<dtp:InformationDataTemplate/>
-			</DataTemplate>
-			<DataTemplate x:Key="SystemTemplate2">
-				<dtp:Information2DataTemplate/>
-			</DataTemplate>
+			<Label Text="{Binding CurrentSystem.Name}" TextColor="{DynamicResource MainTextColor}"
+				   FontSize="Large"
+				   HorizontalTextAlignment="Center"/>
 
-			<!--PRIMARY STAR-->
-			<DataTemplate x:Key="PrimaryTemplate">
-				<dtp:PrimaryStarDataTemplate/>
-			</DataTemplate>
+			<yummy:PancakeView CornerRadius="22"
+							   Padding="20"
+							   Margin="0,10,0,40"
+							   HorizontalOptions="Center"
+							   WidthRequest="300"
+							   BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
 
-			<slt:SystemDetailTemplateSelector x:Key="detailTemplateSelector"
-                                              GeneralInfoTemplate="{StaticResource GeneralTemplate}"
-                                              SystemInfoTemplate="{StaticResource SystemTemplate}"
-                                              SystemInfo2Template="{StaticResource SystemTemplate2}"
-                                              PrimaryStarInfoTemplate="{StaticResource PrimaryTemplate}"/>
-		</ResourceDictionary>
-	</ContentPage.Resources>
+				<yummy:PancakeView.BackgroundGradientStops>
+					<yummy:GradientStopCollection>
+						<yummy:GradientStop Color="{StaticResource CardColor1}" Offset="0" />
+						<yummy:GradientStop Color="{StaticResource CardColor2}" Offset="1" />
+					</yummy:GradientStopCollection>
+				</yummy:PancakeView.BackgroundGradientStops>
 
-	<StackLayout BackgroundColor="{DynamicResource PageBackgroundColor}">
+				<yummy:PancakeView.Shadow>
+					<yummy:DropShadow Color="#000000" Offset="20,20" BlurRadius="5" Opacity="0.6"/>
+				</yummy:PancakeView.Shadow>
 
-		<!--BANNER-->
-		<ContentView Padding="0">
-			<Image Source="{Binding CurrentBanner}"/>
-		</ContentView>
+				<ScrollView VerticalScrollBarVisibility="Never">
+					<StackLayout Orientation="Vertical" Spacing="0" Padding="0">
 
-		<StackLayout Padding="10">
-			<!--SYSTEM NAME-->
-			<controls:DualLabel Style="{StaticResource DualTitle}"
-                                TopText="System name"
-                                BottomText="{Binding CurrentSystem.Name}"/>
+						<!--STARTYPE-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Star type"
+														 ValueLabelText="{Binding CurrentSystem.PrimaryStar.Type}"
+														 GlyphIconGlyph="{StaticResource Star}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource StarTypeColor}"
+														 GlyphIconColor="{DynamicResource StarTypeColor}"/>
+						
+						<!--SCOOPABLE STAR-->
+						<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+							<StackLayout Orientation="Vertical">
+								<Label Text="Scoopable star?"
+									   FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource DetailTextColor}"
+									   HorizontalTextAlignment="End"/>
+								<CheckBox IsChecked="{Binding CurrentSystem.PrimaryStar.IsScoopable}"
+										  IsEnabled="False"
+										  HorizontalOptions="End" VerticalOptions="Start" Color="{DynamicResource ScoopableColor}"/>
+							</StackLayout>
+							<Image>
+								<Image.Source>
+									<FontImageSource Glyph="{StaticResource Scoop}" FontFamily="fas" Size="30"
+													 Color="{DynamicResource ScoopableColor}"/>
+								</Image.Source>
+							</Image>
+						</StackLayout>
+						
+						<!--DISTANCE-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Distance from Sol"
+														 ValueLabelText="{Binding CurrentSystem.Distance, StringFormat='{0} ly'}"
+														 GlyphIconGlyph="{StaticResource Rocket}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource DistanceColor}"
+														 GlyphIconColor="{DynamicResource DistanceColor}"/>
 
-			<!--DETAILS INFOS CAROUSEL-->
-			<CarouselView ItemsSource="{Binding SystemInfos}"
-                          EmptyView="No data to display. Check your connection and retry"
-                          IndicatorView="dots"
-                          PositionChangedCommand="{Binding SwitchBannerCommand}"
-                          PositionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=Position}"
-                          ItemTemplate="{StaticResource detailTemplateSelector}">
-			</CarouselView>
+						<!--POPULATION-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Population"
+														  ValueLabelText="{Binding CurrentSystem.Information.Population}"
+														  GlyphIconGlyph="{StaticResource People}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource PopulationColor}"
+														  GlyphIconColor="{DynamicResource PopulationColor}"/>
 
-			<IndicatorView x:Name="dots"
-                       HorizontalOptions="Center"
-                       IndicatorSize="5.0"
-                       IndicatorColor="LightGray"
-                       SelectedIndicatorColor="{DynamicResource AccentDeepColor}"/>
+						<!--PERMIT-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="System permit"
+														 ValueLabelText="{Binding CurrentSystem.PermitName, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Lock}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource PermitColor}"
+														 GlyphIconColor="{DynamicResource PermitColor}"/>
+
+						<!--BODIES-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="System bodies"
+														  ValueLabelText="{Binding CurrentSystem.BodyCount}"
+														  GlyphIconGlyph="{StaticResource Bodies}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource BodiesColor}"
+														  GlyphIconColor="{DynamicResource BodiesColor}"/>
+
+						<!--ALLEGIANCE-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Allegiance"
+														 ValueLabelText="{Binding CurrentSystem.Information.Allegiance, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Hands}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource AllegianceColor}"
+														 GlyphIconColor="{DynamicResource AllegianceColor}"/>
+
+						<!--GOVERNMENT-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Government"
+														  ValueLabelText="{Binding CurrentSystem.Information.Government, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource Government}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource GovernmentColor}"
+														  GlyphIconColor="{DynamicResource GovernmentColor}"/>
+
+						<!--FACTION-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Faction"
+														 ValueLabelText="{Binding CurrentSystem.Information.Faction, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Faction}"
+														 GlyphIconFontFamily="fab"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource FactionColor}"
+														 GlyphIconColor="{DynamicResource FactionColor}"/>
+
+						<!--FACTION STATE-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Faction state"
+														  ValueLabelText="{Binding CurrentSystem.Information.FactionState, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource State}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource FactionStateColor}"
+														  GlyphIconColor="{DynamicResource FactionStateColor}"/>
+
+						<!--ECONOMY-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Economy"
+														 ValueLabelText="{Binding CurrentSystem.Information.Economy, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Economy}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource EconomyColor}"
+														 GlyphIconColor="{DynamicResource EconomyColor}"/>
+
+						<!--SECOND ECONOMY-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Second economy"
+														  ValueLabelText="{Binding CurrentSystem.Information.SecondEconomy, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource Economy2}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource SecondEconomyColor}"
+														  GlyphIconColor="{DynamicResource SecondEconomyColor}"/>
+
+						<!--SECURITY-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Security"
+														 ValueLabelText="{Binding CurrentSystem.Information.Security, Converter={StaticResource nullStringConverter}}"
+														 GlyphIconGlyph="{StaticResource Security}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource SecurityColor}"
+														 GlyphIconColor="{DynamicResource SecurityColor}"/>
+
+						<!--RESERVE-->
+						<controls:GlyphIconStatAlignRight TitleLabelText="Reserve"
+														  ValueLabelText="{Binding CurrentSystem.Information.Reserve, Converter={StaticResource nullStringConverter}}"
+														  GlyphIconGlyph="{StaticResource Parts}"
+														  TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														  ValueLabelTextColor="{DynamicResource ReserveColor}"
+														  GlyphIconColor="{DynamicResource ReserveColor}"/>
+
+						<!--COORDS-->
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Coords X"
+														 ValueLabelText="{Binding CurrentSystem.Coords.X}"
+														 GlyphIconGlyph="{StaticResource Cubes}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource CoordsColor}"
+														 GlyphIconColor="{DynamicResource CoordsColor}"/>
+
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Coords Y"
+														 ValueLabelText="{Binding CurrentSystem.Coords.Y}"
+														 GlyphIconGlyph="{StaticResource Cubes}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource CoordsColor}"
+														 GlyphIconColor="{DynamicResource CoordsColor}"
+														 Margin="0,20,0,0"/>
+
+						<controls:GlyphIconStatAlignLeft TitleLabelText="Coords Z"
+														 ValueLabelText="{Binding CurrentSystem.Coords.Z}"
+														 GlyphIconGlyph="{StaticResource Cubes}"
+														 TitleLabelTextColor="{DynamicResource DetailTextColor}"
+														 ValueLabelTextColor="{DynamicResource CoordsColor}"
+														 GlyphIconColor="{DynamicResource CoordsColor}"
+														 Margin="0,20,0,0"/>
+
+					</StackLayout>
+				</ScrollView>
+
+			</yummy:PancakeView>
+
 		</StackLayout>
-
+		
 	</StackLayout>
 </ContentPage>

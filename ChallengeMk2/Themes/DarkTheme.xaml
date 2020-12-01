@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -6,21 +6,14 @@
              mc:Ignorable="d"
              x:Class="ChallengeMk2.Themes.DarkTheme">
 
-    <!--COLORS REFS-->
-    <Color x:Key="GreyUltraDeep">#2B2A2B</Color>
-    <Color x:Key="GreyMidLight">#C7BECC</Color>
-    <Color x:Key="GreyUltraLight">#E0D5E6</Color>
-    
-    <Color x:Key="OrangeLight">#E18644</Color>
-    <Color x:Key="OrangeDeep">#D45B2B</Color>
 
-    <!--THEME COLORS-->
+    <!--GENERAL COLORS-->
     <Color x:Key="AccentLightColor">#E18644</Color>
-    <Color x:Key="AccentDeepColor">#D45B2B</Color>
+    <Color x:Key="AccentDeepColor">#D45A2B</Color>
 
-    <Color x:Key="PageBackgroundColor">#2B2A2B</Color>
-
-    <Color x:Key="TextColor">#C7BECC</Color>
+	<Color x:Key="MainTextColor">#FFFFFF</Color>
+	<Color x:Key="DetailTextColor">#1A1A1A</Color>
+	<Color x:Key="TextColor">#C7BECC</Color>
     <Color x:Key="TextTitleColor">#E0D5E6</Color>
     <Color x:Key="TextForegroundColor">#FFFFFF</Color>
 
@@ -28,5 +21,32 @@
     <Color x:Key="DisableColor">#F5F5F5</Color>
 
     <Color x:Key="LineColor">#C7BECC</Color>
+
+	<!--BACKGROUNDS COLORS-->
+    <Color x:Key="PageBackgroundColor">#2B2A2B</Color>
+	
+	<Color x:Key="PageBackgroundColor1">#363636</Color>
+	<Color x:Key="PageBackgroundColor2">#2B2B2B</Color>
+	<Color x:Key="PageBackgroundColor3">#1A1A1A</Color>
+
+	<Color x:Key="CardColor1">#51565D</Color>
+	<Color x:Key="CardColor2">#34373C</Color>
+
+	<!--ICONS COLORS-->
+	<Color x:Key="StarTypeColor">#E1951E</Color>
+	<Color x:Key="ScoopableColor">#0090B7</Color>
+	<Color x:Key="DistanceColor">#D45A2B</Color>
+	<Color x:Key="PopulationColor">#43D3E0</Color>
+	<Color x:Key="PermitColor">#875EE7</Color>
+	<Color x:Key="BodiesColor">#A7604D</Color>
+	<Color x:Key="AllegianceColor">#042191</Color>
+	<Color x:Key="GovernmentColor">#C060BA</Color>
+	<Color x:Key="FactionColor">#1A8641</Color>
+	<Color x:Key="FactionStateColor">#6EAE2B</Color>
+	<Color x:Key="EconomyColor">#0F8994</Color>
+	<Color x:Key="SecondEconomyColor">#E18644</Color>
+	<Color x:Key="SecurityColor">#CF2E2E</Color>
+	<Color x:Key="ReserveColor">#DEC221</Color>
+	<Color x:Key="CoordsColor">#C0C0C0</Color>
 
 </ResourceDictionary>

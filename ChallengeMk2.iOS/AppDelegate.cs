@@ -3,6 +3,8 @@ using Foundation;
 using UIKit;
 using Prism;
 using Prism.Ioc;
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 
 namespace ChallengeMk2.iOS
 {
@@ -21,11 +23,12 @@ namespace ChallengeMk2.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            //Active CAROUSELVIEW Preview feature
-            Forms.SetFlags("CollectionView_Experimental");
-
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+
+            //FFImageLoading.Svg.Forms
+            CachedImageRenderer.Init();
+            var ignore = typeof(SvgCachedImage);
+
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

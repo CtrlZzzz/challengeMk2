@@ -3,19 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              mc:Ignorable="d"
              x:Class="ChallengeMk2.DataTemplates.ResetTryResultTemplate">
 	
   <ContentView.Content>
-		<StackLayout Orientation="Vertical"
-					 Spacing="5">
+		<StackLayout>
 
-			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+			<yummy:PancakeView CornerRadius="12" 
+							   Padding="20"
+							   BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
 
-			<Label Text="{Binding Result}" TextColor="{DynamicResource TextColor}" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
+				<yummy:PancakeView.BackgroundGradientStops>
+					<yummy:GradientStopCollection>
+						<yummy:GradientStop Color="{StaticResource CardColor1}" Offset="0" />
+						<yummy:GradientStop Color="{StaticResource CardColor2}" Offset="1" />
+					</yummy:GradientStopCollection>
+				</yummy:PancakeView.BackgroundGradientStops>
 
-			<BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentDeepColor}"/>
+				<yummy:PancakeView.Shadow>
+					<yummy:DropShadow Color="#000000" Offset="20,20" BlurRadius="4" Opacity="0.6"/>
+				</yummy:PancakeView.Shadow>
 
+				<Label Text="{Binding Result}" TextColor="{DynamicResource TextColor}"
+					   HorizontalTextAlignment="Start" HorizontalOptions="CenterAndExpand" FontAttributes="None" FontSize="15"/>
+
+			</yummy:PancakeView>
+			
 		</StackLayout>
 	</ContentView.Content>
 </ContentView>

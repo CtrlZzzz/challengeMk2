@@ -41,22 +41,22 @@ namespace ChallengeMk2.Controls
         public static readonly BindableProperty AnimBackgroundWidthProperty = BindableProperty.Create(
             nameof(AnimBackgroundWidth),
             typeof(int),
-            typeof(PopupLabel),
+            typeof(AnimatedLabel),
             40);
         public static readonly BindableProperty AnimBackgroundheightProperty = BindableProperty.Create(
             nameof(AnimBackgroundheight),
             typeof(int),
-            typeof(PopupLabel),
+            typeof(AnimatedLabel),
             40);
         public static readonly BindableProperty AnimBackgroundCornerRadiusProperty = BindableProperty.Create(
             nameof(AnimBackgroundCornerRadius),
             typeof(int),
-            typeof(PopupLabel),
+            typeof(AnimatedLabel),
             10);
         public static readonly BindableProperty AnimBackgroundColorProperty = BindableProperty.Create(
             nameof(AnimBackgroundColor),
             typeof(Color),
-            typeof(PopupLabel),
+            typeof(AnimatedLabel),
             Color.Yellow);
 
         public string AnimLabelText

@@ -19,15 +19,6 @@ namespace ChallengeMk2.ViewModels
             InitializeViewModel(starSystemService);
         }
 
-        //StarSystem selectedSystem;
-        //public StarSystem SelectedSystem
-        //{
-        //    set
-        //    {
-        //        SetProperty(ref selectedSystem, value);
-        //    }
-        //}
-
         int selectionId;
         public int SelectionId
         {

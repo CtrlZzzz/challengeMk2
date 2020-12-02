@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ChallengeMk2.Views.ChatLoginPage">
+
+	<StackLayout Orientation="Vertical" Spacing="0">
+
+		<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+			<Image>
+				<Image.Source>
+					<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>
+				</Image.Source>
+			</Image>
+			<Label Text="{Binding Title}"
+			       FontSize="Large"
+			       FontAttributes="None"
+			       TextColor="{DynamicResource MainTextColor}"/>
+		</StackLayout>
+
+	</StackLayout>
+
+</ContentPage>

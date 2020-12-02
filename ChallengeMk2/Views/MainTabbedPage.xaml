@@ -44,6 +44,16 @@
 				<FontImageSource Glyph="{StaticResource Dice}" FontFamily="fas"/>
 			</NavigationPage.IconImageSource>
 		</NavigationPage>
+		
+		<NavigationPage Title="">
+			<x:Arguments>
+				<views:ChatLoginPage/>
+			</x:Arguments>
+
+			<NavigationPage.IconImageSource>
+				<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>
+			</NavigationPage.IconImageSource>
+		</NavigationPage>
 
 		<NavigationPage Title="">
 			<x:Arguments>

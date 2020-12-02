@@ -42,6 +42,7 @@ namespace ChallengeMk2
             containerRegistry.RegisterSingleton<IMapperService, SystemDbMapperService>();
             containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();
             containerRegistry.RegisterSingleton<IPuzzleService, PuzzleService>();
+            containerRegistry.RegisterSingleton<IChatService, ChatService>();
         }
     }
 }

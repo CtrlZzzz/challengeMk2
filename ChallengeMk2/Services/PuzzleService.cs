@@ -30,7 +30,7 @@ using var client = new HttpClient();
 
 #endif
 
-            apiResponse = await client.GetAsync(apiRoute);
+            apiResponse = await client.GetAsync(apiRoute).ConfigureAwait(false);
             responseContent = await apiResponse.Content.ReadAsStringAsync();
 
             switch (apiResponse.StatusCode)

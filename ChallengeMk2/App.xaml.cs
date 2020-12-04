@@ -36,6 +36,7 @@ namespace ChallengeMk2
             containerRegistry.RegisterForNavigation<PuzzlePage, PuzzleViewModel>();
             containerRegistry.RegisterForNavigation<AboutPage, AboutViewModel>();
             containerRegistry.RegisterForNavigation<ChatLoginPage, ChatLoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChatMainPage, ChatMainPageViewModel>();
 
             containerRegistry.RegisterSingleton<ILocalDataService, SQLiteDataService>();    
             containerRegistry.RegisterSingleton<IWebDataService, ApiDataService>();

@@ -63,8 +63,11 @@ namespace ChallengeMk2.Services
 
         public async Task ConnectAsync()
         {
-            await Connection.StartAsync();
-            IsConnected = true;
+            if (Connection.State == HubConnectionState.Disconnected)
+            {
+                await Connection.StartAsync();
+                IsConnected = true;
+            }
         }
 
         public async Task DisconnectAsync()

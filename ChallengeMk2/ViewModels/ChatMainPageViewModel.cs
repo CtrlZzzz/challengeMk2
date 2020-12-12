@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.AppModel;
@@ -9,12 +10,11 @@ using Prism.Navigation;
 using ChallengeMk2.Services;
 using ChallengeMk2.Models.ChatModels;
 using Xamarin.Forms;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace ChallengeMk2.ViewModels
 {
-    public class ChatMainPageViewModel : PrismBaseViewModel, IPageLifecycleAware
+    public class ChatMainPageViewModel : PrismBaseViewModel, IPageLifecycleAware, IAutoInitialize
     {
         readonly IChatService chatService;
 
@@ -22,28 +22,42 @@ namespace ChallengeMk2.ViewModels
         {
             Title = "Discussions";
             chatService = chat;
-            PublicMessages = new ObservableCollection<MessageSentForm>();
-            SendPublicMessageCommand = new Command(async () => await SendPublicMessageAsync());
+            Rooms = new ObservableCollection<RoomListObject>();
+            Contacts = new ObservableCollection<Contact>();
+
+            NavigateToPublicChatCommand = new Command(async () => await NavigateToPublicChatAsync());
+            NavigateToAddRoomCommand = new Command(async () => await NavigateToAddRoomAsync());
+            NavigateToRoomCommand = new Command<string>(async (id) => await NavigateToRoomAsync(id));
+            NavigateToAddContactCommand = new Command(async () => await NavigateToAddContactAsync());
+            NavigateToPrivateCommand = new Command<Contact>(async (contact) => await NavigateToPrivateAsync(contact));
         }
 
 
-        string entryPublicMessage;
-        public string EntryPublicMessage
+        ObservableCollection<RoomListObject> rooms;
+        public ObservableCollection<RoomListObject> Rooms
         {
-            get => entryPublicMessage;
-            set => SetProperty(ref entryPublicMessage, value);
+            get { return rooms; }
+            set { SetProperty(ref rooms, value); }
         }
 
-        ObservableCollection<MessageSentForm> publicMessages;
-        public ObservableCollection<MessageSentForm> PublicMessages
+        ObservableCollection<Contact> contacts;
+        public ObservableCollection<Contact> Contacts
         {
-            get { return publicMessages; }
-            set { SetProperty(ref publicMessages, value); }
+            get { return contacts; }
+            set { SetProperty(ref contacts, value); }
         }
 
-        public Command SendPublicMessageCommand { get; set; }
+        public Command NavigateToPublicChatCommand { get; set; }
+        public Command NavigateToAddRoomCommand { get; set; }
+        public Command<string> NavigateToRoomCommand { get; set; }
+        public Command NavigateToAddContactCommand { get; set; }
+        public Command<Contact> NavigateToPrivateCommand { get; set; }
 
-        public void OnAppearing() => InitializeConnection();
+        public void OnAppearing()
+        {
+            InitializeConnection();
+            InitializeViewModel();
+        }
         public void OnDisappearing()
         {
         }
@@ -58,23 +72,56 @@ namespace ChallengeMk2.ViewModels
                 await Task.Delay(random.Next(0, 5) * 1000);
                 await chatService.ConnectAsync();
             };
-
-            chatService.Connection.On<MessageSentForm>("receiveNewPublicMessage", message =>
-            {
-                PublicMessages.Add(message);
-            });
-
-            //// Connect it
-            //if (chatService.Connection.State == HubConnectionState.Disconnected)
-            //{
-            //    await chatService.ConnectAsync();
-            //}
         }
 
-        async Task SendPublicMessageAsync()
+        void InitializeViewModel()
         {
-            await chatService.SendPublicMessageAsync(EntryPublicMessage);
-            EntryPublicMessage = "";
+            var userRooms = chatService.ConnectedUser.Rooms;
+
+            //TODO => move this in a separate mapper service?
+            var mappedData = new List<RoomListObject>();
+            foreach (var item in userRooms)
+            {
+                mappedData.Add(new RoomListObject(item.RoomId, item.RoomName));
+            }
+            Rooms = new ObservableCollection<RoomListObject>(mappedData);
+
+            var userContacts = chatService.ConnectedUser.Contacts;
+            Contacts = new ObservableCollection<Contact>(userContacts);
+        }
+
+        async Task NavigateToPublicChatAsync()
+        {
+            var existingMessages = new ObservableCollection<MessageSentForm>(await chatService.GetAllPublicMessagesAsync());
+            //await chatService.UpdateUserInfoAsync();
+            await NavigationService.NavigateAsync("ChatPublicPage", ("PublicMessages", existingMessages));
+        }
+
+        async Task NavigateToAddRoomAsync()
+        {
+            var existingRooms = new ObservableCollection<RoomListObject>(await chatService.GetAllRoomsAsync());
+            await NavigationService.NavigateAsync("ChatAddRoomPage", ("ExistingRooms", existingRooms));
+        }
+
+        async Task NavigateToRoomAsync(string roomId)
+        {
+            var room = await chatService.GetRoomAsync(roomId);
+            //await chatService.JoinRoomAsync(roomId, room.RoomName);
+            //await chatService.UpdateUserInfoAsync();
+            await NavigationService.NavigateAsync("ChatRoomPage", ("CurrentRoom", room));
+        }
+
+        async Task NavigateToAddContactAsync()
+        {
+            var existingUsers = new ObservableCollection<UserListObject>(await chatService.GetAllUsersAsync());
+            //await chatService.UpdateUserInfoAsync();
+            await NavigationService.NavigateAsync("ChatAddContactPage", ("ExistingUsers", existingUsers));
+        }
+
+        async Task NavigateToPrivateAsync(Contact privateContact)
+        {
+            //await chatService.UpdateUserInfoAsync();
+            await NavigationService.NavigateAsync("ChatPrivatePage", ("CurrentPrivate", privateContact));
         }
     }
 }

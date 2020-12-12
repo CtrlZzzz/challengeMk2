@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ChallengeMk2.Views.ChatLoginPage">
+             x:Class="ChallengeMk2.Views.ChatCreateAccountPage"
+			 NavigationPage.HasBackButton="False">
 
 	<StackLayout Orientation="Vertical" Spacing="0">
 
@@ -21,16 +22,16 @@
 
 		<StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Center"
 					 Padding="40"
-					 Margin="0,40,0,0"
+					 Margin="0,20,0,0"
 					 Spacing="20">
 
-			<Label Text="Sign in with an existing account :"
+			<Label Text="Fill in the form to create a new account :"
 				   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
-				   TextColor="{DynamicResource EconomyColor}"
-				   FontSize="16"/>
+				   TextColor="{DynamicResource ReserveColor}"
+				   FontSize="14"/>
 
 			<Frame HeightRequest="50" CornerRadius="25" BackgroundColor="{DynamicResource MainTextColor}" Padding="15,0,15,0">
-				<Entry Text="{Binding EntryName}" Placeholder="Username"
+				<Entry Text="{Binding EntryUsername}" Placeholder="Username"
 					   ClearButtonVisibility="WhileEditing"
 					   Keyboard="Email"
 					   IsTextPredictionEnabled="False"
@@ -43,42 +44,52 @@
 					   ClearButtonVisibility="WhileEditing"/>
 			</Frame>
 
-			<Label Text="{Binding LoginMessage}"
+			<Frame HeightRequest="50" CornerRadius="25" BackgroundColor="{DynamicResource MainTextColor}" Padding="15,0,15,0">
+				<Entry Text="{Binding EntryFirstName}" Placeholder="First name"
+					   ClearButtonVisibility="WhileEditing"
+					   Keyboard="Email"
+					   IsTextPredictionEnabled="False"
+					   IsSpellCheckEnabled="False"/>
+			</Frame>
+
+			<Frame HeightRequest="50" CornerRadius="25" BackgroundColor="{DynamicResource MainTextColor}" Padding="15,0,15,0">
+				<Entry Text="{Binding EntryLastName}" Placeholder="Last name"
+					   ClearButtonVisibility="WhileEditing"
+					   Keyboard="Email"
+					   IsTextPredictionEnabled="False"
+					   IsSpellCheckEnabled="False"/>
+			</Frame>
+
+			<Label Text="{Binding AlertMessage}"
 				   HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"
 				   Padding="25,0,0,0"
 				   FontAttributes="Italic"
 				   TextColor="{DynamicResource SecurityColor}"/>
-			
+
 			<ActivityIndicator IsRunning="{Binding IsBusy}"
 							   IsVisible="{Binding IsBusy}"
-							   Color="{DynamicResource EconomyColor}"/>
+							   Color="{DynamicResource ReserveColor}"/>
 
-			<Button Text="Sign in"
-					Command="{Binding LoginCommand}"
+			<Button Text="Create account"
+					Command="{Binding CreateAccountCommand}"
 					IsEnabled="{Binding IsActive}"
-					Margin="0,0,0,60"
+					Margin="0,0,0,10"
 					HeightRequest="50"
 					CornerRadius="25"
-					BackgroundColor="{DynamicResource EconomyColor}"
+					BackgroundColor="{DynamicResource ReserveColor}"
 					TextColor="{DynamicResource MainTextColor}"/>
 
-			<Label Text="You do not have an account already ?"
-				   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
-				   TextColor="{DynamicResource CardColor1}"
-				   FontSize="12"
-				   FontAttributes="Italic"/>
-
-			<Button Text="Create one"
-					Command="{Binding NavigateToCreateAccountCommand}"
+			<Button Text="Cancel"
+					Command="{prism:GoBack}"
 					IsEnabled="{Binding IsActive}"
 					FontSize="12"
-					FontAttributes="Bold"
+					FontAttributes="None"
 					HorizontalOptions="Center"
 					Margin="0,-15,0,0"
 					Padding="5"
 					HeightRequest="30"
 					CornerRadius="15"
-					BackgroundColor="{DynamicResource ReserveColor}"
+					BackgroundColor="{DynamicResource SecurityColor}"
 					TextColor="{DynamicResource MainTextColor}"/>
 
 		</StackLayout>

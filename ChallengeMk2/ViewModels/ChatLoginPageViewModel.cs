@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Prism.Commands;
 using Prism.Mvvm;
+using System.Collections.ObjectModel;
 using Prism.Navigation;
 using ChallengeMk2.Services;
+using ChallengeMk2.Models.ChatModels;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Diagnostics;
@@ -20,11 +22,20 @@ namespace ChallengeMk2.ViewModels
             Title = "Discussions";
             LoginMessage = "";
 
+            IsActive = true;
+
             chatService = chat;
 
             LoginCommand = new Command(async () => await TryToLogInAsync());
+            NavigateToCreateAccountCommand = new Command(async () => await NavigateToCreateAccountAsync());
         }
 
+        bool isActive;
+        public bool IsActive
+        {
+            get => isActive;
+            set => SetProperty(ref isActive, value);
+        }
 
         string entryName;
         public string EntryName
@@ -48,23 +59,16 @@ namespace ChallengeMk2.ViewModels
         }
 
         public Command LoginCommand { get; set; }
+        public Command NavigateToCreateAccountCommand { get; set; }
+        
 
 
         async Task TryToLogInAsync()
         {
-            //var loginResult = await chatService.LoginAsync(EntryName, EntryPassword);
-
-            //if (loginResult.IsSuccessful)
-            //{
-            //    await NavigationService.NavigateAsync("ChatMainPage");  //ok but remove go back button
-            //}
-            //else
-            //{
-            //    LoginMessage = loginResult.Message;
-            //}
             try
             {
                 IsBusy = true;
+                IsActive = false;
 
                 var loginResult = await chatService.LoginAsync(EntryName, EntryPassword);
 
@@ -84,7 +88,15 @@ namespace ChallengeMk2.ViewModels
             finally
             {
                 IsBusy = false;
+                IsActive = true;
             }
         }
+
+        async Task NavigateToCreateAccountAsync()
+        {
+            await NavigationService.NavigateAsync("ChatCreateAccountPage");
+        }
+
+        
     }
 }

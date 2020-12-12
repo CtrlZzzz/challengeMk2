@@ -21,6 +21,28 @@ namespace ChallengeMk2.Services
 
         Task DisconnectAsync();
 
+        Task<LoginResult> CreateAccountAsync(string userName, string password, string firstName, string lastName);
+
         Task SendPublicMessageAsync(string message);
+
+        Task<List<MessageSentForm>> GetAllPublicMessagesAsync();
+
+        Task<List<UserListObject>> GetAllUsersAsync();
+
+        Task<List<RoomListObject>> GetAllRoomsAsync();
+
+        Task<User> GetUserAsync(string userId);
+
+        Task UpdateUserInfoAsync();
+
+        Task<Room> GetRoomAsync(string id);
+
+        Task JoinRoomAsync(string roomId, string roomName);
+
+        Task SendRoomMessageAsync(string message, string roomId);
+
+        Task AddContactAsync(string contactId, string contactName);
+
+        Task SendPrivateMessageAsync(string message, string receiverId);
     }
 }

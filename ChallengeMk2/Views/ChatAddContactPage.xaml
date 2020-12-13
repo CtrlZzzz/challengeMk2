@@ -68,6 +68,7 @@
 								   VerticalOptions="Center"
 								   FontSize="14"/>
 							<Button Text="Add it"
+									IsEnabled="{Binding BindingContext.IsActive, Source={x:Reference UserCollection}}"
 									FontSize="12"
 									FontAttributes="None"
 									Padding="0"

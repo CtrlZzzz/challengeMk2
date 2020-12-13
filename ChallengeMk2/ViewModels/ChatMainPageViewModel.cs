@@ -30,6 +30,7 @@ namespace ChallengeMk2.ViewModels
             NavigateToRoomCommand = new Command<string>(async (id) => await NavigateToRoomAsync(id));
             NavigateToAddContactCommand = new Command(async () => await NavigateToAddContactAsync());
             NavigateToPrivateCommand = new Command<Contact>(async (contact) => await NavigateToPrivateAsync(contact));
+            SignOutCommand = new Command(async () => await SignOutAsync());
         }
 
 
@@ -52,6 +53,7 @@ namespace ChallengeMk2.ViewModels
         public Command<string> NavigateToRoomCommand { get; set; }
         public Command NavigateToAddContactCommand { get; set; }
         public Command<Contact> NavigateToPrivateCommand { get; set; }
+        public Command SignOutCommand { get; set; }
 
         public void OnAppearing()
         {
@@ -122,6 +124,12 @@ namespace ChallengeMk2.ViewModels
         {
             //await chatService.UpdateUserInfoAsync();
             await NavigationService.NavigateAsync("ChatPrivatePage", ("CurrentPrivate", privateContact));
+        }
+
+        async Task SignOutAsync()
+        {
+            await chatService.DisconnectAsync();
+            await NavigationService.GoBackAsync();
         }
     }
 }

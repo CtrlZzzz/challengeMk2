@@ -22,11 +22,20 @@ namespace ChallengeMk2.ViewModels
         public ChatAddRoomPageViewModel(INavigationService navigationService, IChatService chat) : base(navigationService)
         {
             Title = "Add new room";
+            IsActive = true;
             chatService = chat;
             SortedRooms = new ObservableCollection<RoomListObject>();
             ExistingRooms = new ObservableCollection<RoomListObject>();
             SearchCommand = new Command(() => Search());
             JoinRoomCommand = new Command<RoomListObject>(async (r) => await JoinRoomAsync(r));
+        }
+
+
+        bool isActive;
+        public bool IsActive
+        {
+            get => isActive;
+            set => SetProperty(ref isActive, value);
         }
 
         string entrySearchMessage;
@@ -110,6 +119,7 @@ namespace ChallengeMk2.ViewModels
             try
             {
                 IsBusy = true;
+                IsActive = false;
 
                 await chatService.JoinRoomAsync(newRoom.Id, newRoom.RoomName);
 
@@ -125,6 +135,7 @@ namespace ChallengeMk2.ViewModels
             finally
             {
                 IsBusy = false;
+                IsActive = true;
             }
         }
     }

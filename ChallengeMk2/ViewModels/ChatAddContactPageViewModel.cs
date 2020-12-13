@@ -22,6 +22,7 @@ namespace ChallengeMk2.ViewModels
         public ChatAddContactPageViewModel(INavigationService navigationService, IChatService chat) : base(navigationService)
         {
             Title = "Add new contact";
+            IsActive = true;
             chatService = chat;
             ExistingUsers = new ObservableCollection<UserListObject>();
             SortedUsers = new ObservableCollection<UserListObject>();
@@ -29,6 +30,13 @@ namespace ChallengeMk2.ViewModels
             AddContactCommand = new Command<UserListObject>(async (u) => await AddContactAsync(u));
         }
 
+
+        bool isActive;
+        public bool IsActive
+        {
+            get => isActive;
+            set => SetProperty(ref isActive, value);
+        }
 
         string entrySearchMessage;
         public string EntrySearchMessage
@@ -113,6 +121,7 @@ namespace ChallengeMk2.ViewModels
             try
             {
                 IsBusy = true;
+                IsActive = false;
 
                 await chatService.AddContactAsync(newContact.Id, newContact.Username);
 
@@ -128,6 +137,7 @@ namespace ChallengeMk2.ViewModels
             finally
             {
                 IsBusy = false;
+                IsActive = true;
             }
         }
     }

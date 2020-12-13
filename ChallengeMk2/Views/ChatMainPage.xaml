@@ -7,8 +7,8 @@
 			 NavigationPage.HasBackButton="False">
 
 	<StackLayout Orientation="Vertical" Spacing="0">
-
-		<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+		<Grid  Padding="20,0,20,0" HeightRequest="60">
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
 			<Image>
 				<Image.Source>
 					<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>
@@ -18,7 +18,19 @@
 			       FontSize="Large"
 			       FontAttributes="None"
 			       TextColor="{DynamicResource MainTextColor}"/>
-		</StackLayout>
+			</StackLayout>
+
+			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
+					 HorizontalOptions="EndAndExpand" VerticalOptions="Start"
+					 HeightRequest="30"
+					 WidthRequest="30"
+					 Command="{Binding SignOutCommand}">
+				<ImageButton.Source>
+					<FontImageSource Glyph="{StaticResource SignOut}" FontFamily="fas" Size="20"
+									 Color="{DynamicResource SecurityColor}"/>
+				</ImageButton.Source>
+			</ImageButton>
+		</Grid>
 
 		<StackLayout Margin="0,40,0,0" Padding="20" Spacing="10">
 			<!--Public chat-->

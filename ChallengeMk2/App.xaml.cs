@@ -5,6 +5,8 @@ using ChallengeMk2.Views;
 using ChallengeMk2.ViewModels;
 using Prism;
 using Prism.Ioc;
+using Microsoft.Identity.Client;
+using ChallengeMk2.MSAL;
 
 [assembly: ExportFont("fa-brands-400.ttf", Alias = "fab")]
 [assembly: ExportFont("fa-solid-900.ttf", Alias = "fas")]
@@ -13,9 +15,14 @@ namespace ChallengeMk2
 {
     public partial class App
     {
+        public static object UIParent { get; set; } = null;
+
+        //IAuthenticationService authenticationService;
+
         public App(IPlatformInitializer initializer)
             : base(initializer)
         {
+            //authenticationService = authService;
         }
 
         protected override async void OnInitialized()
@@ -23,6 +30,9 @@ namespace ChallengeMk2
             InitializeComponent();
 
             Device.SetFlags(new string[] { "CarouselView_Experimental", "Brush_Experimental" });
+
+            //MSAL
+            //authenticationService.InitializeAuthenticationService();
 
             await NavigationService.NavigateAsync("MainTabbedPage?selectedTab=AboutPage");
         }
@@ -43,6 +53,7 @@ namespace ChallengeMk2
             containerRegistry.RegisterForNavigation<ChatAddContactPage, ChatAddContactPageViewModel>();
             containerRegistry.RegisterForNavigation<ChatAddRoomPage, ChatAddRoomPageViewModel>();
             containerRegistry.RegisterForNavigation<ChatCreateAccountPage, ChatCreateAccountPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChatLoginMsalPage, ChatLoginMsalPageViewModel>();
 
             containerRegistry.RegisterSingleton<ILocalDataService, SQLiteDataService>();    
             containerRegistry.RegisterSingleton<IWebDataService, ApiDataService>();
@@ -50,6 +61,7 @@ namespace ChallengeMk2
             containerRegistry.RegisterSingleton<IStarSystemService, StarSystemService>();
             containerRegistry.RegisterSingleton<IPuzzleService, PuzzleService>();
             containerRegistry.RegisterSingleton<IChatService, ChatService>();
+            containerRegistry.RegisterSingleton<IAuthenticationService, Aadb2cMsalService>();
         }
     }
 }

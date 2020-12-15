@@ -47,7 +47,7 @@
 		
 		<NavigationPage Title="">
 			<x:Arguments>
-				<views:ChatLoginPage/>
+				<views:ChatMainPage/>
 			</x:Arguments>
 
 			<NavigationPage.IconImageSource>

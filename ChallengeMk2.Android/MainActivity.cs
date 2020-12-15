@@ -7,6 +7,8 @@ using Prism.Ioc;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
 using Android.Views;
+using Microsoft.Identity.Client;
+using Android.Content;
 
 namespace ChallengeMk2.Droid
 {
@@ -31,7 +33,17 @@ namespace ChallengeMk2.Droid
             var ignore = typeof(SvgCachedImage);
 
             LoadApplication(new App(new AndroidInitializer()));
+
+            //MSAL
+            App.UIParent = this;
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

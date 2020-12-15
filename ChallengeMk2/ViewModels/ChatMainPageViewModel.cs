@@ -8,20 +8,25 @@ using Prism.Mvvm;
 using Prism.AppModel;
 using Prism.Navigation;
 using ChallengeMk2.Services;
+using ChallengeMk2.MSAL;
 using ChallengeMk2.Models.ChatModels;
 using Xamarin.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
+using Prism;
 
 namespace ChallengeMk2.ViewModels
 {
-    public class ChatMainPageViewModel : PrismBaseViewModel, IPageLifecycleAware, IAutoInitialize
+    public class ChatMainPageViewModel : PrismBaseViewModel, IPageLifecycleAware, IAutoInitialize, IActiveAware
     {
         readonly IChatService chatService;
 
-        public ChatMainPageViewModel(INavigationService navigationService, IChatService chat) : base(navigationService)
+        readonly IAuthenticationService authenticationService;
+
+        public ChatMainPageViewModel(INavigationService navigationService, IChatService chat, IAuthenticationService authService) : base(navigationService)
         {
             Title = "Discussions";
             chatService = chat;
+            authenticationService = authService;
             Rooms = new ObservableCollection<RoomListObject>();
             Contacts = new ObservableCollection<Contact>();
 
@@ -33,6 +38,14 @@ namespace ChallengeMk2.ViewModels
             SignOutCommand = new Command(async () => await SignOutAsync());
         }
 
+        public event EventHandler IsActiveChanged;
+
+        bool isActive;
+        public bool IsActive
+        {
+            get { return isActive; }
+            set { SetProperty(ref isActive, value, () => IsActiveChanged?.Invoke(this, EventArgs.Empty)); }
+        }
 
         ObservableCollection<RoomListObject> rooms;
         public ObservableCollection<RoomListObject> Rooms
@@ -55,13 +68,25 @@ namespace ChallengeMk2.ViewModels
         public Command<Contact> NavigateToPrivateCommand { get; set; }
         public Command SignOutCommand { get; set; }
 
+        void OnIsActiveChanged(object sender, EventArgs e)
+        {
+            if (IsActive)
+            {
+                authenticationService.AutoSignIn();
+            }
+        }
+
         public void OnAppearing()
         {
-            InitializeConnection();
-            InitializeViewModel();
+            //InitializeConnection();
+            //InitializeViewModel();
+
+            IsActiveChanged += OnIsActiveChanged;
         }
+
         public void OnDisappearing()
         {
+            IsActiveChanged -= OnIsActiveChanged;
         }
 
         void InitializeConnection()
@@ -95,7 +120,6 @@ namespace ChallengeMk2.ViewModels
         async Task NavigateToPublicChatAsync()
         {
             var existingMessages = new ObservableCollection<MessageSentForm>(await chatService.GetAllPublicMessagesAsync());
-            //await chatService.UpdateUserInfoAsync();
             await NavigationService.NavigateAsync("ChatPublicPage", ("PublicMessages", existingMessages));
         }
 
@@ -108,21 +132,17 @@ namespace ChallengeMk2.ViewModels
         async Task NavigateToRoomAsync(string roomId)
         {
             var room = await chatService.GetRoomAsync(roomId);
-            //await chatService.JoinRoomAsync(roomId, room.RoomName);
-            //await chatService.UpdateUserInfoAsync();
             await NavigationService.NavigateAsync("ChatRoomPage", ("CurrentRoom", room));
         }
 
         async Task NavigateToAddContactAsync()
         {
             var existingUsers = new ObservableCollection<UserListObject>(await chatService.GetAllUsersAsync());
-            //await chatService.UpdateUserInfoAsync();
             await NavigationService.NavigateAsync("ChatAddContactPage", ("ExistingUsers", existingUsers));
         }
 
         async Task NavigateToPrivateAsync(Contact privateContact)
         {
-            //await chatService.UpdateUserInfoAsync();
             await NavigationService.NavigateAsync("ChatPrivatePage", ("CurrentPrivate", privateContact));
         }
 
@@ -131,5 +151,6 @@ namespace ChallengeMk2.ViewModels
             await chatService.DisconnectAsync();
             await NavigationService.GoBackAsync();
         }
+
     }
 }

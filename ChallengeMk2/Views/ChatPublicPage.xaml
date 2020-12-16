@@ -33,17 +33,17 @@
 		</Grid>
 
 		<!--CONTENT-->
-		<StackLayout Margin="0,40,0,0" Padding="20" Spacing="10">
+		<StackLayout Margin="0,5,0,0" Padding="20" Spacing="20">
 
 			<CollectionView ItemsSource="{Binding PublicMessages}"
 							ItemsUpdatingScrollMode="KeepLastItemInView"
 							x:Name="MessageCollection">
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
-						<StackLayout Margin="0,0,0,15">
+						<StackLayout Margin="0,10,0,0" Spacing="1">
 							<Label Text="{Binding SenderName, StringFormat='{0} says :'}"
 								   TextColor="{DynamicResource FactionStateColor}"
-								   FontSize="Small"
+								   FontSize="9"
 								   FontAttributes="Italic"/>
 							<Label Text="{Binding Content}"
 								   TextColor="{DynamicResource MainTextColor}"/>

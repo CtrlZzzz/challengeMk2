@@ -46,8 +46,11 @@
 		</NavigationPage>
 		
 		<NavigationPage Title="">
-			<x:Arguments>
+			<!--<x:Arguments>
 				<views:ChatMainPage/>
+			</x:Arguments>-->
+			<x:Arguments>
+				<views:ChatLoginPage/>
 			</x:Arguments>
 
 			<NavigationPage.IconImageSource>

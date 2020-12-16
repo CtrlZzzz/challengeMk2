@@ -37,6 +37,8 @@ namespace ChallengeMk2.Services
 
         Task<Room> GetRoomAsync(string id);
 
+        Task<LoginResult> CreateNewRoomAsync(string roomName);
+
         Task JoinRoomAsync(string roomId, string roomName);
 
         Task SendRoomMessageAsync(string message, string roomId);

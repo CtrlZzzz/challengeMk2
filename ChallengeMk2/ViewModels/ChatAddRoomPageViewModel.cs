@@ -21,13 +21,14 @@ namespace ChallengeMk2.ViewModels
 
         public ChatAddRoomPageViewModel(INavigationService navigationService, IChatService chat) : base(navigationService)
         {
-            Title = "Add new room";
+            Title = "Join new room";
             IsActive = true;
             chatService = chat;
             SortedRooms = new ObservableCollection<RoomListObject>();
             ExistingRooms = new ObservableCollection<RoomListObject>();
             SearchCommand = new Command(() => Search());
             JoinRoomCommand = new Command<RoomListObject>(async (r) => await JoinRoomAsync(r));
+            CreateNewRoomCommand = new Command(async () => await CreateNewRoomAsync());
         }
 
 
@@ -43,6 +44,20 @@ namespace ChallengeMk2.ViewModels
         {
             get => entrySearchMessage;
             set => SetProperty(ref entrySearchMessage, value);
+        }
+
+        string entryNewRoomMessage;
+        public string EntryNewRoomMessage
+        {
+            get => entryNewRoomMessage;
+            set => SetProperty(ref entryNewRoomMessage, value);
+        }
+
+        string alertMessage;
+        public string AlertMessage
+        {
+            get => alertMessage;
+            set => SetProperty(ref alertMessage, value);
         }
 
         ObservableCollection<RoomListObject> existingRooms;
@@ -61,6 +76,7 @@ namespace ChallengeMk2.ViewModels
 
         public Command SearchCommand { get; set; }
         public Command<RoomListObject> JoinRoomCommand { get; set; }
+        public Command CreateNewRoomCommand { get; set; }
 
         public void OnAppearing() => InitializeViewModel();
 
@@ -127,6 +143,31 @@ namespace ChallengeMk2.ViewModels
 
                 var searchedRooms = existingRooms.Where(u => u.RoomName.ToLower().StartsWith(EntrySearchMessage.ToLower()));
                 SortedRooms = new ObservableCollection<RoomListObject>(searchedRooms);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+                IsActive = true;
+            }
+        }
+
+        async Task CreateNewRoomAsync()
+        {
+            try
+            {
+                IsBusy = true;
+                IsActive = false;
+
+                var creationResult = await chatService.CreateNewRoomAsync(EntryNewRoomMessage);
+
+                if (!creationResult.IsSuccessful)
+                {
+                    AlertMessage = creationResult.Message;
+                }
             }
             catch (Exception ex)
             {

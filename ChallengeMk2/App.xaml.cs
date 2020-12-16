@@ -22,7 +22,6 @@ namespace ChallengeMk2
         public App(IPlatformInitializer initializer)
             : base(initializer)
         {
-            //authenticationService = authService;
         }
 
         protected override async void OnInitialized()

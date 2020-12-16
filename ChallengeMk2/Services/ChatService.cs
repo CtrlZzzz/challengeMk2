@@ -20,17 +20,13 @@ namespace ChallengeMk2.Services
         const string PublicChatRoute = "/api/chat/public";
         const string SendPublicChatRoute = "/api/chat/public/send";
         const string RoomChatRoute = "/api/chat/room/";
+        const string NewRoomRoute = "/api/chat/room/new";
         const string PrivateChatRoute = "/api/chat/private/";
 
         public HubConnection Connection { get; set; }
+
         public bool IsConnected { get; set; }
 
-        //User connectedUser;
-        //public User ConnectedUser
-        //{
-        //    get => await GetUserAsync(connectedUser.Id);
-        //    set { connectedUser = value; }
-        //}
         public User ConnectedUser { get; set; }
 
 
@@ -202,6 +198,41 @@ namespace ChallengeMk2.Services
             var responseData = JsonConvert.DeserializeObject<Room>(response);
 
             return responseData;
+        }
+
+        public async Task<LoginResult> CreateNewRoomAsync(string roomName)
+        {
+            LoginResult result;
+
+            var url = ChatRootUrl + NewRoomRoute;
+
+            using var client = new HttpClient();
+            using var request = new HttpRequestMessage(HttpMethod.Post, url);
+
+            var content = new NewRoomForm(roomName);
+            var jsonContent = JsonConvert.SerializeObject(content);
+            using var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            request.Content = stringContent;
+            using var response = await client.SendAsync(request).ConfigureAwait(false);
+            var responseData = await response.Content.ReadAsStringAsync();
+
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var newRoom = JsonConvert.DeserializeObject<Room>(responseData);
+
+                result = new LoginResult(true, "New room is created successfuly");
+
+                await JoinRoomAsync(newRoom.Id, newRoom.RoomName);
+            }
+            else
+            {
+                result = response.StatusCode == HttpStatusCode.BadRequest
+                    ? new LoginResult(false, "Room already exists")
+                    : new LoginResult(false, "Internal server error");
+            }
+
+            return result;
         }
 
         public async Task JoinRoomAsync(string roomId, string roomName)

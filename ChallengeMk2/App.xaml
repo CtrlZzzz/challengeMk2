@@ -13,6 +13,7 @@
 		<!--CONVERTER-->
 		<cvt:NullStringConverter x:Key="nullStringConverter"/>
 		<cvt:StarTypeIconConverter x:Key="starIconConverter"/>
+		<cvt:FirstCharConverter x:Key="firstCharConverter"/>
 
 		<!--DEFAULT THEME-->
 		<ResourceDictionary>

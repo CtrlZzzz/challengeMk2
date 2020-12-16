@@ -36,13 +36,16 @@
 			<!--Public chat-->
 			<StackLayout Orientation="Horizontal">
 				<Button Text="P"
-					BackgroundColor="{DynamicResource FactionStateColor}"
-					BorderColor="Transparent"
-					HorizontalOptions="Start" VerticalOptions="Center"
-					HeightRequest="50"
-					WidthRequest="50"
-					CornerRadius="25"
-					Command="{Binding NavigateToPublicChatCommand}"/>
+						FontSize="16"
+						FontAttributes="Bold"
+						TextColor="{DynamicResource EconomyColor}"
+						BackgroundColor="{DynamicResource FactionStateColor}"
+						BorderColor="Transparent"
+						HorizontalOptions="Start" VerticalOptions="Center"
+						HeightRequest="50"
+						WidthRequest="50"
+						CornerRadius="25"
+						Command="{Binding NavigateToPublicChatCommand}"/>
 				<Label Text="Public chat" TextColor="{DynamicResource MainTextColor}"
 					   HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
 			</StackLayout>
@@ -76,8 +79,10 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Padding="0,0,10,0">
-							<Button Text="{Binding RoomName}"
-									FontSize="8"
+							<Button Text="{Binding RoomName, Converter={StaticResource firstCharConverter}}"
+									FontSize="16"
+									FontAttributes="Bold"
+									TextColor="{DynamicResource MainTextColor}"
 									BackgroundColor="{DynamicResource StarTypeColor}"
 									BorderColor="Transparent"
 									HorizontalOptions="Center" VerticalOptions="Center"
@@ -124,8 +129,10 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Padding="0,0,10,0">
-							<Button Text="{Binding ContactName}"
-									FontSize="8"
+							<Button Text="{Binding ContactName, Converter={StaticResource firstCharConverter}}"
+									FontSize="16"
+									FontAttributes="Bold"
+									TextColor="{DynamicResource MainTextColor}"
 									BackgroundColor="{DynamicResource GovernmentColor}"
 									BorderColor="Transparent"
 									HorizontalOptions="Center" VerticalOptions="Center"

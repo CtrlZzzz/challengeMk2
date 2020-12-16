@@ -7,7 +7,7 @@
 			 NavigationPage.HasBackButton="False">
 
 	<StackLayout Orientation="Vertical" Spacing="0">
-		<Grid  Padding="20,0,20,0" HeightRequest="60">
+		<Grid  Padding="20,0,20,0" HeightRequest="70">
 			<!--BACKBUTTON-->
 			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
 						 HorizontalOptions="Start" VerticalOptions="Start"
@@ -33,7 +33,7 @@
 		</Grid>
 
 		<!--CONTENT-->
-		<StackLayout Margin="0,40,0,0" Padding="20" Spacing="10">
+		<StackLayout Margin="0,20,0,0" Padding="20" Spacing="10">
 
 			<Label Text="Search for an existing room :" FontSize="Small" TextColor="{DynamicResource MainTextColor}"/>
 			<Frame HeightRequest="50" CornerRadius="25" BackgroundColor="{DynamicResource MainTextColor}"
@@ -54,8 +54,10 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Orientation="Horizontal" Margin=" 0,0,0,10" Padding="25,0,25,0" Spacing="10">
-							<Button Text="{Binding RoomName}"
-									FontSize="8"
+							<Button Text="{Binding RoomName, Converter={StaticResource firstCharConverter}}"
+									FontSize="16"
+									FontAttributes="Bold"
+									TextColor="{DynamicResource MainTextColor}"
 									BackgroundColor="{DynamicResource StarTypeColor}"
 									BorderColor="Transparent"
 									HorizontalOptions="Start" VerticalOptions="Center"
@@ -67,7 +69,7 @@
 								   HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"
 								   VerticalOptions="Center"
 								   FontSize="14"/>
-							<Button Text="Add it"
+							<Button Text="Join it"
 									IsEnabled="{Binding BindingContext.IsActive, Source={x:Reference RoomCollection}}"
 									FontSize="12"
 									FontAttributes="None"
@@ -86,6 +88,33 @@
 				</CollectionView.ItemTemplate>
 			</CollectionView>
 
+
+			<Label Text="Or create a new one :" FontSize="Small" TextColor="{DynamicResource MainTextColor}"/>
+			<Frame HeightRequest="50" CornerRadius="25" BackgroundColor="{DynamicResource MainTextColor}"
+				   Padding="15,0,15,0" Margin="0,0,0,10">
+				<Entry Text="{Binding EntryNewRoomMessage}" Placeholder="Enter new room name"
+					   ClearButtonVisibility="WhileEditing"
+					   Keyboard="Email"
+					   IsTextPredictionEnabled="False"
+					   IsSpellCheckEnabled="False"/>
+			</Frame>
+			<Label Text="{Binding AlertMessage}"
+				   HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Center"
+				   Padding="25,0,0,0"
+				   FontAttributes="Italic"
+				   TextColor="{DynamicResource SecurityColor}"/>
+			<Button Text="Create room"
+					Command="{Binding CreateNewRoomCommand}"
+					IsEnabled="{Binding IsActive}"
+					FontSize="12"
+					FontAttributes="Bold"
+					HorizontalOptions="Center"
+					Margin="0,-15,0,0"
+					Padding="5"
+					HeightRequest="30"
+					CornerRadius="15"
+					BackgroundColor="{DynamicResource StarTypeColor}"
+					TextColor="{DynamicResource MainTextColor}"/>
 			<BoxView BackgroundColor="Transparent" HeightRequest="20"/>
 
 		</StackLayout>

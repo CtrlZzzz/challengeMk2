@@ -54,8 +54,10 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Orientation="Horizontal" Margin=" 0,0,0,10" Padding="25,0,25,0" Spacing="10">
-							<Button Text="{Binding Username}"
-									FontSize="8"
+							<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
+									FontSize="16"
+									FontAttributes="Bold"
+									TextColor="{DynamicResource MainTextColor}"
 									BackgroundColor="{DynamicResource GovernmentColor}"
 									BorderColor="Transparent"
 									HorizontalOptions="Start" VerticalOptions="Center"

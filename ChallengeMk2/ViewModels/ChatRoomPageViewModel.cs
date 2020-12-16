@@ -23,6 +23,7 @@ namespace ChallengeMk2.ViewModels
             Title = "Discussions";
             chatService = chat;
             RoomMessages = new ObservableCollection<MessageSentForm>();
+            RoomUsers = new ObservableCollection<UserInRoomObject>();
             SendRoomMessageCommand = new Command(async () => await SendRoomMessageAsync());
         }
 
@@ -45,6 +46,13 @@ namespace ChallengeMk2.ViewModels
         {
             get { return roomMessages; }
             set { SetProperty(ref roomMessages, value); }
+        }
+
+        ObservableCollection<UserInRoomObject> roomUsers;
+        public ObservableCollection<UserInRoomObject> RoomUsers
+        {
+            get { return roomUsers; }
+            set { SetProperty(ref roomUsers, value); }
         }
 
         public CollectionView CollectionToScroll { get; set; }
@@ -83,6 +91,8 @@ namespace ChallengeMk2.ViewModels
             }
 
             RoomMessages = new ObservableCollection<MessageSentForm>(mappedData);
+
+            RoomUsers = new ObservableCollection<UserInRoomObject>(currentRoom.RoomUsers);
 
             if (roomMessages.Count != 0)
             {

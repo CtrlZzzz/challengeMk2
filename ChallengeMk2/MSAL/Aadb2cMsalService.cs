@@ -17,7 +17,7 @@ namespace ChallengeMk2.MSAL
 
         public Aadb2cMsalService()
         {
-            InitializeAuthenticationService();
+            //InitializeAuthenticationService();
         }
 
 

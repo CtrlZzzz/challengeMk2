@@ -83,21 +83,7 @@
 									Command="{Binding BindingContext.AddContactCommand, Source={x:Reference UserCollection}}"
 									CommandParameter="{Binding .}"/>
 						</StackLayout>
-						<!--<StackLayout Padding="0,0,10,0">
-							<Button Text="{Binding Username}"
-									FontSize="8"
-									BackgroundColor="{DynamicResource GovernmentColor}"
-									BorderColor="Transparent"
-									HorizontalOptions="Start" VerticalOptions="Center"
-									HeightRequest="50"
-									WidthRequest="50"
-									CornerRadius="25"/>
-							<Label Text="{Binding Username}"
-								   TextColor="{DynamicResource MainTextColor}"
-								   HorizontalOptions="Start"
-								   HorizontalTextAlignment="Center"
-								   FontSize="10"/>
-						</StackLayout>-->
+						
 					</DataTemplate>
 				</CollectionView.ItemTemplate>
 			</CollectionView>

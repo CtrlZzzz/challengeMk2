@@ -29,10 +29,10 @@
 		</StackLayout>
 
 		<RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding DisplaySystemDataCommand}" RefreshColor="{DynamicResource AccentDeepColor}"
-					 Margin="0,40,0,40"
+					 Margin="0,40,0,80"
 					 Padding="20,0,20,0">
 
-			<CollectionView ItemsSource="{Binding Systems}" 
+			<CollectionView ItemsSource="{Binding SortedSystems}" 
                             SelectionMode="None"
                             x:Name="SystemCollection">
 
@@ -113,6 +113,15 @@
 			</CollectionView>
 
 		</RefreshView>
+
+		<Frame HeightRequest="50" CornerRadius="25" BackgroundColor="{DynamicResource MainTextColor}"
+				   Padding="15,0,15,0" Margin="20,0,20,40">
+			<SearchBar Text="{Binding EntrySearchMessage}" Placeholder="Filter systems here">
+				<SearchBar.Behaviors>
+					<prism:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchCommand}"/>
+				</SearchBar.Behaviors>
+			</SearchBar>
+		</Frame>
 
 	</StackLayout>
 

@@ -24,6 +24,7 @@
 		</ResourceDictionary>
 
 		<!--FONT ICONS-->
+		<x:String x:Key="User">&#xf2bd;</x:String>
 		<x:String x:Key="SignOut">&#xf2f5;</x:String>
 		<x:String x:Key="Back">&#xf053;</x:String>
 		<x:String x:Key="Planet">&#xf0ac;</x:String>

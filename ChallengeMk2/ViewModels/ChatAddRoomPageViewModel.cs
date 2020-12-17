@@ -22,7 +22,7 @@ namespace ChallengeMk2.ViewModels
         public ChatAddRoomPageViewModel(INavigationService navigationService, IChatService chat) : base(navigationService)
         {
             Title = "Join new room";
-            IsActive = true;
+            IsButtonActive = true;
             chatService = chat;
             SortedRooms = new ObservableCollection<RoomListObject>();
             ExistingRooms = new ObservableCollection<RoomListObject>();
@@ -32,12 +32,14 @@ namespace ChallengeMk2.ViewModels
         }
 
 
-        bool isActive;
-        public bool IsActive
+        bool isButtonActive;
+        public bool IsButtonActive
         {
-            get => isActive;
-            set => SetProperty(ref isActive, value);
+            get => isButtonActive;
+            set => SetProperty(ref isButtonActive, value);
         }
+
+        bool isAddRoomButtonActive;
 
         string entrySearchMessage;
         public string EntrySearchMessage
@@ -135,7 +137,7 @@ namespace ChallengeMk2.ViewModels
             try
             {
                 IsBusy = true;
-                IsActive = false;
+                IsButtonActive = false;
 
                 await chatService.JoinRoomAsync(newRoom.Id, newRoom.RoomName);
 
@@ -151,16 +153,21 @@ namespace ChallengeMk2.ViewModels
             finally
             {
                 IsBusy = false;
-                IsActive = true;
+                IsButtonActive = true;
             }
         }
 
         async Task CreateNewRoomAsync()
         {
+            if (string.IsNullOrEmpty(EntryNewRoomMessage) || string.IsNullOrWhiteSpace(EntryNewRoomMessage))
+            {
+                return;
+            }
+
             try
             {
                 IsBusy = true;
-                IsActive = false;
+                IsButtonActive = false;
 
                 var creationResult = await chatService.CreateNewRoomAsync(EntryNewRoomMessage);
 
@@ -176,7 +183,7 @@ namespace ChallengeMk2.ViewModels
             finally
             {
                 IsBusy = false;
-                IsActive = true;
+                IsButtonActive = true;
             }
         }
     }

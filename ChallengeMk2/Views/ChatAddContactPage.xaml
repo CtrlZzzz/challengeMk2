@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ChallengeMk2.Views.ChatAddContactPage"
@@ -54,7 +55,7 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Orientation="Horizontal" Margin=" 0,0,0,10" Padding="25,0,25,0" Spacing="10">
-							<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
+							<!--<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
 									FontSize="16"
 									FontAttributes="Bold"
 									TextColor="{DynamicResource MainTextColor}"
@@ -63,7 +64,15 @@
 									HorizontalOptions="Start" VerticalOptions="Center"
 									HeightRequest="50"
 									WidthRequest="50"
-									CornerRadius="25"/>
+									CornerRadius="25"/>-->
+							<controls:UserPortrait >
+								<controls:UserPortrait.PortraitStrokeColor>
+									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
+								</controls:UserPortrait.PortraitStrokeColor>
+								<controls:UserPortrait.PortraitFillColor>
+									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
+								</controls:UserPortrait.PortraitFillColor>
+							</controls:UserPortrait>
 							<Label Text="{Binding Username}"
 								   TextColor="{DynamicResource MainTextColor}"
 								   HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"

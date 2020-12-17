@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ChallengeMk2.Views.ChatRoomPage"
 			 NavigationPage.HasBackButton="False">
@@ -44,7 +45,7 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Padding="0,0,10,0">
-							<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
+							<!--<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
 									FontSize="16"
 									FontAttributes="Bold"
 									TextColor="{DynamicResource MainTextColor}"
@@ -53,7 +54,15 @@
 									HorizontalOptions="Center" VerticalOptions="Center"
 									HeightRequest="50"
 									WidthRequest="50"
-									CornerRadius="25"/>
+									CornerRadius="25"/>-->
+							<controls:UserPortrait >
+								<controls:UserPortrait.PortraitStrokeColor>
+									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
+								</controls:UserPortrait.PortraitStrokeColor>
+								<controls:UserPortrait.PortraitFillColor>
+									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
+								</controls:UserPortrait.PortraitFillColor>
+							</controls:UserPortrait>
 							<Label Text="{Binding Username}"
 								   TextColor="{DynamicResource MainTextColor}"
 								   HorizontalTextAlignment="Center"
@@ -63,7 +72,7 @@
 				</CollectionView.ItemTemplate>
 			</CollectionView>
 			<BoxView HeightRequest="1" Margin="20,0,20,10"
-					 BackgroundColor="{DynamicResource MainTextColor}"/>
+					 BackgroundColor="{DynamicResource CardColor1}"/>
 			<!--Room messages-->
 			<CollectionView ItemsSource="{Binding RoomMessages}"
 							ItemsUpdatingScrollMode="KeepLastItemInView"

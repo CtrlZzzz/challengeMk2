@@ -8,13 +8,13 @@
 			 NavigationPage.HasBackButton="False">
 
 	<StackLayout Orientation="Vertical" Spacing="10">
-		<Grid  Padding="20,0,20,0" HeightRequest="60">
+		<Grid  Padding="20,0,20,0" HeightRequest="70">
 			<!--BACKBUTTON-->
 			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
-					 HorizontalOptions="Start" VerticalOptions="Start"
-					 HeightRequest="20"
-					 WidthRequest="20"
-					 Command="{prism:GoBack}">
+						 HorizontalOptions="Start" VerticalOptions="Start"
+						 HeightRequest="20"
+						 WidthRequest="20"
+						 Command="{prism:GoBack}">
 				<ImageButton.Source>
 					<FontImageSource Glyph="{StaticResource Back}" FontFamily="fas" Size="20" Color="{DynamicResource MainTextColor}"/>
 				</ImageButton.Source>
@@ -27,10 +27,21 @@
 					</Image.Source>
 				</Image>
 				<Label Text="{Binding Title}"
-			       FontSize="Large"
-			       FontAttributes="None"
-			       TextColor="{DynamicResource MainTextColor}"/>
+					   FontSize="Large"
+					   FontAttributes="None"
+					   TextColor="{DynamicResource MainTextColor}"/>
 			</StackLayout>
+
+			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
+						 HorizontalOptions="End" VerticalOptions="Start"
+						 HeightRequest="30"
+						 WidthRequest="30"
+						 Command="{Binding QuitRoomCommand}">
+				<ImageButton.Source>
+					<FontImageSource Glyph="{StaticResource Quit}" FontFamily="fas" Size="20"
+									 Color="{DynamicResource SecurityColor}"/>
+				</ImageButton.Source>
+			</ImageButton>
 		</Grid>
 
 		<!--CONTENT-->

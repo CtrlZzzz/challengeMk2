@@ -82,6 +82,16 @@ namespace ChallengeMk2.ViewModels
             InitializeViewModel();
 
             //IsActiveChanged += OnIsActiveChanged;
+
+            //DEBUG
+            var myName = "Charlotte";
+            var hash = myName.GetHashCode();
+            var r = (hash & 0xFF0000) >> 16;
+            var g = (hash & 0x00FF00) >> 8;
+            var b = hash & 0x0000FF;
+
+            var myColor = Color.FromRgb(r, g, b);
+            var myHex = $"#{r:X2}{g:X2}{b:X2}";
         }
 
         public void OnDisappearing()

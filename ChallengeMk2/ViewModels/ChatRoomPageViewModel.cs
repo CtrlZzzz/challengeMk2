@@ -11,6 +11,7 @@ using ChallengeMk2.Services;
 using ChallengeMk2.Models.ChatModels;
 using Xamarin.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Diagnostics;
 
 namespace ChallengeMk2.ViewModels
 {
@@ -25,6 +26,7 @@ namespace ChallengeMk2.ViewModels
             RoomMessages = new ObservableCollection<MessageSentForm>();
             RoomUsers = new ObservableCollection<UserInRoomObject>();
             SendRoomMessageCommand = new Command(async () => await SendRoomMessageAsync());
+            QuitRoomCommand = new Command(async () => await QuitRoomAsync());
         }
 
         Room currentRoom;
@@ -58,6 +60,7 @@ namespace ChallengeMk2.ViewModels
         public CollectionView CollectionToScroll { get; set; }
 
         public Command SendRoomMessageCommand { get; set; }
+        public Command QuitRoomCommand { get; set; }
 
 
 
@@ -72,11 +75,27 @@ namespace ChallengeMk2.ViewModels
 
         void InitializeConnection()
         {
-            chatService.Connection.On<MessageSentForm>("receiveNewRoomMessage", message =>
+            chatService.Connection.On<MessageSentForm, string>("receiveNewRoomMessage", (message, roomId) =>
             {
-                //TODO => check if incoming message is in the current room. if not, do not display it!
-                RoomMessages.Add(message);
+                if (roomId == currentRoom.Id)
+                {
+                    RoomMessages.Add(message);
+                }
             });
+
+            //chatService.Connection.On<string, string>("newJoinRoom", (connectionId, userId) =>
+            //{
+                 
+            //});
+
+            //chatService.Connection.On<string, string>("newQuitRoom", (connectionId, userId) =>
+            //{
+            //    var userToRemove = RoomUsers.SingleOrDefault(u => u.UserId == userId);
+            //    if (userToRemove != null)
+            //    {
+            //        RoomUsers.Remove(itemToRemove);
+            //    }
+            //});
         }
 
         void InitializeViewModel()
@@ -104,6 +123,25 @@ namespace ChallengeMk2.ViewModels
         {
             await chatService.SendRoomMessageAsync(EntryRoomMessage, currentRoom.Id);
             EntryRoomMessage = "";
+        }
+
+        async Task QuitRoomAsync()
+        {
+            try
+            {
+                IsBusy = true;
+
+                await chatService.QuitRoomAsync(currentRoom.Id);
+                await NavigationService.GoBackAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

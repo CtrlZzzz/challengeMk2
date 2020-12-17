@@ -254,6 +254,24 @@ namespace ChallengeMk2.Services
             await UpdateUserInfoAsync();
         }
 
+        public async Task QuitRoomAsync(string roomId)
+        {
+            var url = ChatRootUrl + RoomChatRoute + roomId + "/" + ConnectedUser.Id + "/quit";
+
+            using var client = new HttpClient();
+            using var request = new HttpRequestMessage(HttpMethod.Post, url);
+
+            //var content = new JoinRoomForm(roomName, ConnectedUser.Id, ConnectedUser.Username);
+            //var jsonContent = JsonConvert.SerializeObject(content);
+            //using var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            //request.Content = stringContent;
+            using var response = await client.SendAsync(request).ConfigureAwait(false);
+            var debug = await response.Content.ReadAsStringAsync();
+
+            await UpdateUserInfoAsync();
+        }
+
         public async Task SendRoomMessageAsync(string message, string roomId)
         {
             var url = ChatRootUrl + RoomChatRoute + roomId + "/send";

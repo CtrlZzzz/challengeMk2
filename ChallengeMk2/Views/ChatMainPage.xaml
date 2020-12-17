@@ -22,10 +22,10 @@
 			</StackLayout>
 
 			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
-					 HorizontalOptions="EndAndExpand" VerticalOptions="Start"
-					 HeightRequest="30"
-					 WidthRequest="30"
-					 Command="{Binding SignOutCommand}">
+						 HorizontalOptions="EndAndExpand" VerticalOptions="Start"
+						 HeightRequest="30"
+						 WidthRequest="30"
+						 Command="{Binding SignOutCommand}">
 				<ImageButton.Source>
 					<FontImageSource Glyph="{StaticResource SignOut}" FontFamily="fas" Size="20"
 									 Color="{DynamicResource SecurityColor}"/>

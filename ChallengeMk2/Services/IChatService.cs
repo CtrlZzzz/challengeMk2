@@ -41,6 +41,8 @@ namespace ChallengeMk2.Services
 
         Task JoinRoomAsync(string roomId, string roomName);
 
+        Task QuitRoomAsync(string roomId);
+
         Task SendRoomMessageAsync(string message, string roomId);
 
         Task AddContactAsync(string contactId, string contactName);

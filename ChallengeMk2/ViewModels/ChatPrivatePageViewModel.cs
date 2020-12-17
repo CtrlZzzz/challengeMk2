@@ -65,16 +65,31 @@ namespace ChallengeMk2.ViewModels
 
         void InitializeConnection()
         {
-            chatService.Connection.On<Message>("receiveNewPrivateMessage", message =>
+            //chatService.Connection.On<Message>("receiveNewPrivateMessage", message =>
+            //{
+            //    //TODO => check if incoming message is in the current room. if not, do not display it!
+            //    var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
+            //    PrivateMessages.Add(mappedData);
+            //});
+
+            //chatService.Connection.On<Message>("addedPrivateMessageOffline", message =>
+            //{
+            //    //TODO => check if incoming message is in the current room. if not, do not display it!
+            //    var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
+            //    PrivateMessages.Add(mappedData);
+            //});
+
+            chatService.Connection.On<Message, string>("receiveNewPrivateMessage", (message, userId) =>
             {
-                //TODO => check if incoming message is in the current room. if not, do not display it!
-                var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
-                PrivateMessages.Add(mappedData);
+                if (currentPrivate.ContactId == userId)
+                {
+                    var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
+                    PrivateMessages.Add(mappedData);
+                }
             });
 
             chatService.Connection.On<Message>("addedPrivateMessageOffline", message =>
             {
-                //TODO => check if incoming message is in the current room. if not, do not display it!
                 var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
                 PrivateMessages.Add(mappedData);
             });

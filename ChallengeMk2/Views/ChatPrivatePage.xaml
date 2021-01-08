@@ -42,7 +42,7 @@
 					<DataTemplate>
 						<StackLayout Margin="0,10,0,0" Spacing="1">
 							<Label Text="{Binding SenderName, StringFormat='{0} says :'}"
-								   TextColor="{DynamicResource GovernmentColor}"
+								   TextColor="{Binding SenderName, Converter={StaticResource stringToColorConverter}}"
 								   FontSize="9"
 								   FontAttributes="Italic"/>
 							<Label Text="{Binding Content}"

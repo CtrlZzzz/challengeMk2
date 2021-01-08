@@ -221,7 +221,7 @@ namespace ChallengeMk2.Services
             {
                 var newRoom = JsonConvert.DeserializeObject<Room>(responseData);
 
-                result = new LoginResult(true, "New room is created successfuly");
+                result = new LoginResult(true, newRoom.Id);
 
                 await JoinRoomAsync(newRoom.Id, newRoom.RoomName);
             }
@@ -237,8 +237,6 @@ namespace ChallengeMk2.Services
 
         public async Task JoinRoomAsync(string roomId, string roomName)
         {
-            //TODO => in function of charlotte's update : check if user has already joined the room before actually join it !
-            
             var url = ChatRootUrl + RoomChatRoute + roomId + "/join";
 
             using var client = new HttpClient();
@@ -267,6 +265,7 @@ namespace ChallengeMk2.Services
 
             //request.Content = stringContent;
             using var response = await client.SendAsync(request).ConfigureAwait(false);
+            //DEBUG
             var debug = await response.Content.ReadAsStringAsync();
 
             await UpdateUserInfoAsync();

@@ -27,6 +27,7 @@ namespace ChallengeMk2.ViewModels
             RoomUsers = new ObservableCollection<UserInRoomObject>();
             SendRoomMessageCommand = new Command(async () => await SendRoomMessageAsync());
             QuitRoomCommand = new Command(async () => await QuitRoomAsync());
+            NavigateToMainPageCommand = new Command(async () => await NavigateToMainPageAsync());
         }
 
         Room currentRoom;
@@ -61,6 +62,7 @@ namespace ChallengeMk2.ViewModels
 
         public Command SendRoomMessageCommand { get; set; }
         public Command QuitRoomCommand { get; set; }
+        public Command NavigateToMainPageCommand { get; set; }
 
 
 
@@ -83,19 +85,21 @@ namespace ChallengeMk2.ViewModels
                 }
             });
 
-            //chatService.Connection.On<string, string>("newJoinRoom", (connectionId, userId) =>
-            //{
-                 
-            //});
+            chatService.Connection.On<string, string>("newJoinRoom", async (connectionId, userId) =>
+            {
+                var user = await chatService.GetUserAsync(userId);
+                var convertedUser = new UserInRoomObject(user.Id, user.Username);
+                roomUsers.Add(convertedUser);
+            });
 
-            //chatService.Connection.On<string, string>("newQuitRoom", (connectionId, userId) =>
-            //{
-            //    var userToRemove = RoomUsers.SingleOrDefault(u => u.UserId == userId);
-            //    if (userToRemove != null)
-            //    {
-            //        RoomUsers.Remove(itemToRemove);
-            //    }
-            //});
+            chatService.Connection.On<string, string>("newQuitRoom", (connectionId, userId) =>
+            {
+                var userToRemove = RoomUsers.SingleOrDefault(u => u.UserId == userId);
+                if (userToRemove != null)
+                {
+                    RoomUsers.Remove(userToRemove);
+                }
+            });
         }
 
         void InitializeViewModel()
@@ -142,6 +146,11 @@ namespace ChallengeMk2.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        async Task NavigateToMainPageAsync()
+        {
+            await NavigationService.NavigateAsync("ChatMainPage");
         }
     }
 }

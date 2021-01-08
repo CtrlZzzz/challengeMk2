@@ -15,6 +15,7 @@
 		<cvt:StarTypeIconConverter x:Key="starIconConverter"/>
 		<cvt:FirstCharConverter x:Key="firstCharConverter"/>
 		<cvt:StringToColorConverter x:Key="stringToColorConverter"/>
+		<cvt:StringToBrushConverter x:Key="stringToBrushConverter"/>
 
 		<!--DEFAULT THEME-->
 		<ResourceDictionary>

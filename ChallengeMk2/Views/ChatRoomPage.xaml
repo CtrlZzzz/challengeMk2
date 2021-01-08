@@ -14,7 +14,7 @@
 						 HorizontalOptions="Start" VerticalOptions="Start"
 						 HeightRequest="20"
 						 WidthRequest="20"
-						 Command="{prism:GoBack}">
+						 Command="{Binding NavigateToMainPageCommand}">
 				<ImageButton.Source>
 					<FontImageSource Glyph="{StaticResource Back}" FontFamily="fas" Size="20" Color="{DynamicResource MainTextColor}"/>
 				</ImageButton.Source>
@@ -34,12 +34,12 @@
 
 			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
 						 HorizontalOptions="End" VerticalOptions="Start"
-						 HeightRequest="30"
-						 WidthRequest="30"
+						 HeightRequest="20"
+						 WidthRequest="20"
 						 Command="{Binding QuitRoomCommand}">
 				<ImageButton.Source>
 					<FontImageSource Glyph="{StaticResource Quit}" FontFamily="fas" Size="20"
-									 Color="{DynamicResource SecurityColor}"/>
+									 Color="{DynamicResource MainTextColor}"/>
 				</ImageButton.Source>
 			</ImageButton>
 		</Grid>
@@ -56,24 +56,8 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Padding="0,0,10,0">
-							<!--<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
-									FontSize="16"
-									FontAttributes="Bold"
-									TextColor="{DynamicResource MainTextColor}"
-									BackgroundColor="{DynamicResource GovernmentColor}"
-									BorderColor="Transparent"
-									HorizontalOptions="Center" VerticalOptions="Center"
-									HeightRequest="50"
-									WidthRequest="50"
-									CornerRadius="25"/>-->
-							<controls:UserPortrait >
-								<controls:UserPortrait.PortraitStrokeColor>
-									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
-								</controls:UserPortrait.PortraitStrokeColor>
-								<controls:UserPortrait.PortraitFillColor>
-									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
-								</controls:UserPortrait.PortraitFillColor>
-							</controls:UserPortrait>
+							<controls:UserPortrait PortraitStrokeColor="{Binding Username, Converter={StaticResource stringToBrushConverter}}"
+													   PortraitFillColor="{Binding Username, Converter={StaticResource stringToBrushConverter}}"/>
 							<Label Text="{Binding Username}"
 								   TextColor="{DynamicResource MainTextColor}"
 								   HorizontalTextAlignment="Center"
@@ -92,7 +76,7 @@
 					<DataTemplate>
 						<StackLayout Margin="0,10,0,0" Spacing="1">
 							<Label Text="{Binding SenderName, StringFormat='{0} says :'}"
-								   TextColor="{DynamicResource StarTypeColor}"
+								   TextColor="{Binding SenderName, Converter={StaticResource stringToColorConverter}}"
 								   FontSize="9"
 								   FontAttributes="Italic"/>
 							<Label Text="{Binding Content}"

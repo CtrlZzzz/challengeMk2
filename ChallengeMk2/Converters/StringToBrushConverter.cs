@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace ChallengeMk2.Converters
 {
-    class StringToColorConverter : IValueConverter
+    class StringToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -15,13 +15,8 @@ namespace ChallengeMk2.Converters
             var g = (hash & 0x00FF00) >> 8;
             var b = hash & 0x0000FF;
 
-            return Color.FromRgb(r, g, b);
-
-            //var myColor = Color.FromRgb(r, g, b);
-            //return myColor.ToHex();
-
-            //var myHex = $"#{r:X2}{g:X2}{b:X2}";
-            //return myHex;
+            var myColor = Color.FromRgb(r, g, b);
+            return new SolidColorBrush(myColor);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

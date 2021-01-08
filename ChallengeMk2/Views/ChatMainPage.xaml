@@ -10,25 +10,25 @@
 	<StackLayout Orientation="Vertical" Spacing="0">
 		<Grid  Padding="20,0,20,0" HeightRequest="60">
 			<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
-			<Image>
-				<Image.Source>
-					<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>
-				</Image.Source>
-			</Image>
-			<Label Text="{Binding Title}"
-			       FontSize="Large"
-			       FontAttributes="None"
-			       TextColor="{DynamicResource MainTextColor}"/>
+				<Image>
+					<Image.Source>
+						<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>
+					</Image.Source>
+				</Image>
+				<Label Text="{Binding Title}"
+					   FontSize="Large"
+					   FontAttributes="None"
+					   TextColor="{DynamicResource MainTextColor}"/>
 			</StackLayout>
 
 			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
 						 HorizontalOptions="EndAndExpand" VerticalOptions="Start"
-						 HeightRequest="30"
-						 WidthRequest="30"
+						 HeightRequest="20"
+						 WidthRequest="20"
 						 Command="{Binding SignOutCommand}">
 				<ImageButton.Source>
 					<FontImageSource Glyph="{StaticResource SignOut}" FontFamily="fas" Size="20"
-									 Color="{DynamicResource SecurityColor}"/>
+									 Color="{DynamicResource MainTextColor}"/>
 				</ImageButton.Source>
 			</ImageButton>
 		</Grid>
@@ -39,8 +39,8 @@
 				<Button Text="P"
 						FontSize="16"
 						FontAttributes="Bold"
-						TextColor="{DynamicResource EconomyColor}"
-						BackgroundColor="{DynamicResource FactionStateColor}"
+						TextColor="{DynamicResource PopulationColor}"
+						BackgroundColor="{DynamicResource EconomyColor}"
 						BorderColor="Transparent"
 						HorizontalOptions="Start" VerticalOptions="Center"
 						HeightRequest="50"
@@ -53,10 +53,8 @@
 			<!--ROOMS-->
 			<BoxView HeightRequest="1" Margin="0,20,0,20"
 					 BackgroundColor="{DynamicResource CardColor1}"/>
-			
+
 			<StackLayout Orientation="Horizontal" Margin="0,0,0,10">
-				<!--<Label Text="Rooms :" TextColor="{DynamicResource MainTextColor}"
-					   HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center"/>-->
 				<Button Text="Rooms"
 						TextColor="{DynamicResource MainTextColor}"
 						HorizontalOptions="Start" VerticalOptions="Center"
@@ -93,7 +91,7 @@
 									FontSize="16"
 									FontAttributes="Bold"
 									TextColor="{DynamicResource MainTextColor}"
-									BackgroundColor="{DynamicResource StarTypeColor}"
+									BackgroundColor="{Binding RoomName, Converter={StaticResource stringToColorConverter}}"
 									BorderColor="Transparent"
 									HorizontalOptions="Center" VerticalOptions="Center"
 									HeightRequest="50"
@@ -114,8 +112,6 @@
 					 BackgroundColor="{DynamicResource CardColor1}"/>
 
 			<StackLayout Orientation="Horizontal" Margin="0,0,0,10">
-				<!--<Label Text="Contacts :" TextColor="{DynamicResource MainTextColor}"
-					   HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center"/>-->
 				<Button Text="Contacts"
 						TextColor="{DynamicResource MainTextColor}"
 						HorizontalOptions="Start" VerticalOptions="Center"
@@ -148,27 +144,9 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Padding="0,0,10,0">
-							<!--<Button Text="{Binding ContactName, Converter={StaticResource firstCharConverter}}"
-									FontSize="16"
-									FontAttributes="Bold"
-									TextColor="{DynamicResource MainTextColor}"
-									BackgroundColor="{DynamicResource GovernmentColor}"
-									BorderColor="Transparent"
-									HorizontalOptions="Center" VerticalOptions="Center"
-									HeightRequest="50"
-									WidthRequest="50"
-									CornerRadius="25"
-									Command="{Binding BindingContext.NavigateToPrivateCommand, Source={x:Reference ContactCollection}}"
-									CommandParameter="{Binding .}"/>-->
 							<Grid Padding="0">
-								<controls:UserPortrait >
-									<controls:UserPortrait.PortraitStrokeColor>
-										<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
-									</controls:UserPortrait.PortraitStrokeColor>
-									<controls:UserPortrait.PortraitFillColor>
-										<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
-									</controls:UserPortrait.PortraitFillColor>
-								</controls:UserPortrait>
+								<controls:UserPortrait PortraitStrokeColor="{Binding ContactName, Converter={StaticResource stringToBrushConverter}}"
+													   PortraitFillColor="{Binding ContactName, Converter={StaticResource stringToBrushConverter}}"/>
 								<Button Text=""
 										BackgroundColor="Transparent"
 										BorderColor="Transparent"

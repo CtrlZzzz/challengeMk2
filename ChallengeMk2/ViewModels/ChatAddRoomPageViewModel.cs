@@ -171,7 +171,12 @@ namespace ChallengeMk2.ViewModels
 
                 var creationResult = await chatService.CreateNewRoomAsync(EntryNewRoomMessage);
 
-                if (!creationResult.IsSuccessful)
+                if (creationResult.IsSuccessful)
+                {
+                    var room = await chatService.GetRoomAsync(creationResult.Message);
+                    await NavigationService.NavigateAsync("ChatRoomPage", ("CurrentRoom", room));
+                }
+                else
                 {
                     AlertMessage = creationResult.Message;
                 }

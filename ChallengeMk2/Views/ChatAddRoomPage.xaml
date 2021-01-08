@@ -58,7 +58,7 @@
 									FontSize="16"
 									FontAttributes="Bold"
 									TextColor="{DynamicResource MainTextColor}"
-									BackgroundColor="{DynamicResource StarTypeColor}"
+									BackgroundColor="{Binding RoomName, Converter={StaticResource stringToColorConverter}}"
 									BorderColor="Transparent"
 									HorizontalOptions="Start" VerticalOptions="Center"
 									HeightRequest="50"
@@ -112,7 +112,7 @@
 					Padding="5"
 					HeightRequest="30"
 					CornerRadius="15"
-					BackgroundColor="{DynamicResource StarTypeColor}"
+					BackgroundColor="{DynamicResource CardColor1}"
 					TextColor="{DynamicResource MainTextColor}"/>
 			<BoxView BackgroundColor="Transparent" HeightRequest="20"/>
 

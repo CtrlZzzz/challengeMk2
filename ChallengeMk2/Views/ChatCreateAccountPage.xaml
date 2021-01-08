@@ -89,7 +89,7 @@
 					Padding="5"
 					HeightRequest="30"
 					CornerRadius="15"
-					BackgroundColor="{DynamicResource SecurityColor}"
+					BackgroundColor="{DynamicResource CardColor1}"
 					TextColor="{DynamicResource MainTextColor}"/>
 
 		</StackLayout>

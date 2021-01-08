@@ -55,24 +55,8 @@
 				<CollectionView.ItemTemplate>
 					<DataTemplate>
 						<StackLayout Orientation="Horizontal" Margin=" 0,0,0,10" Padding="25,0,25,0" Spacing="10">
-							<!--<Button Text="{Binding Username, Converter={StaticResource firstCharConverter}}"
-									FontSize="16"
-									FontAttributes="Bold"
-									TextColor="{DynamicResource MainTextColor}"
-									BackgroundColor="{DynamicResource GovernmentColor}"
-									BorderColor="Transparent"
-									HorizontalOptions="Start" VerticalOptions="Center"
-									HeightRequest="50"
-									WidthRequest="50"
-									CornerRadius="25"/>-->
-							<controls:UserPortrait >
-								<controls:UserPortrait.PortraitStrokeColor>
-									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
-								</controls:UserPortrait.PortraitStrokeColor>
-								<controls:UserPortrait.PortraitFillColor>
-									<SolidColorBrush Color="{StaticResource GovernmentColor}"/>
-								</controls:UserPortrait.PortraitFillColor>
-							</controls:UserPortrait>
+							<controls:UserPortrait PortraitStrokeColor="{Binding Username, Converter={StaticResource stringToBrushConverter}}"
+													   PortraitFillColor="{Binding Username, Converter={StaticResource stringToBrushConverter}}"/>
 							<Label Text="{Binding Username}"
 								   TextColor="{DynamicResource MainTextColor}"
 								   HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start"

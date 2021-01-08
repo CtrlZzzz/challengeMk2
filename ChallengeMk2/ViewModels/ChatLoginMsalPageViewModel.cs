@@ -39,7 +39,7 @@ namespace ChallengeMk2.ViewModels
 
                 await authenticationService.AutoSignIn();
 
-                await NavigationService.NavigateAsync("");
+                //await NavigationService.NavigateAsync("");
             }
             catch (Exception ex)
             {

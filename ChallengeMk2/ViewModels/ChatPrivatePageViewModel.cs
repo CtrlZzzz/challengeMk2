@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Prism.Commands;
-using Prism.Mvvm;
 using Prism.AppModel;
 using Prism.Navigation;
 using ChallengeMk2.Services;
@@ -65,23 +61,9 @@ namespace ChallengeMk2.ViewModels
 
         void InitializeConnection()
         {
-            //chatService.Connection.On<Message>("receiveNewPrivateMessage", message =>
-            //{
-            //    //TODO => check if incoming message is in the current room. if not, do not display it!
-            //    var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
-            //    PrivateMessages.Add(mappedData);
-            //});
-
-            //chatService.Connection.On<Message>("addedPrivateMessageOffline", message =>
-            //{
-            //    //TODO => check if incoming message is in the current room. if not, do not display it!
-            //    var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
-            //    PrivateMessages.Add(mappedData);
-            //});
-
             chatService.Connection.On<Message, string>("receiveNewPrivateMessage", (message, userId) =>
             {
-                if (currentPrivate.ContactId == userId)
+                if (currentPrivate.ContactId == userId || chatService.ConnectedUser.Id == userId)
                 {
                     var mappedData = new MessageSentForm(message.SenderId, message.SenderName, message.Content);
                     PrivateMessages.Add(mappedData);

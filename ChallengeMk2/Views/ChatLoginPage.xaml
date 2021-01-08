@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="ChallengeMk2.Views.ChatLoginPage">
+             x:Class="ChallengeMk2.Views.ChatLoginPage"
+			 NavigationPage.HasBackButton="False">
 
 	<StackLayout Orientation="Vertical" Spacing="0">
 
@@ -78,7 +79,7 @@
 					Padding="5"
 					HeightRequest="30"
 					CornerRadius="15"
-					BackgroundColor="{DynamicResource ReserveColor}"
+					BackgroundColor="{DynamicResource CardColor1}"
 					TextColor="{DynamicResource MainTextColor}"/>
 
 		</StackLayout>

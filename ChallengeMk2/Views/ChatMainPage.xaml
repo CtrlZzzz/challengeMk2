@@ -34,7 +34,7 @@
 		</Grid>
 
 		<StackLayout Margin="0,40,0,0" Padding="20" Spacing="10">
-			<!--Public chat-->
+			<!--CONNECTED USER-->
 			<StackLayout Orientation="Horizontal">
 				<Button Text="P"
 						FontSize="16"
@@ -78,35 +78,54 @@
 						Command="{Binding BindingContext.NavigateToAddRoomCommand, Source={x:Reference RoomCollection}}"/>
 			</StackLayout>
 
-			<CollectionView ItemsSource="{Binding Rooms}"
-							ItemsLayout="HorizontalList"
-							ItemSizingStrategy="MeasureFirstItem"
-							VerticalOptions="Start"
-							HeightRequest="80"
-							x:Name="RoomCollection">
-				<CollectionView.ItemTemplate>
-					<DataTemplate>
-						<StackLayout Padding="0,0,10,0">
-							<Button Text="{Binding RoomName, Converter={StaticResource firstCharConverter}}"
-									FontSize="16"
-									FontAttributes="Bold"
-									TextColor="{DynamicResource MainTextColor}"
-									BackgroundColor="{Binding RoomName, Converter={StaticResource stringToColorConverter}}"
-									BorderColor="Transparent"
-									HorizontalOptions="Center" VerticalOptions="Center"
-									HeightRequest="50"
-									WidthRequest="50"
-									CornerRadius="25"
-									Command="{Binding BindingContext.NavigateToRoomCommand, Source={x:Reference RoomCollection}}"
-									CommandParameter="{Binding Id}"/>
-							<Label Text="{Binding RoomName}"
-								   TextColor="{DynamicResource MainTextColor}"
-								   HorizontalTextAlignment="Center"
-								   FontSize="10"/>
-						</StackLayout>
-					</DataTemplate>
-				</CollectionView.ItemTemplate>
-			</CollectionView>
+			<StackLayout Orientation="Horizontal">
+				<StackLayout Padding="0,0,5,0">
+					<Button Text="P"
+						FontSize="16"
+						FontAttributes="Bold"
+						TextColor="{DynamicResource PopulationColor}"
+						BackgroundColor="{DynamicResource EconomyColor}"
+						BorderColor="Transparent"
+						HorizontalOptions="Start" VerticalOptions="Center"
+						HeightRequest="50"
+						WidthRequest="50"
+						CornerRadius="25"
+						Command="{Binding NavigateToPublicChatCommand}"/>
+					<Label Text="Public chat"
+						   TextColor="{DynamicResource MainTextColor}"
+						   HorizontalTextAlignment="Center"
+						   FontSize="10"/>
+				</StackLayout>
+				<CollectionView ItemsSource="{Binding Rooms}"
+								ItemsLayout="HorizontalList"
+								ItemSizingStrategy="MeasureFirstItem"
+								VerticalOptions="Start"
+								HeightRequest="80"
+								x:Name="RoomCollection">
+					<CollectionView.ItemTemplate>
+						<DataTemplate>
+							<StackLayout Padding="0,0,10,0">
+								<Button Text="{Binding RoomName, Converter={StaticResource firstCharConverter}}"
+										FontSize="16"
+										FontAttributes="Bold"
+										TextColor="{DynamicResource MainTextColor}"
+										BackgroundColor="{Binding RoomName, Converter={StaticResource stringToColorConverter}}"
+										BorderColor="Transparent"
+										HorizontalOptions="Center" VerticalOptions="Center"
+										HeightRequest="50"
+										WidthRequest="50"
+										CornerRadius="25"
+										Command="{Binding BindingContext.NavigateToRoomCommand, Source={x:Reference RoomCollection}}"
+										CommandParameter="{Binding Id}"/>
+								<Label Text="{Binding RoomName}"
+									   TextColor="{DynamicResource MainTextColor}"
+									   HorizontalTextAlignment="Center"
+									   FontSize="10"/>
+							</StackLayout>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+				</CollectionView>
+			</StackLayout>
 			<!--CONTACTS-->
 			<BoxView HeightRequest="1" Margin="0,20,0,20"
 					 BackgroundColor="{DynamicResource CardColor1}"/>

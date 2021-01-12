@@ -69,7 +69,7 @@ using var client = new HttpClient();
             apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
 #else
 
-var apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
+apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
 
 #endif
 

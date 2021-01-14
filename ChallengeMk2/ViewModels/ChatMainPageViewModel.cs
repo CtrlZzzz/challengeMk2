@@ -47,6 +47,13 @@ namespace ChallengeMk2.ViewModels
         //    set { SetProperty(ref isActive, value, () => IsActiveChanged?.Invoke(this, EventArgs.Empty)); }
         //}
 
+        User connectedUser;
+        public User ConnectedUser
+        {
+            get { return connectedUser; }
+            set { SetProperty(ref connectedUser, value); }
+        }
+
         ObservableCollection<RoomListObject> rooms;
         public ObservableCollection<RoomListObject> Rooms
         {
@@ -120,6 +127,8 @@ namespace ChallengeMk2.ViewModels
 
             var userContacts = chatService.ConnectedUser.Contacts;
             Contacts = new ObservableCollection<Contact>(userContacts);
+
+            ConnectedUser = chatService.ConnectedUser;
         }
 
         async Task NavigateToPublicChatAsync()

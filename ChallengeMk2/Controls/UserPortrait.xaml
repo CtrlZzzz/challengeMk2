@@ -7,14 +7,14 @@
              x:Class="ChallengeMk2.Controls.UserPortrait">
 	
   <ContentView.Content>
-      <Grid HorizontalOptions="Center" VerticalOptions="Center"
-			HeightRequest="50" WidthRequest="50">
+      <Grid x:Name="PortraitGrid"
+			HorizontalOptions="Center" VerticalOptions="Center">
 			<Ellipse x:Name="PortraitStroke"
 					 StrokeThickness="2"
 					 Margin="0"/>
 
 			<Ellipse x:Name="PortraitFill"
-					 Margin="5"/>
+					 Margin="6"/>
 
 			<Frame BackgroundColor="Transparent"
 				   Padding="0">

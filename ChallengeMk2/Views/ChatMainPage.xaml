@@ -33,10 +33,10 @@
 			</ImageButton>
 		</Grid>
 
-		<StackLayout Margin="0,40,0,0" Padding="20" Spacing="10">
+		<StackLayout Margin="0,0,0,0" Padding="20" Spacing="10">
 			<!--CONNECTED USER-->
-			<StackLayout Orientation="Horizontal">
-				<Button Text="P"
+			<StackLayout Orientation="Vertical">
+				<!--<Button Text="P"
 						FontSize="16"
 						FontAttributes="Bold"
 						TextColor="{DynamicResource PopulationColor}"
@@ -46,9 +46,28 @@
 						HeightRequest="50"
 						WidthRequest="50"
 						CornerRadius="25"
-						Command="{Binding NavigateToPublicChatCommand}"/>
-				<Label Text="Public chat" TextColor="{DynamicResource MainTextColor}"
-					   HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+						Command="{Binding NavigateToPublicChatCommand}"/>-->
+				<!--<Label Text="Public chat" TextColor="{DynamicResource MainTextColor}"
+					   HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center"/>-->
+				<controls:UserPortrait PortraitStrokeColor="{Binding ConnectedUser.Username, Converter={StaticResource stringToBrushConverter}}"
+									   PortraitFillColor="{Binding ConnectedUser.Username, Converter={StaticResource stringToBrushConverter}}"
+									   PortraitWidth="75" PortraitHeight="75"/>
+				
+				<!--<Label Text="{Binding ConnectedUser.Username, StringFormat= 'Connected as {0}'}"
+									TextColor="{DynamicResource MainTextColor}"
+									HorizontalTextAlignment="Center"
+									FontSize="10"/>-->
+				<Label Text="Connected as"
+					   TextColor="{DynamicResource MainTextColor}"
+					   HorizontalTextAlignment="Center"
+					   FontSize="10"/>
+				<Label Text="{Binding ConnectedUser.Username}"
+					   TextColor="{Binding ConnectedUser.Username, Converter={StaticResource stringToColorConverter}}"
+					   HorizontalTextAlignment="Center"
+					   FontSize="15"
+					   FontAttributes="Bold"
+					   Margin="0,-10,0,0"/>
+			
 			</StackLayout>
 			<!--ROOMS-->
 			<BoxView HeightRequest="1" Margin="0,20,0,20"

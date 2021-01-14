@@ -22,26 +22,31 @@ namespace ChallengeMk2.Services
         {
             var url = BaseUrl_All + Details + $"&radius={SearchRadius}";
 
-            using var client = new HttpClient();
-            var response = await client.GetStringAsync(url);
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetStringAsync(url);
 
-            //Should i move this convertion out of this and return the "brute" response
-            //and convert it outside in another object ?
-            var data = JsonConvert.DeserializeObject<List<StarSystem>>(response);
+                //Should i move this convertion out of this and return the "brute" response
+                //and convert it outside in another object ?
+                var data = JsonConvert.DeserializeObject<List<StarSystem>>(response);
 
-            return data;
+                return data;
+            }
         }
 
         public async Task<StarSystem> GetDetails(string systemName)
         {
             var url = BaseUrl_Details + Details + $"&systemName={systemName}";
 
-            using var client = new HttpClient();
-            var response = await client.GetStringAsync(url);
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetStringAsync(url);
 
-            var data = JsonConvert.DeserializeObject<StarSystem>(response);
+                var data = JsonConvert.DeserializeObject<StarSystem>(response);
 
-            return data;
+                return data;
+            }
         }
+
     }
 }

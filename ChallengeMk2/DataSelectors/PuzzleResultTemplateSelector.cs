@@ -15,14 +15,21 @@ namespace ChallengeMk2.DataSelectors
         {
             var currentResult = item as TryResult;
 
-            return currentResult.Status switch
+            
+
+            switch (currentResult.Status)
             {
-                HttpStatusCode.Accepted => AcceptedResultTemplate,
-                HttpStatusCode.InternalServerError => MessageResultTemplate,
-                HttpStatusCode.OK => OkResultTemplate,
-                HttpStatusCode.ResetContent => ResetResultTemplate,
-                _ => MessageResultTemplate,
-            };
+                case HttpStatusCode.Accepted:
+                    return AcceptedResultTemplate;
+                case HttpStatusCode.InternalServerError:
+                    return MessageResultTemplate;
+                case HttpStatusCode.OK:
+                    return OkResultTemplate;
+                case HttpStatusCode.ResetContent:
+                    return ResetResultTemplate;
+                default:
+                    return MessageResultTemplate;
+            }
         }
     }
 }

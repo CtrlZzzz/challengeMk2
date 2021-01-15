@@ -36,6 +36,7 @@ namespace ChallengeMk2.Droid
 
             //App Center
             Distribute.SetEnabledForDebuggableBuild(true);
+            Distribute.UpdateTrack = UpdateTrack.Private;
             AppCenter.Start("ac728f87-3efb-410c-a98b-ff612f259ff8",
                             typeof(Analytics), typeof(Crashes), typeof(Distribute));
 

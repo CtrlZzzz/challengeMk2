@@ -28,6 +28,7 @@ namespace ChallengeMk2
             base.OnStart();
 
             //App Center
+            Distribute.UpdateTrack = UpdateTrack.Private;
             AppCenter.Start("ios=ba2f4158-a705-4035-9b95-ff7a15e60efb;" +
                             "android=ac728f87-3efb-410c-a98b-ff612f259ff8",
                             typeof(Analytics), typeof(Crashes), typeof(Distribute));

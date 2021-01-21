@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using ChallengeMk2.DataBase;
 using ChallengeMk2.Models;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace ChallengeMk2.Services
 {

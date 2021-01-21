@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+			 xmlns:controls="clr-namespace:ChallengeMk2.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ChallengeMk2.Views.ChatMainPage"
+			 NavigationPage.HasBackButton="False">
+
+	<StackLayout Orientation="Vertical" Spacing="0">
+		<Grid  Padding="20,0,20,0" HeightRequest="60">
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+				<Image>
+					<Image.Source>
+						<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>
+					</Image.Source>
+				</Image>
+				<Label Text="{Binding Title}"
+					   FontSize="Large"
+					   FontAttributes="None"
+					   TextColor="{DynamicResource MainTextColor}"/>
+			</StackLayout>
+
+			<ImageButton BackgroundColor="transparent" BorderColor="Transparent"
+						 HorizontalOptions="EndAndExpand" VerticalOptions="Start"
+						 HeightRequest="20"
+						 WidthRequest="20"
+						 Command="{Binding SignOutCommand}">
+				<ImageButton.Source>
+					<FontImageSource Glyph="{StaticResource SignOut}" FontFamily="fas" Size="20"
+									 Color="{DynamicResource MainTextColor}"/>
+				</ImageButton.Source>
+			</ImageButton>
+		</Grid>
+
+		<StackLayout Margin="0,0,0,0" Padding="20" Spacing="10">
+			<!--CONNECTED USER-->
+			<StackLayout Orientation="Vertical">
+				<!--<Button Text="P"
+						FontSize="16"
+						FontAttributes="Bold"
+						TextColor="{DynamicResource PopulationColor}"
+						BackgroundColor="{DynamicResource EconomyColor}"
+						BorderColor="Transparent"
+						HorizontalOptions="Start" VerticalOptions="Center"
+						HeightRequest="50"
+						WidthRequest="50"
+						CornerRadius="25"
+						Command="{Binding NavigateToPublicChatCommand}"/>-->
+				<!--<Label Text="Public chat" TextColor="{DynamicResource MainTextColor}"
+					   HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalOptions="Center"/>-->
+				<controls:UserPortrait PortraitStrokeColor="{Binding ConnectedUser.Username, Converter={StaticResource stringToBrushConverter}}"
+									   PortraitFillColor="{Binding ConnectedUser.Username, Converter={StaticResource stringToBrushConverter}}"
+									   PortraitWidth="75" PortraitHeight="75"/>
+				
+				<!--<Label Text="{Binding ConnectedUser.Username, StringFormat= 'Connected as {0}'}"
+									TextColor="{DynamicResource MainTextColor}"
+									HorizontalTextAlignment="Center"
+									FontSize="10"/>-->
+				<Label Text="Connected as"
+					   TextColor="{DynamicResource MainTextColor}"
+					   HorizontalTextAlignment="Center"
+					   FontSize="10"/>
+				<Label Text="{Binding ConnectedUser.Username}"
+					   TextColor="{Binding ConnectedUser.Username, Converter={StaticResource stringToColorConverter}}"
+					   HorizontalTextAlignment="Center"
+					   FontSize="15"
+					   FontAttributes="Bold"
+					   Margin="0,-10,0,0"/>
+			
+			</StackLayout>
+			<!--ROOMS-->
+			<BoxView HeightRequest="1" Margin="0,20,0,20"
+					 BackgroundColor="{DynamicResource CardColor1}"/>
+
+			<StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+				<Button Text="Rooms"
+						TextColor="{DynamicResource MainTextColor}"
+						HorizontalOptions="Start" VerticalOptions="Center"
+						Padding="0"
+						BackgroundColor="{DynamicResource CardColor1}"
+						BorderColor="Transparent"
+						HeightRequest="30"
+						CornerRadius="15"
+						IsEnabled="False"/>
+				<Button Text="+"
+						FontSize="20"
+						FontAttributes="None"
+						Padding="0"
+						BackgroundColor="{DynamicResource CardColor1}"
+						TextColor="{DynamicResource MainTextColor}"
+						BorderColor="Transparent"
+						HorizontalOptions="EndAndExpand" VerticalOptions="Center"
+						HeightRequest="30"
+						WidthRequest="30"
+						CornerRadius="15"
+						Command="{Binding BindingContext.NavigateToAddRoomCommand, Source={x:Reference RoomCollection}}"/>
+			</StackLayout>
+
+			<StackLayout Orientation="Horizontal">
+				<StackLayout Padding="0,0,5,0">
+					<Button Text="P"
+						FontSize="16"
+						FontAttributes="Bold"
+						TextColor="{DynamicResource PopulationColor}"
+						BackgroundColor="{DynamicResource EconomyColor}"
+						BorderColor="Transparent"
+						HorizontalOptions="Start" VerticalOptions="Center"
+						HeightRequest="50"
+						WidthRequest="50"
+						CornerRadius="25"
+						Command="{Binding NavigateToPublicChatCommand}"/>
+					<Label Text="Public chat"
+						   TextColor="{DynamicResource MainTextColor}"
+						   HorizontalTextAlignment="Center"
+						   FontSize="10"/>
+				</StackLayout>
+				<CollectionView ItemsSource="{Binding Rooms}"
+								ItemsLayout="HorizontalList"
+								ItemSizingStrategy="MeasureFirstItem"
+								VerticalOptions="Start"
+								HeightRequest="80"
+								x:Name="RoomCollection">
+					<CollectionView.ItemTemplate>
+						<DataTemplate>
+							<StackLayout Padding="0,0,10,0">
+								<Button Text="{Binding RoomName, Converter={StaticResource firstCharConverter}}"
+										FontSize="16"
+										FontAttributes="Bold"
+										TextColor="{DynamicResource MainTextColor}"
+										BackgroundColor="{Binding RoomName, Converter={StaticResource stringToColorConverter}}"
+										BorderColor="Transparent"
+										HorizontalOptions="Center" VerticalOptions="Center"
+										HeightRequest="50"
+										WidthRequest="50"
+										CornerRadius="25"
+										Command="{Binding BindingContext.NavigateToRoomCommand, Source={x:Reference RoomCollection}}"
+										CommandParameter="{Binding Id}"/>
+								<Label Text="{Binding RoomName}"
+									   TextColor="{DynamicResource MainTextColor}"
+									   HorizontalTextAlignment="Center"
+									   FontSize="10"/>
+							</StackLayout>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+				</CollectionView>
+			</StackLayout>
+			<!--CONTACTS-->
+			<BoxView HeightRequest="1" Margin="0,20,0,20"
+					 BackgroundColor="{DynamicResource CardColor1}"/>
+
+			<StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+				<Button Text="Contacts"
+						TextColor="{DynamicResource MainTextColor}"
+						HorizontalOptions="Start" VerticalOptions="Center"
+						Padding="0"
+						BackgroundColor="{DynamicResource CardColor1}"
+						BorderColor="Transparent"
+						HeightRequest="30"
+						CornerRadius="15"
+						IsEnabled="False"/>
+				<Button Text="+"
+						FontSize="20"
+						FontAttributes="None"
+						Padding="0"
+						BackgroundColor="{DynamicResource CardColor1}"
+						TextColor="{DynamicResource MainTextColor}"
+						BorderColor="Transparent"
+						HorizontalOptions="EndAndExpand" VerticalOptions="Center"
+						HeightRequest="30"
+						WidthRequest="30"
+						CornerRadius="15"
+						Command="{Binding BindingContext.NavigateToAddContactCommand, Source={x:Reference ContactCollection}}"/>
+			</StackLayout>
+
+			<CollectionView ItemsSource="{Binding Contacts}"
+							ItemsLayout="HorizontalList"
+							ItemSizingStrategy="MeasureFirstItem"
+							VerticalOptions="Start"
+							HeightRequest="80"
+							x:Name="ContactCollection">
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<StackLayout Padding="0,0,10,0">
+							<Grid Padding="0">
+								<controls:UserPortrait PortraitStrokeColor="{Binding ContactName, Converter={StaticResource stringToBrushConverter}}"
+													   PortraitFillColor="{Binding ContactName, Converter={StaticResource stringToBrushConverter}}"/>
+								<Button Text=""
+										BackgroundColor="Transparent"
+										BorderColor="Transparent"
+										HeightRequest="50"
+										WidthRequest="50"
+										CornerRadius="25"
+										Command="{Binding BindingContext.NavigateToPrivateCommand, Source={x:Reference ContactCollection}}"
+										CommandParameter="{Binding .}"/>
+							</Grid>
+							<Label Text="{Binding ContactName}"
+								   TextColor="{DynamicResource MainTextColor}"
+								   HorizontalTextAlignment="Center"
+								   FontSize="10"/>
+						</StackLayout>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+
+		</StackLayout>
+		
+	</StackLayout>
+
+</ContentPage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChallengeMk2.Controls.UserPortrait">
+	
+  <ContentView.Content>
+      <Grid x:Name="PortraitGrid"
+			HorizontalOptions="Center" VerticalOptions="Center">
+			<Ellipse x:Name="PortraitStroke"
+					 StrokeThickness="2"
+					 Margin="0"/>
+
+			<Ellipse x:Name="PortraitFill"
+					 Margin="6"/>
+
+			<Frame BackgroundColor="Transparent"
+				   Padding="0">
+				<Image Margin="4">
+					<Image.Source>
+						<FontImageSource Glyph="{StaticResource User}" FontFamily="fas"
+										 Color="{DynamicResource CardColor1}"/>
+					</Image.Source>
+				</Image>
+			</Frame>
+		</Grid>
+  </ContentView.Content>
+</ContentView>

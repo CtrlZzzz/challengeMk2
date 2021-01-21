@@ -23,7 +23,7 @@ namespace ChallengeMk2.Services
             var url = BaseUrl_All + Details + $"&radius={SearchRadius}";
 
             using var client = new HttpClient();
-            var response = await client.GetStringAsync(url);
+            var response = await client.GetStringAsync(url).ConfigureAwait(false);
 
             //Should i move this convertion out of this and return the "brute" response
             //and convert it outside in another object ?
@@ -37,7 +37,7 @@ namespace ChallengeMk2.Services
             var url = BaseUrl_Details + Details + $"&systemName={systemName}";
 
             using var client = new HttpClient();
-            var response = await client.GetStringAsync(url);
+            var response = await client.GetStringAsync(url).ConfigureAwait(false);
 
             var data = JsonConvert.DeserializeObject<StarSystem>(response);
 

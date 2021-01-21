@@ -38,5 +38,18 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>AAD B2C</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msal52810140-36e8-4d31-a3c2-243a5aa3a389://auth</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
 </dict>
 </plist>

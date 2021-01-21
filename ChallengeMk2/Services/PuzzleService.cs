@@ -23,38 +23,41 @@ namespace ChallengeMk2.Services
 
 #if DEBUG
             var insecureHandler = DependencyService.Get<IInsecureHandlerService>().GetInsecureHanler();
-            using var client = new HttpClient(insecureHandler);
+            using (var client = new HttpClient(insecureHandler))
+            {
 #else
 
-using var client = new HttpClient();
+            using (var client = new HttpClient())
+            {
 
 #endif
 
-            apiResponse = await client.GetAsync(apiRoute).ConfigureAwait(false);
-            responseContent = await apiResponse.Content.ReadAsStringAsync();
+                apiResponse = await client.GetAsync(apiRoute);
+                responseContent = await apiResponse.Content.ReadAsStringAsync();
 
-            switch (apiResponse.StatusCode)
-            {
-                case HttpStatusCode.OK:
-                    currentResult = GetResult(HttpStatusCode.OK, responseContent, userTry);
-                    break;
+                switch (apiResponse.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        currentResult = GetResult(HttpStatusCode.OK, responseContent, userTry);
+                        break;
 
-                case HttpStatusCode.Accepted:
-                    currentResult = GetResult(HttpStatusCode.Accepted, responseContent, userTry);
-                    break;
+                    case HttpStatusCode.Accepted:
+                        currentResult = GetResult(HttpStatusCode.Accepted, responseContent, userTry);
+                        break;
 
-                case HttpStatusCode.ResetContent:
-                    currentResult = new TryResult(20, apiResponse.ReasonPhrase, HttpStatusCode.ResetContent, userTry);
-                    break;
+                    case HttpStatusCode.ResetContent:
+                        currentResult = new TryResult(20, apiResponse.ReasonPhrase, HttpStatusCode.ResetContent, userTry);
+                        break;
 
-                case HttpStatusCode.InternalServerError:
-                    currentResult = new TryResult(20, apiResponse.ReasonPhrase, HttpStatusCode.InternalServerError, userTry);
-                    break;
-                default:
-                    break;
+                    case HttpStatusCode.InternalServerError:
+                        currentResult = new TryResult(20, apiResponse.ReasonPhrase, HttpStatusCode.InternalServerError, userTry);
+                        break;
+                    default:
+                        break;
+                }
+
+                return currentResult;
             }
-
-            return currentResult;
         }
 
 
@@ -69,7 +72,7 @@ using var client = new HttpClient();
             apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
 #else
 
-var apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
+apiBaseAddress = "https://thenumberfinderapi.azurewebsites.net";
 
 #endif
 

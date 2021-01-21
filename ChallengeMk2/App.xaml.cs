@@ -7,6 +7,10 @@ using Prism;
 using Prism.Ioc;
 using Microsoft.Identity.Client;
 using ChallengeMk2.MSAL;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 
 [assembly: ExportFont("fa-brands-400.ttf", Alias = "fab")]
 [assembly: ExportFont("fa-solid-900.ttf", Alias = "fas")]
@@ -24,6 +28,17 @@ namespace ChallengeMk2
         {
         }
 
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            //App Center
+            Distribute.UpdateTrack = UpdateTrack.Private;
+            AppCenter.Start("ios=ba2f4158-a705-4035-9b95-ff7a15e60efb;" +
+                            "android=ac728f87-3efb-410c-a98b-ff612f259ff8",
+                            typeof(Analytics), typeof(Crashes), typeof(Distribute));
+        }
         protected override async void OnInitialized()
         {
             InitializeComponent();

@@ -6,6 +6,10 @@ using Prism.Ioc;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
 using Microsoft.Identity.Client;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 
 namespace ChallengeMk2.iOS
 {
@@ -29,6 +33,11 @@ namespace ChallengeMk2.iOS
             //FFImageLoading.Svg.Forms
             CachedImageRenderer.Init();
             var ignore = typeof(SvgCachedImage);
+
+            //App Center
+            Distribute.DontCheckForUpdatesInDebug();
+            AppCenter.Start("ba2f4158-a705-4035-9b95-ff7a15e60efb",
+                             typeof(Analytics), typeof(Crashes), typeof(Distribute));
 
             LoadApplication(new App(new iOSInitializer()));
 

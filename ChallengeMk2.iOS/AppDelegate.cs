@@ -5,6 +5,7 @@ using Prism;
 using Prism.Ioc;
 using FFImageLoading.Forms.Platform;
 using FFImageLoading.Svg.Forms;
+using Microsoft.Identity.Client;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -41,6 +42,13 @@ namespace ChallengeMk2.iOS
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        //MSAL
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+            return base.OpenUrl(app, url, options);
         }
     }
 

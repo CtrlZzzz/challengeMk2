@@ -11,6 +11,9 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
+using Android.Views;
+using Microsoft.Identity.Client;
+using Android.Content;
 
 namespace ChallengeMk2.Droid
 {
@@ -41,7 +44,17 @@ namespace ChallengeMk2.Droid
                             typeof(Analytics), typeof(Crashes), typeof(Distribute));
 
             LoadApplication(new App(new AndroidInitializer()));
+
+            //MSAL
+            App.UIParent = this;
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

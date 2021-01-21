@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using ChallengeMk2.Models;
 using ChallengeMk2.Services;
@@ -19,6 +20,14 @@ namespace ChallengeMk2.ViewModels
             InitializeViewModel(starSystemService);
         }
 
+
+        string entrySearchMessage;
+        public string EntrySearchMessage
+        {
+            get => entrySearchMessage;
+            set => SetProperty(ref entrySearchMessage, value);
+        }
+
         int selectionId;
         public int SelectionId
         {
@@ -26,16 +35,23 @@ namespace ChallengeMk2.ViewModels
             set => SetProperty(ref selectionId, value);
         }
 
-        IList<StarSystem> systems;
-        public IList<StarSystem> Systems
+        ObservableCollection<StarSystem> systems;
+        public ObservableCollection<StarSystem> Systems
         {
             get => systems;
             set => SetProperty(ref systems, value);
         }
 
-        public Command DisplaySystemDataCommand { get; set; }
+        ObservableCollection<StarSystem> sortedSystems;
+        public ObservableCollection<StarSystem> SortedSystems
+        {
+            get => sortedSystems;
+            set => SetProperty(ref sortedSystems, value);
+        }
 
+        public Command DisplaySystemDataCommand { get; set; }
         public Command<StarSystem> NavigateToDetailCommand { get; set; }
+        public Command SearchCommand { get; set; }
 
 
         void InitializeViewModel(IStarSystemService starSystemService)
@@ -45,14 +61,15 @@ namespace ChallengeMk2.ViewModels
             Title = "System finder";
 
             Systems = new ObservableCollection<StarSystem>();
+            SortedSystems = new ObservableCollection<StarSystem>();
 
             DisplaySystemDataCommand = new Command(async () => await DisplaySystemDataAsync());
-
             NavigateToDetailCommand = new Command<StarSystem>(async (selectedSystem) =>
             {
                 SelectionId = selectedSystem.Id;
                 await NavigationService.NavigateAsync("SystemDetailCarouselPage", ("CurrentSystem", selectedSystem));
             });
+            SearchCommand = new Command(() => Search());
         }
 
 
@@ -67,6 +84,7 @@ namespace ChallengeMk2.ViewModels
                 var data = await systemService.GetStarSystemDataAsync();
 
                 Systems = new ObservableCollection<StarSystem>(data);
+                SortedSystems = new ObservableCollection<StarSystem>(systems);
             }
             catch (Exception ex)
             {
@@ -94,6 +112,19 @@ namespace ChallengeMk2.ViewModels
             }
 
             return title;
+        }
+
+        void Search()
+        {
+            if (string.IsNullOrWhiteSpace(EntrySearchMessage))
+            {
+                SortedSystems = new ObservableCollection<StarSystem>(Systems);
+            }
+            else
+            {
+                var searchedSystems = Systems.Where(s => s.Name.ToLower().StartsWith(EntrySearchMessage.ToLower()));
+                SortedSystems = new ObservableCollection<StarSystem>(searchedSystems);
+            }
         }
     }
 }

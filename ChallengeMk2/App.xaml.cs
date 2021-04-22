@@ -43,7 +43,7 @@ namespace ChallengeMk2
         {
             InitializeComponent();
 
-            Device.SetFlags(new string[] { "CarouselView_Experimental", "Brush_Experimental", "Shapes_Experimental" });
+            Xamarin.Forms.Device.SetFlags(new string[] { "CarouselView_Experimental", "Brush_Experimental", "Shapes_Experimental" });
 
             //MSAL
             //authenticationService.InitializeAuthenticationService();

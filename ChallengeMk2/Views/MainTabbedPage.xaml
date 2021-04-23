@@ -46,12 +46,12 @@
 		</NavigationPage>
 		
 		<NavigationPage Title="">
-			<!--<x:Arguments>
-				<views:ChatMainPage/>
-			</x:Arguments>-->
 			<x:Arguments>
-				<views:ChatLoginPage/>
+				<views:ChatMainPage/>
 			</x:Arguments>
+			<!--<x:Arguments>
+				<views:ChatLoginPage/>
+			</x:Arguments>-->
 
 			<NavigationPage.IconImageSource>
 				<FontImageSource Glyph="{StaticResource Chat}" FontFamily="fas"/>

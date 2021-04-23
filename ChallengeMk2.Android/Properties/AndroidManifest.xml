@@ -9,7 +9,7 @@
 				<category android:name="android.intent.category.BROWSABLE" />
 				<!-- example -->
 				<!-- <data android:scheme="msalaaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" android:host="auth" /> -->
-				<data android:scheme="msal52810140-36e8-4d31-a3c2-243a5aa3a389" android:host="auth" />
+				<data android:scheme="msal82d1efe1-1556-4b2a-bc88-a5182b0204d5" android:host="auth" />
 			</intent-filter>
 		</activity>"
 	</application>

@@ -16,7 +16,7 @@ using Prism;
 
 namespace ChallengeMk2.ViewModels
 {
-    public class ChatMainPageViewModel : PrismBaseViewModel, IPageLifecycleAware, IAutoInitialize//, IActiveAware
+    public class ChatMainPageViewModel : PrismBaseViewModel, IPageLifecycleAware, IAutoInitialize, IActiveAware
     {
         readonly IChatService chatService;
 
@@ -38,14 +38,14 @@ namespace ChallengeMk2.ViewModels
             SignOutCommand = new Command(async () => await SignOutAsync());
         }
 
-        //public event EventHandler IsActiveChanged;
+        public event EventHandler IsActiveChanged;
 
-        //bool isActive;
-        //public bool IsActive
-        //{
-        //    get { return isActive; }
-        //    set { SetProperty(ref isActive, value, () => IsActiveChanged?.Invoke(this, EventArgs.Empty)); }
-        //}
+        bool isActive;
+        public bool IsActive
+        {
+            get { return isActive; }
+            set { SetProperty(ref isActive, value, () => IsActiveChanged?.Invoke(this, EventArgs.Empty)); }
+        }
 
         User connectedUser;
         public User ConnectedUser
@@ -75,25 +75,25 @@ namespace ChallengeMk2.ViewModels
         public Command<Contact> NavigateToPrivateCommand { get; set; }
         public Command SignOutCommand { get; set; }
 
-        //void OnIsActiveChanged(object sender, EventArgs e)
-        //{
-        //    if (IsActive)
-        //    {
-        //        authenticationService.AutoSignIn();
-        //    }
-        //}
+        void OnIsActiveChanged(object sender, EventArgs e)
+        {
+            if (IsActive)
+            {
+                authenticationService.AutoSignIn();
+            }
+        }
 
         public void OnAppearing()
         {
-            InitializeConnection();
-            InitializeViewModel();
+            //InitializeConnection();
+            //InitializeViewModel();
 
-            //IsActiveChanged += OnIsActiveChanged;
+            IsActiveChanged += OnIsActiveChanged;
         }
 
         public void OnDisappearing()
         {
-            //IsActiveChanged -= OnIsActiveChanged;
+            IsActiveChanged -= OnIsActiveChanged;
         }
 
         void InitializeConnection()
